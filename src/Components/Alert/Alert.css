@@ -1,0 +1,34 @@
+#alertWrapper
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 9999;
+}
+
+.alert
+{
+    padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    width: 25%;
+    text-align: center;
+}
+
+.alert-success
+{
+    color: #3C763D;
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+}
+
+.alert-failed
+{
+    color: #A94442;
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+}

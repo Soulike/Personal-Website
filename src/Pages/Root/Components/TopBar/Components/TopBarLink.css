@@ -1,0 +1,21 @@
+.TopBarLinkWrapper
+{
+    display: inline-block;
+    height: 100%;
+    padding: 0 0.6rem;
+}
+
+.TopBarLink
+{
+    height: 100%;
+    line-height: 2.75rem;
+    color: #222;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.TopBarIcon
+{
+    height: 0.8rem;
+    margin-right: 0.25rem;
+}

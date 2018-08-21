@@ -1,0 +1,11 @@
+.RightArea
+{
+    height: 100%;
+    position: absolute;
+    left: 15rem;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 3rem 2rem;
+    box-sizing: border-box;
+}

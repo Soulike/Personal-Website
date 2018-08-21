@@ -1,0 +1,1 @@
+export const TAB_CLICKED = 'SOULIKE_DRIVE/TAB_CLICKED';

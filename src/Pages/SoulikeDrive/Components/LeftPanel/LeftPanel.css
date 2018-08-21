@@ -1,0 +1,53 @@
+.LeftPanel
+{
+    display: inline-block;
+    height: 100%;
+    background: #333;
+    background: linear-gradient(to right, #333, #444);
+    /*TODO: 填满窗口技巧，记录*/
+    width: 15rem;
+    box-sizing: border-box;
+    padding: 2rem 0;
+    user-select: none;
+}
+
+.cloudIconWrapper
+{
+    width: 100%;
+    text-align: center;
+    color: #DDD;
+}
+
+@keyframes cloudFloat
+{
+    0%
+    {
+        transform: translateY(0)
+    }
+    50%
+    {
+        transform: translateY(-0.5rem)
+    }
+    100%
+    {
+        transform: translateY(0)
+    }
+}
+
+.cloudIcon
+{
+    font-size: 6rem;
+}
+
+.cloudIcon:hover
+{
+    animation-name: cloudFloat;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.SoulikeDriveText
+{
+    font-size: 1.5rem;
+    line-height: 4rem;
+}

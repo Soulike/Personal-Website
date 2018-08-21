@@ -1,0 +1,58 @@
+.FileListWrapper
+{
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 7.25rem;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    padding: 1rem 3rem;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.FileList
+{
+    width: 100%;
+    border-collapse: collapse;
+    color: #333;
+    user-select: none;
+}
+
+.FileList tr
+{
+    width: 100%;
+    line-height: 3rem;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    cursor: pointer;
+}
+
+.FileList tr:hover
+{
+    background: #DDD;
+}
+
+.FileList th
+{
+    font-weight: bold;
+    line-height: 3rem;
+    background: #EAEAEA;
+    background: linear-gradient(to bottom, #EAEAEA, #EEE);
+    border: none;
+}
+
+.FileList td
+{
+    text-align: center;
+}
+
+.noFileText
+{
+    text-align: center;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #333;
+}
