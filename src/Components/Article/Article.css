@@ -1,0 +1,30 @@
+@import "~highlight.js/styles/vs2015.css";
+
+.Article
+{
+    line-height: 2rem;
+    color: #333;
+    user-select: none;
+    text-align: justify;
+    margin-bottom: 7.5rem;
+}
+
+.Article p
+{
+    text-indent: 2rem;
+}
+
+.Article code
+{
+    padding: 1.5rem 1.5rem;
+    user-select: text;
+    box-shadow: 3px 3px 5px #333;
+}
+
+.Article pre, .Article code
+{
+    font-family: "Source Code Pro", "Noto Sans Mono", monospace;
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+    border-radius: 1rem;
+}

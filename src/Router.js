@@ -10,6 +10,7 @@ import {View as Blog} from './Pages/Blog';
 import {View as MusicPlayer} from './Pages/MusicPlayer';
 import {View as SoulikeDrive} from './Pages/SoulikeDrive';
 import {View as Options} from './Pages/Options';
+import {View as AboutMe} from './Pages/AboutMe';
 import {View as SoulikeDriveFileList} from './Pages/SoulikeDrive/Components/RightArea/Components/FileList';
 import {View as SoulikeDriveFileUploader} from './Pages/SoulikeDrive/Components/RightArea/Components/FileUploader';
 
@@ -26,6 +27,7 @@ const Routes = () => (
             </Route>
             <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/login' component={Login}/>
+            <Route path='/aboutMe' component={AboutMe}/>
         </Route>
         {/*<Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}></Route>
          <Route path='/' component={(props) => (<Root {...props} withBanner={true} withFooter={false}/>)}></Route>*/}

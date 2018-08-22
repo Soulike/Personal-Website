@@ -18,6 +18,7 @@ class TopBar extends Component
                     <TopBarLink to={'/'} onlyActiveOnIndex={false} iconStyle={solidIcons.faHome} text={'博客'}/>
                     <TopBarLink to={'/soulikeDrive'} onlyActiveOnIndex={false} text={'网盘'}/>
                     <TopBarLink to={'/musicPlayer'} onlyActiveOnIndex={false} text={'音乐播放器'}/>
+                    <TopBarLink to={'/aboutMe'} onlyActiveOnIndex={false} iconStyle={solidIcons.faChild} text={'关于我'}/>
                     <div className={'authControllerWrapper'}>
                         <AuthController/>
                     </div>
