@@ -27,7 +27,7 @@ export function getFilePrefix(url)
     {
         url = url.substring(1);
     }
-    return `/static/${url}`;
+    return `/file/${url}`;
 }
 
 export async function getAsync(url, params = {}, config = {})
