@@ -12,8 +12,8 @@ export function getBannerImage()
             const {isSuccess, msg, data} = res;
             if (isSuccess)
             {
-                const {url} = getFilePrefix(data);
-                dispatch(requestSuccess(url));
+                const {url} = data;
+                dispatch(requestSuccess(getFilePrefix(url)));
             }
             else
             {

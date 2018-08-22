@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import {View as Alert} from '../Components/Alert/index';
 
-// 所有的请求走/server，所有的静态文件获取走/static
+// 所有的请求走/server，所有的静态文件获取走/file
 /*
  * 返回值格式
  * {
