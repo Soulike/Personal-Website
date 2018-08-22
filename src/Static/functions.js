@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import {View as Alert} from '../Components/Alert/index';
 
+// 所有的请求走/server，所有的静态文件获取走/static
 /*
  * 返回值格式
  * {
@@ -11,14 +12,22 @@ import {View as Alert} from '../Components/Alert/index';
  *     data: Object
  * }
  * */
-
-export function prefix(url)
+export function requestPrefix(url)
 {
     while (url.charAt(0) === '/')
     {
         url = url.substring(1);
     }
     return `/server/${url}`;
+}
+
+export function getFilePrefix(url)
+{
+    while (url.charAt(0) === '/')
+    {
+        url = url.substring(1);
+    }
+    return `/static/${url}`;
 }
 
 export async function getAsync(url, params = {}, config = {})

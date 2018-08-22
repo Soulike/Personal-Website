@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import {downloadFile, getAsync, postAsync, prefix} from '../../../../../../../Static/functions';
+import {downloadFile, getAsync, postAsync, requestPrefix} from '../../../../../../../Static/functions';
 import {View as Alert} from '../../../../../../../Components/Alert';
 
 export function getFileList()
@@ -8,7 +8,7 @@ export function getFileList()
     {
         try
         {
-            const res = await getAsync(prefix('/soulikeDrive/getFileList'));
+            const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'));
             const {isSuccess, msg, data: fileList} = res;
             if (isSuccess)
             {
@@ -36,7 +36,7 @@ export function deleteFiles(fileList)
     {
         try
         {
-            const res = await postAsync(prefix('/soulikeDrive/deleteFile'), {fileList});
+            const res = await postAsync(requestPrefix('/soulikeDrive/deleteFile'), {fileList});
             const {isSuccess, msg} = res;
             if (isSuccess)
             {
@@ -67,7 +67,7 @@ export function downloadFiles(fileList)
     {
         try
         {
-            const res = await postAsync(prefix('/soulikeDrive/getDownloadURL'), {fileList});
+            const res = await postAsync(requestPrefix('/soulikeDrive/getDownloadURL'), {fileList});
             const {isSuccess, msg, data: url} = res;
             if (isSuccess)
             {

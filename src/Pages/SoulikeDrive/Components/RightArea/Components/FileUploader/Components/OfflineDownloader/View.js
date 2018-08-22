@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './OfflineDownloader.css';
-import {postAsync, prefix} from '../../../../../../../../Static/functions';
+import {postAsync, requestPrefix} from '../../../../../../../../Static/functions';
 import {View as Alert} from '../../../../../../../../Components/Alert';
 
 class OfflineDownloader extends Component
@@ -27,7 +27,7 @@ class OfflineDownloader extends Component
     OfflineDownloaderButtonClicked = (e) =>
     {
         e.preventDefault();
-        postAsync(prefix('/soulikeDrive/submitOfflineDownloadURL'), {url: this.state.offlineDownloadURL})
+        postAsync(requestPrefix('/soulikeDrive/submitOfflineDownloadURL'), {url: this.state.offlineDownloadURL})
             .then(res =>
             {
                 const {isSuccess, msg} = res;

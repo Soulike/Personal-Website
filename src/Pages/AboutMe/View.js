@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
 import {View as Article} from '../../Components/Article';
 import './AboutMe.css';
-import {getAsync, prefix} from '../../Static/functions';
+import {getAsync, requestPrefix} from '../../Static/functions';
 
 
 class AboutMe extends Component
@@ -17,7 +17,7 @@ class AboutMe extends Component
 
     componentDidMount()
     {
-        getAsync(prefix('/getAboutMe'))
+        getAsync(requestPrefix('/getAboutMe'))
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;
