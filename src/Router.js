@@ -23,14 +23,15 @@ const Routes = () => (
             <IndexRoute component={Blog}/>
             <Route path='/blog' component={Blog}>
                 <Route path='/articleEditor' component={ArticleEditor} onEnter={AuthProcessor.requireLogin}/>
-                <Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
             </Route>
+            <Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/login' component={Login}/>
             <Route path='/aboutMe' component={AboutMe}/>
         </Route>
-        {/*<Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}></Route>
-         <Route path='/' component={(props) => (<Root {...props} withBanner={true} withFooter={false}/>)}></Route>*/}
+        <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}>
+
+        </Route>
         <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={false}/>)}>
             <Route path='/soulikeDrive' component={SoulikeDrive} onEnter={AuthProcessor.requireLogin}>
                 <IndexRoute component={SoulikeDriveFileList}/>

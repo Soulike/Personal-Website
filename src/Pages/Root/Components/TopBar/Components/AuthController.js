@@ -29,6 +29,7 @@ class AuthController extends Component
             return (
                 <div>
                     <TopBarLink to={'/dynamic'} text={'动态'} iconStyle={solidIcons.faInfoCircle}/>
+                    <TopBarLink to={'/options'} text={'设置'} iconStyle={solidIcons.faCogs}/>
                     <TopBarLink to={'#'}
                                 text={'退出登录'}
                                 iconStyle={solidIcons.faSignOutAlt}
