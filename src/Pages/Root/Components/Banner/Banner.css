@@ -1,7 +1,7 @@
 .banner
 {
-    height: 12.5rem;
+    height: 10rem;
     box-shadow: 0 0 10px #333;
-    background-size: cover;
+    background-position-x: center;
     background-repeat: no-repeat;
 }
