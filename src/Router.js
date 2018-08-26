@@ -13,6 +13,7 @@ import {View as Options} from './Pages/Options';
 import {View as AboutMe} from './Pages/AboutMe';
 import {View as SoulikeDriveFileList} from './Pages/SoulikeDrive/Components/RightArea/Components/FileList';
 import {View as SoulikeDriveFileUploader} from './Pages/SoulikeDrive/Components/RightArea/Components/FileUploader';
+import {View as HashGenerator} from './Pages/HashGenerator';
 
 import {Functions as AuthProcessor} from './Components/AuthProcessor';
 
@@ -27,6 +28,7 @@ const Routes = () => (
             <Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/login' component={Login}/>
+            <Route path='/hashGenerator' component={HashGenerator}/>
             <Route path='/aboutMe' component={AboutMe}/>
         </Route>
         <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}>

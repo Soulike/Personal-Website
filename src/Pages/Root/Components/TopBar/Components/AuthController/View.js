@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import TopBarLink from './TopBarLink';
-import {Actions} from '../../../../../Components/AuthProcessor';
+import {View as TopBarLink} from '../TopBarLink';
+import {Actions} from '../../../../../../Components/AuthProcessor';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 
 class AuthController extends Component
 {
-    constructor()
-    {
-        super(...arguments);
-    }
-
     render()
     {
         const {hasLoggedIn, onClickExitLink} = this.props;

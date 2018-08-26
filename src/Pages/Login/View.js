@@ -70,7 +70,7 @@ class Login extends Component
                                className={'loginInput'}
                                onChange={this.onPasswordChange}/>
                     </div>
-                    <button className={'submitButton'}>登陆</button>
+                    <button className={'submitButton btn btn-primary btn-lg'}>登陆</button>
                 </form>
             </div>
         );

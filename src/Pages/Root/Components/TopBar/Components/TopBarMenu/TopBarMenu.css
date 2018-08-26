@@ -1,0 +1,26 @@
+.TopBarMenu
+{
+    display: inline-block;
+}
+
+.floatMenu-enter
+{
+    opacity: 0;
+}
+
+.floatMenu-enter.floatMenu-enter-active
+{
+    opacity: 1;
+    transition: 250ms;
+}
+
+.floatMenu-leave
+{
+    opacity: 1;
+}
+
+.floatMenu-leave.floatMenu-leave-active
+{
+    opacity: 0;
+    transition: 250ms;
+}
