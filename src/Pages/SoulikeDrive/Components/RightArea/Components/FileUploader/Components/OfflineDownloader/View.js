@@ -54,7 +54,7 @@ class OfflineDownloader extends Component
                            className={'OfflineDownloaderInput'}
                            placeholder={'下载链接'}
                            onChange={this.onOfflineDownloaderInputChange} ref={'urlInput'}/>
-                    <button className={'OfflineDownloaderButton btn'}
+                    <button className={'OfflineDownloaderButton btn btn-primary'}
                             onClick={this.OfflineDownloaderButtonClicked}>提交
                     </button>
                 </form>

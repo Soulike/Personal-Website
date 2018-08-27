@@ -17,10 +17,16 @@
     margin: 1rem 0;
 }
 
-.link
+.footerLink
 {
     display: inline-block;
     margin: 0 0.25rem;
+    text-decoration: none;
+    color: #AAA;
+}
+
+.hitokotoLink
+{
     text-decoration: none;
     color: #AAA;
 }

@@ -16,7 +16,7 @@ class TopBar extends Component
         this.state = {
             menuLinks: [
                 new MenuLink(solidIcons.faHashtag, '哈希生成器', '/hashGenerator'),
-                new MenuLink(solidIcons.faKey, '密码生成器', '/passwordGenerator')
+                new MenuLink(solidIcons.faHashtag, 'base64 转换器', '/base64Converter')
             ]
         };
 
