@@ -23,9 +23,8 @@ const Routes = () => (
     <Router history={browserHistory}>
         <Route path='/' component={(props) => (<Root {...props} withBanner={true} withFooter={true}/>)}>
             <IndexRoute component={Blog}/>
-            <Route path='/blog' component={Blog}>
-                <Route path='/articleEditor' component={ArticleEditor} onEnter={AuthProcessor.requireLogin}/>
-            </Route>
+            <Route path='/blog' component={Blog}/>
+            <Route path='/articleEditor' component={ArticleEditor} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/login' component={Login}/>

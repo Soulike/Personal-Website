@@ -1,7 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {Reducer as SoulikeDriveReducer} from './Pages/SoulikeDrive';
-import {Reducer as ArticleEditorReducer} from './Pages/ArticleEditor';
 import {Reducer as BlogReducer} from './Pages/Blog';
 import {Reducer as DynamicReducer} from './Pages/Dynamic';
 import {Reducer as MusicPlayerReducer} from './Pages/MusicPlayer';
@@ -15,7 +14,6 @@ const initValues = {
     SoulikeDrive: {
         currentActiveTabId: 0
     },
-    ArticleEditor: {},
     Blog: {
         cardBackground: `url('https://i0.hdslb.com/bfs/archive/30d45ce269948eae8ed650e5ce03a2ca463a5d77.png')`,
         avatar: `url('https://i0.hdslb.com/bfs/face/b589846db75bbaa1a22a1bf51243158941996e2f.jpg')`
@@ -43,7 +41,6 @@ const storeEnhancers = compose(
 // 所有 Reducer 放在此处
 const Reducer = combineReducers({
     SoulikeDrive: SoulikeDriveReducer,
-    ArticleEditor: ArticleEditorReducer,
     Blog: BlogReducer,
     Dynamic: DynamicReducer,
     MusicPlayer: MusicPlayerReducer,
