@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import './UserInfoCard.css';
 import {getAsync, getFilePrefix, requestPrefix} from '../../../../../Static/functions';
 import {View as Alert} from '../../../../../Components/Alert/index';
@@ -9,8 +10,6 @@ class ProfileCard extends Component
     {
         super(...arguments);
         this.state = {
-            nickname: '',
-            avatar: '',
             image: '',
             sayingNum: 0,
             articleNum: 0
@@ -19,15 +18,14 @@ class ProfileCard extends Component
 
     componentDidMount()
     {
-        Promise.all([getAsync(requestPrefix('/blog/getProfileCardInfo')), getAsync(requestPrefix('/getAvatar'))])
-            .then(([infoRes, avatarRes]) =>
+        getAsync(requestPrefix('/blog/getProfileCardInfo'))
+            .then((res) =>
             {
-                const {isSuccess: infoIsSuccess, msg: infoMsg, data: infoData} = infoRes;
-                if (infoIsSuccess)
+                const {isSuccess, msg, data} = res;
+                if (isSuccess)
                 {
-                    const {nickname, img, sayingNum, articleNum} = infoData;
+                    const {img, sayingNum, articleNum} = data;
                     this.setState({
-                        nickname,
                         image: img,
                         sayingNum,
                         articleNum
@@ -35,18 +33,7 @@ class ProfileCard extends Component
                 }
                 else
                 {
-                    Alert.show(infoMsg, false);
-                }
-
-                const {isSuccess: avatarIsSuccess, msg: avatarMsg, data: avatarData} = avatarRes;
-                if (avatarIsSuccess)
-                {
-                    const {url} = avatarData;
-                    this.setState({avatar: getFilePrefix(url)});
-                }
-                else
-                {
-                    Alert.show(avatarMsg, false);
+                    Alert.show(msg, false);
                 }
             })
             .catch(e =>
@@ -58,7 +45,8 @@ class ProfileCard extends Component
 
     render()
     {
-        const {nickname, avatar, image, sayingNum, articleNum} = this.state;
+        const {nickname, avatar} = this.props;
+        const {image, sayingNum, articleNum} = this.state;
         return (
             <div className={'ProfileCard card'}>
                 <div className={'profileCardImage'} style={{backgroundImage: `url(${getFilePrefix(image)})`}}>
@@ -83,4 +71,13 @@ class ProfileCard extends Component
     }
 }
 
-export default ProfileCard;
+const mapStateToProps = (state) =>
+{
+    const {nickname, avatar} = state['Blog'];
+    return {
+        nickname,
+        avatar
+    };
+};
+
+export default connect(mapStateToProps)(ProfileCard);

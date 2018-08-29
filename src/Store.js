@@ -1,5 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
+import {ARTICLE_TYPE} from './Static/constants';
 import {Reducer as SoulikeDriveReducer} from './Pages/SoulikeDrive';
 import {Reducer as BlogReducer} from './Pages/Blog';
 import {Reducer as DynamicReducer} from './Pages/Dynamic';
@@ -8,6 +9,7 @@ import {Reducer as OptionsReducer} from './Pages/Options';
 import {Reducer as BannerReducer} from './Pages/Root/Components/Banner';
 import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/RightArea/Components/FileList';
 import {Reducer as AuthProcessorReducer} from './Components/AuthProcessor';
+import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/MidPart/TypeSelectBar';
 
 // Store 中的初始值，根据开发需要进行改变
 const initValues = {
@@ -15,14 +17,18 @@ const initValues = {
         currentActiveTabId: 0
     },
     Blog: {
-        cardBackground: `url('https://i0.hdslb.com/bfs/archive/30d45ce269948eae8ed650e5ce03a2ca463a5d77.png')`,
-        avatar: `url('https://i0.hdslb.com/bfs/face/b589846db75bbaa1a22a1bf51243158941996e2f.jpg')`
+        nickname: '',
+        avatar: ''
+    },
+    TypeSelectBar: {
+        selectedArticleTypeId: ARTICLE_TYPE.ALL,
+        fileList: []
     },
     Dynamic: {},
     MusicPlayer: {},
     Options: {},
     Banner: {
-        bannerBackground: `url('https://i0.hdslb.com/bfs/archive/30d45ce269948eae8ed650e5ce03a2ca463a5d77.png')`
+        bannerBackground: ''
     },
     FileList: {
         fileList: [],
@@ -42,6 +48,7 @@ const storeEnhancers = compose(
 const Reducer = combineReducers({
     SoulikeDrive: SoulikeDriveReducer,
     Blog: BlogReducer,
+    TypeSelectBar: TypeSelectBarReducer,
     Dynamic: DynamicReducer,
     MusicPlayer: MusicPlayerReducer,
     Options: OptionsReducer,

@@ -1,0 +1,4 @@
+export const GET_INFO_SUCCESS = 'BLOG/GET_INFO_SUCCESS';
+
+export const GET_INFO_FAILED = 'BLOG/GET_INFO_FAILED';
+

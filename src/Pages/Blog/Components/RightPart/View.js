@@ -9,7 +9,7 @@ class RightPart extends Component
             <div className={'RightPart'}>
 
             </div>
-        );
+        )
     }
 }
 
