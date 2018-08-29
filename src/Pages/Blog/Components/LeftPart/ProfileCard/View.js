@@ -53,7 +53,7 @@ class ProfileCard extends Component
 
                 </div>
                 <div className={'avatarAndNicknameWrapper'}>
-                    <img src={avatar} alt="avatar" className={'avatar'}/>
+                    <img src={getFilePrefix(avatar)} alt="avatar" className={'avatar'}/>
                     <div className={'nickname'}>{nickname}</div>
                 </div>
                 <div className={'numWrapper'}>
