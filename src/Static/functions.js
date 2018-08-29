@@ -80,3 +80,16 @@ export function downloadFile(url)
     };
     document.body.appendChild(iframe);
 }
+
+export function prefixZero(num)
+{
+    if (num >= 0 && num < 10)
+    {
+        return '0' + num.toString();
+    }
+    else
+    {
+        return num.toString();
+    }
+
+}
