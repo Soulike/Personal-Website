@@ -55,8 +55,6 @@ class Article extends Component
                     console.log(e);
                 });
         }
-
-
     }
 
     generateTimeString = (time) =>
@@ -117,7 +115,11 @@ class Article extends Component
     {
         const {title, content, type, time} = this.state;
         const {hasLoggedIn} = this.props;
-        const converter = new showdown.Converter();
+        const converter = new showdown.Converter({
+            tables: true,
+            openLinksInNewWindow: true,
+            simplifiedAutoLink: true
+        });
         const contentHtml = converter.makeHtml(content);
         const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
         return (
