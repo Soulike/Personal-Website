@@ -15,6 +15,24 @@
     text-indent: 2rem;
 }
 
+.Article table
+{
+    width: 100%;
+    user-select: text;
+}
+
+.Article table, .Article th, .Article td
+{
+    border: 1px solid #AAA;
+    border-collapse: collapse;
+    text-align: center !important;
+}
+
+.Article th, .Article td
+{
+    padding: 0.5rem;
+}
+
 .Article blockquote
 {
     border-left: 0.5rem #46AFE8 solid;
