@@ -9,9 +9,17 @@ class ArticleWrapper extends Component
 {
     onArticleTypeClicked = (e) =>
     {
-        this.props.changeCurrentArticleTypeId(e.target.dataset['article_type_id']);
-        console.log(e.target);
-        console.log(e.target.dataset['article_type_id']);
+        let articleTypeId = -2;
+        if (e.target.dataset)
+        {
+            articleTypeId = e.target.dataset['article_type_id'];
+        }
+        else
+        {
+            articleTypeId = e.target.getAttribute('data-article_type_id');
+        }
+
+        this.props.changeCurrentArticleTypeId(articleTypeId);
     };
 
     generateTimeStr = (time) =>
