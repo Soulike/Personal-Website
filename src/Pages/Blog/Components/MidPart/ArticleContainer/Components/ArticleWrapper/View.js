@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ArticleWrapper.css';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {prefixZero} from '../../../../../../../Static/functions';
+import {getFilePrefix, prefixZero} from '../../../../../../../Static/functions';
 
 class ArticleWrapper extends Component
 {
@@ -74,7 +74,7 @@ class ArticleWrapper extends Component
             <div className={'ArticleWrapper'}>
                 <div className={'articleWrapperHeader'}>
                     <div className={'ArticleWrapperAvatarWrapper'}>
-                        <img src={avatar} alt="avatar" className={'ArticleWrapperAvatar'}/>
+                        <img src={getFilePrefix(avatar)} alt="avatar" className={'ArticleWrapperAvatar'}/>
                     </div>
                     <div className={'ArticleWrapperHeaderMidPart'}>
                         <div className={'ArticleWrapperNickname'}>{nickname}</div>
