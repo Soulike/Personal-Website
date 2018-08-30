@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
 import {getAsync, postAsync, requestPrefix} from '../../Static/functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
@@ -19,8 +20,10 @@ class ArticleEditor extends Component
 
     componentDidMount()
     {
+        document.title = '文章编辑器 - Soulike 的个人网站';
         const title = sessionStorage.getItem('title');
         const content = sessionStorage.getItem('content');
+        const typeId = sessionStorage.getItem('typeId');
         if (title)
         {
             this.setState({title});
@@ -30,6 +33,10 @@ class ArticleEditor extends Component
         {
             this.setState({content});
             this.refs.content.value = content;
+        }
+        if (typeId)
+        {
+            this.setState({typeId});
         }
 
         getAsync(requestPrefix('/blog/getArticleTypes'))
@@ -67,12 +74,14 @@ class ArticleEditor extends Component
     onTypeChange = (e) =>
     {
         this.setState({typeId: e.target.value});
+        sessionStorage.setItem('typeId', e.target.value);
     };
 
     onSubmit = (e) =>
     {
         e.preventDefault();
         const {title, content, typeId} = this.state;
+        const {modify, articleId} = this.props.location.query;
         if (!title)
         {
             Alert.show('请填写标题', false);
@@ -87,34 +96,83 @@ class ArticleEditor extends Component
         }
         else
         {
-            postAsync(requestPrefix('/blog/submitArticle'), {
-                title,
-                content: btoa(content),
-                typeId
-            })
-                .then(res =>
-                {
-                    const {isSuccess, msg} = res;
-                    Alert.show(msg, isSuccess);
-                    sessionStorage.removeItem('title');
-                    sessionStorage.removeItem('content');
-                    this.setState({
-                        title: '',
-                        content: ''
-                    });
-                    this.refs.title.value = '';
-                    this.refs.content.value = '';
+            if (!modify)
+            {
+                postAsync(requestPrefix('/blog/submitArticle'), {
+                    title,
+                    content: content,
+                    typeId
                 })
-                .catch(e =>
-                {
-                    Alert.show('文章提交失败', false);
-                    console.log(e);
-                });
+                    .then(res =>
+                    {
+                        const {isSuccess, msg, data} = res;
+                        Alert.show(msg, isSuccess);
+                        sessionStorage.removeItem('typeId');
+                        sessionStorage.removeItem('title');
+                        sessionStorage.removeItem('content');
+                        this.setState({
+                            typeId: 0,
+                            title: '',
+                            content: ''
+                        });
+                        this.refs.title.value = '';
+                        this.refs.content.value = '';
+                        setTimeout(() =>
+                        {
+                            browserHistory.push(`/article?articleId=${data}`);
+                        }, 1000);
+
+                    })
+                    .catch(e =>
+                    {
+                        Alert.show('文章提交失败', false);
+                        console.log(e);
+                    });
+            }
+            else if (!parseInt(articleId))
+            {
+                Alert.show('参数错误', false);
+            }
+            else
+            {
+                postAsync(requestPrefix('/blog/modifyArticle'), {
+                    id: articleId,
+                    title,
+                    content: content,
+                    typeId
+                })
+                    .then(res =>
+                    {
+                        const {isSuccess, msg, data} = res;
+                        Alert.show(msg, isSuccess);
+                        sessionStorage.removeItem('typeId');
+                        sessionStorage.removeItem('title');
+                        sessionStorage.removeItem('content');
+                        this.setState({
+                            typeId: 0,
+                            title: '',
+                            content: ''
+                        });
+                        this.refs.title.value = '';
+                        this.refs.content.value = '';
+                        setTimeout(() =>
+                        {
+                            browserHistory.push(`/article?articleId=${data}`);
+                        }, 1000);
+
+                    })
+                    .catch(e =>
+                    {
+                        Alert.show('文章修改失败', false);
+                        console.log(e);
+                    });
+            }
         }
     };
 
     render()
     {
+        const {typeId} = this.state;
         return (
             <div className={'ArticleEditor'}>
                 <Title titleText={'编辑文章'}/>
@@ -128,7 +186,7 @@ class ArticleEditor extends Component
                           ref={'content'}
                           onChange={this.onContentChange}/>
                 <div className={'articleTypeSelectWrapper'}>
-                    <select className={'articleTypeSelect'} onChange={this.onTypeChange}>
+                    <select className={'articleTypeSelect'} value={typeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
                         {this.state.allTypes.map(type =>
                         {

@@ -21,6 +21,11 @@ class HashGenerator extends Component
         };
     }
 
+    componentDidMount()
+    {
+        document.title = '哈希生成器 - Soulike 的个人网站';
+    }
+
     onSelectChange = (e) =>
     {
         this.setState({

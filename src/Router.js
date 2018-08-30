@@ -15,6 +15,7 @@ import {View as SoulikeDriveFileList} from './Pages/SoulikeDrive/Components/Righ
 import {View as SoulikeDriveFileUploader} from './Pages/SoulikeDrive/Components/RightArea/Components/FileUploader';
 import {View as HashGenerator} from './Pages/HashGenerator';
 import {View as Base64Converter} from './Pages/Base64Converter';
+import {View as Article} from './Pages/Article';
 
 import {Functions as AuthProcessor} from './Components/AuthProcessor';
 
@@ -24,6 +25,7 @@ const Routes = () => (
         <Route path='/' component={(props) => (<Root {...props} withBanner={true} withFooter={true}/>)}>
             <IndexRoute component={Blog}/>
             <Route path='/blog' component={Blog}/>
+            <Route path='/article' component={Article}/>
             <Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>
             <Route path='/login' component={Login}/>

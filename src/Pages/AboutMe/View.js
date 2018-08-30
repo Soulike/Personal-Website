@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
-import {View as Article} from '../../Components/Article';
 import './AboutMe.css';
 import {getAsync, requestPrefix} from '../../Static/functions';
 
@@ -17,6 +16,7 @@ class AboutMe extends Component
 
     componentDidMount()
     {
+        document.title = '关于我 - Soulike 的个人网站';
         getAsync(requestPrefix('/getAboutMe'))
             .then(res =>
             {
@@ -37,7 +37,9 @@ class AboutMe extends Component
         return (
             <div className={'AboutMe'}>
                 <Title titleText={'关于我'}/>
-                <Article content={this.state.aboutMe}/>
+                <div className={'aboutMeContent'} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}>
+
+                </div>
             </div>);
     }
 }

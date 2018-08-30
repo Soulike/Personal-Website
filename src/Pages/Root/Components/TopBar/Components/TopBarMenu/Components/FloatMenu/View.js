@@ -13,7 +13,7 @@ class FloatMenu extends Component
                 {items.map((item) =>
                 {
                     const {iconStyle, to, text} = item;
-                    return <div className={'floatMenuLink'}>
+                    return <div className={'floatMenuLink'} key={text}>
                         <TopBarLink iconStyle={iconStyle} to={to} text={text}/>
                     </div>;
                 })}

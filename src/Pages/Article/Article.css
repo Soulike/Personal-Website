@@ -1,0 +1,134 @@
+@import "~highlight.js/styles/vs2015.css";
+
+.Article
+{
+    margin: 2rem auto;
+    width: 60%;
+    padding: 1rem 2rem;
+    border: 1px solid #DDD;
+    border-radius: 0.25rem;
+    user-select: none;
+}
+
+.Article p
+{
+    text-indent: 2rem;
+}
+
+.Article blockquote
+{
+    border-left: 0.5rem #46AFE8 solid;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    padding: 0 0 0 2rem;
+    margin: 0;
+    color: #666;
+}
+
+.Article a
+{
+    color: #666;
+    text-decoration: underline;
+    transition: 0.25s;
+}
+
+.Article a:hover
+{
+    color: #333;
+}
+
+.Article pre code
+{
+    padding: 0.75rem 1.5rem;
+    user-select: text;
+}
+
+.Article pre, .Article code
+{
+    font-family: "Source Code Pro", "Noto Sans Mono", monospace;
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+    border-radius: 0.25rem;
+}
+
+.Article .articleTitle
+{
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Noto Serif CJK SC', '思源宋体 CN', serif;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.Article .articleBtnWrapper
+{
+    display: inline-block;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.Article .articleModifyBtn
+{
+    margin-right: 1rem;
+}
+
+.Article .articleInfo
+{
+    display: inline-block;
+    float: right;
+    padding: 0.25rem 1.5rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin: 0.5rem 0 1rem 0;
+    background-color: #46AFE8;
+    background: linear-gradient(to left, #369FD8, #46AFE8);
+    color: #FFF;
+    position: relative;
+    left: 2rem;
+}
+
+.Article .articleInfoTriangle
+{
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-top: 1.25rem solid transparent;
+    border-bottom: 1.25rem solid transparent;
+    border-right: 1.25rem solid #46AFE8;
+    display: inline-block;
+    position: absolute;
+    right: 100%;
+    top: 0;
+}
+
+.Article .articleInfo .articleTime
+{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.Article .articleInfo .articleType
+{
+    display: inline-block;
+}
+
+.Article .articleContent
+{
+    clear: both;
+    line-height: 1.75rem;
+    color: #333;
+    user-select: none;
+    text-align: justify;
+    margin-bottom: 5rem;
+}
+
+.Article .articleFooter
+{
+    border-left: 5px solid #F00;
+    border-right: 1px solid rgba(255, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+    background-color: rgba(255, 0, 0, 0.25);
+    padding: 0.5rem 1rem;
+    line-height: 2rem;
+    font-weight: bold;
+}

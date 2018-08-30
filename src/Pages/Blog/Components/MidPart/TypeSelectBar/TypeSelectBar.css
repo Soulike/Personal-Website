@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 
-.articleType
+.TypeSelectBar .articleType
 {
     display: inline-block;
     text-align: center;
@@ -19,12 +19,12 @@
     border-bottom: 3px solid transparent;
 }
 
-.articleType:hover, .currentArticleType
+.TypeSelectBar .articleType:hover, .TypeSelectBar .currentArticleType
 {
     color: #00B5E5;
 }
 
-.currentArticleType
+.TypeSelectBar .currentArticleType
 {
     border-bottom: 3px solid #00B5E5;
 }

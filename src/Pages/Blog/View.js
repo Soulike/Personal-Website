@@ -10,6 +10,7 @@ class Blog extends Component
 {
     componentDidMount()
     {
+        document.title = '博客 - Soulike 的个人网站';
         Store.dispatch(getInfo());
     }
 

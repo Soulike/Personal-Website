@@ -14,7 +14,9 @@
 
 .TopBarLink
 {
+    display: block;
     height: 100%;
+    width: 100%;
     line-height: 2.75rem;
     color: #222;
     font-size: 0.8rem;

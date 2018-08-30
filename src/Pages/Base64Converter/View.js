@@ -13,6 +13,11 @@ class Base64Converter extends Component
         };
     }
 
+    componentDidMount()
+    {
+        document.title = 'Base64 转换器 - Soulike 的个人网站';
+    }
+
     shouldComponentUpdate(nextProps, nextState, nextContext)
     {
         return false;

@@ -1,0 +1,52 @@
+.ToTopButtonWrapper
+{
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    border: 1px solid #333;
+    border-radius: 2rem;
+    background-color: #FFF;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.ToTopButtonWrapper:hover
+{
+    opacity: 1;
+}
+
+.ToTopButtonWrapper, .ToTopButton
+{
+    width: 3rem;
+    height: 3rem;
+}
+
+.ToTopButton
+{
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.ToTopButtonTransition-enter
+{
+    opacity: 0;
+}
+
+.ToTopButtonTransition-enter.ToTopButtonTransition-enter-active
+{
+    opacity: 0.5;
+    transition: 250ms;
+}
+
+.ToTopButtonTransition-leave
+{
+    opacity: 0.5;
+}
+
+.ToTopButtonTransition-leave.ToTopButtonTransition-leave-active
+{
+    opacity: 0;
+    transition: 250ms;
+}

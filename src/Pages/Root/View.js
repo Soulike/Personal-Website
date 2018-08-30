@@ -6,6 +6,7 @@ import {View as Footer} from './Components/Footer';
 import './Root.css';
 import Store from '../../Store';
 import * as Actions from '../../Components/AuthProcessor/Actions/Actions';
+import {View as ToTopButton} from './Components/ToTopButton';
 
 class Root extends Component
 {
@@ -21,8 +22,9 @@ class Root extends Component
         return (
             <div className={'outerWrapper'}>
                 {withBanner ? <Banner/> : <TopBar isBlur={false}/>}
-                <div className={'innerWrapper'}>{children}</div>
+                <div className={'innerWrapper'} key={this.props.location.pathname}>{children}</div>
                 {withFooter ? <Footer/> : null}
+                <ToTopButton/>
             </div>
         );
     }

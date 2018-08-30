@@ -5,3 +5,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.aboutMeContent
+{
+    text-indent: 2rem;
+    color: #333;
+    line-height: 2rem;
+    user-select: none;
+}

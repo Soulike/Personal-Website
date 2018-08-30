@@ -5,7 +5,7 @@
     text-align: center;
 }
 
-.articleTitle, .articleContent
+.ArticleEditor .articleTitle, .ArticleEditor .articleContent
 {
     border: 1px solid #DDD;
     border-radius: 0.25rem;
@@ -15,12 +15,12 @@
     word-break: break-word;
 }
 
-.articleTitle:focus, .articleContent:focus, .articleTypeSelect:focus
+.ArticleEditor .articleTitle:focus, .ArticleEditor .articleContent:focus, .ArticleEditor .articleTypeSelect:focus
 {
     border: 1px solid #333;
 }
 
-.articleTitle
+.ArticleEditor .articleTitle
 {
     display: block;
     width: 100%;
@@ -32,7 +32,7 @@
     box-sizing: border-box;
 }
 
-.articleContent
+.ArticleEditor .articleContent
 {
     resize: none;
     width: 100%;
@@ -43,7 +43,7 @@
     padding: 1rem 0.75rem;
 }
 
-.articleTypeSelectWrapper
+.ArticleEditor .articleTypeSelectWrapper
 {
     width: 50%;
     display: inline-block;
@@ -51,7 +51,7 @@
     text-align: left;
 }
 
-.articleTypeSelect
+.ArticleEditor .articleTypeSelect
 {
     width: 50%;
     background-color: #FFF;
@@ -61,14 +61,14 @@
     transition: 0.25s;
 }
 
-.articleButtonWrapper
+.ArticleEditor .articleButtonWrapper
 {
     width: 50%;
     display: inline-block;
     box-sizing: border-box;
 }
 
-.articleSubmitBtn
+.ArticleEditor .articleSubmitBtn
 {
     width: 100%;
 }
