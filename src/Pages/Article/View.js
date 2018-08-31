@@ -41,7 +41,10 @@ class Article extends Component
                     const {isSuccess, msg, data} = res;
                     if (isSuccess)
                     {
-                        this.setState({...data});
+                        this.setState({...data}, () =>
+                        {
+                            highLight.initHighlighting();
+                        });
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
                     else
@@ -55,11 +58,6 @@ class Article extends Component
                     console.log(e);
                 });
         }
-    }
-
-    componentDidUpdate(prevProps, prevState, prevContext)
-    {
-        highLight.initHighlightingOnLoad();
     }
 
     generateTimeString = (time) =>
