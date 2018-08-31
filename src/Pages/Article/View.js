@@ -41,10 +41,8 @@ class Article extends Component
                     const {isSuccess, msg, data} = res;
                     if (isSuccess)
                     {
-                        this.setState({...data}, () =>
-                        {
-                            highLight.initHighlightingOnLoad();
-                        });
+                        this.setState({...data});
+                        highLight.initHighlightingOnLoad();
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
                     else
