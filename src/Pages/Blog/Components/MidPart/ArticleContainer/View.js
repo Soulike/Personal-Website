@@ -12,30 +12,48 @@ class ArticleContainer extends Component
     {
         super(...arguments);
         this.state = {
-            articleList: []
+            articleList: [],
+            currentPage: 0
         };
     }
 
     componentDidMount()
     {
         this.getArticleList(this.props.selectedArticleTypeId);
+        window.addEventListener('scroll', () =>
+        {
+            const {currentPage} = this.state;
+            if (window.scrollY >= currentPage * window.innerHeight)
+            {
+                this.getArticleList(this.props.selectedArticleTypeId);
+            }
+        });
     }
 
     componentWillReceiveProps(nextProps, nextContext)
     {
         if (this.props.selectedArticleTypeId !== nextProps.selectedArticleTypeId)
         {
-            this.getArticleList(nextProps.selectedArticleTypeId);
+            this.setState(
+                {
+                    articleList: [],
+                    currentPage: 0
+                },
+                () =>
+                {
+                    this.getArticleList(nextProps.selectedArticleTypeId);
+                });
         }
     }
 
     getArticleList = (articleTypeId) =>
     {
-        this.setState({articleList: []});
-        this.getArticleListAsync(articleTypeId)
+        const {currentPage} = this.state;
+        this.setState({currentPage: currentPage + 1});
+        this.getArticleListAsync(articleTypeId, currentPage + 1)
             .then(data =>
             {
-                this.setState({articleList: data});
+                this.setState({articleList: [...this.state.articleList, ...data]});
             })
             .catch(msg =>
             {
@@ -43,13 +61,16 @@ class ArticleContainer extends Component
             });
     };
 
-    getArticleListAsync = async (articleTypeId) =>
+    getArticleListAsync = async (articleTypeId, currentPage) =>
     {
         return new Promise(async (resolve, reject) =>
         {
             try
             {
-                const res = await getAsync(requestPrefix('/blog/getArticleList'), {articleTypeId});
+                const res = await getAsync(requestPrefix('/blog/getArticleList'), {
+                    articleTypeId,
+                    currentPage
+                });
                 const {isSuccess, msg, data} = res;
                 if (isSuccess)
                 {

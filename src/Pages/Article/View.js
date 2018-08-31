@@ -20,7 +20,8 @@ class Article extends Component
             content: 'Loading……',
             type: 'Loading……',
             typeId: 0,
-            time: 0
+            time: 0,
+            modifyTime: 0
         };
     }
 
@@ -113,7 +114,7 @@ class Article extends Component
 
     render()
     {
-        const {title, content, type, time} = this.state;
+        const {title, content, type, time, modifyTime} = this.state;
         const {hasLoggedIn} = this.props;
         const converter = new showdown.Converter({
             tables: true,
@@ -121,7 +122,7 @@ class Article extends Component
             simplifiedAutoLink: true
         });
         const contentHtml = converter.makeHtml(content);
-        const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
+        const daysAfterSubmit = Math.floor((Date.now() - Date.parse(modifyTime)) / (24 * 60 * 60 * 1000));
         return (
             <div className={'Article'}>
                 <div className={'articleTitle'}>{title}</div>
@@ -142,7 +143,7 @@ class Article extends Component
 
                 </div>
                 <div className={'articleFooter'}>
-                    <div className={'timeWarning'}>本文已发表 {daysAfterSubmit} 天，其内容可能已不具有时效性，请谨慎阅读。</div>
+                    <div className={'timeWarning'}>本文最后更新于 {daysAfterSubmit} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
                     <div className={'copyRightWarning'}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
                 </div>
             </div>
