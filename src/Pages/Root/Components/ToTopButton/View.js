@@ -12,6 +12,18 @@ class ToTopButton extends Component
         this.state = {
             show: false
         };
+
+        this.scrollListener = () =>
+        {
+            if (window.scrollY >= 0.5 * window.innerHeight)
+            {
+                this.setState({show: true});
+            }
+            else
+            {
+                this.setState({show: false});
+            }
+        };
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext)
@@ -21,18 +33,12 @@ class ToTopButton extends Component
 
     componentDidMount()
     {
-        const {innerHeight} = window;
-        window.addEventListener('scroll', () =>
-        {
-            if (window.scrollY >= 0.5 * innerHeight)
-            {
-                this.setState({show: true});
-            }
-            else
-            {
-                this.setState({show: false});
-            }
-        });
+        window.addEventListener('scroll', this.scrollListener);
+    }
+
+    componentWillUnmount()
+    {
+        window.removeEventListener('scroll', this.scrollListener);
     }
 
 

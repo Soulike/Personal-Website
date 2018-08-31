@@ -15,6 +15,11 @@
     text-indent: 2rem;
 }
 
+.Article ul p
+{
+    text-indent: 0;
+}
+
 .Article table
 {
     width: 100%;
