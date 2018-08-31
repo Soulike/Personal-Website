@@ -67,6 +67,9 @@
 .ArticleWrapperArticleType
 {
     text-align: center;
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
