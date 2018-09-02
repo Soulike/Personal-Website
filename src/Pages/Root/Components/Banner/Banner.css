@@ -5,3 +5,11 @@
     background-position-x: center;
     background-repeat: no-repeat;
 }
+
+@media (max-width: 750px)
+{
+    .banner
+    {
+        height: 2.75rem;
+    }
+}
