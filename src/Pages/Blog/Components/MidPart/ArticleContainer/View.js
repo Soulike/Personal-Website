@@ -23,7 +23,7 @@ class ArticleContainer extends Component
         window.addEventListener('scroll', () =>
         {
             const {currentPage} = this.state;
-            if (window.scrollY >= currentPage * window.innerHeight)
+            if (window.pageYOffset >= currentPage * window.innerHeight)
             {
                 this.getArticleList(this.props.selectedArticleTypeId);
             }

@@ -15,7 +15,7 @@ class ToTopButton extends Component
 
         this.scrollListener = () =>
         {
-            if (window.scrollY >= 0.5 * window.innerHeight)
+            if (window.pageYOffset >= 0.5 * window.innerHeight)
             {
                 this.setState({show: true});
             }
@@ -45,8 +45,8 @@ class ToTopButton extends Component
     onToTopButtonClicked = (e) =>
     {
         e.preventDefault();
-        let x = window.scrollX;
-        let y = window.scrollY;
+        let x = window.pageXOffset;
+        let y = window.pageYOffset;
         const interval = setInterval(() =>
         {
             if (y >= 50)
