@@ -67,7 +67,7 @@ class ArticleContainer extends Component
         {
             try
             {
-                const res = await getAsync(requestPrefix('/blog/getArticleList'), {
+                const res = await getAsync(requestPrefix('/blog/getArticleList'), false, {
                     articleTypeId,
                     currentPage
                 });

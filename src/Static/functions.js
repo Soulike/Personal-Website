@@ -30,19 +30,23 @@ export function getFilePrefix(url)
     return `/file/${url}`;
 }
 
-export async function getAsync(url, params = {}, config = {})
+export async function getAsync(url, allowCache = false, params = {}, config = {})
 {
     return new Promise(async (resolve, reject) =>
     {
         try
         {
-            const res = await axios.get(url, {
-                params: {
-                    ...params,
-                    _t: Date.now()
-                },
-                ...config
-            });
+            const res = await axios.get(url, allowCache ?
+                {
+                    params
+                } :
+                {
+                    params: {
+                        ...params,
+                        _t: Date.now()
+                    },
+                    ...config
+                });
             resolve(res.data);
         }
         catch (e)

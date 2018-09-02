@@ -8,7 +8,7 @@ export function getBannerImage()
     {
         try
         {
-            const res = await getAsync(requestPrefix('/getBannerImage'));
+            const res = await getAsync(requestPrefix('/getBannerImage'), true);
             const {isSuccess, msg, data} = res;
             if (isSuccess)
             {

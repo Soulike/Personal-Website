@@ -17,7 +17,7 @@ class AboutMe extends Component
     componentDidMount()
     {
         document.title = '关于我 - Soulike 的个人网站';
-        getAsync(requestPrefix('/getAboutMe'))
+        getAsync(requestPrefix('/getAboutMe'), true)
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;

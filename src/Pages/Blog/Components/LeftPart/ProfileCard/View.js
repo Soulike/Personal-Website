@@ -18,7 +18,7 @@ class ProfileCard extends Component
 
     componentDidMount()
     {
-        getAsync(requestPrefix('/blog/getProfileCardInfo'))
+        getAsync(requestPrefix('/blog/getProfileCardInfo'), true)
             .then((res) =>
             {
                 const {isSuccess, msg, data} = res;

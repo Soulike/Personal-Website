@@ -8,7 +8,7 @@ export function getInfo()
     {
         try
         {
-            const res = await getAsync(requestPrefix('/getInfo'));
+            const res = await getAsync(requestPrefix('/getInfo'), true);
             const {isSuccess, msg, data} = res;
             if (isSuccess)
             {
