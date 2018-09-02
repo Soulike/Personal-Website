@@ -19,9 +19,12 @@ class TopBar extends Component
                 new MenuLink(solidIcons.faHashtag, 'base64 转换器', '/base64Converter')
             ]
         };
-
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext)
+    {
+        return this.props.bannerBackground !== nextProps.bannerBackground;
+    }
 
     render()
     {

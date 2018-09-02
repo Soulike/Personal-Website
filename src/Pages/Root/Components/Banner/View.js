@@ -11,6 +11,11 @@ class Banner extends Component
         this.props.onLoad();
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext)
+    {
+        return this.props.bannerBackground !== nextProps.bannerBackground;
+    }
+
     render()
     {
         const style = {backgroundImage: this.props.bannerBackground};

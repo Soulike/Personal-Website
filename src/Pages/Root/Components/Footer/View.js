@@ -16,7 +16,7 @@ class Footer extends Component
 
     componentDidMount()
     {
-        getAsync('https://v1.hitokoto.cn', {c: 'a'})
+        getAsync('https://v1.hitokoto.cn', false, {c: 'a'})
             .then((res) =>
             {
                 this.setState({hitokoto: res.hitokoto});

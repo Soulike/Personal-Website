@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-import {View as Alert} from '../Components/Alert/index';
 
 // 所有的请求走/server，所有的静态文件获取走/file
 /*
@@ -36,17 +34,21 @@ export async function getAsync(url, allowCache = false, params = {}, config = {}
     {
         try
         {
-            const res = await axios.get(url, allowCache ?
-                {
-                    params
-                } :
-                {
+            let res = JSON.parse(sessionStorage.getItem(url));
+            if (!res)
+            {
+                res = await axios.get(url, {
                     params: {
                         ...params,
                         _t: Date.now()
                     },
                     ...config
                 });
+                if (allowCache)
+                {
+                    sessionStorage.setItem(url, JSON.stringify(res));
+                }
+            }
             resolve(res.data);
         }
         catch (e)
