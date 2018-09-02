@@ -4,3 +4,11 @@
     float: right;
     box-sizing: border-box;
 }
+
+@media (max-width: 1455px)
+{
+    .RightPart
+    {
+        display: none;
+    }
+}

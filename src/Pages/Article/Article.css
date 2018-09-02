@@ -8,6 +8,8 @@
     border: 1px solid #DDD;
     border-radius: 0.25rem;
     user-select: none;
+    max-width: 1455px;
+    min-height: 100%;
 }
 
 .Article p
@@ -22,13 +24,13 @@
 
 .Article table
 {
-    width: 100%;
+    display: block;
+    overflow: auto;
     user-select: text;
 }
 
 .Article table, .Article th, .Article td
 {
-    border: 1px solid #AAA;
     border-collapse: collapse;
     text-align: center !important;
 }
@@ -36,6 +38,7 @@
 .Article th, .Article td
 {
     padding: 0.5rem;
+    border: 1px solid #AAA;
 }
 
 .Article blockquote
@@ -154,4 +157,59 @@
     padding: 0.5rem 1rem;
     line-height: 2rem;
     font-weight: bold;
+}
+
+@media (max-width: 800px)
+{
+    .Article
+    {
+        width: 95%;
+        padding: 0;
+        margin: 2rem auto;
+        border: none;
+    }
+
+    .Article .articleBtnWrapper
+    {
+        display: none;
+        box-sizing: border-box;
+    }
+
+    .Article blockquote
+    {
+        padding: 0;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .Article .articleInfo
+    {
+        display: block;
+        float: none;
+        position: static;
+        padding: 0.25rem 1.5rem;
+        height: 2rem;
+        line-height: 2rem;
+        margin: 0.5rem 0 1rem 0;
+        background-color: #46AFE8;
+        background: linear-gradient(to left, #369FD8, #46AFE8);
+        color: #FFF;
+        text-align: center;
+    }
+
+    .Article .articleInfoTriangle
+    {
+        display: none;
+    }
+
+    .Article .articleTitle
+    {
+        font-size: 1.5rem;
+    }
+
+    .Article th, .Article td
+    {
+        padding: 0;
+    }
 }

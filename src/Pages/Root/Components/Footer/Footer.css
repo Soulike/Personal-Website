@@ -78,4 +78,26 @@
     cursor: pointer;
 }
 
+@media (max-width: 1455px)
+{
+    .thanksWrapper, .emoji
+    {
+        display: none;
+    }
+
+    .hitokotoLink
+    {
+        display: block;
+        text-align: center;
+    }
+}
+
+@media (max-width: 650px)
+{
+    .footer
+    {
+        padding: 2rem 1rem;
+    }
+}
+
 

@@ -6,9 +6,8 @@
 
 .innerWrapper
 {
-    max-width: 1455px;
-    min-height: 100%;
     margin: 0 auto;
+    min-height: 100%;
     animation-name: innerWrapperIn;
     animation-duration: 0.5s;
 }

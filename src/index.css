@@ -6,6 +6,7 @@ html, body, #root
     height: 100%;
     font-family: "Noto Sans CJK SC", "思源黑体 CN", sans-serif;
     background-color: #F5F5F5;
+    min-width: 340px;
 }
 
 .btn

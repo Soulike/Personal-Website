@@ -5,3 +5,19 @@
     display: inline-block;
     box-sizing: border-box;
 }
+
+@media (max-width: 1455px)
+{
+    .LeftPart
+    {
+        width: 22.5%;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .LeftPart
+    {
+        display: none;
+    }
+}

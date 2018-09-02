@@ -1,6 +1,7 @@
 .Login
 {
     width: 60%;
+    max-width: 1455px;
     margin-top: 1.5rem;
     margin-left: auto;
     margin-right: auto;
@@ -9,7 +10,8 @@
 
 .inputWrapper
 {
-    width: 23.375rem;
+    width: 40%;
+    box-sizing: border-box;
     margin: 1rem auto;
     text-align: left;
 }
@@ -25,7 +27,8 @@
 .loginInput
 {
     display: inline-block;
-    width: 20rem;
+    box-sizing: border-box;
+    width: 100%;
     padding: 0.75rem 1rem 0.75rem 2.25rem;
     border: 1px solid #DDD;
     border-radius: 0.5rem;
@@ -42,11 +45,28 @@
 .submitButton
 {
     display: block;
-    width: 23.375rem;
+    width: 40%;
+    box-sizing: border-box;
     margin: 3rem auto;
 }
 
 .submitButton:hover
 {
     background: #00BEE7;
+}
+
+@media (max-width: 1000px)
+{
+    .Login
+    {
+        width: 90%;
+    }
+}
+
+@media (max-width: 750px)
+{
+    .inputWrapper, .submitButton
+    {
+        width: 100%;
+    }
 }

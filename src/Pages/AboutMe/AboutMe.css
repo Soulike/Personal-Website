@@ -13,3 +13,11 @@
     line-height: 2rem;
     user-select: none;
 }
+
+@media (max-width: 1000px)
+{
+    .AboutMe
+    {
+        width: 90%;
+    }
+}

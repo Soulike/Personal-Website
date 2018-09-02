@@ -1,7 +1,27 @@
 .Blog
 {
-    margin: 2rem 7.5rem;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 1280px;
+    box-sizing: border-box;
 }
+
+@media (max-width: 1455px)
+{
+    .Blog
+    {
+        width: 95%;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .Blog
+    {
+        width: 100%;
+    }
+}
+
 
 .card
 {
