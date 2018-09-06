@@ -145,7 +145,7 @@ class Article extends Component
 
                 </div>
                 <div className={'articleFooter'}>
-                    <div className={'timeWarning'}>本文最后更新于 {daysAfterSubmit} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
+                    <div className={'timeWarning'}>本文最后更新于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
                     <div className={'copyRightWarning'}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
                 </div>
             </div>
