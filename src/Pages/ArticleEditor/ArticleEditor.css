@@ -1,14 +1,18 @@
 .ArticleEditor
 {
-    width: 50%;
+    width: 80%;
     margin: 2rem auto;
     text-align: center;
 }
 
-.ArticleEditor .articleTitle, .ArticleEditor .articleContent
+.ArticleEditor .articleTitle
+{
+    border-radius: 0.25rem;
+}
+
+.ArticleEditor .articleTitle, .ArticleEditor .articleContent, .ArticleEditor .articlePreview
 {
     border: 1px solid #DDD;
-    border-radius: 0.25rem;
     outline: none;
     transition: 0.25s;
     overflow: auto;
@@ -32,15 +36,31 @@
     box-sizing: border-box;
 }
 
-.ArticleEditor .articleContent
+.ArticleEditor .articleContent, .ArticleEditor .articlePreview
 {
-    resize: none;
-    width: 100%;
+    display: inline-block;
+    width: 50%;
     height: 30rem;
     box-sizing: border-box;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    text-align: justify;
     padding: 1rem 0.75rem;
+}
+
+.ArticleEditor .articleContent
+{
+    resize: none;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.ArticleEditor .articlePreview
+{
+    background: #FFF;
+    user-select: none;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
 }
 
 .ArticleEditor .articleTypeSelectWrapper
@@ -63,7 +83,7 @@
 
 .ArticleEditor .articleButtonWrapper
 {
-    width: 50%;
+    width: 30%;
     display: inline-block;
     box-sizing: border-box;
 }
@@ -71,4 +91,82 @@
 .ArticleEditor .articleSubmitBtn
 {
     width: 100%;
+}
+
+.ArticleEditor .articlePreview p
+{
+    text-indent: 2rem;
+}
+
+.ArticleEditor .articlePreview ul p
+{
+    text-indent: 0;
+}
+
+.ArticleEditor .articlePreview table
+{
+    display: block;
+    overflow: auto;
+    user-select: text;
+}
+
+.ArticleEditor .articlePreview table, .ArticleEditor .articlePreview th, .ArticleEditor .articlePreview td
+{
+    border-collapse: collapse;
+    text-align: center !important;
+}
+
+.ArticleEditor .articlePreview th, .ArticleEditor .articlePreview td
+{
+    padding: 0.5rem;
+    border: 1px solid #AAA;
+}
+
+.ArticleEditor .articlePreview blockquote
+{
+    border-left: 0.5rem #46AFE8 solid;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    padding: 0 0 0 2rem;
+    margin: 0;
+    color: #666;
+}
+
+.ArticleEditor .articlePreview a
+{
+    color: #666;
+    text-decoration: underline;
+    transition: 0.25s;
+}
+
+.ArticleEditor .articlePreview a:hover
+{
+    color: #333;
+}
+
+.ArticleEditor .articlePreview pre code
+{
+    padding: 0.75rem 1.5rem;
+    user-select: text;
+}
+
+.ArticleEditor .articlePreview pre, .ArticleEditor .articlePreview code
+{
+    font-family: "Source Code Pro", "Noto Sans Mono", monospace;
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+    border-radius: 0.25rem;
+}
+
+@media (max-width: 750px)
+{
+    .ArticleEditor .articleContent
+    {
+        width: 100%;
+    }
+
+    .ArticleEditor .articlePreview
+    {
+        display: none;
+    }
 }

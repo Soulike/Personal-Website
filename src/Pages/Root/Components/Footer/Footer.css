@@ -4,6 +4,7 @@
     background-color: #333;
     padding: 4rem 5rem 1rem 5rem;
     user-select: none;
+    clear: both;
 }
 
 .thanksWrapper

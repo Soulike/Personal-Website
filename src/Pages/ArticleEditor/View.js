@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
+import highLight from 'highlight.js';
+import showdown from 'showdown';
 import {getAsync, postAsync, requestPrefix} from '../../Static/functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
@@ -14,8 +16,15 @@ class ArticleEditor extends Component
             title: '',
             content: '',
             typeId: 0,
-            allTypes: []
+            allTypes: [],
+            previewHTML: ''
         };
+
+        this.converter = new showdown.Converter({
+            tables: true,
+            openLinksInNewWindow: true,
+            simplifiedAutoLink: true
+        });
     }
 
     componentDidMount()
@@ -31,7 +40,13 @@ class ArticleEditor extends Component
         }
         if (content)
         {
-            this.setState({content});
+            this.setState({
+                content,
+                previewHTML: this.converter.makeHtml(content)
+            }, () =>
+            {
+                highLight.initHighlighting();
+            });
             this.refs.content.value = content;
         }
         if (typeId)
@@ -67,7 +82,17 @@ class ArticleEditor extends Component
 
     onContentChange = (e) =>
     {
-        this.setState({content: e.target.value});
+        this.setState({
+            content: e.target.value,
+            previewHTML: this.converter.makeHtml(e.target.value)
+        }, () =>
+        {
+            const blocks = [...document.getElementsByTagName('code')];
+            blocks.forEach(block =>
+            {
+                highLight.highlightBlock(block);
+            });
+        });
         sessionStorage.setItem('content', e.target.value);
     };
 
@@ -172,7 +197,7 @@ class ArticleEditor extends Component
 
     render()
     {
-        const {typeId} = this.state;
+        const {typeId, previewHTML} = this.state;
         return (
             <div className={'ArticleEditor'}>
                 <Title titleText={'编辑文章'}/>
@@ -185,6 +210,7 @@ class ArticleEditor extends Component
                           placeholder={'文章正文（使用 MarkDown）'}
                           ref={'content'}
                           onChange={this.onContentChange}/>
+                <div className={'articlePreview'} dangerouslySetInnerHTML={{__html: previewHTML}}/>
                 <div className={'articleTypeSelectWrapper'}>
                     <select className={'articleTypeSelect'} value={typeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
