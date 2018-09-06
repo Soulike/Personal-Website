@@ -32,7 +32,7 @@ class TopBar extends Component
         const {menuLinks} = this.state;
         const style = {backgroundImage: this.props.bannerBackground};
         return (
-            <div className={'TopBar'}>
+            <div className={'TopBar'} style={isBlur ? null : {backgroundColor: '#FFF'}}>
                 <div className={'linkWrapper'}>
                     <TopBarLink to={'/'} onlyActiveOnIndex={false} iconStyle={solidIcons.faHome} text={'博客'}/>
                     <TopBarLink to={'/soulikeDrive'} onlyActiveOnIndex={false} text={'网盘'}/>
