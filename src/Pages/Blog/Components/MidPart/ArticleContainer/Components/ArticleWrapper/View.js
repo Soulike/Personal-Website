@@ -149,12 +149,12 @@ class ArticleWrapper extends Component
                     </a>
                 </div>
                 <div className={'ArticleWrapperButtonArea'}>
-                    <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false} onClick={null}/>
+                    <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false}/>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
                                     hasClicked={hasLiked}
                                     onClick={this.onLikeButtonClicked}/>
-                    <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false} onClick={null}/>
+                    <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false}/>
                 </div>
             </div>
         );

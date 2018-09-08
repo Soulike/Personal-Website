@@ -20,7 +20,7 @@ class FunctionButton extends Component
 FunctionButton.propTypes = {
     icon: PropTypes.object.isRequired,
     number: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
     hasClicked: PropTypes.bool.isRequired
 };
 
