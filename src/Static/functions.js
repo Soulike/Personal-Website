@@ -34,7 +34,7 @@ export function uploadPrefix(url)
     {
         url = url.substring(1);
     }
-    return `https://upload.soulike.tech/${requestPrefix(url)}`;
+    return `https://upload.soulike.tech${requestPrefix(url)}`;
 }
 
 export async function getAsync(url, allowCache = false, params = {}, config = {})
