@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './UserInfoCard.css';
-import {getAsync, getFilePrefix, requestPrefix} from '../../../../../Static/functions';
+import {getAsync, staticPrefix, requestPrefix} from '../../../../../Static/functions';
 import {View as Alert} from '../../../../../Components/Alert/index';
 
 class ProfileCard extends Component
@@ -49,11 +49,11 @@ class ProfileCard extends Component
         const {image, sayingNum, articleNum} = this.state;
         return (
             <div className={'ProfileCard card'}>
-                <div className={'profileCardImage'} style={{backgroundImage: `url(${getFilePrefix(image)})`}}>
+                <div className={'profileCardImage'} style={{backgroundImage: `url(${staticPrefix(image)})`}}>
 
                 </div>
                 <div className={'avatarAndNicknameWrapper'}>
-                    <img src={getFilePrefix(avatar)} alt="avatar" className={'avatar'}/>
+                    <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
                     <div className={'nickname'}>{nickname}</div>
                 </div>
                 <div className={'numWrapper'}>

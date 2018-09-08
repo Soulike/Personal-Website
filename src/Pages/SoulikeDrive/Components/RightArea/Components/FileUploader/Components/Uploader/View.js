@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as ProgressBar} from './Components/ProgressBar';
 import './Uploader.css';
-import {postAsync, requestPrefix} from '../../../../../../../../Static/functions';
+import {postAsync, uploadPrefix} from '../../../../../../../../Static/functions';
 import {View as Alert} from '../../../../../../../../Components/Alert';
 
 class Uploader extends Component
@@ -45,7 +45,7 @@ class Uploader extends Component
             formData.append(`file`, file);
         });
 
-        postAsync(requestPrefix('/soulikeDrive/uploadFile'), formData, {
+        postAsync(uploadPrefix('/soulikeDrive/uploadFile'), formData, {
             onUploadProgress: event =>
             {
                 if (event.lengthComputable)

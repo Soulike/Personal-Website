@@ -1,4 +1,4 @@
-import {requestPrefix, getAsync, getFilePrefix} from '../../../../../Static/functions';
+import {requestPrefix, getAsync, staticPrefix} from '../../../../../Static/functions';
 import {REQUEST_SUCCESS, REQUEST_FAILED} from './ActionTypes';
 import {View as Alert} from '../../../../../Components/Alert';
 
@@ -13,7 +13,7 @@ export function getBannerImage()
             if (isSuccess)
             {
                 const {url} = data;
-                dispatch(requestSuccess(getFilePrefix(url)));
+                dispatch(requestSuccess(staticPrefix(url)));
             }
             else
             {

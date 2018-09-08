@@ -19,13 +19,22 @@ export function requestPrefix(url)
     return `/server/${url}`;
 }
 
-export function getFilePrefix(url)
+export function staticPrefix(url)
 {
     while (url.charAt(0) === '/')
     {
         url = url.substring(1);
     }
     return `https://static.soulike.tech/userImage/${url}`;
+}
+
+export function uploadPrefix(url)
+{
+    while (url.charAt(0) === '/')
+    {
+        url = url.substring(1);
+    }
+    return `https://upload.soulike.tech/${url}`;
 }
 
 export async function getAsync(url, allowCache = false, params = {}, config = {})
