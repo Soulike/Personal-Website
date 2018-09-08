@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
-
 // 所有的请求走/server，所有的静态文件获取走/file
 /*
  * 返回值格式
@@ -28,15 +26,6 @@ export function staticPrefix(url)
         url = url.substring(1);
     }
     return `https://static.soulike.tech/userImage/${url}`;
-}
-
-export function uploadPrefix(url)
-{
-    while (url.charAt(0) === '/')
-    {
-        url = url.substring(1);
-    }
-    return `https://upload.soulike.tech${requestPrefix(url)}`;
 }
 
 export async function getAsync(url, allowCache = false, params = {}, config = {})
