@@ -10,45 +10,45 @@
     box-sizing: border-box;
 }
 
-.articleWrapperHeader
+.ArticleWrapper .articleWrapperHeader
 {
     margin-bottom: 1.5rem;
     display: inline-block;
 }
 
-.ArticleWrapperAvatarWrapper
+.ArticleWrapper .ArticleWrapperAvatarWrapper
 {
     width: 2.75rem;
     display: inline-block;
     float: left;
 }
 
-.ArticleWrapperAvatar
+.ArticleWrapper .ArticleWrapperAvatar
 {
     width: 2.75rem;
     border-radius: 3rem;
 }
 
-.ArticleWrapperHeaderMidPart
+.ArticleWrapper .ArticleWrapperHeaderMidPart
 {
     display: inline-block;
     padding: 0 1rem;
 }
 
-.ArticleWrapperNickname
+.ArticleWrapper .ArticleWrapperNickname
 {
     color: #333;
     font-size: 1.2rem;
 }
 
-.ArticleWrapperTime
+.ArticleWrapper .ArticleWrapperTime
 {
     font-size: 0.75rem;
     color: #666;
     margin-top: 0.5rem;
 }
 
-.ArticleWrapperArticleTypeWrapper
+.ArticleWrapper .ArticleWrapperArticleTypeWrapper
 {
     display: inline-block;
     float: right;
@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-.ArticleWrapperArticleType
+.ArticleWrapper .ArticleWrapperArticleType
 {
     text-align: center;
     font-size: 0.85rem;
@@ -75,7 +75,7 @@
     transform: translateY(-50%);
 }
 
-.ArticleWrapperArticleTypeTriangle
+.ArticleWrapper .ArticleWrapperArticleTypeTriangle
 {
     width: 0;
     height: 0;
@@ -88,12 +88,12 @@
     top: 100%;
 }
 
-.ArticleWrapperMainPartDescription
+.ArticleWrapper .ArticleWrapperMainPartDescription
 {
     margin-bottom: 1rem;
 }
 
-.ArticleWrapperTitleWrapper
+.ArticleWrapper .ArticleWrapperTitleWrapper
 {
     display: block;
     border: 1px solid #DDD;
@@ -104,20 +104,26 @@
     transition: 0.25s;
 }
 
-.ArticleWrapperTitleWrapper:hover
+.ArticleWrapper .ArticleWrapperTitleWrapper:hover
 {
     border: 1px solid #666;
 }
 
-.ArticleWrapperTitle
+.ArticleWrapper .ArticleWrapperTitle
 {
     color: #333;
     font-size: 1.25rem;
 }
 
+.ArticleWrapper .ArticleWrapperButtonArea
+{
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+
 @media (max-width: 450px)
 {
-    .ArticleWrapper
+    .ArticleWrapper .ArticleWrapper
     {
         padding: 1.5rem 0.75rem;
     }

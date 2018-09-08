@@ -1,0 +1,29 @@
+.FunctionButton
+{
+    display: inline-block;
+    color: #666;
+    margin-right: 2rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.FunctionButton:hover
+{
+    color: #46AFE8;
+}
+
+.functionButtonIcon
+{
+    margin-right: 0.5rem;
+}
+
+.functionButtonIconClicked
+{
+    color: #46AFE8;
+}
+
+.functionButtonNumber
+{
+    display: inline-block;
+    min-width: 1.5rem;
+}

@@ -1,12 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import './ArticleWrapper.css';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {staticPrefix, prefixZero} from '../../../../../../../Static/functions';
+import {staticPrefix, prefixZero, postAsync, requestPrefix} from '../../../../../../../Static/functions';
+import {View as FunctionButton} from './Components/FunctionButton';
+import Alert from '../../../../../../../Components/Alert/View';
 
 class ArticleWrapper extends Component
 {
+    constructor()
+    {
+        super(...arguments);
+        this.state = {
+            like: 0,
+            hasLiked: false
+        };
+    }
+
+    componentDidMount()
+    {
+        this.setState({like: this.props.like});
+    }
+
     onArticleTypeClicked = (e) =>
     {
         let articleTypeId = -2;
@@ -20,6 +37,36 @@ class ArticleWrapper extends Component
         }
 
         this.props.changeCurrentArticleTypeId(articleTypeId);
+    };
+
+    onLikeButtonClicked = (e) =>
+    {
+        const {hasLiked} = this.state;
+        const {id} = this.props;
+        postAsync(requestPrefix('/blog/likeArticle'), {
+            articleId: id,
+            isAddLike: !hasLiked
+        })
+            .then(res =>
+            {
+                const {isSuccess, msg, data} = res;
+                if (isSuccess)
+                {
+                    this.setState({
+                        like: parseInt(data),
+                        hasLiked: !hasLiked
+                    });
+                }
+                else
+                {
+                    Alert.show(msg, false);
+                }
+            })
+            .catch(e =>
+            {
+                Alert.show('点赞失败', false);
+                console.log(e);
+            });
     };
 
     generateTimeStr = (time) =>
@@ -68,7 +115,8 @@ class ArticleWrapper extends Component
 
     render()
     {
-        const {id, title, time, type, typeId, nickname, avatar} = this.props;
+        const {id, title, view, comment, time, type, typeId, nickname, avatar} = this.props;
+        const {like, hasLiked} = this.state;
         const timeStr = this.generateTimeStr(time);
         return (
             <div className={'ArticleWrapper'}>
@@ -100,6 +148,14 @@ class ArticleWrapper extends Component
                         </div>
                     </a>
                 </div>
+                <div className={'ArticleWrapperButtonArea'}>
+                    <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false} onClick={null}/>
+                    <FunctionButton icon={solidIcon.faThumbsUp}
+                                    number={like}
+                                    hasClicked={hasLiked}
+                                    onClick={this.onLikeButtonClicked}/>
+                    <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false} onClick={null}/>
+                </div>
             </div>
         );
     }
@@ -108,6 +164,9 @@ class ArticleWrapper extends Component
 ArticleWrapper.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    view: PropTypes.number.isRequired,
+    like: PropTypes.number.isRequired,
+    comment: PropTypes.number.isRequired,
     time: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     typeId: PropTypes.number.isRequired

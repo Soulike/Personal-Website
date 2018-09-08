@@ -8,6 +8,8 @@ import {getAsync, postAsync, prefixZero, requestPrefix} from '../../Static/funct
 import highLight from 'highlight.js';
 import Store from '../../Store';
 import {checkLoginState} from '../../Components/AuthProcessor/Actions/Actions';
+import {View as FunctionButton} from './Components/ArticleFunctionButton';
+import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 
 class Article extends Component
 {
@@ -20,8 +22,10 @@ class Article extends Component
             content: 'Loading……',
             type: 'Loading……',
             typeId: 0,
+            like: 0,
             time: 0,
-            modifyTime: 0
+            modifyTime: 0,
+            hasLiked: false
         };
     }
 
@@ -114,9 +118,38 @@ class Article extends Component
         }
     };
 
+    onLikeButtonClicked = (e) =>
+    {
+        const {hasLiked, id} = this.state;
+        postAsync(requestPrefix('/blog/likeArticle'), {
+            articleId: id,
+            isAddLike: !hasLiked
+        })
+            .then(res =>
+            {
+                const {isSuccess, msg, data} = res;
+                if (isSuccess)
+                {
+                    this.setState({
+                        like: parseInt(data),
+                        hasLiked: !hasLiked
+                    });
+                }
+                else
+                {
+                    Alert.show(msg, false);
+                }
+            })
+            .catch(e =>
+            {
+                Alert.show('点赞失败', false);
+                console.log(e);
+            });
+    };
+
     render()
     {
-        const {title, content, type, time, modifyTime} = this.state;
+        const {title, content, type, time, modifyTime, hasLiked, like} = this.state;
         const {hasLoggedIn} = this.props;
         const converter = new showdown.Converter({
             tables: true,
@@ -143,6 +176,12 @@ class Article extends Component
                 </div>
                 <div className={'articleContent'} dangerouslySetInnerHTML={{__html: contentHtml}}>
 
+                </div>
+                <div className={'articleFunctionButtonArea'}>
+                    <FunctionButton icon={solidIcon.faThumbsUp}
+                                    number={like}
+                                    onClick={this.onLikeButtonClicked}
+                                    hasClicked={hasLiked}/>
                 </div>
                 <div className={'articleFooter'}>
                     <div className={'timeWarning'}>本文最后更新于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
