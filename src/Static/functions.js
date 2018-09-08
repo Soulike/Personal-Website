@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 // 所有的请求走/server，所有的静态文件获取走/file
 /*
  * 返回值格式
