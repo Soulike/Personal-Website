@@ -25,7 +25,7 @@ export function getFilePrefix(url)
     {
         url = url.substring(1);
     }
-    return `/file/${url}`;
+    return `https://static.soulike.tech/userImage/${url}`;
 }
 
 export async function getAsync(url, allowCache = false, params = {}, config = {})
