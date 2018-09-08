@@ -52,7 +52,8 @@ class Uploader extends Component
                 {
                     this.setState({updateProgress: event.loaded / event.total});
                 }
-            }
+            },
+            withCredentials: true
         })
             .then(res =>
             {
