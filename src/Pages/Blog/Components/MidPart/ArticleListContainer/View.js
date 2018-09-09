@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './ArticleContainter.css';
 import {getAsync, requestPrefix} from '../../../../../Static/functions';
 import {View as Alert} from '../../../../../Components/Alert';
 import {View as ArticleWrapper} from './Components/ArticleWrapper';
 import {CSSTransitionGroup} from 'react-transition-group';
+import './ArticleListContainer.css';
 
-class ArticleContainer extends Component
+class ArticleListContainer extends Component
 {
     constructor()
     {
@@ -94,7 +94,7 @@ class ArticleContainer extends Component
         const {articleList} = this.state;
         return (
 
-            <div className={'ArticleContainer'}>
+            <div className={'ArticleListContainer'}>
                 <CSSTransitionGroup transitionName="articleList"
                                     transitionEnterTimeout={500}
                                     transitionLeaveTimeout={1}>
@@ -116,4 +116,4 @@ const mapStateToProps = (state) =>
         selectedArticleTypeId
     };
 };
-export default connect(mapStateToProps)(ArticleContainer);
+export default connect(mapStateToProps)(ArticleListContainer);

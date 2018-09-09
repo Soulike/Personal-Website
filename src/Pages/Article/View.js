@@ -174,10 +174,8 @@ class Article extends Component
                     <div className={'articleTime'}>{this.generateTimeString(time)}</div>
                     <div className={'articleType'}>{type}</div>
                 </div>
-                <div className={'articleContent'} dangerouslySetInnerHTML={{__html: contentHtml}}>
-
-                </div>
-                <div className={'articleFunctionButtonArea'}>
+                <div className={'articleContent'} dangerouslySetInnerHTML={{__html: contentHtml}}/>
+                <div className={'articleFunctionButtonWrapper'}>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
                                     onClick={this.onLikeButtonClicked}

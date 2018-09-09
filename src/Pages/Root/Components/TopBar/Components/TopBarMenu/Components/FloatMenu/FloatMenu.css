@@ -8,18 +8,18 @@
     border-radius: 0.5rem 0;
 }
 
-.floatMenuLink
+.FloatMenu .floatMenuLink
 {
     border-bottom: 1px solid #DDD;
 }
 
-.floatMenuLink .TopBarLink
+.FloatMenu .floatMenuLink .TopBarLink
 {
     color: #666;
     transition: 0.25s;
 }
 
-.floatMenuLink .TopBarLink:hover
+.FloatMenu .floatMenuLink .TopBarLink:hover
 {
     color: #222;
 }

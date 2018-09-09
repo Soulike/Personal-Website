@@ -3,23 +3,23 @@
     display: inline-block;
 }
 
-.floatMenu-enter
+.TopBarMenu .floatMenu-enter
 {
     opacity: 0;
 }
 
-.floatMenu-enter.floatMenu-enter-active
+.TopBarMenu .floatMenu-enter.floatMenu-enter-active
 {
     opacity: 1;
     transition: 250ms;
 }
 
-.floatMenu-leave
+.TopBarMenu .floatMenu-leave
 {
     opacity: 1;
 }
 
-.floatMenu-leave.floatMenu-leave-active
+.TopBarMenu .floatMenu-leave.floatMenu-leave-active
 {
     opacity: 0;
     transition: 250ms;

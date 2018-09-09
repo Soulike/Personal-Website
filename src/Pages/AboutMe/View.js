@@ -37,9 +37,7 @@ class AboutMe extends Component
         return (
             <div className={'AboutMe'}>
                 <Title titleText={'关于我'}/>
-                <div className={'aboutMeContent'} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}>
-
-                </div>
+                <div className={'aboutMeContent'} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}/>
             </div>);
     }
 }

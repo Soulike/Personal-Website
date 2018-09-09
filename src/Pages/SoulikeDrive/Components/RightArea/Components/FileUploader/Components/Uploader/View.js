@@ -89,7 +89,7 @@ class Uploader extends Component
         const {fileNum, fileSize, updateProgress} = this.state;
         return (
             <div className={'Uploader'}>
-                <div className={'UploaderTitle'}>上传</div>
+                <div className={'title'}>上传</div>
                 <form action="" className={'fileUploadForm'} onSubmit={this.onFormSubmit}>
                     <label className={'fileInputWrapper btn btn-primary'}>
                         选择文件

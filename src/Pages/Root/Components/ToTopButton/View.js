@@ -67,14 +67,15 @@ class ToTopButton extends Component
     {
         const {show} = this.state;
         return (
-            <CSSTransitionGroup transitionName="ToTopButtonTransition"
-                                transitionEnterTimeout={250}
-                                transitionLeaveTimeout={250}>
-                {show ? <div className={'ToTopButtonWrapper'}>
-                    <button className={'ToTopButton'} onClick={this.onToTopButtonClicked}>
-                        <FontAwesomeIcon icon={solidIcon.faArrowUp}/></button>
-                </div> : null}
-            </CSSTransitionGroup>
+            <div className={'ToTopButton'}>
+                <CSSTransitionGroup transitionName="toTopButtonTransition"
+                                    transitionEnterTimeout={250}
+                                    transitionLeaveTimeout={250}>
+                    {show ?
+                        <button className={'button'} onClick={this.onToTopButtonClicked}>
+                            <FontAwesomeIcon icon={solidIcon.faArrowUp}/></button> : null}
+                </CSSTransitionGroup>
+            </div>
         );
     }
 }

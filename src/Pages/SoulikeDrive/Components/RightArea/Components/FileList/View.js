@@ -25,7 +25,7 @@ class FileList extends Component
                 <ButtonArea/>
                 <div className={'FileListWrapper'}>
                     {fileList.length === 0 ? <div className={'noFileText'}>_(:3」∠)_ 你没有文件的样子</div> :
-                        <table className={'FileList'}>
+                        <table className={'fileList'}>
                             <tbody>
                             <tr>
                                 <th scope="col"><input type="checkbox" disabled={true} style={{opacity: 0}}/></th>

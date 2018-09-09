@@ -4,7 +4,7 @@
     width: 50%;
 }
 
-.methodSelect
+.HashGenerator .methodSelect
 {
     display: inline-block;
     width: 20%;
@@ -16,7 +16,7 @@
     border-radius: 0.5rem 0 0 0.5rem;
 }
 
-.originalText
+.HashGenerator .originalText
 {
     display: inline-block;
     width: 80%;
@@ -27,32 +27,32 @@
     transition: 0.25s;
 }
 
-.originalText:focus
+.HashGenerator .originalText:focus
 {
     border: 1px solid #333;
 }
 
-.methodSelect, .originalText
+.HashGenerator .methodSelect, .HashGenerator .originalText
 {
     height: 3rem;
     font-size: 1rem;
     text-align: center;
 }
 
-.originalTextSubmitBtn
+.HashGenerator .originalTextSubmitBtn
 {
     display: block;
     width: 100%;
     margin-top: 2rem;
 }
 
-.resultWrapper
+.HashGenerator .resultWrapper
 {
     text-align: center;
     margin-top: 5rem;
 }
 
-.hashMethodWrapper
+.HashGenerator .hashMethodWrapper
 {
     font-size: 2rem;
     font-family: 'Noto Serif CJK SC', '思源宋体 CN', serif;
@@ -60,7 +60,7 @@
     user-select: none;
 }
 
-.hashResultWrapper
+.HashGenerator .hashResultWrapper
 {
     margin-top: 1rem;
     font-size: 1.1rem;
@@ -68,34 +68,34 @@
     word-break: break-all;
 }
 
-.result-enter
+.HashGenerator .result-enter
 {
     opacity: 0;
 }
 
-.result-enter.result-enter-active
+.HashGenerator .result-enter.result-enter-active
 {
     opacity: 1;
     transition: 250ms;
 }
 
-.result-leave
+.HashGenerator .result-leave
 {
     opacity: 1;
 }
 
-.result-leave.result-leave-active
+.HashGenerator .result-leave.result-leave-active
 {
     opacity: 0;
     transition: 250ms;
 }
 
-.copyHashResultBtn
+.HashGenerator .copyHashResultBtn
 {
     margin-top: 2rem;
 }
 
-.copyHashResultBtnIcon
+.HashGenerator .copyHashResultBtnIcon
 {
     margin-right: 0.5rem;
 }

@@ -9,8 +9,12 @@ class ButtonArea extends Component
     {
         return (
             <div className={'ButtonArea'}>
-                <DownloadButton/>
-                <DeleteButton/>
+                <div className={'downloadButtonWrapper'}>
+                    <DownloadButton/>
+                </div>
+                <div className={'deleteButtonWrapper'}>
+                    <DeleteButton/>
+                </div>
             </div>
         );
     }

@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.inputWrapper
+.Login .inputWrapper
 {
     width: 40%;
     box-sizing: border-box;
@@ -16,7 +16,7 @@
     text-align: left;
 }
 
-.icon
+.Login .icon
 {
     position: relative;
     top: 1.95rem;
@@ -24,7 +24,7 @@
     color: #666;
 }
 
-.loginInput
+.Login .loginInput
 {
     display: inline-block;
     box-sizing: border-box;
@@ -37,12 +37,12 @@
     transition: 0.25s;
 }
 
-.loginInput:focus
+.Login .loginInput:focus
 {
     border: 1px solid #AAA;
 }
 
-.submitButton
+.Login .submitButton
 {
     display: block;
     width: 40%;
@@ -50,7 +50,7 @@
     margin: 3rem auto;
 }
 
-.submitButton:hover
+.Login .submitButton:hover
 {
     background: #00BEE7;
 }
@@ -65,7 +65,7 @@
 
 @media (max-width: 750px)
 {
-    .inputWrapper, .submitButton
+    .Login .inputWrapper, .Login .submitButton
     {
         width: 100%;
     }

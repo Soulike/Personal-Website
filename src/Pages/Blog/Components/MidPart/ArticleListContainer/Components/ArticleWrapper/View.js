@@ -120,35 +120,35 @@ class ArticleWrapper extends Component
         const timeStr = this.generateTimeStr(time);
         return (
             <div className={'ArticleWrapper'}>
-                <div className={'articleWrapperHeader'}>
-                    <div className={'ArticleWrapperAvatarWrapper'}>
-                        <img src={staticPrefix(avatar)} alt="avatar" className={'ArticleWrapperAvatar'}/>
+                <div className={'header'}>
+                    <div className={'avatarWrapper'}>
+                        <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
                     </div>
-                    <div className={'ArticleWrapperHeaderMidPart'}>
-                        <div className={'ArticleWrapperNickname'}>{nickname}</div>
-                        <div className={'ArticleWrapperTime'}>{timeStr}</div>
+                    <div className={'headerMidPart'}>
+                        <div className={'nickname'}>{nickname}</div>
+                        <div className={'time'}>{timeStr}</div>
                     </div>
                 </div>
-                <div className={'ArticleWrapperArticleTypeWrapper'}
+                <div className={'articleTypeWrapper'}
                      data-article_type_id={typeId}
                      onClick={this.onArticleTypeClicked}>
-                    <div className={'ArticleWrapperArticleType'}
+                    <div className={'articleType'}
                          data-article_type_id={typeId}
                          onClick={this.onArticleTypeClicked}>{type}</div>
-                    <div className={'ArticleWrapperArticleTypeTriangle'}
+                    <div className={'articleTypeTriangle'}
                          data-article_type_id={typeId}
                          onClick={this.onArticleTypeClicked}>
                     </div>
                 </div>
-                <div className={'ArticleWrapperMainPart'}>
-                    <div className={'ArticleWrapperMainPartDescription'}>发表了文章：</div>
-                    <a href={`/article?articleId=${id}`} target='_blank' className={'ArticleWrapperTitleWrapper'}>
-                        <div className={'ArticleWrapperTitle'}>
+                <div className={'mainPart'}>
+                    <div className={'mainPartDescription'}>发表了文章：</div>
+                    <a href={`/article?articleId=${id}`} target='_blank' className={'titleWrapper'}>
+                        <div className={'title'}>
                             {title}
                         </div>
                     </a>
                 </div>
-                <div className={'ArticleWrapperButtonArea'}>
+                <div className={'buttonArea'}>
                     <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false}/>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}

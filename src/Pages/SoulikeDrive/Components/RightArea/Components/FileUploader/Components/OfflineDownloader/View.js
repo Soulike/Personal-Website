@@ -48,13 +48,13 @@ class OfflineDownloader extends Component
     {
         return (
             <div className={'OfflineDownloader'}>
-                <div className={'OfflineDownloaderTitle'}>离线下载</div>
+                <div className={'title'}>离线下载</div>
                 <form action="" className={'OfflineDownloaderForm'}>
                     <input type="text"
-                           className={'OfflineDownloaderInput'}
+                           className={'linkInput'}
                            placeholder={'下载链接'}
                            onChange={this.onOfflineDownloaderInputChange} ref={'urlInput'}/>
-                    <button className={'OfflineDownloaderButton btn btn-primary'}
+                    <button className={'submitButton btn btn-primary'}
                             onClick={this.OfflineDownloaderButtonClicked}>提交
                     </button>
                 </form>

@@ -3,10 +3,10 @@ import md5 from 'blueimp-md5';
 import SHA from 'jssha';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
-import './HashGenerator.css';
 import {View as Title} from '../../Components/Title';
 import {CSSTransitionGroup} from 'react-transition-group';
 import Clipboard from 'react-clipboard.js';
+import './HashGenerator.css';
 
 class HashGenerator extends Component
 {

@@ -1,4 +1,4 @@
-.footer
+.Footer
 {
     color: #DDD;
     background-color: #333;
@@ -7,18 +7,18 @@
     clear: both;
 }
 
-.thanksWrapper
+.Footer .thanksWrapper
 {
     display: inline-block;
     width: 75%;
 }
 
-.thanks
+.Footer .thanks
 {
     margin: 1rem 0;
 }
 
-.footerLink
+.Footer .footerLink
 {
     display: inline-block;
     margin: 0 0.25rem;
@@ -26,13 +26,13 @@
     color: #AAA;
 }
 
-.hitokotoLink
+.Footer .hitokotoLink
 {
     text-decoration: none;
     color: #AAA;
 }
 
-.copyRight
+.Footer .copyRight
 {
     text-align: center;
     margin-top: 3rem;
@@ -67,7 +67,7 @@
     }
 }
 
-.emoji
+.Footer .emoji
 {
     display: inline-block;
     text-align: center;
@@ -81,12 +81,12 @@
 
 @media (max-width: 1455px)
 {
-    .thanksWrapper, .emoji
+    .Footer .thanksWrapper, .Footer .emoji
     {
         display: none;
     }
 
-    .hitokotoLink
+    .Footer .hitokotoLink
     {
         display: block;
         text-align: center;
@@ -95,7 +95,7 @@
 
 @media (max-width: 650px)
 {
-    .footer
+    .Footer
     {
         padding: 2rem 1rem;
     }

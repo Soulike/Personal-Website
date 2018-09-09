@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './UserInfoCard.css';
 import {getAsync, staticPrefix, requestPrefix} from '../../../../../Static/functions';
-import {View as Alert} from '../../../../../Components/Alert/index';
+import {View as Alert} from '../../../../../Components/Alert';
+import './UserInfoCard.css';
 
 class ProfileCard extends Component
 {

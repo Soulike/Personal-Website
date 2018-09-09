@@ -7,8 +7,8 @@ class Title extends Component
     render()
     {
         return (
-            <div className={'titleLine'}>
-                <header className={'title'}>{this.props.titleText}</header>
+            <div className={'Title'}>
+                <header className={'titleText'}>{this.props.titleText}</header>
             </div>
         );
     }
