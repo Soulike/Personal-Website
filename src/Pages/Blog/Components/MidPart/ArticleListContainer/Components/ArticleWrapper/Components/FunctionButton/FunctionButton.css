@@ -17,7 +17,7 @@
     margin-right: 0.5rem;
 }
 
-.FunctionButton .buttonIconClicked
+.FunctionButton.buttonIconClicked
 {
     color: #46AFE8;
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import './ArticleWrapper.css';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {staticPrefix, prefixZero, postAsync, requestPrefix} from '../../../../../../../Static/functions';
+import {staticPrefix, prefixZero, isInLikedList, submitLikeAsync, removeFromLikedList, appendToLikedList} from '../../../../../../../Static/functions';
 import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../../Components/Alert/View';
 
@@ -21,7 +21,11 @@ class ArticleWrapper extends Component
 
     componentDidMount()
     {
-        this.setState({like: this.props.like});
+        const {id, like} = this.props;
+        this.setState({
+            like,
+            hasLiked: isInLikedList(id)
+        });
     }
 
     onArticleTypeClicked = (e) =>
@@ -43,10 +47,7 @@ class ArticleWrapper extends Component
     {
         const {hasLiked} = this.state;
         const {id} = this.props;
-        postAsync(requestPrefix('/blog/likeArticle'), {
-            articleId: id,
-            isAddLike: !hasLiked
-        })
+        submitLikeAsync(id, !hasLiked)
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;
@@ -67,6 +68,15 @@ class ArticleWrapper extends Component
                 Alert.show('点赞失败', false);
                 console.log(e);
             });
+
+        if (isInLikedList(id))
+        {
+            removeFromLikedList(id);
+        }
+        else
+        {
+            appendToLikedList(id);
+        }
     };
 
     generateTimeStr = (time) =>

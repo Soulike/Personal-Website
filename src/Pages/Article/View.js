@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import showdown from 'showdown';
 import './Article.css';
 import {View as Alert} from '../../Components/Alert';
-import {getAsync, postAsync, prefixZero, requestPrefix} from '../../Static/functions';
+import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList} from '../../Static/functions';
 import highLight from 'highlight.js';
 import Store from '../../Store';
 import {checkLoginState} from '../../Components/AuthProcessor/Actions/Actions';
@@ -61,6 +61,8 @@ class Article extends Component
                     Alert.show('获取文章失败', false);
                     console.log(e);
                 });
+
+            this.setState({hasLiked: isInLikedList(articleId)});
         }
     }
 
@@ -121,10 +123,7 @@ class Article extends Component
     onLikeButtonClicked = (e) =>
     {
         const {hasLiked, id} = this.state;
-        postAsync(requestPrefix('/blog/likeArticle'), {
-            articleId: id,
-            isAddLike: !hasLiked
-        })
+        submitLikeAsync(id, !hasLiked)
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;
@@ -145,6 +144,14 @@ class Article extends Component
                 Alert.show('点赞失败', false);
                 console.log(e);
             });
+        if (isInLikedList(id))
+        {
+            removeFromLikedList(id);
+        }
+        else
+        {
+            appendToLikedList(id);
+        }
     };
 
     render()
