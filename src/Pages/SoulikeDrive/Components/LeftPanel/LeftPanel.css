@@ -4,7 +4,6 @@
     height: 100%;
     background: #333;
     background: linear-gradient(to right, #333, #444);
-    /*TODO: 填满窗口技巧，记录*/
     width: 15rem;
     box-sizing: border-box;
     padding: 2rem 0;
