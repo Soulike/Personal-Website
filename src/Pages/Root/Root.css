@@ -6,6 +6,7 @@
 
 .innerWrapper
 {
+    position: relative;
     margin: 0 auto;
     min-height: 100%;
     animation-name: innerWrapperIn;
