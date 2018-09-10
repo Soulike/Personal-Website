@@ -55,14 +55,14 @@ class Base64Converter extends Component
         return (
             <div className={'Base64Converter'}>
                 <Title titleText={'Base64 转换器'}/>
-                <div className={'base64OriginalTextWrapper'}>
-                    <div className={'base64OriginalTextHeader'}>原始文本</div>
-                    <textarea className={'base64OriginalText'}
+                <div className={'originalTextWrapper'}>
+                    <div className={'originalTextHeader'}>原始文本</div>
+                    <textarea className={'originalText'}
                               ref={'base64OriginalText'}
                               onChange={this.onOriginalTextChange}
                               draggable={false}/>
                 </div>
-                <div className={'Base64ConverterButtonWrapper'}>
+                <div className={'converterButtonWrapper'}>
                     <button className={'originalToBase64Btn btn btn-primary'}
                             onClick={this.onOriginalToBase64BtnClicked}>转换为 Base64↓
                     </button>
@@ -70,8 +70,8 @@ class Base64Converter extends Component
                             onClick={this.onBase64ToOriginalBtnClicked}>转换为文本↑
                     </button>
                 </div>
-                <div className={'base64TextWrapper'}>
-                    <div className={'base64TextHeader'}>BASE64</div>
+                <div className={'textWrapper'}>
+                    <div className={'textHeader'}>BASE64</div>
                     <textarea className={'base64Text'}
                               ref={'base64Text'}
                               onChange={this.onBase64TextChange}

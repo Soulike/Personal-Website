@@ -44,7 +44,7 @@ class Footer extends Component
         const {emojiNumber, hitokoto} = this.state;
         const date = new Date();
         return (
-            <footer className={'footer'}>
+            <footer className={'Footer'}>
                 <div className={'hitokoto'}><a href="https://hitokoto.cn/api" className={'hitokotoLink'}>{hitokoto}</a>
                 </div>
                 <div className={'thanksWrapper'}>

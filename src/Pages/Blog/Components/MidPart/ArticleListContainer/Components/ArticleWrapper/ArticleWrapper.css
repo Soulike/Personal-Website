@@ -10,45 +10,45 @@
     box-sizing: border-box;
 }
 
-.ArticleWrapper .articleWrapperHeader
+.ArticleWrapper .header
 {
     margin-bottom: 1.5rem;
     display: inline-block;
 }
 
-.ArticleWrapper .ArticleWrapperAvatarWrapper
+.ArticleWrapper .avatarWrapper
 {
     width: 2.75rem;
     display: inline-block;
     float: left;
 }
 
-.ArticleWrapper .ArticleWrapperAvatar
+.ArticleWrapper .avatar
 {
     width: 2.75rem;
     border-radius: 3rem;
 }
 
-.ArticleWrapper .ArticleWrapperHeaderMidPart
+.ArticleWrapper .headerMidPart
 {
     display: inline-block;
     padding: 0 1rem;
 }
 
-.ArticleWrapper .ArticleWrapperNickname
+.ArticleWrapper .nickname
 {
     color: #333;
     font-size: 1.2rem;
 }
 
-.ArticleWrapper .ArticleWrapperTime
+.ArticleWrapper .time
 {
     font-size: 0.75rem;
     color: #666;
     margin-top: 0.5rem;
 }
 
-.ArticleWrapper .ArticleWrapperArticleTypeWrapper
+.ArticleWrapper .articleTypeWrapper
 {
     display: inline-block;
     float: right;
@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-.ArticleWrapper .ArticleWrapperArticleType
+.ArticleWrapper .articleType
 {
     text-align: center;
     font-size: 0.85rem;
@@ -75,7 +75,7 @@
     transform: translateY(-50%);
 }
 
-.ArticleWrapper .ArticleWrapperArticleTypeTriangle
+.ArticleWrapper .articleTypeTriangle
 {
     width: 0;
     height: 0;
@@ -88,12 +88,12 @@
     top: 100%;
 }
 
-.ArticleWrapper .ArticleWrapperMainPartDescription
+.ArticleWrapper .mainPartDescription
 {
     margin-bottom: 1rem;
 }
 
-.ArticleWrapper .ArticleWrapperTitleWrapper
+.ArticleWrapper .titleWrapper
 {
     display: block;
     border: 1px solid #DDD;
@@ -104,18 +104,18 @@
     transition: 0.25s;
 }
 
-.ArticleWrapper .ArticleWrapperTitleWrapper:hover
+.ArticleWrapper .titleWrapper:hover
 {
     border: 1px solid #666;
 }
 
-.ArticleWrapper .ArticleWrapperTitle
+.ArticleWrapper .title
 {
     color: #333;
     font-size: 1.25rem;
 }
 
-.ArticleWrapper .ArticleWrapperButtonArea
+.ArticleWrapper .buttonArea
 {
     margin-top: 1rem;
     margin-left: 0.5rem;
@@ -123,7 +123,7 @@
 
 @media (max-width: 450px)
 {
-    .ArticleWrapper .ArticleWrapper
+    .ArticleWrapper
     {
         padding: 1.5rem 0.75rem;
     }

@@ -1,4 +1,4 @@
-.profileCardImage
+.ProfileCard .profileCardImage
 {
     width: 100%;
     height: 5rem;
@@ -7,20 +7,20 @@
     background-repeat: no-repeat;
 }
 
-.avatarAndNicknameWrapper
+.ProfileCard .avatarAndNicknameWrapper
 {
     padding: 0 1.5rem;
     transform: translateY(-30%);
 }
 
-.avatar
+.ProfileCard .avatar
 {
     display: inline-block;
     width: 3.6rem;
     border-radius: 3.6rem;
 }
 
-.nickname
+.ProfileCard .nickname
 {
     display: inline-block;
     margin-left: 1rem;
@@ -29,13 +29,13 @@
     bottom: 1.2rem;
 }
 
-.numWrapper
+.ProfileCard .numWrapper
 {
     margin-bottom: 1.75rem;
     text-align: center;
 }
 
-.sayingNumWrapper, .articleNumWrapper
+.ProfileCard .sayingNumWrapper, .ProfileCard .articleNumWrapper
 {
     display: inline-block;
     text-align: center;
@@ -43,13 +43,13 @@
     margin: 0 1.75rem;
 }
 
-.profileCardNum
+.ProfileCard .profileCardNum
 {
     margin-bottom: 0.5rem;
     color: #00A1D6;
 }
 
-.profileCardLabel
+.ProfileCard .profileCardLabel
 {
     font-size: 0.8rem;
 }

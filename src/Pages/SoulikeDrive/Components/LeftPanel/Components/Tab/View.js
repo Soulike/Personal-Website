@@ -18,11 +18,11 @@ class Tab extends Component
     {
         const {tabId, currentActiveTabId, icon, text, to} = this.props;
         return (
-            <Link className={`panelLink ${tabId === currentActiveTabId ? 'active' : ''}`}
+            <Link className={`Tab ${tabId === currentActiveTabId ? 'active' : ''}`}
                   onClick={this.onThisTabClicked}
                   to={to}
                   onlyActiveOnIndex={false}>
-                <FontAwesomeIcon icon={icon} className={'leftPanelIcon'}/>
+                <FontAwesomeIcon icon={icon} className={'tabIcon'}/>
                 {text}
             </Link>
         );

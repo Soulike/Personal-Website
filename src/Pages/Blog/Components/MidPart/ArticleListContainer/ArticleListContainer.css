@@ -1,0 +1,23 @@
+.ArticleListContainer .articleList-enter
+{
+    opacity: 0;
+    transform: translateY(3rem);
+}
+
+.ArticleListContainer .articleList-enter.articleList-enter-active
+{
+    opacity: 1;
+    transition: 500ms;
+    transform: translateY(0);
+}
+
+.ArticleListContainer .articleList-leave
+{
+    opacity: 1;
+}
+
+.ArticleListContainer .articleList-leave.articleList-leave-active
+{
+    opacity: 0;
+    transition: 1ms;
+}

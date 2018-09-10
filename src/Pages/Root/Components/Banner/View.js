@@ -20,7 +20,7 @@ class Banner extends Component
     {
         const style = {backgroundImage: this.props.bannerBackground};
         return (
-            <div className={'banner'} style={style}>
+            <div className={'Banner'} style={style}>
                 <TopBar isBlur={true}/>
             </div>
         );

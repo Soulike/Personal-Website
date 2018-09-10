@@ -1,15 +1,16 @@
-.ButtonArea
-{
-
-}
-
-.buttonIcon
+.ButtonArea .buttonIcon
 {
     width: 1rem !important;
     margin-right: 0.25rem;
 }
 
-.DownloadButton
+.ButtonArea .downloadButtonWrapper
 {
+    display: inline-block;
     margin: 0 1rem;
+}
+
+.ButtonArea .deleteButtonWrapper
+{
+    display: inline-block;
 }

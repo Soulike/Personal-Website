@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './Alert.css';
 import ReactDOM from 'react-dom';
+import './Alert.css';
 
 class Alert extends Component
 {
@@ -75,7 +75,7 @@ class Alert extends Component
         const {msg, isSuccess} = this.props;
         const {opacity} = this.state;
         return (
-            <div className={`alert alert-${isSuccess ? 'success' : 'danger'}`} style={{opacity}}>
+            <div className={`Alert alert-${isSuccess ? 'success' : 'danger'}`} style={{opacity}}>
                 {msg}
             </div>
         );

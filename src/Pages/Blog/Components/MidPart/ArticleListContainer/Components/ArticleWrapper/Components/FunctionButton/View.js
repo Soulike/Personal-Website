@@ -9,9 +9,9 @@ class FunctionButton extends Component
     {
         const {icon, number, onClick, hasClicked} = this.props;
         return (
-            <div className={`FunctionButton ${hasClicked ? 'functionButtonIconClicked' : ''}`} onClick={onClick}>
-                <FontAwesomeIcon icon={icon} className={'functionButtonIcon'}/>
-                <span className={'functionButtonNumber'}>{number}</span>
+            <div className={`FunctionButton ${hasClicked ? 'buttonIconClicked' : ''}`} onClick={onClick}>
+                <FontAwesomeIcon icon={icon} className={'buttonIcon'}/>
+                <span className={'number'}>{number}</span>
             </div>
         );
     }

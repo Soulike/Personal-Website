@@ -1,12 +1,12 @@
 .AboutMe
 {
     margin-top: 1.5rem;
-    width: 60%;
     margin-left: auto;
     margin-right: auto;
+    width: 60%;
 }
 
-.aboutMeContent
+.AboutMe .aboutMeContent
 {
     text-indent: 2rem;
     color: #333;

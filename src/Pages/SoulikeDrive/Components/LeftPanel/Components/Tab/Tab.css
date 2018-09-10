@@ -1,10 +1,4 @@
-.leftPanelIcon
-{
-    margin-right: 0.5rem;
-    width: 1.25rem !important;
-}
-
-.panelLink
+.Tab
 {
     display: block;
     text-decoration: none;
@@ -17,14 +11,16 @@
     cursor: pointer;
 }
 
-.active
+.Tab .tabIcon
+{
+    margin-right: 0.5rem;
+    width: 1.25rem !important;
+}
+
+.Tab.active
 {
     background: #EEE;
     border-radius: 1.5rem 0 0 1.5rem;
     transition: 0.25s;
-}
-
-.active.panelLink
-{
     color: #333;
 }

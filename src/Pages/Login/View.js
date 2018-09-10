@@ -4,9 +4,9 @@ import {browserHistory} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import {Actions} from '../../Components/AuthProcessor';
-import './Login.css';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
+import './Login.css';
 
 class Login extends Component
 {

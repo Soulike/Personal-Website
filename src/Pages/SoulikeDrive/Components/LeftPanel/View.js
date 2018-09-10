@@ -14,7 +14,7 @@ class LeftPanel extends Component
             <div className={'LeftPanel'}>
                 <div className={'cloudIconWrapper'}>
                     <FontAwesomeIcon className={'cloudIcon'} icon={solidIcons.faCloud}/>
-                    <div className={'SoulikeDriveText'}>SoulikeDrive</div>
+                    <div className={'soulikeDriveText'}>SoulikeDrive</div>
                 </div>
                 <div className={'Tabs'}>
                     <Tab tabId={ComponentTypes['FileList']}

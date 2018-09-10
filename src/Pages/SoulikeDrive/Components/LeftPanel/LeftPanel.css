@@ -10,7 +10,7 @@
     user-select: none;
 }
 
-.cloudIconWrapper
+.LeftPanel .cloudIconWrapper
 {
     width: 100%;
     text-align: center;
@@ -33,19 +33,19 @@
     }
 }
 
-.cloudIcon
+.LeftPanel .cloudIcon
 {
     font-size: 6rem;
 }
 
-.cloudIcon:hover
+.LeftPanel .cloudIcon:hover
 {
     animation-name: cloudFloat;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
 }
 
-.SoulikeDriveText
+.LeftPanel .soulikeDriveText
 {
     font-size: 1.5rem;
     line-height: 4rem;

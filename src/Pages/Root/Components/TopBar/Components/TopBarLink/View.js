@@ -11,8 +11,8 @@ class TopBarLink extends Component
         const {iconStyle, text, children, ...rest} = this.props;
         return (
             <div className={'TopBarLinkWrapper'}>
-                <Link {...rest} className={'TopBarLink'}>
-                    {iconStyle ? <FontAwesomeIcon className={'TopBarIcon'} icon={iconStyle}/> : null}
+                <Link {...rest} className={'topBarLink'}>
+                    {iconStyle ? <FontAwesomeIcon className={'topBarIcon'} icon={iconStyle}/> : null}
                     {text}
                 </Link>
                 {children}

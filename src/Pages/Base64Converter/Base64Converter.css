@@ -4,13 +4,13 @@
     margin: 2rem auto;
 }
 
-.base64OriginalTextWrapper, .base64TextWrapper
+.Base64Converter .originalTextWrapper, .Base64Converter .textWrapper
 {
     width: 100%;
     text-align: center;
 }
 
-.base64OriginalTextHeader, .base64TextHeader
+.Base64Converter .originalTextHeader, .Base64Converter .textHeader
 {
     text-align: center;
     color: #333;
@@ -20,7 +20,7 @@
     margin-bottom: 1rem;
 }
 
-.base64OriginalText, .base64Text
+.Base64Converter .originalText, .Base64Converter .base64Text
 {
     resize: none;
     width: 100%;
@@ -35,17 +35,17 @@
     box-sizing: border-box;
 }
 
-.base64OriginalText:focus, .base64Text:focus
+.Base64Converter .originalText:focus, .Base64Converter .base64Text:focus
 {
     border: 1px solid #333;
 }
 
-.Base64ConverterButtonWrapper
+.Base64Converter .converterButtonWrapper
 {
     text-align: center;
 }
 
-.originalToBase64Btn, .base64ToOriginalBtn
+.Base64Converter .originalToBase64Btn, .Base64Converter .base64ToOriginalBtn
 {
     margin: 2rem 1rem;
     width: 10rem;
@@ -58,7 +58,7 @@
         width: 90%;
     }
 
-    .originalToBase64Btn, .base64ToOriginalBtn
+    .Base64Converter .originalToBase64Btn, .Base64Converter .base64ToOriginalBtn
     {
         margin: 0.5rem;
         width: 10rem;

@@ -7,7 +7,7 @@
     z-index: 9999;
 }
 
-.mask
+.TopBar .mask
 {
     position: absolute;
     width: 100%;
@@ -17,26 +17,26 @@
     z-index: -1;
 }
 
-.imageMask
+.TopBar .imageMask
 {
     filter: blur(0.1rem);
     background-position-x: center;
     background-repeat: no-repeat;
 }
 
-.backgroundColorMask
+.TopBar .backgroundColorMask
 {
     background: rgba(255, 255, 255, 0.5);
 }
 
-.linkWrapper
+.TopBar .linkWrapper
 {
     margin: 0 auto;
     max-width: 70rem;
     height: 100%;
 }
 
-.authControllerWrapper
+.TopBar .authControllerWrapper
 {
     float: right;
 }

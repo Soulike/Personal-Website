@@ -12,7 +12,7 @@
     user-select: none;
 }
 
-.FileList
+.FileListWrapper .fileList
 {
     width: 100%;
     border-collapse: collapse;
@@ -20,7 +20,7 @@
     user-select: none;
 }
 
-.FileList tr
+.FileListWrapper .fileList tr
 {
     width: 100%;
     line-height: 3rem;
@@ -29,12 +29,12 @@
     cursor: pointer;
 }
 
-.FileList tr:hover
+.FileListWrapper .fileList tr:hover
 {
     background: #DDD;
 }
 
-.FileList th
+.FileListWrapper .fileList th
 {
     font-weight: bold;
     line-height: 3rem;
@@ -43,12 +43,12 @@
     border: none;
 }
 
-.FileList td
+.FileListWrapper .fileList td
 {
     text-align: center;
 }
 
-.noFileText
+.FileListWrapper .noFileText
 {
     text-align: center;
     width: 100%;

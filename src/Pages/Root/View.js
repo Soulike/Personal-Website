@@ -7,6 +7,7 @@ import './Root.css';
 import Store from '../../Store';
 import * as Actions from '../../Components/AuthProcessor/Actions/Actions';
 import {View as ToTopButton} from './Components/ToTopButton';
+import {CSSTransitionGroup} from 'react-transition-group';
 
 class Root extends Component
 {

@@ -7,22 +7,22 @@
     transition: 0.25s;
 }
 
-.FunctionButton:hover
+.FunctionButton .FunctionButton:hover
 {
     color: #46AFE8;
 }
 
-.functionButtonIcon
+.FunctionButton .buttonIcon
 {
     margin-right: 0.5rem;
 }
 
-.functionButtonIconClicked
+.FunctionButton.buttonIconClicked
 {
     color: #46AFE8;
 }
 
-.functionButtonNumber
+.FunctionButton .number
 {
     display: inline-block;
     min-width: 1.5rem;
