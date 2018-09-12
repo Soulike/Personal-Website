@@ -6,8 +6,6 @@ import './Article.css';
 import {View as Alert} from '../../Components/Alert';
 import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList} from '../../Static/functions';
 import highLight from 'highlight.js';
-import Store from '../../Store';
-import {checkLoginState} from '../../Components/AuthProcessor/Actions/Actions';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 
@@ -31,7 +29,6 @@ class Article extends Component
 
     componentDidMount()
     {
-        Store.dispatch(checkLoginState());
         const {articleId} = this.props.location.query;
         if (!articleId)
         {

@@ -11,7 +11,6 @@ class SoulikeDrive extends Component
     componentDidMount()
     {
         document.title = 'SoulikeDrive - Soulike 的个人网站';
-        Store.dispatch(Actions.checkLoginState());
     }
 
     render()
