@@ -49,9 +49,8 @@ class ProfileCard extends Component
         const {image, sayingNum, articleNum} = this.state;
         return (
             <div className={'ProfileCard card'}>
-                <div className={'profileCardImage'} style={{backgroundImage: `url(${staticPrefix(image)})`}}>
-
-                </div>
+                <div className={'profileCardImage'}
+                     style={{backgroundImage: `url(${image ? staticPrefix(image) : ''})`}}/>
                 <div className={'avatarAndNicknameWrapper'}>
                     <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
                     <div className={'nickname'}>{nickname}</div>
