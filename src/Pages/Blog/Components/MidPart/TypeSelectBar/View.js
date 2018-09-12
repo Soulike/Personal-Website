@@ -18,7 +18,7 @@ class TypeSelectBar extends Component
 
     componentDidMount()
     {
-        getAsync(requestPrefix('/blog/getArticleTypes'))
+        getAsync(requestPrefix('/blog/getArticleTypes'), false)
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;

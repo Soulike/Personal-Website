@@ -8,7 +8,7 @@ export function getFileList()
     {
         try
         {
-            const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'));
+            const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'), false);
             const {isSuccess, msg, data: fileList} = res;
             if (isSuccess)
             {

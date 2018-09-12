@@ -76,7 +76,7 @@ export function checkLoginState()
     {
         try
         {
-            const res = await getAsync(requestPrefix('/checkLoginState'));
+            const res = await getAsync(requestPrefix('/checkLoginState'), false);
             const {isSuccess} = res;
             if (isSuccess)
             {

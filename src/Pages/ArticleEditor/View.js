@@ -54,7 +54,7 @@ class ArticleEditor extends Component
             this.setState({typeId});
         }
 
-        getAsync(requestPrefix('/blog/getArticleTypes'))
+        getAsync(requestPrefix('/blog/getArticleTypes'), false)
             .then(res =>
             {
                 const {isSuccess, msg, data} = res;

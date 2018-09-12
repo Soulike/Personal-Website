@@ -28,27 +28,19 @@ export function staticPrefix(url)
     return `https://static.soulike.tech/userImage/${url}`;
 }
 
-export async function getAsync(url, allowCache = false, params = {}, config = {})
+export async function getAsync(url, allowCache = true, params = {}, config = {})
 {
     return new Promise(async (resolve, reject) =>
     {
         try
         {
-            let res = JSON.parse(sessionStorage.getItem(url));
-            if (!res)
-            {
-                res = await axios.get(url, {
-                    params: {
-                        ...params,
-                        _t: Date.now()
-                    },
-                    ...config
-                });
-                if (allowCache)
-                {
-                    sessionStorage.setItem(url, JSON.stringify(res));
-                }
-            }
+            const res = await axios.get(url, allowCache ? params : {
+                params: {
+                    ...params,
+                    _t: Date.now()
+                },
+                ...config
+            });
             resolve(res.data);
         }
         catch (e)
