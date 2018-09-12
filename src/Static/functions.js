@@ -25,7 +25,7 @@ export function staticPrefix(url)
     {
         url = url.substring(1);
     }
-    return `https://static.soulike.tech/userImage/${url}`;
+    return url ? `https://static.soulike.tech/userImage/${url}` : '';
 }
 
 export async function getAsync(url, allowCache = true, params = {}, config = {})

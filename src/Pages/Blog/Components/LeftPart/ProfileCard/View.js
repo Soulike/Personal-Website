@@ -50,7 +50,7 @@ class ProfileCard extends Component
         return (
             <div className={'ProfileCard card'}>
                 <div className={'profileCardImage'}
-                     style={{backgroundImage: `url(${image ? staticPrefix(image) : ''})`}}/>
+                     style={{backgroundImage: `url(${staticPrefix(image)})`}}/>
                 <div className={'avatarAndNicknameWrapper'}>
                     <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
                     <div className={'nickname'}>{nickname}</div>
