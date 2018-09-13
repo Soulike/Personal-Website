@@ -87,7 +87,7 @@ class ArticleEditor extends Component
             previewHTML: this.converter.makeHtml(e.target.value)
         }, () =>
         {
-            const blocks = [...document.getElementsByTagName('code')];
+            const blocks = [...document.querySelectorAll('pre code')];
             blocks.forEach(block =>
             {
                 highLight.highlightBlock(block);
