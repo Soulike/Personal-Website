@@ -34,7 +34,7 @@ export async function getAsync(url, allowCache = true, params = {}, config = {})
     {
         try
         {
-            const res = await axios.get(url, allowCache ? params : {
+            const res = await axios.get(url, allowCache ? {...params} : {
                 params: {
                     ...params,
                     _t: Date.now()
