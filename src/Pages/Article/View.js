@@ -36,7 +36,7 @@ class Article extends Component
         }
         else
         {
-            getAsync(requestPrefix('/blog/getArticle'), false, {articleId})
+            getAsync(requestPrefix('/blog/getArticle'), true, {articleId})
                 .then(res =>
                 {
                     const {isSuccess, msg, data} = res;
