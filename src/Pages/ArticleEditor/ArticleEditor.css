@@ -113,7 +113,6 @@
 .ArticleEditor .articlePreview table, .ArticleEditor .articlePreview th, .ArticleEditor .articlePreview td
 {
     border-collapse: collapse;
-    text-align: center !important;
 }
 
 .ArticleEditor .articlePreview th, .ArticleEditor .articlePreview td

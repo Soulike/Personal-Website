@@ -55,23 +55,25 @@ class ArticleListContainer extends Component
         if (!this.state.hasReachedListEnd)
         {
             const {currentPage} = this.state;
-            this.setState({currentPage: currentPage + 1});
-            this.getArticleListAsync(articleTypeId, currentPage + 1)
-                .then(data =>
-                {
-                    if (data.length !== 0)// 如果有数据就更新数据
+            this.setState({currentPage: currentPage + 1}, () =>
+            {
+                this.getArticleListAsync(articleTypeId, currentPage + 1)
+                    .then(data =>
                     {
-                        this.setState({articleList: [...this.state.articleList, ...data]});
-                    }
-                    else// 如果服务器返回列表为空，那就下一次没必要再发送任何请求，设置标志为true
+                        if (data.length !== 0)// 如果有数据就更新数据
+                        {
+                            this.setState({articleList: [...this.state.articleList, ...data]});
+                        }
+                        else// 如果服务器返回列表为空，那就下一次没必要再发送任何请求，设置标志为true
+                        {
+                            this.setState({hasReachedListEnd: true});
+                        }
+                    })
+                    .catch(msg =>
                     {
-                        this.setState({hasReachedListEnd: true});
-                    }
-                })
-                .catch(msg =>
-                {
-                    Alert.show(msg, false);
-                });
+                        Alert.show(msg, false);
+                    });
+            });
         }
     };
 

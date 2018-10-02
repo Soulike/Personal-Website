@@ -32,7 +32,6 @@
 .Article table, .Article th, .Article td
 {
     border-collapse: collapse;
-    text-align: center !important;
 }
 
 .Article th, .Article td
