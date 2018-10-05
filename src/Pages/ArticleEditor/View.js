@@ -115,7 +115,7 @@ class ArticleEditor extends Component
         {
             Alert.show('请填写正文', false);
         }
-        else if (!parseInt(typeId))
+        else if (!parseInt(typeId, 10))
         {
             Alert.show('请选择分类', false);
         }
@@ -154,7 +154,7 @@ class ArticleEditor extends Component
                         console.log(e);
                     });
             }
-            else if (!parseInt(articleId))
+            else if (!parseInt(articleId, 10))
             {
                 Alert.show('参数错误', false);
             }

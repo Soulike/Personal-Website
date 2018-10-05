@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './RightPart.css';
+import MostPopularCard from './Components/MostPopularCard/View';
 
 class RightPart extends Component
 {
@@ -7,7 +8,7 @@ class RightPart extends Component
     {
         return (
             <div className={'RightPart'}>
-
+                <MostPopularCard/>
             </div>
         )
     }

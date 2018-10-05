@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './MidPart.css';
-import {View as TypeSelectBar} from './TypeSelectBar';
-import {View as ArticleContainer} from './ArticleListContainer';
+import {View as TypeSelectBar} from './Components/TypeSelectBar';
+import {View as ArticleContainer} from './Components/ArticleListContainer';
 
 class MidPart extends Component
 {

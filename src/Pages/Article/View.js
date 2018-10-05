@@ -127,7 +127,7 @@ class Article extends Component
                 if (isSuccess)
                 {
                     this.setState({
-                        like: parseInt(data),
+                        like: parseInt(data, 10),
                         hasLiked: !hasLiked
                     });
                 }

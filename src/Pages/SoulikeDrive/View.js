@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as LeftPanel} from './Components/LeftPanel';
-import './SoulikeDrive.css';
 import {View as RightArea} from './Components/RightArea';
-import Store from '../../Store';
-import * as Actions from '../../Components/AuthProcessor/Actions/Actions';
+import './SoulikeDrive.css';
 
 class SoulikeDrive extends Component
 {

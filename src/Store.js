@@ -9,7 +9,8 @@ import {Reducer as OptionsReducer} from './Pages/Options';
 import {Reducer as BannerReducer} from './Pages/Root/Components/Banner';
 import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/RightArea/Components/FileList';
 import {Reducer as AuthProcessorReducer} from './Components/AuthProcessor';
-import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/MidPart/TypeSelectBar';
+import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/MidPart/Components/TypeSelectBar';
+import {Reducer as MostPopularCardReducer} from './Pages/Blog/Components/RightPart/Components/MostPopularCard';
 
 // Store 中的初始值，根据开发需要进行改变
 const initValues = {
@@ -34,7 +35,10 @@ const initValues = {
         fileList: [],
         selectedFileList: []
     },
-    AuthProcessor: {hasLoggedIn: false}
+    AuthProcessor: {hasLoggedIn: false},
+    MostPopularCard: {
+        currentTypeId: 0
+    }
 };
 
 // 所有中间件放在此处
@@ -54,7 +58,8 @@ const Reducer = combineReducers({
     Options: OptionsReducer,
     Banner: BannerReducer,
     FileList: FileListReducer,
-    AuthProcessor: AuthProcessorReducer
+    AuthProcessor: AuthProcessorReducer,
+    MostPopularCard: MostPopularCardReducer
 });
 
 export default createStore(Reducer, initValues, storeEnhancers);

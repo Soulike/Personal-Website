@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ProfileCard from './ProfileCard/View';
+import ProfileCard from './Components/ProfileCard/View';
 import './LeftPart.css';
 
 class LeftPart extends Component

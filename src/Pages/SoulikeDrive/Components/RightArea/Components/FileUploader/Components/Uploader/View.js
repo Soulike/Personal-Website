@@ -26,7 +26,7 @@ class Uploader extends Component
             fileNum: fileList.length,
             fileList
         });
-        fileList.map((file) =>
+        fileList.forEach(file =>
         {
             fileSize += file.size;
         });
@@ -39,8 +39,8 @@ class Uploader extends Component
         const fileInput = this.refs.fileInput;
         const {fileList} = this.state;
         fileInput.disabled = true;
-        const formData = new FormData;
-        fileList.map(file =>
+        const formData = new FormData();
+        fileList.forEach(file =>
         {
             formData.append(`file`, file);
         });
