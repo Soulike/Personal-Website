@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import crypto from 'crypto';
 
 // 所有的请求走/server，所有的静态文件获取走/file
 /*
@@ -132,4 +133,11 @@ export function isInLikedList(articleId)
 {
     const list = getLikedList();
     return !!list[articleId];
+}
+
+export function getHash(text, hashMethod)
+{
+    const hash = crypto.createHash(hashMethod);
+    hash.update(text);
+    return hash.digest('hex');
 }

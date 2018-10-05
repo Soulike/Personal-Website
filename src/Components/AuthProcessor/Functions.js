@@ -1,6 +1,6 @@
 import Store from '../../Store';
 import {checkLoginState} from './Actions/Actions';
-import SHA from 'jssha';
+import {getHash} from '../../Static/functions';
 
 export function requireLogin(nextState, replace)
 {
@@ -20,19 +20,17 @@ export function setLoginToken()
 {
     const date = new Date();
     const str = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    const shaObj = new SHA('SHA-512', 'TEXT');
-    shaObj.update(str);
-    sessionStorage.setItem('loginToken', shaObj.getHash('HEX'));
+    const hash = getHash(str, 'sha512');
+    sessionStorage.setItem('loginToken', hash);
 }
 
 export function isLoginTokenValid()
 {
     const date = new Date();
     const str = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    const shaObj = new SHA('SHA-512', 'TEXT');
-    shaObj.update(str);
+    const hash = getHash(str, 'sha512');
     const token = sessionStorage.getItem('loginToken');
-    return Object.is(shaObj.getHash('HEX'), token);
+    return Object.is(hash, token);
 }
 
 export function removeLoginToken()

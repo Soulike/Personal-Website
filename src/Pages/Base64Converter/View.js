@@ -36,7 +36,7 @@ class Base64Converter extends Component
     onOriginalToBase64BtnClicked = (e) =>
     {
         e.preventDefault();
-        const base64Text = btoa(this.state.originalText);
+        const base64Text = Buffer.from(this.state.originalText, 'utf-8').toString('base64');
         this.setState({base64Text});
         this.refs.base64Text.value = base64Text;
     };
@@ -44,7 +44,7 @@ class Base64Converter extends Component
     onBase64ToOriginalBtnClicked = (e) =>
     {
         e.preventDefault();
-        const originalText = atob(this.state.base64Text);
+        const originalText = Buffer.from(this.state.base64Text, 'base64').toString('utf-8');
         this.setState({originalText});
         this.refs.base64OriginalText.value = originalText;
     };

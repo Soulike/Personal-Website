@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import md5 from 'blueimp-md5';
-import SHA from 'jssha';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import {View as Title} from '../../Components/Title';
 import {CSSTransitionGroup} from 'react-transition-group';
+import {getHash} from '../../Static/functions';
 import Clipboard from 'react-clipboard.js';
 import './HashGenerator.css';
 
@@ -14,7 +13,7 @@ class HashGenerator extends Component
     {
         super(...arguments);
         this.state = {
-            hashMethod: 'MD5',
+            hashMethod: 'md5',
             currentText: '',
             showResult: false,
             hashResult: ''
@@ -39,22 +38,11 @@ class HashGenerator extends Component
     {
         this.setState({currentText: e.target.value});
     };
-
     onSubmit = (e) =>
     {
         e.preventDefault();
         const {hashMethod, currentText} = this.state;
-        let result = '';
-        if (hashMethod === 'MD5')
-        {
-            result = md5(currentText);
-        }
-        else
-        {
-            const SHAObj = new SHA(hashMethod, 'TEXT');
-            SHAObj.update(currentText);
-            result = SHAObj.getHash('HEX');
-        }
+        const result = getHash(currentText, hashMethod);
 
         this.setState({
             showResult: true,
@@ -70,11 +58,11 @@ class HashGenerator extends Component
                 <Title titleText={'哈希生成器'}/>
                 <form onSubmit={this.onSubmit}>
                     <select onChange={this.onSelectChange} className={'methodSelect'}>
-                        <option value="MD5" defaultChecked={true}>MD5</option>
-                        <option value="SHA-1">SHA-1</option>
-                        <option value="SHA-256">SHA-256</option>
-                        <option value="SHA-384">SHA-384</option>
-                        <option value="SHA-512">SHA-512</option>
+                        <option value="md5" defaultChecked={true}>MD5</option>
+                        <option value="sha1">SHA-1</option>
+                        <option value="sha256">SHA-256</option>
+                        <option value="sha384">SHA-384</option>
+                        <option value="sha512">SHA-512</option>
                     </select>
                     <input className={'originalText'}
                            type="text"
@@ -88,7 +76,7 @@ class HashGenerator extends Component
                         {
                             showResult ?
                                 <div className={'resultWrapper'}>
-                                    <div className={'hashMethodWrapper'}>{hashMethod}</div>
+                                    <div className={'hashMethodWrapper'}>{hashMethod.toUpperCase()}</div>
                                     <div className={'hashResultWrapper'}>{hashResult}</div>
 
                                     <Clipboard className={'btn btn-primary btn-lg copyHashResultBtn'}

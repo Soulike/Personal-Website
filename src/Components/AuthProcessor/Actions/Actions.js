@@ -1,7 +1,6 @@
 import {LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT_SUCCESS, LOGOUT_FAILED, LOGIN_STATE_VALID, LOGIN_STATE_INVALID} from './ActionTypes';
-import SHA from 'jssha';
 import {browserHistory} from 'react-router';
-import {getAsync, postAsync, requestPrefix} from '../../../Static/functions';
+import {getAsync, getHash, postAsync, requestPrefix} from '../../../Static/functions';
 import {View as Alert} from '../../Alert';
 import {removeLoginToken, setLoginToken} from '../Functions';
 
@@ -11,11 +10,9 @@ export function login(username, password)
     {
         try
         {
-            const SHAObj = new SHA('SHA-256', 'TEXT');
-            SHAObj.update(`${username}${password}`);
             const res = await postAsync(requestPrefix('/login'), {
                 username,
-                password: SHAObj.getHash('HEX')
+                password: getHash(`${username}${password}`, 'sha256')
             });
             const {isSuccess, msg} = res;
             if (isSuccess)
