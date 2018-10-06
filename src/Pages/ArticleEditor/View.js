@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import highLight from 'highlight.js';
-import showdown from 'showdown';
-import {getAsync, postAsync, requestPrefix} from '../../Static/functions';
+import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import './ArticleEditor.css';
@@ -19,12 +18,6 @@ class ArticleEditor extends Component
             allTypes: [],
             previewHTML: ''
         };
-
-        this.converter = new showdown.Converter({
-            tables: true,
-            openLinksInNewWindow: true,
-            simplifiedAutoLink: true
-        });
     }
 
     componentDidMount()
@@ -42,7 +35,7 @@ class ArticleEditor extends Component
         {
             this.setState({
                 content,
-                previewHTML: this.converter.makeHtml(content)
+                previewHTML: markdownToHtml(content)
             }, () =>
             {
                 highLight.initHighlighting();
@@ -84,7 +77,7 @@ class ArticleEditor extends Component
     {
         this.setState({
             content: e.target.value,
-            previewHTML: this.converter.makeHtml(e.target.value)
+            previewHTML: markdownToHtml(e.target.value)
         }, () =>
         {
             const blocks = [...document.querySelectorAll('pre code')];

@@ -1,6 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import crypto from 'crypto';
+import showdown from 'showdown';
+
+const converter = new showdown.Converter({
+    tables: true,
+    openLinksInNewWindow: true,
+    smoothLivePreview: true
+});
 
 // 所有的请求走/server，所有的静态文件获取走/file
 /*
@@ -184,4 +191,9 @@ export function generateTimeStr(time)
     {
         return `${floor(diff / MILLISECONDS.SECOND)} 秒前`;
     }
-};
+}
+
+export function markdownToHtml(markdown)
+{
+    return converter.makeHtml(markdown);
+}

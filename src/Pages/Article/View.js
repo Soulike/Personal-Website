@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-import showdown from 'showdown';
 import './Article.css';
 import {View as Alert} from '../../Components/Alert';
-import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList} from '../../Static/functions';
+import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml} from '../../Static/functions';
 import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
@@ -155,12 +154,7 @@ class Article extends Component
     {
         const {title, content, type, time, hasLiked, like} = this.state;
         const {hasLoggedIn} = this.props;
-        const converter = new showdown.Converter({
-            tables: true,
-            openLinksInNewWindow: true,
-            simplifiedAutoLink: true
-        });
-        const contentHtml = converter.makeHtml(content);
+        const contentHtml = markdownToHtml(content);
         const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
         return (
             <div className={'Article'}>

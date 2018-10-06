@@ -61,6 +61,7 @@
     user-select: none;
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
+    line-height: 1.75rem;
 }
 
 .ArticleEditor .articleTypeSelectWrapper
