@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import {getAsync, requestPrefix} from '../../../Static/functions';
+import {getAsync, requestPrefix} from '../../../Static/Functions';
 import {View as Alert} from '../../../Components/Alert';
 
 export function getInfo()

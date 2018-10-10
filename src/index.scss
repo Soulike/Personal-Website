@@ -1,0 +1,13 @@
+@import "~normalize.css/normalize.css";
+
+html, body, #root
+{
+    font:
+    {
+        size: 16px;
+        family: "Noto Sans CJK SC", "思源黑体 CN", sans-serif;
+    }
+    height: 100%;
+    min-width: 340px;
+    background-color: #F5F5F5;
+}

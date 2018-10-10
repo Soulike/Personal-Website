@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAsync, staticPrefix, requestPrefix} from '../../../../../../Static/functions';
+import {getAsync, staticPrefix, requestPrefix} from '../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../Components/Alert/index';
 import './UserInfoCard.css';
 

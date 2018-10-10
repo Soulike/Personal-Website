@@ -1,6 +1,6 @@
 import Store from '../../Store';
 import {checkLoginState} from './Actions/Actions';
-import {getHash} from '../../Static/functions';
+import {getHash} from '../../Static/Functions';
 
 export function requireLogin(nextState, replace)
 {

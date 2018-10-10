@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAsync, requestPrefix} from '../../../../../../Static/functions';
+import {getAsync, requestPrefix} from '../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../Components/Alert/index';
 import {View as ArticleWrapper} from './Components/ArticleWrapper/index';
 import {CSSTransitionGroup} from 'react-transition-group';

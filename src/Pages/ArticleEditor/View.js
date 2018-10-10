@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import highLight from 'highlight.js';
-import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/functions';
+import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import './ArticleEditor.css';
+import btnStyle from '../../Static/Button.module.scss';
 
 class ArticleEditor extends Component
 {
@@ -215,7 +216,9 @@ class ArticleEditor extends Component
                     </select>
                 </div>
                 <div className={'articleButtonWrapper'}>
-                    <button className={'articleSubmitBtn btn btn-primary btn-lg'} onClick={this.onSubmit}>提交</button>
+                    <button className={`articleSubmitBtn ${btnStyle.btn} ${btnStyle['btn-primary']} ${btnStyle['btn-lg']}`}
+                            onClick={this.onSubmit}>提交
+                    </button>
                 </div>
             </div>
         );

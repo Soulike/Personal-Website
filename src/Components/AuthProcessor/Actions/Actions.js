@@ -1,6 +1,6 @@
 import {LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT_SUCCESS, LOGOUT_FAILED, LOGIN_STATE_VALID, LOGIN_STATE_INVALID} from './ActionTypes';
 import {browserHistory} from 'react-router';
-import {getAsync, getHash, postAsync, requestPrefix} from '../../../Static/functions';
+import {getAsync, getHash, postAsync, requestPrefix} from '../../../Static/Functions';
 import {View as Alert} from '../../Alert';
 import {removeLoginToken, setLoginToken} from '../Functions';
 

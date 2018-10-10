@@ -6,7 +6,8 @@ import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import {Actions} from '../../Components/AuthProcessor';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
-import './Login.css';
+import style from './Login.module.scss';
+import btnStyle from '../../Static/Button.module.scss';
 
 class Login extends Component
 {
@@ -53,24 +54,26 @@ class Login extends Component
     render()
     {
         return (
-            <div className={'Login'}>
+            <div className={style.Login}>
                 <Title titleText={'登录'}/>
                 <form onSubmit={this.onSubmitButtonClick}>
-                    <div className={'inputWrapper'}>
-                        <FontAwesomeIcon icon={solidIcons.faUserCircle} className={'icon'}/>
+                    <div className={style.inputWrapper}>
+                        <FontAwesomeIcon icon={solidIcons.faUserCircle} className={style.icon}/>
                         <input type="text"
                                placeholder={'用户名'}
-                               className={'loginInput'}
+                               className={style.loginInput}
                                onChange={this.onUsernameChange}/>
                     </div>
-                    <div className={'inputWrapper'}>
-                        <FontAwesomeIcon icon={solidIcons.faKey} className={'icon'}/>
+                    <div className={style.inputWrapper}>
+                        <FontAwesomeIcon icon={solidIcons.faKey} className={style.icon}/>
                         <input type="password"
                                placeholder={'密码'}
-                               className={'loginInput'}
+                               className={style.loginInput}
                                onChange={this.onPasswordChange}/>
                     </div>
-                    <button className={'submitButton btn btn-primary btn-lg'}>登陆</button>
+                    <button className={`${style.submitButton} ${btnStyle.btn} ${btnStyle['btn-primary']} ${btnStyle['btn-lg']}`}>
+                        登录
+                    </button>
                 </form>
             </div>
         );

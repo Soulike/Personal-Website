@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './OfflineDownloader.css';
-import {postAsync, requestPrefix} from '../../../../../../../../Static/functions';
+import {postAsync, requestPrefix} from '../../../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../../../Components/Alert';
 
 class OfflineDownloader extends Component

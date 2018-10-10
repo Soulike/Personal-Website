@@ -1,6 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import {ARTICLE_TYPE} from './Static/constants';
+import {ARTICLE_TYPE} from './Static/Constants';
 import {Reducer as SoulikeDriveReducer} from './Pages/SoulikeDrive';
 import {Reducer as BlogReducer} from './Pages/Blog';
 import {Reducer as DynamicReducer} from './Pages/Dynamic';

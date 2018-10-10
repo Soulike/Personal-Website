@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-import './Article.css';
 import {View as Alert} from '../../Components/Alert';
-import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml} from '../../Static/functions';
+import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml} from '../../Static/Functions';
 import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
+import btnStyle from '../../Static/Button.module.scss';
+import style from './Article.module.scss';
 
 class Article extends Component
 {
@@ -157,31 +158,31 @@ class Article extends Component
         const contentHtml = markdownToHtml(content);
         const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
         return (
-            <div className={'Article'}>
-                <div className={'articleTitle'}>{title}</div>
-                {hasLoggedIn ? <div className={'articleBtnWrapper'}>
-                    <button className={'articleModifyBtn btn btn-primary'}
+            <div className={style.Article}>
+                <div className={style.articleTitle}>{title}</div>
+                {hasLoggedIn ? <div className={style.articleBtnWrapper}>
+                    <button className={`articleModifyBtn ${btnStyle.btn} ${btnStyle['btn-primary']}`}
                             onClick={this.onModifyButtonClicked}>编辑
                     </button>
-                    <button className={'articleDeleteBtn btn btn-danger'}
+                    <button className={`articleDeleteBtn ${btnStyle.btn} ${btnStyle['btn-danger']}`}
                             onClick={this.onDeleteButtonClicked}>删除
                     </button>
                 </div> : null}
-                <div className={'articleInfo'}>
-                    <div className={'articleInfoTriangle'}/>
-                    <div className={'articleTime'}>{this.generateTimeString(time)}</div>
-                    <div className={'articleType'}>{type}</div>
+                <div className={style.articleInfo}>
+                    <div className={style.articleInfoTriangle}/>
+                    <div className={style.articleTime}>{this.generateTimeString(time)}</div>
+                    <div className={style.articleType}>{type}</div>
                 </div>
-                <div className={'articleContent'} dangerouslySetInnerHTML={{__html: contentHtml}}/>
-                <div className={'articleFunctionButtonWrapper'}>
+                <div className={style.articleContent} dangerouslySetInnerHTML={{__html: contentHtml}}/>
+                <div className={style.articleFunctionButtonWrapper}>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
                                     onClick={this.onLikeButtonClicked}
                                     hasClicked={hasLiked}/>
                 </div>
-                <div className={'articleFooter'}>
-                    <div className={'timeWarning'}>本文发表于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
-                    <div className={'copyRightWarning'}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
+                <div className={style.articleFooter}>
+                    <div className={style.timeWarning}>本文发表于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
+                    <div className={style.copyRightWarning}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
                 </div>
             </div>
         );

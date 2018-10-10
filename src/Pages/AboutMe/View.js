@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
-import './AboutMe.css';
-import {getAsync, requestPrefix} from '../../Static/functions';
+import {getAsync, requestPrefix} from '../../Static/Functions';
+import style from './AboutMe.module.scss';
 
 
 class AboutMe extends Component
@@ -35,9 +35,9 @@ class AboutMe extends Component
     render()
     {
         return (
-            <div className={'AboutMe'}>
+            <div className={style.AboutMe}>
                 <Title titleText={'关于我'}/>
-                <div className={'aboutMeContent'} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}/>
+                <div className={style.aboutMeContent} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}/>
             </div>);
     }
 }

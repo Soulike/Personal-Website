@@ -1,0 +1,26 @@
+.AboutMe
+{
+    margin:
+    {
+        top: 1.5rem;
+        left: auto;
+        right: auto;
+    }
+    width: 60%;
+
+    .aboutMeContent
+    {
+        text-indent: 2rem;
+        color: #333;
+        line-height: 2rem;
+        user-select: none;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .AboutMe
+    {
+        width: 90%;
+    }
+}

@@ -1,0 +1,73 @@
+.Login
+{
+    width: 60%;
+    max-width: 1455px;
+    margin:
+    {
+        top: 1.5rem;
+        left: auto;
+        right: auto;
+    }
+    text-align: center;
+
+    .inputWrapper
+    {
+        width: 40%;
+        box-sizing: border-box;
+        margin: 1rem auto;
+        text-align: left;
+    }
+
+    .icon
+    {
+        position: relative;
+        top: 1.95rem;
+        left: 0.75rem;
+        color: #666;
+    }
+
+    .loginInput
+    {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.25rem;
+        border: 1px solid #DDD;
+        border-radius: 0.5rem;
+        outline: none;
+        color: #AAA;
+        transition: 0.25s;
+
+        &:focus
+        {
+            border: 1px solid #AAA;
+        }
+    }
+
+    .submitButton
+    {
+        display: block;
+        width: 40%;
+        box-sizing: border-box;
+        margin: 3rem auto;
+    }
+}
+
+@media (max-width: 1000px)
+{
+    .Login
+    {
+        width: 90%;
+    }
+}
+
+@media (max-width: 750px)
+{
+    .Login
+    {
+        .inputWrapper, .submitButton
+        {
+            width: 100%;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import {downloadFile, getAsync, postAsync, requestPrefix} from '../../../../../../../Static/functions';
+import {downloadFile, getAsync, postAsync, requestPrefix} from '../../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../../Components/Alert';
 
 export function getFileList()

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import './ArticleFunctionButton.css';
+import style from './ArticleFunctionButton.module.scss';
 
 class ArticleFunctionButton extends Component
 {
@@ -9,10 +9,10 @@ class ArticleFunctionButton extends Component
     {
         const {icon, number, onClick, hasClicked} = this.props;
         return (
-            <div className={`ArticleFunctionButton ${hasClicked ? 'buttonIconClicked' : ''}`}
+            <div className={`${style.ArticleFunctionButton} ${hasClicked ? style.buttonIconClicked : ''}`}
                  onClick={onClick}>
-                <FontAwesomeIcon icon={icon} className={'buttonIcon'}/>
-                <span className={'number'}>{number}</span>
+                <FontAwesomeIcon icon={icon} className={style.buttonIcon}/>
+                <span className={style.number}>{number}</span>
             </div>
         );
     }

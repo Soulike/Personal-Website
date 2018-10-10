@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import TypeId from '../../TypeId';
 import {CSSTransitionGroup} from 'react-transition-group';
 import './CardBody.css';
-import {getAsync, requestPrefix} from '../../../../../../../../Static/functions';
+import {getAsync, requestPrefix} from '../../../../../../../../Static/Functions';
 import Alert from '../../../../../../../../Components/Alert/View';
 import CardBodyListItem from './Components/CardBodyListItem/View';
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import './ArticleWrapper.css';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {staticPrefix, isInLikedList, submitLikeAsync, removeFromLikedList, appendToLikedList, generateTimeStr} from '../../../../../../../../Static/functions';
+import {staticPrefix, isInLikedList, submitLikeAsync, removeFromLikedList, appendToLikedList, generateTimeStr} from '../../../../../../../../Static/Functions';
 import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../../../Components/Alert/View';
 

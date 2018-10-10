@@ -1,0 +1,32 @@
+.ArticleFunctionButton
+{
+    width: 10rem;
+    text-align: center;
+    margin: 0 auto;
+    color: #666;
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover
+    {
+        color: #46AFE8;
+    }
+
+    &.buttonIconClicked
+    {
+        color: #46AFE8;
+    }
+
+    .buttonIcon
+    {
+        margin-right: 0.5rem;
+        font-size: 3rem;
+    }
+
+    .number
+    {
+        display: inline-block;
+        min-width: 1.5rem;
+        font-size: 1.5rem;
+    }
+}
