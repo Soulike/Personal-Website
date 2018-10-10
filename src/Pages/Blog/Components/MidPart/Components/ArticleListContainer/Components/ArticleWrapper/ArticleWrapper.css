@@ -26,6 +26,7 @@
 .ArticleWrapper .avatar
 {
     width: 2.75rem;
+    height: auto;
     border-radius: 3rem;
 }
 
