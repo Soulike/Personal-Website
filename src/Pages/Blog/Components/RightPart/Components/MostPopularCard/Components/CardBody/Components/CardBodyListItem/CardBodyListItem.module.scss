@@ -1,0 +1,56 @@
+.CardBodyListItem
+{
+    margin: 1.5rem 0;
+
+    .titleWrapper
+    {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .title
+        {
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+            width: 100%;
+        }
+    }
+
+    .infoWrapper
+    {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+
+        .numberArea
+        {
+            display: inline-block;
+
+            .numberWrapper
+            {
+                display: inline-block;
+                margin-right: 1.5rem;
+
+                .number
+                {
+                    display: inline-block;
+                    min-width: 1.5rem;
+                }
+
+                .icon
+                {
+                    display: inline-block;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+
+        .timeArea
+        {
+            display: inline-block;
+            float: right;
+        }
+    }
+}

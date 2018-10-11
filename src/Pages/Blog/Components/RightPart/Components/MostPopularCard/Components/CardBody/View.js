@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TypeId from '../../TypeId';
 import {CSSTransitionGroup} from 'react-transition-group';
-import './CardBody.css';
 import {getAsync, requestPrefix} from '../../../../../../../../Static/Functions';
 import Alert from '../../../../../../../../Components/Alert/View';
 import CardBodyListItem from './Components/CardBodyListItem/View';
+import style from './CardBody.module.scss';
 
 class CardBody extends Component
 {
@@ -66,8 +66,8 @@ class CardBody extends Component
         }
 
         return (
-            <div className={'MostPopularCardBody'}>
-                <CSSTransitionGroup transitionName="mostPopularCardBody"
+            <div className={style.MostPopularCardBody}>
+                <CSSTransitionGroup transitionName='mostPopularCardBody'
                                     transitionEnterTimeout={250}
                                     transitionLeaveTimeout={250}>
                     <div key={currentTypeId}>

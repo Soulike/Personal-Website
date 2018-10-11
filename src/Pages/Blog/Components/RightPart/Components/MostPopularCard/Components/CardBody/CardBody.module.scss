@@ -1,0 +1,29 @@
+.MostPopularCardBody
+{
+    min-height: 40rem;
+    padding: 1.25rem;
+    padding-top: 0;
+
+    .mostPopularCardBody-enter
+    {
+        opacity: 0;
+
+        &.mostPopularCardBody-enter-active
+        {
+            opacity: 1;
+            transition: 250ms;
+        }
+    }
+
+    .mostPopularCardBody-leave
+    {
+        opacity: 1;
+
+        &.mostPopularCardBody-leave-active
+        {
+            opacity: 0;
+            display: none;
+            transition: 250ms;
+        }
+    }
+}

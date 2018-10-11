@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {ARTICLE_TYPE} from '../../../../../../Static/Constants';
 import {getAsync, requestPrefix} from '../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../Components/Alert';
-import './TypeSelectBar.css';
 import {switchArticleType} from './Actions/Actions';
+import style from './TypeSelectBar.module.scss';
 
 class TypeSelectBar extends Component
 {
@@ -59,17 +59,17 @@ class TypeSelectBar extends Component
         const {articleTypes} = this.state;
         const {selectedArticleTypeId} = this.props;
         return (
-            <div className={'TypeSelectBar'}>
+            <div className={style.TypeSelectBar}>
                 <div data-article_type_id={ARTICLE_TYPE.ALL}
-                     className={`articleType ${parseInt(selectedArticleTypeId, 10) === ARTICLE_TYPE.ALL ? 'currentArticleType' : ''}`}
+                     className={`${style.articleType} ${parseInt(selectedArticleTypeId, 10) === ARTICLE_TYPE.ALL ? style.currentArticleType : ''}`}
                      onClick={this.onArticleTypeClicked}>全部
                 </div>
                 {/*<div data-article_type_id={ARTICLE_TYPE.SAYING}
-                 className={'articleType'}
+                 className={style.articleType}
                  onClick={this.onArticleTypeClicked}>说说
                  </div>*/}
                 <div data-article_type_id={ARTICLE_TYPE.ARTICLE}
-                     className={`articleType ${parseInt(selectedArticleTypeId, 10) === ARTICLE_TYPE.ARTICLE ? 'currentArticleType' : ''}`}
+                     className={`${style.articleType} ${parseInt(selectedArticleTypeId, 10) === ARTICLE_TYPE.ARTICLE ? style.currentArticleType : ''}`}
                      onClick={this.onArticleTypeClicked}>文章
                 </div>
                 {
@@ -78,7 +78,7 @@ class TypeSelectBar extends Component
                         const {id, name} = articleType;
                         return <div data-article_type_id={id}
                                     key={id}
-                                    className={`articleType ${parseInt(selectedArticleTypeId, 10) === parseInt(id, 10) ? 'currentArticleType' : ''}`}
+                                    className={`${style.articleType} ${parseInt(selectedArticleTypeId, 10) === parseInt(id, 10) ? style.currentArticleType : ''}`}
                                     onClick={this.onArticleTypeClicked}>{name}
                         </div>;
                     })

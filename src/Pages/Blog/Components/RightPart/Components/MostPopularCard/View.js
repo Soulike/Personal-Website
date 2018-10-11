@@ -4,7 +4,7 @@ import {View as CardBody} from './Components/CardBody';
 import {Tab} from './Components/TabBar/Components/Tab';
 import TabId from './TypeId';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
-import './MostPopularCard.css';
+import style from './MostPopularCard.module.scss';
 
 class MostPopularCard extends Component
 {
@@ -25,7 +25,7 @@ class MostPopularCard extends Component
     {
         const {tabArray} = this.state;
         return (
-            <div className={'MostPopularCard card'}>
+            <div className={style.MostPopularCard}>
                 <TabBar tabArray={tabArray}/>
                 <CardBody/>
             </div>

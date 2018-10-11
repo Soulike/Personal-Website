@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import './RightPart.css';
 import MostPopularCard from './Components/MostPopularCard/View';
+import style from './RightPart.module.scss';
 
 class RightPart extends Component
 {
     render()
     {
         return (
-            <div className={'RightPart'}>
+            <div className={style.RightPart}>
                 <MostPopularCard/>
             </div>
         )

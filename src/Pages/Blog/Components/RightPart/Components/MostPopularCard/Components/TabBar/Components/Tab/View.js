@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {switchTab} from '../../../../Actions/Actions';
-import './Tab.css';
 import Store from '../../../../../../../../../../Store';
+import style from './Tab.module.scss';
 
 class Tab extends Component
 {
@@ -18,7 +18,7 @@ class Tab extends Component
     {
         const {icon, currentTypeId, typeId} = this.props;
         return (
-            <div className={`MostPopularCardTab ${currentTypeId === typeId ? 'currentTab' : ''}`}
+            <div className={`${style.MostPopularCardTab} ${currentTypeId === typeId ? style.currentTab : ''}`}
                  onClick={this.onTabClicked}>
                 <FontAwesomeIcon icon={icon}/>
             </div>

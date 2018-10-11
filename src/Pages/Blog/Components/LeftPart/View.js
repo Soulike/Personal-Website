@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import ProfileCard from './Components/ProfileCard/View';
-import './LeftPart.css';
+import style from './LeftPart.module.scss';
 
 class LeftPart extends Component
 {
     render()
     {
         return (
-            <div className={'LeftPart'}>
+            <div className={style.LeftPart}>
                 <ProfileCard/>
             </div>
         );

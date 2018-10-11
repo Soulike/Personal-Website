@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './TabBar.css';
 import {View as Tab} from './Components/Tab';
+import style from './TabBar.module.scss';
 
 class TabBar extends Component
 {
@@ -9,7 +9,7 @@ class TabBar extends Component
     {
         const {tabArray} = this.props;
         return (
-            <div className={'MostPopularCardTabBar'}>
+            <div className={style.MostPopularCardTabBar}>
                 {
                     tabArray.map(tab =>
                     {

@@ -1,0 +1,113 @@
+@import "../../Static/ArticleContent.module";
+
+.ArticleEditor
+{
+    @extend .ArticleContent;
+    width: 80%;
+    margin: 2rem auto;
+    text-align: center;
+
+    .articleTitle
+    {
+        border-radius: 0.25rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+        font:
+        {
+            size: 1.5rem;
+            family: $serif;
+            weight: bold;
+        }
+        line-height: 3rem;
+        box-sizing: border-box;
+    }
+
+    .articleContent
+    {
+        resize: none;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+    .articlePreview
+    {
+        background: #FFF;
+        user-select: none;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        line-height: 1.75rem;
+    }
+
+    .articleContent, .articlePreview
+    {
+        display: inline-block;
+        width: 50%;
+        height: 30rem;
+        box-sizing: border-box;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: justify;
+        padding: 1rem 0.75rem;
+    }
+
+    .articleTitle, .articleContent, .articlePreview
+    {
+        border: 1px solid #DDD;
+        outline: none;
+        transition: 0.25s;
+        overflow: auto;
+        word-break: break-word;
+
+        &:focus
+        {
+            border: 1px solid #333;
+        }
+    }
+
+    .articleTypeSelectWrapper
+    {
+        width: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .articleTypeSelect
+    {
+        width: 50%;
+        background-color: #FFF;
+        outline: none;
+        padding: 0.5rem 0.25rem;
+        border-radius: 0.25rem;
+        transition: 0.25s;
+    }
+
+    .articleButtonWrapper
+    {
+        width: 30%;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+
+    .articleSubmitBtn
+    {
+        width: 100%;
+    }
+}
+
+@media (max-width: 750px)
+{
+    .ArticleEditor
+    {
+        .articleContent
+        {
+            width: 100%;
+        }
+
+        .articlePreview
+        {
+            display: none;
+        }
+    }
+}

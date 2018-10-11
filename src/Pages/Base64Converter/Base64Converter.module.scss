@@ -1,0 +1,71 @@
+@import "../../Static/Constants.module";
+
+.Base64Converter
+{
+    width: 50%;
+    margin: 2rem auto;
+
+    .originalTextWrapper, .textWrapper
+    {
+        width: 100%;
+        text-align: center;
+    }
+
+    .originalTextHeader, .textHeader
+    {
+        text-align: center;
+        color: #333;
+        font:
+        {
+            size: 1.5rem;
+            family: $serif;
+            weight: bold;
+        }
+        margin-bottom: 1rem;
+    }
+
+    .originalText, .base64Text
+    {
+        resize: none;
+        width: 100%;
+        height: 8rem;
+        text-align: justify;
+        padding: 1rem;
+        border: 1px solid #DDD;
+        border-radius: 0.25rem;
+        outline: none;
+        transition: 0.25s;
+        overflow: auto;
+        box-sizing: border-box;
+
+        &:focus
+        {
+            border: 1px solid #333;
+        }
+    }
+
+    .converterButtonWrapper
+    {
+        text-align: center;
+    }
+
+    .originalToBase64Btn, .base64ToOriginalBtn
+    {
+        margin: 2rem 1rem;
+        width: 10rem;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .Base64Converter
+    {
+        width: 90%;
+
+        .originalToBase64Btn, .base64ToOriginalBtn
+        {
+            margin: 0.5rem;
+            width: 10rem;
+        }
+    }
+}

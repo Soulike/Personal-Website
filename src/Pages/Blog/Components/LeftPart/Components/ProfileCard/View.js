@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getAsync, staticPrefix, requestPrefix} from '../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../Components/Alert/index';
-import './UserInfoCard.css';
+import style from './ProfileCard.module.scss';
 
 class ProfileCard extends Component
 {
@@ -48,21 +48,21 @@ class ProfileCard extends Component
         const {nickname, avatar} = this.props;
         const {image, sayingNum, articleNum} = this.state;
         return (
-            <div className={'ProfileCard card'}>
-                <div className={'profileCardImage'}
+            <div className={style.ProfileCard}>
+                <div className={style.profileCardImage}
                      style={{backgroundImage: `url(${staticPrefix(image)})`}}/>
-                <div className={'avatarAndNicknameWrapper'}>
-                    <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
-                    <div className={'nickname'}>{nickname}</div>
+                <div className={style.avatarAndNicknameWrapper}>
+                    <img src={staticPrefix(avatar)} alt="avatar" className={style.avatar}/>
+                    <div className={style.nickname}>{nickname}</div>
                 </div>
-                <div className={'numWrapper'}>
-                    <div className={'sayingNumWrapper'}>
-                        <div className={'profileCardNum'}>{sayingNum}</div>
-                        <div className={'profileCardLabel'}>说说</div>
+                <div className={style.numWrapper}>
+                    <div className={style.sayingNumWrapper}>
+                        <div className={style.profileCardNum}>{sayingNum}</div>
+                        <div className={style.profileCardLabel}>说说</div>
                     </div>
-                    <div className={'articleNumWrapper'}>
-                        <div className={'profileCardNum'}>{articleNum}</div>
-                        <div className={'profileCardLabel'}>文章</div>
+                    <div className={style.articleNumWrapper}>
+                        <div className={style.profileCardNum}>{articleNum}</div>
+                        <div className={style.profileCardLabel}>文章</div>
                     </div>
                 </div>
             </div>

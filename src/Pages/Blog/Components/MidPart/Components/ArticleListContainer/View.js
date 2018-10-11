@@ -4,7 +4,7 @@ import {getAsync, requestPrefix} from '../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../Components/Alert/index';
 import {View as ArticleWrapper} from './Components/ArticleWrapper/index';
 import {CSSTransitionGroup} from 'react-transition-group';
-import './ArticleListContainer.css';
+import style from './ArticleListContainer.module.scss';
 
 class ArticleListContainer extends Component
 {
@@ -109,8 +109,7 @@ class ArticleListContainer extends Component
     {
         const {articleList} = this.state;
         return (
-
-            <div className={'ArticleListContainer'}>
+            <div className={style.ArticleListContainer}>
                 <CSSTransitionGroup transitionName="articleList"
                                     transitionEnterTimeout={500}
                                     transitionLeaveTimeout={1}>
@@ -120,7 +119,6 @@ class ArticleListContainer extends Component
                     })}
                 </CSSTransitionGroup>
             </div>
-
         );
     }
 }

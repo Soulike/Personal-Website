@@ -4,7 +4,7 @@ import highLight from 'highlight.js';
 import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
-import './ArticleEditor.css';
+import style from './ArticleEditor.module.scss';
 import btnStyle from '../../Static/Button.module.scss';
 
 class ArticleEditor extends Component
@@ -193,20 +193,20 @@ class ArticleEditor extends Component
     {
         const {typeId, previewHTML} = this.state;
         return (
-            <div className={'ArticleEditor'}>
+            <div className={style.ArticleEditor}>
                 <Title titleText={'编辑文章'}/>
                 <input type="text"
-                       className={'articleTitle'}
+                       className={style.articleTitle}
                        placeholder={'文章标题'}
                        ref={'title'}
                        onChange={this.onTitleChange}/>
-                <textarea className={'articleContent'}
+                <textarea className={style.articleContent}
                           placeholder={'文章正文（使用 MarkDown）'}
                           ref={'content'}
                           onChange={this.onContentChange}/>
-                <div className={'articlePreview'} dangerouslySetInnerHTML={{__html: previewHTML}}/>
-                <div className={'articleTypeSelectWrapper'}>
-                    <select className={'articleTypeSelect'} value={typeId} onChange={this.onTypeChange}>
+                <div className={style.articlePreview} dangerouslySetInnerHTML={{__html: previewHTML}}/>
+                <div className={style.articleTypeSelectWrapper}>
+                    <select className={style.articleTypeSelect} value={typeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
                         {this.state.allTypes.map(type =>
                         {
@@ -215,7 +215,7 @@ class ArticleEditor extends Component
                         })}
                     </select>
                 </div>
-                <div className={'articleButtonWrapper'}>
+                <div className={style.articleButtonWrapper}>
                     <button className={`articleSubmitBtn ${btnStyle.btn} ${btnStyle['btn-primary']} ${btnStyle['btn-lg']}`}
                             onClick={this.onSubmit}>提交
                     </button>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import './FunctionButton.css';
+import style from './FunctionButton.module.scss';
 
 class FunctionButton extends Component
 {
@@ -9,9 +9,9 @@ class FunctionButton extends Component
     {
         const {icon, number, onClick, hasClicked} = this.props;
         return (
-            <div className={`FunctionButton ${hasClicked ? 'buttonIconClicked' : ''}`} onClick={onClick}>
-                <FontAwesomeIcon icon={icon} className={'buttonIcon'}/>
-                <span className={'number'}>{number}</span>
+            <div className={`${style.FunctionButton} ${hasClicked ? style.buttonIconClicked : ''}`} onClick={onClick}>
+                <FontAwesomeIcon icon={icon} className={style.buttonIcon}/>
+                <span className={style.number}>{number}</span>
             </div>
         );
     }

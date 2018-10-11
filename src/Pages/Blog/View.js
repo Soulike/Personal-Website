@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Store from '../../Store';
 import {getInfo} from './Action/Actions';
-import './Blog.css';
 import {View as LeftPart} from './Components/LeftPart';
 import {View as MidPart} from './Components/MidPart';
 import {View as RightPart} from './Components/RightPart';
+import style from './Blog.module.scss';
 
 class Blog extends Component
 {
@@ -17,7 +17,7 @@ class Blog extends Component
     render()
     {
         return (
-            <div className={'Blog'}>
+            <div className={style.Blog}>
                 <LeftPart/>
                 <MidPart/>
                 <RightPart/>

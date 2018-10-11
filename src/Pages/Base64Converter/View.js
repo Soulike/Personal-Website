@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import './Base64Converter.css';
 import {View as Title} from '../../Components/Title';
+
+import style from './Base64Converter.module.scss';
 
 class Base64Converter extends Component
 {
@@ -53,16 +54,16 @@ class Base64Converter extends Component
     render()
     {
         return (
-            <div className={'Base64Converter'}>
+            <div className={style.Base64Converter}>
                 <Title titleText={'Base64 转换器'}/>
-                <div className={'originalTextWrapper'}>
-                    <div className={'originalTextHeader'}>原始文本</div>
-                    <textarea className={'originalText'}
+                <div className={style.originalTextWrapper}>
+                    <div className={style.originalTextHeader}>原始文本</div>
+                    <textarea className={style.originalText}
                               ref={'base64OriginalText'}
                               onChange={this.onOriginalTextChange}
                               draggable={false}/>
                 </div>
-                <div className={'converterButtonWrapper'}>
+                <div className={style.converterButtonWrapper}>
                     <button className={'originalToBase64Btn btn btn-primary'}
                             onClick={this.onOriginalToBase64BtnClicked}>转换为 Base64↓
                     </button>
@@ -70,9 +71,9 @@ class Base64Converter extends Component
                             onClick={this.onBase64ToOriginalBtnClicked}>转换为文本↑
                     </button>
                 </div>
-                <div className={'textWrapper'}>
-                    <div className={'textHeader'}>BASE64</div>
-                    <textarea className={'base64Text'}
+                <div className={style.textWrapper}>
+                    <div className={style.textHeader}>BASE64</div>
+                    <textarea className={style.base64Text}
                               ref={'base64Text'}
                               onChange={this.onBase64TextChange}
                               draggable={false}/>

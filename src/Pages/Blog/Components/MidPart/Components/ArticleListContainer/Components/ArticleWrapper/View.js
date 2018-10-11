@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
-import './ArticleWrapper.css';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
 import {staticPrefix, isInLikedList, submitLikeAsync, removeFromLikedList, appendToLikedList, generateTimeStr} from '../../../../../../../../Static/Functions';
 import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../../../Components/Alert/View';
+import style from './ArticleWrapper.module.scss';
 
 class ArticleWrapper extends Component
 {
@@ -85,36 +85,36 @@ class ArticleWrapper extends Component
         const {like, hasLiked} = this.state;
         const timeStr = generateTimeStr(time);
         return (
-            <div className={'ArticleWrapper'}>
-                <div className={'header'}>
-                    <div className={'avatarWrapper'}>
-                        <img src={staticPrefix(avatar)} alt="avatar" className={'avatar'}/>
+            <div className={style.ArticleWrapper}>
+                <div className={style.header}>
+                    <div className={style.avatarWrapper}>
+                        <img src={staticPrefix(avatar)} alt="avatar" className={style.avatar}/>
                     </div>
-                    <div className={'headerMidPart'}>
-                        <div className={'nickname'}>{nickname}</div>
-                        <div className={'time'}>{timeStr}</div>
+                    <div className={style.headerMidPart}>
+                        <div className={style.nickname}>{nickname}</div>
+                        <div className={style.time}>{timeStr}</div>
                     </div>
                 </div>
-                <div className={'articleTypeWrapper'}
+                <div className={style.articleTypeWrapper}
                      data-article_type_id={typeId}
                      onClick={this.onArticleTypeClicked}>
-                    <div className={'articleType'}
+                    <div className={style.articleType}
                          data-article_type_id={typeId}
                          onClick={this.onArticleTypeClicked}>{type}</div>
-                    <div className={'articleTypeTriangle'}
+                    <div className={style.articleTypeTriangle}
                          data-article_type_id={typeId}
                          onClick={this.onArticleTypeClicked}>
                     </div>
                 </div>
-                <div className={'mainPart'}>
-                    <div className={'mainPartDescription'}>发表了文章：</div>
-                    <a href={`/article?articleId=${id}`} target='_blank' className={'titleWrapper'}>
-                        <div className={'title'}>
+                <div className={style.mainPart}>
+                    <div className={style.mainPartDescription}>发表了文章：</div>
+                    <a href={`/article?articleId=${id}`} target='_blank' className={style.titleWrapper}>
+                        <div className={style.title}>
                             {title}
                         </div>
                     </a>
                 </div>
-                <div className={'buttonArea'}>
+                <div className={style.buttonArea}>
                     <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false}/>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}

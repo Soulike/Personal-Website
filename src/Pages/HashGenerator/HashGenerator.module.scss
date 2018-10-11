@@ -1,0 +1,112 @@
+@import "../../Static/Constants.module";
+@import "../../Static/Button.module";
+
+.HashGenerator
+{
+    margin: 2rem auto;
+    width: 50%;
+
+    .methodSelect
+    {
+        display: inline-block;
+        width: 20%;
+        box-sizing: border-box;
+        background: transparent;
+        color: #333;
+        outline: none;
+        border: 1px solid #AAA;
+        border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    .originalText
+    {
+        display: inline-block;
+        width: 80%;
+        box-sizing: border-box;
+        border: 1px solid #AAA;
+        border-radius: 0 0.5rem 0.5rem 0;
+        outline: none;
+        transition: 0.25s;
+
+        &:focus
+        {
+            border: 1px solid #333;
+        }
+    }
+
+    .methodSelect, .originalText
+    {
+        height: 3rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .originalTextSubmitBtn
+    {
+        display: block;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .resultWrapper
+    {
+        text-align: center;
+        margin-top: 5rem;
+    }
+
+    .hashMethodWrapper
+    {
+        font-size: 2rem;
+        font-family: $serif;
+        font-weight: bold;
+        user-select: none;
+    }
+
+    .hashResultWrapper
+    {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        line-height: 2rem;
+        word-break: break-all;
+    }
+
+    .result-enter
+    {
+        opacity: 0;
+
+        &.result-enter-active
+        {
+            opacity: 1;
+            transition: 250ms;
+        }
+    }
+
+    .result-leave
+    {
+        opacity: 1;
+
+        &.result-leave-active
+        {
+            opacity: 0;
+            transition: 250ms;
+        }
+    }
+
+    .copyHashResultBtn
+    {
+        margin-top: 2rem;
+    }
+
+    .copyHashResultBtnIcon
+    {
+        margin-right: 0.5rem;
+    }
+}
+
+@media (max-width: 800px)
+{
+    .HashGenerator
+    {
+        width: 90%;
+    }
+}

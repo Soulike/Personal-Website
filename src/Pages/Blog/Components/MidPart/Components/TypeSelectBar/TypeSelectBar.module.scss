@@ -1,0 +1,33 @@
+.TypeSelectBar
+{
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+    box-shadow: 0 0 5px #AAA;
+    box-sizing: border-box;
+
+    .articleType
+    {
+        $focusColor: #00B5E5;
+
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        padding: 0.75rem 1rem;
+        color: #666;
+        transition: 0.25s;
+        border-bottom: 3px solid transparent;
+
+        &:hover
+        {
+            color: $focusColor;
+        }
+
+        &.currentArticleType
+        {
+            color: $focusColor;
+            border-bottom: 3px solid $focusColor;
+        }
+    }
+}

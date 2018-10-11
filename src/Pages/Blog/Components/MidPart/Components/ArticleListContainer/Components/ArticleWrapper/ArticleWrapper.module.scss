@@ -1,0 +1,139 @@
+.ArticleWrapper
+{
+    width: 100%;
+    background-color: #FFF;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 5px #AAA;
+    box-sizing: border-box;
+
+    .header
+    {
+        margin-bottom: 1.5rem;
+        display: inline-block;
+    }
+
+    .avatarWrapper
+    {
+        width: 2.75rem;
+        display: inline-block;
+        float: left;
+    }
+
+    .avatar
+    {
+        width: 2.75rem;
+        height: auto;
+        border-radius: 3rem;
+    }
+
+    .headerMidPart
+    {
+        display: inline-block;
+        padding: 0 1rem;
+    }
+
+    .nickname
+    {
+        color: #333;
+        font-size: 1.2rem;
+    }
+
+    .time
+    {
+        font-size: 0.75rem;
+        color: #666;
+        margin-top: 0.5rem;
+    }
+
+    .articleTypeWrapper
+    {
+        display: inline-block;
+        float: right;
+        position: relative;
+        bottom: 1.5rem;
+        width: 4rem;
+        height: 4rem;
+        box-sizing: border-box;
+        padding: 1rem 0.25rem;
+        background-color: #46AFE8;
+        background: linear-gradient(to bottom, #369FD8, #46AFE8);
+        color: #FFF;
+        cursor: pointer;
+    }
+
+    .articleType
+    {
+        text-align: center;
+        font-size: 0.85rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .articleTypeTriangle
+    {
+        width: 0;
+        height: 0;
+        background: transparent;
+        border:
+        {
+            top: 2rem solid #46AFE8;
+            left: 2rem solid transparent;
+            right: 2rem solid transparent;
+        }
+        position: absolute;
+        left: 0;
+        top: 100%;
+    }
+
+    .mainPart
+    {
+
+    }
+
+    .mainPartDescription
+    {
+        margin-bottom: 1rem;
+    }
+
+    .titleWrapper
+    {
+        display: block;
+        border: 1px solid #DDD;
+        border-radius: 0.25rem;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.25s;
+
+        &:hover
+        {
+            border: 1px solid #666;
+        }
+
+        .title
+        {
+            color: #333;
+            font-size: 1.25rem;
+        }
+    }
+
+    .buttonArea
+    {
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 450px)
+{
+    .ArticleWrapper
+    {
+        padding: 1.5rem 0.75rem;
+    }
+}
