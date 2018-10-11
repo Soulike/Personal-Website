@@ -1,4 +1,5 @@
 @import "../../Static/Constants.module";
+@import "../../Static/Button.module";
 
 .Base64Converter
 {
@@ -51,6 +52,7 @@
 
     .originalToBase64Btn, .base64ToOriginalBtn
     {
+        @extend .btn-primary;
         margin: 2rem 1rem;
         width: 10rem;
     }

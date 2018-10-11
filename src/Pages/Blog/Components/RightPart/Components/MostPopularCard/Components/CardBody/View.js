@@ -6,6 +6,7 @@ import {getAsync, requestPrefix} from '../../../../../../../../Static/Functions'
 import Alert from '../../../../../../../../Components/Alert/View';
 import CardBodyListItem from './Components/CardBodyListItem/View';
 import style from './CardBody.module.scss';
+import './Transition.scss';
 
 class CardBody extends Component
 {

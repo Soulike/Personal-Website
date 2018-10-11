@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import './DeleteButton.css';
 import {View as Alert} from '../../../../../../../../../../Components/Alert';
 import {deleteFiles} from '../../../../Actions/Actions';
 import Store from '../../../../../../../../../../Store';
+import style from './DeleteButton.module.scss';
 
 class DeleteButton extends Component
 {
@@ -33,9 +33,9 @@ class DeleteButton extends Component
     render()
     {
         return (
-            <button className={'btn btn-danger DeleteButton'} onClick={this.onDeleteBtnClicked}>
-                <div className={'deleteButtonText'}>
-                    <FontAwesomeIcon icon={solidIcons.faTrashAlt} className={'buttonIcon'}/>
+            <button className={style.DeleteButton} onClick={this.onDeleteBtnClicked}>
+                <div className={style.deleteButtonText}>
+                    <FontAwesomeIcon icon={solidIcons.faTrashAlt} className={style.buttonIcon}/>
                     删除
                 </div>
             </button>);

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as LeftPanel} from './Components/LeftPanel';
 import {View as RightArea} from './Components/RightArea';
-import './SoulikeDrive.css';
+import style from './SoulikeDrive.module.scss';
 
 class SoulikeDrive extends Component
 {
@@ -14,7 +14,7 @@ class SoulikeDrive extends Component
     render()
     {
         return (
-            <div className={'SoulikeDriveWrapper'}>
+            <div className={style.SoulikeDriveWrapper}>
                 <LeftPanel/>
                 <RightArea children={this.props.children}/>
             </div>

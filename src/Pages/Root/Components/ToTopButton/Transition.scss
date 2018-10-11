@@ -1,0 +1,21 @@
+.toTopButtonTransition-enter
+{
+    opacity: 0;
+}
+
+.toTopButtonTransition-enter.toTopButtonTransition-enter-active
+{
+    opacity: 0.5;
+    transition: 250ms;
+}
+
+.toTopButtonTransition-leave
+{
+    opacity: 0.5;
+}
+
+.toTopButtonTransition-leave.toTopButtonTransition-leave-active
+{
+    opacity: 0;
+    transition: 250ms;
+}

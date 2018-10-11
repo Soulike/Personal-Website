@@ -5,8 +5,8 @@ import {View as TopBarLink} from './Components/TopBarLink';
 import {View as AuthController} from './Components/AuthController';
 import {View as TopBarMenu} from './Components/TopBarMenu';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import './TopBar.css';
 import MenuLink from './Components/TopBarMenu/MenuLink';
+import style from './TopBar.module.scss';
 
 class TopBar extends Component
 {
@@ -30,23 +30,23 @@ class TopBar extends Component
     {
         const {isBlur} = this.props;
         const {menuLinks} = this.state;
-        const style = {backgroundImage: this.props.bannerBackground};
+        const bannerImgStyle = {backgroundImage: this.props.bannerBackground};
         return (
-            <div className={'TopBar'} style={isBlur ? null : {backgroundColor: '#FFF'}}>
-                <div className={'linkWrapper'}>
+            <div className={style.TopBar} style={isBlur ? null : {backgroundColor: '#FFF'}}>
+                <div className={style.linkWrapper}>
                     <TopBarLink to={'/'} onlyActiveOnIndex={false} iconStyle={solidIcons.faHome} text={'博客'}/>
                     <TopBarLink to={'/soulikeDrive'} onlyActiveOnIndex={false} text={'网盘'}/>
                     <TopBarLink to={'/musicPlayer'} onlyActiveOnIndex={false} text={'音乐播放器'}/>
                     <TopBarMenu iconStyle={solidIcons.faToolbox} menuName={'小工具'} menuLinks={menuLinks}/>
                     <TopBarLink to={'/aboutMe'} onlyActiveOnIndex={false} iconStyle={solidIcons.faChild} text={'关于我'}/>
-                    <div className={'authControllerWrapper'}>
+                    <div className={style.authControllerWrapper}>
                         <AuthController/>
                     </div>
                 </div>
                 {
                     isBlur && (<div>
-                        <div className={`${'mask'} ${'imageMask'}`} style={style}/>
-                        <div className={`${'mask'} ${'backgroundColorMask'}`}/>
+                        <div className={`${style.mask} ${style.imageMask}`} style={bannerImgStyle}/>
+                        <div className={`${style.mask} ${style.backgroundColorMask}`}/>
                     </div>)
                 }
             </div>

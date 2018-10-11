@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import './TopBarLink.css';
+import style from './TopBarLink.module.scss';
 
 class TopBarLink extends Component
 {
@@ -10,9 +10,9 @@ class TopBarLink extends Component
     {
         const {iconStyle, text, children, ...rest} = this.props;
         return (
-            <div className={'TopBarLinkWrapper'}>
-                <Link {...rest} className={'topBarLink'}>
-                    {iconStyle ? <FontAwesomeIcon className={'topBarIcon'} icon={iconStyle}/> : null}
+            <div className={style.TopBarLinkWrapper}>
+                <Link {...rest} className={style.topBarLink}>
+                    {iconStyle ? <FontAwesomeIcon className={style.topBarIcon} icon={iconStyle}/> : null}
                     {text}
                 </Link>
                 {children}

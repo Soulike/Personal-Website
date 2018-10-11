@@ -6,6 +6,7 @@ import {CSSTransitionGroup} from 'react-transition-group';
 import {getHash} from '../../Static/Functions';
 import Clipboard from 'react-clipboard.js';
 import style from './HashGenerator.module.scss';
+import './Transition.scss';
 
 class HashGenerator extends Component
 {
@@ -69,8 +70,8 @@ class HashGenerator extends Component
                            placeholder={'原始字符串'}
                            autoFocus={true}
                            onChange={this.onOriginalTextChange}/>
-                    <button className={`${style.btn} ${style['btn-primary']} ${style['btn-lg']} ${style.originalTextSubmitBtn}`}>提交</button>
-                    <CSSTransitionGroup transitionName="result"
+                    <button className={`${style.originalTextSubmitBtn}`}>提交</button>
+                    <CSSTransitionGroup transitionName="hashGeneratorResult"
                                         transitionEnterTimeout={250}
                                         transitionLeaveTimeout={250}>
                         {
@@ -79,7 +80,7 @@ class HashGenerator extends Component
                                     <div className={style.hashMethodWrapper}>{hashMethod.toUpperCase()}</div>
                                     <div className={style.hashResultWrapper}>{hashResult}</div>
 
-                                    <Clipboard className={`${style.btn} ${style['btn-primary']} ${style['btn-lg']} ${style.copyHashResultBtn}`}
+                                    <Clipboard className={`${style.copyHashResultBtn}`}
                                                data-clipboard-target={`.${style.hashResultWrapper}`}>
                                         <FontAwesomeIcon icon={solidIcon.faClipboardCheck}
                                                          className={style.copyHashResultBtnIcon}/>复制

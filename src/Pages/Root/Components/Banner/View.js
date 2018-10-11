@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as TopBar} from '../TopBar/index';
 import * as Actions from './Actions/Actions';
-import './Banner.css';
+import style from './Banner.module.scss';
 
 class Banner extends Component
 {
@@ -18,9 +18,9 @@ class Banner extends Component
 
     render()
     {
-        const style = {backgroundImage: this.props.bannerBackground};
+        const hasBackgroundStyle = {backgroundImage: this.props.bannerBackground};
         return (
-            <div className={'Banner'} style={style}>
+            <div className={style.Banner} style={hasBackgroundStyle}>
                 <TopBar isBlur={true}/>
             </div>
         );

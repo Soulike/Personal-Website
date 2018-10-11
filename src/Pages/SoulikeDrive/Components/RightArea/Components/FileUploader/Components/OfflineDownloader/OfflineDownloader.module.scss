@@ -1,0 +1,54 @@
+@import "../../../../../../../../Static/Button.module";
+
+.OfflineDownloader
+{
+    height: 50%;
+    padding: 0 3rem;
+    box-sizing: border-box;
+    margin:
+    {
+        top: 2.5rem;
+        left: auto;
+        right: auto;
+    }
+
+    .title
+    {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .OfflineDownloaderForm
+    {
+
+    }
+
+    .linkInput
+    {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 1.25rem;
+        line-height: 2rem;
+        padding: 0.25rem 1rem;
+        box-sizing: border-box;
+        outline: none;
+        border-radius: 0.75rem;
+        border: 1px solid #DDD;
+        transition: 0.25s;
+        margin-bottom: 2rem;
+
+        &:focus
+        {
+            border: 1px solid #337AB7;
+        }
+    }
+
+    .submitButton
+    {
+        @extend .btn-primary;
+        float: right;
+    }
+}

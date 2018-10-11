@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getAsync} from '../../../../Static/Functions';
-import './Footer.css';
+import style from './Footer.module.scss';
 
 class Footer extends Component
 {
@@ -44,22 +44,24 @@ class Footer extends Component
         const {emojiNumber, hitokoto} = this.state;
         const date = new Date();
         return (
-            <footer className={'Footer'}>
-                <div className={'hitokoto'}><a href="https://hitokoto.cn/api" className={'hitokotoLink'}>{hitokoto}</a>
+            <footer className={style.Footer}>
+                <div className={style.hitokoto}><a href="https://hitokoto.cn/api"
+                                                   className={style.hitokotoLink}>{hitokoto}</a>
                 </div>
-                <div className={'thanksWrapper'}>
-                    <div className={'thanks'}>本站由
-                        <a href="https://reactjs.org/" className={'footerLink'}>React</a>,
-                        <a href="https://redux.js.org/" className={'footerLink'}>Redux</a> 以及
-                        <a href="https://nodejs.org/" className={'footerLink'}>NodeJS</a> 编写而成，所有的矢量图标均由
-                        <a href="https://fontawesome.com/" className={'footerLink'}>FontAwesome</a> 提供，感谢以上所有开源项目的贡献者们。
+                <div className={style.thanksWrapper}>
+                    <div className={style.thanks}>本站由
+                        <a href="https://reactjs.org/" className={style.footerLink}>React</a>,
+                        <a href="https://redux.js.org/" className={style.footerLink}>Redux</a> 以及
+                        <a href="https://nodejs.org/" className={style.footerLink}>NodeJS</a> 编写而成，所有的矢量图标均由
+                        <a href="https://fontawesome.com/"
+                           className={style.footerLink}>FontAwesome</a> 提供，感谢以上所有开源项目的贡献者们。
                     </div>
-                    <div className={'thanks'}>另外特别感谢 <a href="https://www.bilibili.com/"
-                                                        className={'footerLink'}>bilibili</a> 的美工 (滑稽)。
+                    <div className={style.thanks}>另外特别感谢 <a href="https://www.bilibili.com/"
+                                                            className={style.footerLink}>bilibili</a> 的美工 (滑稽)。
                     </div>
                 </div>
-                <div className={'emoji'} onClick={this.onEmojiClicked}>{this.emoji[emojiNumber]}</div>
-                <div className={'copyRight'}>Copyleft ⑨ {date.getFullYear()} Soulike 版权没有</div>
+                <div className={style.emoji} onClick={this.onEmojiClicked}>{this.emoji[emojiNumber]}</div>
+                <div className={style.copyRight}>Copyleft ⑨ {date.getFullYear()} Soulike 版权没有</div>
             </footer>
         );
     }

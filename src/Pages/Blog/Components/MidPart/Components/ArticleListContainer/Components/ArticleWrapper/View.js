@@ -108,7 +108,10 @@ class ArticleWrapper extends Component
                 </div>
                 <div className={style.mainPart}>
                     <div className={style.mainPartDescription}>发表了文章：</div>
-                    <a href={`/article?articleId=${id}`} target='_blank' className={style.titleWrapper}>
+                    <a href={`/article?articleId=${id}`}
+                       target='_blank'
+                       rel="noopener noreferrer"
+                       className={style.titleWrapper}>
                         <div className={style.title}>
                             {title}
                         </div>

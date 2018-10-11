@@ -64,10 +64,10 @@ class Base64Converter extends Component
                               draggable={false}/>
                 </div>
                 <div className={style.converterButtonWrapper}>
-                    <button className={'originalToBase64Btn btn btn-primary'}
+                    <button className={style.originalToBase64Btn}
                             onClick={this.onOriginalToBase64BtnClicked}>转换为 Base64↓
                     </button>
-                    <button className={'base64ToOriginalBtn btn btn-primary'}
+                    <button className={style.base64ToOriginalBtn}
                             onClick={this.onBase64ToOriginalBtnClicked}>转换为文本↑
                     </button>
                 </div>

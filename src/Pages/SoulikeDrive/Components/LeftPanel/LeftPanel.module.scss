@@ -8,13 +8,31 @@
     box-sizing: border-box;
     padding: 2rem 0;
     user-select: none;
-}
 
-.LeftPanel .cloudIconWrapper
-{
-    width: 100%;
-    text-align: center;
-    color: #DDD;
+    .cloudIconWrapper
+    {
+        width: 100%;
+        text-align: center;
+        color: #DDD;
+    }
+
+    .cloudIcon
+    {
+        font-size: 6rem;
+
+        &:hover
+        {
+            animation-name: cloudFloat;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    .soulikeDriveText
+    {
+        font-size: 1.5rem;
+        line-height: 4rem;
+    }
 }
 
 @keyframes cloudFloat
@@ -31,22 +49,4 @@
     {
         transform: translateY(0)
     }
-}
-
-.LeftPanel .cloudIcon
-{
-    font-size: 6rem;
-}
-
-.LeftPanel .cloudIcon:hover
-{
-    animation-name: cloudFloat;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-}
-
-.LeftPanel .soulikeDriveText
-{
-    font-size: 1.5rem;
-    line-height: 4rem;
 }

@@ -1,3 +1,4 @@
+@import "../../Static/Button.module";
 @import "../../Static/ArticleContent.module";
 
 .Article
@@ -32,7 +33,13 @@
 
     .articleModifyBtn
     {
+        @extend .btn-primary;
         margin-right: 1rem;
+    }
+
+    .articleDeleteBtn
+    {
+        @extend .btn-danger;
     }
 
     .articleInfo

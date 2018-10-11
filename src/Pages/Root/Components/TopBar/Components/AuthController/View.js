@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View as TopBarLink} from '../TopBarLink';
 import {Actions} from '../../../../../../Components/AuthProcessor';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import './AuthController.css';
+import style from './AuthController.module.scss';
 
 class AuthController extends Component
 {
@@ -12,7 +12,7 @@ class AuthController extends Component
         const {hasLoggedIn, onClickExitLink} = this.props;
         // 如果没有登陆，就显示登陆按钮
         return (
-            <div className={'AuthController'}>
+            <div className={style.AuthController}>
                 {hasLoggedIn ?
                     (
                         <div>

@@ -3,7 +3,7 @@ import {View as Tab} from './Components/Tab';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import ComponentTypes from '../../ComponentTypes';
-import './LeftPanel.css';
+import style from './LeftPanel.module.scss';
 
 class LeftPanel extends Component
 {
@@ -11,12 +11,12 @@ class LeftPanel extends Component
     {
         /*如果需要增加项，去ComponentTypes.js增加*/
         return (
-            <div className={'LeftPanel'}>
-                <div className={'cloudIconWrapper'}>
-                    <FontAwesomeIcon className={'cloudIcon'} icon={solidIcons.faCloud}/>
-                    <div className={'soulikeDriveText'}>SoulikeDrive</div>
+            <div className={style.LeftPanel}>
+                <div className={style.cloudIconWrapper}>
+                    <FontAwesomeIcon className={style.cloudIcon} icon={solidIcons.faCloud}/>
+                    <div className={style.soulikeDriveText}>SoulikeDrive</div>
                 </div>
-                <div className={'Tabs'}>
+                <div className={style.Tabs}>
                     <Tab tabId={ComponentTypes['FileList']}
                          icon={solidIcons.faHdd}
                          text={'所有文件'}

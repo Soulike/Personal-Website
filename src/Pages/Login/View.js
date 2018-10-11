@@ -71,7 +71,7 @@ class Login extends Component
                                className={style.loginInput}
                                onChange={this.onPasswordChange}/>
                     </div>
-                    <button className={`${style.submitButton} ${btnStyle.btn} ${btnStyle['btn-primary']} ${btnStyle['btn-lg']}`}>
+                    <button className={`${style.submitButton}`}>
                         登录
                     </button>
                 </form>

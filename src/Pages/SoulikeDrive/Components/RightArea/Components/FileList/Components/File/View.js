@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './File.css';
 import Store from '../../../../../../../../Store';
 import {fileSeleted, fileUnselected} from '../../Actions/Actions';
+import style from './File.module.scss';
 
 class File extends Component
 {
@@ -55,7 +55,7 @@ class File extends Component
         const {selected} = this.state;
         const {name, size, uploader, uploadTime} = this.props;
         return (
-            <tr className={`File ${selected ? 'selected' : ''}`} onClick={this.onFileClicked}>
+            <tr className={`${style.File} ${selected ? style.selected : ''}`} onClick={this.onFileClicked}>
                 <td><input type="checkbox" ref={'fileCheckbox'}/></td>
                 <td>{name}</td>
                 <td>{(size / 1024 / 1024).toFixed(2)}M</td>

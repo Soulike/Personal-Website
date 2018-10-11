@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as ProgressBar} from './Components/ProgressBar';
-import './Uploader.css';
 import {postAsync, requestPrefix} from '../../../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../../../Components/Alert';
+import style from './Uploader.module.scss';
 
 class Uploader extends Component
 {
@@ -88,21 +88,21 @@ class Uploader extends Component
     {
         const {fileNum, fileSize, updateProgress} = this.state;
         return (
-            <div className={'Uploader'}>
-                <div className={'title'}>上传</div>
-                <form action="" className={'fileUploadForm'} onSubmit={this.onFormSubmit}>
-                    <label className={'fileInputWrapper btn btn-primary'}>
+            <div className={style.Uploader}>
+                <div className={style.title}>上传</div>
+                <form action="" className={style.fileUploadForm} onSubmit={this.onFormSubmit}>
+                    <label className={style.fileInputWrapper}>
                         选择文件
                         <input type="file"
                                multiple={true}
-                               className={'fileInput'}
+                               className={style.fileInput}
                                onChange={this.onFileInputChange}
                                ref={'fileInput'}/>
                     </label>
-                    <div className={'fileInputStatus'}>{`已选择 ${fileNum} 个文件，总大小 ${(fileSize / 1024 / 1024).toFixed(2)}M`}</div>
-                    <button className={'fileUploadBtn btn btn-primary'}>上传</button>
+                    <div className={style.fileInputStatus}>{`已选择 ${fileNum} 个文件，总大小 ${(fileSize / 1024 / 1024).toFixed(2)}M`}</div>
+                    <button className={style.fileUploadBtn}>上传</button>
                 </form>
-                <div className={'uploadProgressBarWrapper'}>
+                <div className={style.uploadProgressBarWrapper}>
                     <ProgressBar progress={updateProgress}/>
                 </div>
             </div>

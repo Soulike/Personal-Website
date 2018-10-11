@@ -5,6 +5,7 @@ import {View as Alert} from '../../../../../../Components/Alert/index';
 import {View as ArticleWrapper} from './Components/ArticleWrapper/index';
 import {CSSTransitionGroup} from 'react-transition-group';
 import style from './ArticleListContainer.module.scss';
+import './Transition.scss';
 
 class ArticleListContainer extends Component
 {

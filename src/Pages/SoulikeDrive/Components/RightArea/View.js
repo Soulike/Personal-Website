@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import './RightArea.css';
+import style from './RightArea.module.scss';
 
 class RightArea extends Component
 {
     render()
     {
         return (
-            <div className={'RightArea'}>
+            <div className={style.RightArea}>
                 {this.props.children}
             </div>
         );

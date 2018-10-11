@@ -13,7 +13,10 @@ class CardBodyListItem extends Component
         return (
             <div className={style.CardBodyListItem}>
                 <div className={style.titleWrapper}>
-                    <a className={style.title} href={`/article?articleId=${id}`} target='_blank'>{title}</a>
+                    <a className={style.title}
+                       href={`/article?articleId=${id}`}
+                       rel="noopener noreferrer"
+                       target='_blank'>{title}</a>
                 </div>
                 <div className={style.infoWrapper}>
                     <div className={style.numberArea}>

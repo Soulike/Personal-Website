@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './FileList.css';
 import {View as File} from './Components/File';
 import {View as ButtonArea} from './Components/ButtonArea';
 import Store from '../../../../../../Store';
 import {tabClicked} from '../../../../Actions/Actions';
 import {getFileList} from './Actions/Actions';
+import style from './FileList.module.scss';
 
 
 class FileList extends Component
@@ -23,9 +23,9 @@ class FileList extends Component
         return (
             <div>
                 <ButtonArea/>
-                <div className={'FileListWrapper'}>
-                    {fileList.length === 0 ? <div className={'noFileText'}>_(:3」∠)_ 你没有文件的样子</div> :
-                        <table className={'fileList'}>
+                <div className={style.FileListWrapper}>
+                    {fileList.length === 0 ? <div className={style.noFileText}>_(:3」∠)_ 你没有文件的样子</div> :
+                        <table className={style.fileList}>
                             <tbody>
                             <tr>
                                 <th scope="col"><input type="checkbox" disabled={true} style={{opacity: 0}}/></th>

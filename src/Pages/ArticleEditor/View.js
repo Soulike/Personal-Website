@@ -5,7 +5,6 @@ import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/F
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './ArticleEditor.module.scss';
-import btnStyle from '../../Static/Button.module.scss';
 
 class ArticleEditor extends Component
 {
@@ -216,7 +215,7 @@ class ArticleEditor extends Component
                     </select>
                 </div>
                 <div className={style.articleButtonWrapper}>
-                    <button className={`articleSubmitBtn ${btnStyle.btn} ${btnStyle['btn-primary']} ${btnStyle['btn-lg']}`}
+                    <button className={`${style.articleSubmitBtn}`}
                             onClick={this.onSubmit}>提交
                     </button>
                 </div>

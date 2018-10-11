@@ -43,6 +43,8 @@
 
     .originalTextSubmitBtn
     {
+        @extend .btn-primary;
+        @extend .btn-lg;
         display: block;
         width: 100%;
         margin-top: 2rem;
@@ -70,30 +72,10 @@
         word-break: break-all;
     }
 
-    .result-enter
-    {
-        opacity: 0;
-
-        &.result-enter-active
-        {
-            opacity: 1;
-            transition: 250ms;
-        }
-    }
-
-    .result-leave
-    {
-        opacity: 1;
-
-        &.result-leave-active
-        {
-            opacity: 0;
-            transition: 250ms;
-        }
-    }
-
     .copyHashResultBtn
     {
+        @extend .btn-primary;
+        @extend .btn-lg;
         margin-top: 2rem;
     }
 

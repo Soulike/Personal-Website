@@ -1,0 +1,21 @@
+.hashGeneratorResult-enter
+{
+    opacity: 0;
+
+    &.hashGeneratorResult-enter-active
+    {
+        opacity: 1;
+        transition: 250ms;
+    }
+}
+
+.hashGeneratorResult-leave
+{
+    opacity: 1;
+
+    &.hashGeneratorResult-leave-active
+    {
+        opacity: 0;
+        transition: 250ms;
+    }
+}

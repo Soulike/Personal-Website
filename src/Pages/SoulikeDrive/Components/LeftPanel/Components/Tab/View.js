@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {tabClicked} from '../../../../Actions/Actions';
-import './Tab.css';
+import style from './Tab.module.scss';
 
 class Tab extends Component
 {
@@ -18,11 +18,11 @@ class Tab extends Component
     {
         const {tabId, currentActiveTabId, icon, text, to} = this.props;
         return (
-            <Link className={`Tab ${tabId === currentActiveTabId ? 'active' : ''}`}
+            <Link className={`${style.Tab} ${tabId === currentActiveTabId ? style.active : ''}`}
                   onClick={this.onThisTabClicked}
                   to={to}
                   onlyActiveOnIndex={false}>
-                <FontAwesomeIcon icon={icon} className={'tabIcon'}/>
+                <FontAwesomeIcon icon={icon} className={style.tabIcon}/>
                 {text}
             </Link>
         );

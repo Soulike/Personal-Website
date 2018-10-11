@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './OfflineDownloader.css';
 import {postAsync, requestPrefix} from '../../../../../../../../Static/Functions';
 import {View as Alert} from '../../../../../../../../Components/Alert';
+import style from './OfflineDownloader.module.scss';
 
 class OfflineDownloader extends Component
 {
@@ -47,14 +47,14 @@ class OfflineDownloader extends Component
     render()
     {
         return (
-            <div className={'OfflineDownloader'}>
-                <div className={'title'}>离线下载</div>
-                <form action="" className={'OfflineDownloaderForm'}>
+            <div className={style.OfflineDownloader}>
+                <div className={style.title}>离线下载</div>
+                <form action="" className={style.OfflineDownloaderForm}>
                     <input type="text"
-                           className={'linkInput'}
+                           className={style.linkInput}
                            placeholder={'下载链接'}
                            onChange={this.onOfflineDownloaderInputChange} ref={'urlInput'}/>
-                    <button className={'submitButton btn btn-primary'}
+                    <button className={style.submitButton}
                             onClick={this.OfflineDownloaderButtonClicked}>提交
                     </button>
                 </form>

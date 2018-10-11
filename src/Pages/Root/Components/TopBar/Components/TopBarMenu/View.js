@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {CSSTransitionGroup} from 'react-transition-group';
 import {View as TopBarLink} from '../TopBarLink';
 import {View as FloatMenu} from './Components/FloatMenu';
-import './TopBarMenu.css';
+import './Transition.scss';
+import style from './TopBarMenu.module.scss';
 
 class TopBarMenu extends Component
 {
@@ -30,7 +31,7 @@ class TopBarMenu extends Component
         const {showFloatMenu} = this.state;
         const {iconStyle, menuName, menuLinks} = this.props;
         return (
-            <div className={'TopBarMenu'} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+            <div className={style.TopBarMenu} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
                 <TopBarLink iconStyle={iconStyle} text={menuName}>
                     <CSSTransitionGroup transitionName="floatMenu"
                                         transitionEnterTimeout={250}

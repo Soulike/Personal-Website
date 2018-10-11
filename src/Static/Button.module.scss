@@ -20,6 +20,7 @@
 
 .btn-lg
 {
+    @extend .btn;
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
@@ -28,6 +29,7 @@
 
 .btn-primary
 {
+    @extend .btn;
     color: #FFF;
     background-color: #007BFF;
     border-color: #007BFF;
@@ -64,6 +66,7 @@
 
 .btn-danger
 {
+    @extend .btn;
     color: #FFF;
     background-color: #DC3545;
     border-color: #DC3545;

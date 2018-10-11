@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './ProgressBar.css';
+import style from './ProgressBar.module.scss';
 
 class ProgressBar extends Component
 {
@@ -8,8 +8,8 @@ class ProgressBar extends Component
     {
         const {progress} = this.props;
         return (
-            <div className={'ProgressBar'}>
-                <div className={'progress'} style={{width: `${progress * 100}%`}}/>
+            <div className={style.ProgressBar}>
+                <div className={style.progress} style={{width: `${progress * 100}%`}}/>
             </div>
         );
     }

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
-import './ToTopButton.css';
 import {CSSTransitionGroup} from 'react-transition-group';
+import style from './ToTopButton.module.scss';
+import './Transition.scss';
 
 class ToTopButton extends Component
 {
@@ -67,12 +68,12 @@ class ToTopButton extends Component
     {
         const {show} = this.state;
         return (
-            <div className={'ToTopButton'}>
+            <div className={style.ToTopButton}>
                 <CSSTransitionGroup transitionName="toTopButtonTransition"
                                     transitionEnterTimeout={250}
                                     transitionLeaveTimeout={250}>
                     {show ?
-                        <button className={'button'} onClick={this.onToTopButtonClicked}>
+                        <button className={style.button} onClick={this.onToTopButtonClicked}>
                             <FontAwesomeIcon icon={solidIcon.faArrowUp}/></button> : null}
                 </CSSTransitionGroup>
             </div>

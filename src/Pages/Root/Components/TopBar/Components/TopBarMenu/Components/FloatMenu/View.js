@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './FloatMenu.css';
 import {View as TopBarLink} from '../../../TopBarLink';
+import style from './FloatMenu.module.scss';
 
 class FloatMenu extends Component
 {
@@ -9,11 +9,11 @@ class FloatMenu extends Component
     {
         const {items} = this.props;
         return (
-            <div className={'FloatMenu'}>
+            <div className={style.FloatMenu}>
                 {items.map((item) =>
                 {
                     const {iconStyle, to, text} = item;
-                    return <div className={'floatMenuLink'} key={text}>
+                    return <div className={style.floatMenuLink} key={text}>
                         <TopBarLink iconStyle={iconStyle} to={to} text={text}/>
                     </div>;
                 })}

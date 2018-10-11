@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import './DownloadButton.css';
 import {View as Alert} from '../../../../../../../../../../Components/Alert';
 import Store from '../../../../../../../../../../Store';
 import {downloadFiles} from '../../../../Actions/Actions';
 import PropTypes from 'prop-types';
+import style from './DownloadButton.module.scss';
 
 class DownloadButton extends Component
 {
@@ -32,9 +32,9 @@ class DownloadButton extends Component
     render()
     {
         return (
-            <button className={'btn btn-primary DownloadButton'} onClick={this.onDownloadBtnClicked}>
-                <div className={'downloadButtonText'}>
-                    <FontAwesomeIcon icon={solidIcons.faDownload} className={'buttonIcon'}/>
+            <button className={style.DownloadButton} onClick={this.onDownloadBtnClicked}>
+                <div className={style.downloadButtonText}>
+                    <FontAwesomeIcon icon={solidIcons.faDownload} className={style.buttonIcon}/>
                     下载
                 </div>
             </button>);

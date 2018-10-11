@@ -161,10 +161,10 @@ class Article extends Component
             <div className={style.Article}>
                 <div className={style.articleTitle}>{title}</div>
                 {hasLoggedIn ? <div className={style.articleBtnWrapper}>
-                    <button className={`articleModifyBtn ${btnStyle.btn} ${btnStyle['btn-primary']}`}
+                    <button className={`${style.articleModifyBtn}`}
                             onClick={this.onModifyButtonClicked}>编辑
                     </button>
-                    <button className={`articleDeleteBtn ${btnStyle.btn} ${btnStyle['btn-danger']}`}
+                    <button className={`${style.articleDeleteBtn}`}
                             onClick={this.onDeleteButtonClicked}>删除
                     </button>
                 </div> : null}

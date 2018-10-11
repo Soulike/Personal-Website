@@ -1,3 +1,5 @@
+@import "../../Static/Button.module";
+
 .Login
 {
     width: 60%;
@@ -46,6 +48,8 @@
 
     .submitButton
     {
+        @extend .btn-primary;
+        @extend .btn-lg;
         display: block;
         width: 40%;
         box-sizing: border-box;
