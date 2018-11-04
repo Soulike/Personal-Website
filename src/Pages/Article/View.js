@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {View as Alert} from '../../Components/Alert';
-import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml} from '../../Static/Functions';
+import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml, addScript} from '../../Static/Functions';
 import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
@@ -45,6 +45,7 @@ class Article extends Component
                         this.setState({...data}, () =>
                         {
                             highLight.initHighlighting();
+                            addScript('https://proxy.soulike.tech/cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
                         });
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
