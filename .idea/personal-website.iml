@@ -19,5 +19,8 @@
     <orderEntry type="library" name="@types/request" level="application" />
     <orderEntry type="library" name="@types/sequelize" level="application" />
     <orderEntry type="library" name="@types/react-router" level="application" />
+    <orderEntry type="library" name="@types/react" level="application" />
+    <orderEntry type="library" name="@types/react-router" level="application" />
+    <orderEntry type="library" name="@types/react-dom" level="application" />
   </component>
 </module>
