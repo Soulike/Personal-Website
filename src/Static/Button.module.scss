@@ -36,7 +36,6 @@
 
     &:hover
     {
-        @extend .btn-primary;
         background-color: #0069D9;
         border-color: #0062CC;
     }
@@ -48,12 +47,12 @@
 
     &.disabled, &:disabled
     {
-        @extend .btn-primary;
+        background-color: #007bff;
+        border-color: #007bff;
     }
 
     &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle
     {
-        @extend .btn-primary;
         background-color: #0062CC;
         border-color: #005CBF;
     }
@@ -73,7 +72,6 @@
 
     &:hover
     {
-        @extend .btn-danger;
         background-color: #C82333;
         border-color: #BD2130;
     }
@@ -85,14 +83,12 @@
 
     &.disabled, &:disabled
     {
-        @extend .btn-danger;
         background-color: #DC3545;
         border-color: #DC3545;
     }
 
     &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle
     {
-        @extend .btn-danger;
         background-color: #BD2130;
         border-color: #B21F2D;
     }
