@@ -1,5 +1,15 @@
-.alertWrapper
-{
+@keyframes Alert {
+    0% {
+        display: none;
+        opacity: 0
+    }
+    50%, 100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.alertWrapper {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -7,8 +17,7 @@
     width: 100%;
     z-index: 9999;
 
-    .Alert
-    {
+    .Alert {
         width: 25%;
         text-align: center;
         margin-bottom: 1rem;
@@ -19,15 +28,15 @@
         border: 1px solid transparent;
         border-radius: 0.25rem;
 
-        &.alert-success
-        {
+        animation: Alert 0.75s alternate infinite;
+
+        &.alert-success {
             color: #155724;
             background-color: #D4EDDA;
             border-color: #C3E6CB;
         }
 
-        &.alert-danger
-        {
+        &.alert-danger {
             color: #721C24;
             background-color: #F8D7DA;
             border-color: #F5C6CB;
