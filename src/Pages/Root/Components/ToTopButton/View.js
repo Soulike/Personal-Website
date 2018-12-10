@@ -46,22 +46,10 @@ class ToTopButton extends Component
     onToTopButtonClicked = (e) =>
     {
         e.preventDefault();
-        let x = window.pageXOffset;
-        let y = window.pageYOffset;
-        const interval = setInterval(() =>
-        {
-            if (y >= 50)
-            {
-                y -= 50;
-            }
-            else
-            {
-                y = 0;
-                clearInterval(interval);
-            }
-            window.scrollTo(x, y);
-        }, 10);
-
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     render()
