@@ -3,7 +3,14 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {staticPrefix, isInLikedList, submitLikeAsync, removeFromLikedList, appendToLikedList, generateTimeStr} from '../../../../../../../../Static/Functions';
+import {
+    appendToLikedList,
+    generateTimeStr,
+    isInLikedList,
+    removeFromLikedList,
+    staticPrefix,
+    submitLikeAsync
+} from '../../../../../../../../Static/Functions';
 import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../../../Components/Alert/View';
 import style from './ArticleWrapper.module.scss';
@@ -15,7 +22,8 @@ class ArticleWrapper extends Component
         super(...arguments);
         this.state = {
             like: 0,
-            hasLiked: false
+            hasLiked: false,
+            canLikeButtonClick: true
         };
     }
 
@@ -45,42 +53,53 @@ class ArticleWrapper extends Component
 
     onLikeButtonClicked = () =>
     {
-        const {hasLiked} = this.state;
-        const {id} = this.props;
-        submitLikeAsync(id, !hasLiked)
-            .then(res =>
+        const {hasLiked, canLikeButtonClick} = this.state;
+        if (canLikeButtonClick)
+        {
+            this.setState({canLikeButtonClick: false}, () =>
             {
-                const {isSuccess, msg, data} = res;
-                if (isSuccess)
-                {
-                    this.setState({
-                        like: parseInt(data, 10),
-                        hasLiked: !hasLiked
+                const {id} = this.props;
+                submitLikeAsync(id, !hasLiked)
+                    .then(res =>
+                    {
+                        const {isSuccess, msg, data} = res;
+                        if (isSuccess)
+                        {
+                            this.setState({
+                                like: parseInt(data, 10),
+                                hasLiked: !hasLiked,
+                            });
+                        }
+                        else
+                        {
+                            Alert.show(msg, false);
+                        }
+                    })
+                    .catch(e =>
+                    {
+                        Alert.show('点赞失败', false);
+                        console.log(e);
+                    })
+                    .finally(() =>
+                    {
+                        this.setState({canLikeButtonClick: true});
                     });
+
+                if (isInLikedList(id))
+                {
+                    removeFromLikedList(id);
                 }
                 else
                 {
-                    Alert.show(msg, false);
+                    appendToLikedList(id);
                 }
-            })
-            .catch(e =>
-            {
-                Alert.show('点赞失败', false);
-                console.log(e);
             });
-
-        if (isInLikedList(id))
-        {
-            removeFromLikedList(id);
-        }
-        else
-        {
-            appendToLikedList(id);
         }
     };
 
     render()
     {
+        const {canLikeButtonClick} = this.state;
         const {id, title, view, comment, time, type, typeId, nickname, avatar} = this.props;
         const {like, hasLiked} = this.state;
         const timeStr = generateTimeStr(time);
@@ -122,7 +141,7 @@ class ArticleWrapper extends Component
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
                                     hasClicked={hasLiked}
-                                    onClick={this.onLikeButtonClicked}/>
+                                    onClick={canLikeButtonClick ? this.onLikeButtonClicked : null}/>
                     <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false}/>
                 </div>
             </div>

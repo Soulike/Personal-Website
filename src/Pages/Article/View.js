@@ -2,11 +2,21 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {View as Alert} from '../../Components/Alert';
-import {getAsync, postAsync, prefixZero, requestPrefix, submitLikeAsync, appendToLikedList, removeFromLikedList, isInLikedList, markdownToHtml, addScript} from '../../Static/Functions';
+import {
+    addScript,
+    appendToLikedList,
+    getAsync,
+    isInLikedList,
+    markdownToHtml,
+    postAsync,
+    prefixZero,
+    removeFromLikedList,
+    requestPrefix,
+    submitLikeAsync
+} from '../../Static/Functions';
 import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
-import btnStyle from '../../Static/Button.module.scss';
 import style from './Article.module.scss';
 
 class Article extends Component
@@ -23,7 +33,8 @@ class Article extends Component
             like: 0,
             time: 0,
             modifyTime: 0,
-            hasLiked: false
+            hasLiked: false,
+            canLikeButtonClick: true
         };
     }
 
@@ -118,43 +129,52 @@ class Article extends Component
         }
     };
 
-    onLikeButtonClicked = (e) =>
+    onLikeButtonClicked = () =>
     {
-        const {hasLiked, id} = this.state;
-        submitLikeAsync(id, !hasLiked)
-            .then(res =>
-            {
-                const {isSuccess, msg, data} = res;
-                if (isSuccess)
-                {
-                    this.setState({
-                        like: parseInt(data, 10),
-                        hasLiked: !hasLiked
-                    });
-                }
-                else
-                {
-                    Alert.show(msg, false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('点赞失败', false);
-                console.log(e);
-            });
-        if (isInLikedList(id))
+        this.setState({canLikeButtonClick: false}, () =>
         {
-            removeFromLikedList(id);
-        }
-        else
-        {
-            appendToLikedList(id);
-        }
+            const {hasLiked, id} = this.state;
+            submitLikeAsync(id, !hasLiked)
+                .then(res =>
+                {
+                    const {isSuccess, msg, data} = res;
+                    if (isSuccess)
+                    {
+                        this.setState({
+                            like: parseInt(data, 10),
+                            hasLiked: !hasLiked,
+                        }, () =>
+                        {
+                            if (isInLikedList(id))
+                            {
+                                removeFromLikedList(id);
+                            }
+                            else
+                            {
+                                appendToLikedList(id);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Alert.show(msg, false);
+                    }
+                })
+                .catch(e =>
+                {
+                    Alert.show('点赞失败', false);
+                    console.log(e);
+                })
+                .finally(() =>
+                {
+                    this.setState({canLikeButtonClick: true});
+                });
+        });
     };
 
     render()
     {
-        const {title, content, type, time, hasLiked, like} = this.state;
+        const {title, content, type, time, hasLiked, like, canLikeButtonClick} = this.state;
         const {hasLoggedIn} = this.props;
         const contentHtml = markdownToHtml(content);
         const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
@@ -178,11 +198,13 @@ class Article extends Component
                 <div className={style.articleFunctionButtonWrapper}>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
-                                    onClick={this.onLikeButtonClicked}
+                                    onClick={canLikeButtonClick ? this.onLikeButtonClicked : null}
                                     hasClicked={hasLiked}/>
                 </div>
                 <div className={style.articleFooter}>
-                    <div className={style.timeWarning}>本文发表于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。</div>
+                    <div
+                        className={style.timeWarning}>本文发表于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。
+                    </div>
                     <div className={style.copyRightWarning}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
                 </div>
             </div>

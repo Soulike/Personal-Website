@@ -22,7 +22,7 @@ ArticleFunctionButton.propTypes = {
     icon: PropTypes.object.isRequired,
     number: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
-    hasClicked: PropTypes.bool.isRequired
+    hasClicked: PropTypes.bool.isRequired,
 };
 
 export default ArticleFunctionButton;

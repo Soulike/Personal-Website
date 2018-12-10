@@ -7,7 +7,6 @@ import {Actions} from '../../Components/AuthProcessor';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './Login.module.scss';
-import btnStyle from '../../Static/Button.module.scss';
 
 class Login extends Component
 {

@@ -50,8 +50,7 @@ export async function getAsync(url, allowCache = true, params = {}, config = {})
                 ...config
             });
             resolve(res.data);
-        }
-        catch (e)
+        } catch (e)
         {
             reject(e);
         }
@@ -67,8 +66,7 @@ export async function postAsync(url, params = {}, config = {})
         {
             const res = await axios.post(url, params, config);
             resolve(res.data);
-        }
-        catch (e)
+        } catch (e)
         {
             reject(e);
         }
