@@ -1,6 +1,7 @@
-import {requestPrefix, getAsync, staticPrefix} from '../../../../../Static/Functions';
-import {REQUEST_SUCCESS, REQUEST_FAILED} from './ActionTypes';
+import {getAsync, requestPrefix, staticPrefix} from '../../../../../Static/Functions';
+import {REQUEST_FAILED, REQUEST_SUCCESS} from './ActionTypes';
 import {View as Alert} from '../../../../../Components/Alert';
+import {STATUS_CODE} from '../../../../../Static/Constants';
 
 export function getBannerImage()
 {
@@ -9,16 +10,16 @@ export function getBannerImage()
         try
         {
             const res = await getAsync(requestPrefix('/getBannerImage'), true);
-            const {isSuccess, msg, data} = res;
-            if (isSuccess)
+            const {statusCode, data} = res;
+            if (statusCode === STATUS_CODE.SUCCESS)
             {
                 const {url} = data;
                 dispatch(requestSuccess(staticPrefix(url)));
             }
-            else
+            else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
             {
+                Alert.show('服务器错误', false);
                 dispatch(requestFailed());
-                Alert.show(msg, false);
             }
         }
         catch (e)

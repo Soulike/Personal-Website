@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 import crypto from 'crypto';
 import showdown from 'showdown';

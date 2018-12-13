@@ -1,16 +1,16 @@
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {ARTICLE_TYPE} from './Static/Constants';
 import {Reducer as SoulikeDriveReducer} from './Pages/SoulikeDrive';
+import {Reducer as LoginReducer} from './Pages/Login';
 import {Reducer as BlogReducer} from './Pages/Blog';
 import {Reducer as DynamicReducer} from './Pages/Dynamic';
 import {Reducer as MusicPlayerReducer} from './Pages/MusicPlayer';
 import {Reducer as OptionsReducer} from './Pages/Options';
 import {Reducer as BannerReducer} from './Pages/Root/Components/Banner';
-import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/RightArea/Components/FileList';
-import {Reducer as AuthProcessorReducer} from './Components/AuthProcessor';
-import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/MidPart/Components/TypeSelectBar';
-import {Reducer as MostPopularCardReducer} from './Pages/Blog/Components/RightPart/Components/MostPopularCard';
+import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/FileList';
+import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/TypeSelectBar';
+import {Reducer as MostPopularCardReducer} from './Pages/Blog/Components/MostPopularCard';
 
 // Store 中的初始值，根据开发需要进行改变
 const initValues = {
@@ -35,7 +35,7 @@ const initValues = {
         fileList: [],
         selectedFileList: []
     },
-    AuthProcessor: {hasLoggedIn: false},
+    Login: {hasLoggedIn: false},
     MostPopularCard: {
         currentTypeId: 0
     }
@@ -52,13 +52,13 @@ const storeEnhancers = compose(
 const Reducer = combineReducers({
     SoulikeDrive: SoulikeDriveReducer,
     Blog: BlogReducer,
+    Login: LoginReducer,
     TypeSelectBar: TypeSelectBarReducer,
     Dynamic: DynamicReducer,
     MusicPlayer: MusicPlayerReducer,
     Options: OptionsReducer,
     Banner: BannerReducer,
     FileList: FileListReducer,
-    AuthProcessor: AuthProcessorReducer,
     MostPopularCard: MostPopularCardReducer
 });
 

@@ -1,0 +1,13 @@
+@import "../../../../../../../../Static/Constants.module";
+@import "../../../../../../../../Static/Button.module";
+@import "../../ButtonArea.module";
+
+.DownloadButton
+{
+    @extend .btn-primary;
+
+    .downloadButtonText
+    {
+
+    }
+}

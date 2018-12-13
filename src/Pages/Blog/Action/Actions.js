@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import {getAsync, requestPrefix} from '../../../Static/Functions';
 import {View as Alert} from '../../../Components/Alert';
+import {STATUS_CODE} from '../../../Static/Constants';
 
 export function getInfo()
 {
@@ -9,8 +10,8 @@ export function getInfo()
         try
         {
             const res = await getAsync(requestPrefix('/getInfo'), true);
-            const {isSuccess, msg, data} = res;
-            if (isSuccess)
+            const {statusCode, data} = res;
+            if (statusCode === STATUS_CODE.SUCCESS)
             {
                 const {nickname, avatar} = data;
                 dispatch(getInfoSuccess(nickname, avatar));
@@ -18,7 +19,11 @@ export function getInfo()
             else
             {
                 dispatch(getInfoFailed());
-                Alert.show(msg, false);
+            }
+
+            if (STATUS_CODE === STATUS_CODE.INTERNAL_SERVER_ERROR)
+            {
+                Alert.show('服务器错误', false);
             }
         }
         catch (e)

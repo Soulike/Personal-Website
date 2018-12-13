@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import highLight from 'highlight.js';
-import {getAsync, postAsync, requestPrefix, markdownToHtml} from '../../Static/Functions';
+import {getAsync, markdownToHtml, postAsync, requestPrefix} from '../../Static/Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './ArticleEditor.module.scss';
+import {STATUS_CODE} from '../../Static/Constants';
+import {redirectToLogin} from '../Login/Functions';
 
 class ArticleEditor extends Component
 {
@@ -50,14 +52,14 @@ class ArticleEditor extends Component
         getAsync(requestPrefix('/blog/getArticleTypes'), false)
             .then(res =>
             {
-                const {isSuccess, msg, data} = res;
-                if (isSuccess)
+                const {statusCode, data} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     this.setState({allTypes: data});
                 }
-                else
+                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
-                    Alert.show(msg, false);
+                    Alert.show('服务器错误', false);
                 }
             })
             .catch(e =>
@@ -99,7 +101,13 @@ class ArticleEditor extends Component
     {
         e.preventDefault();
         const {title, content, typeId} = this.state;
-        const {modify, articleId} = this.props.location.query;
+        let {articleId} = this.props.location.query;
+
+        if (!articleId)
+        {
+            articleId = 0;
+        }
+
         if (!title)
         {
             Alert.show('请填写标题', false);
@@ -114,46 +122,13 @@ class ArticleEditor extends Component
         }
         else
         {
-            if (!modify)
+            if (Object.is(parseInt(articleId, 10), NaN))
             {
-                postAsync(requestPrefix('/blog/submitArticle'), {
-                    title,
-                    content: content,
-                    typeId
-                })
-                    .then(res =>
-                    {
-                        const {isSuccess, msg, data} = res;
-                        Alert.show(msg, isSuccess);
-                        sessionStorage.removeItem('typeId');
-                        sessionStorage.removeItem('title');
-                        sessionStorage.removeItem('content');
-                        this.setState({
-                            typeId: 0,
-                            title: '',
-                            content: ''
-                        });
-                        this.refs.title.value = '';
-                        this.refs.content.value = '';
-                        setTimeout(() =>
-                        {
-                            browserHistory.push(`/article?articleId=${data}`);
-                        }, 1000);
-
-                    })
-                    .catch(e =>
-                    {
-                        Alert.show('文章提交失败', false);
-                        console.log(e);
-                    });
-            }
-            else if (!parseInt(articleId, 10))
-            {
-                Alert.show('参数错误', false);
+                Alert.show('要修改的文章不存在', false);
             }
             else
             {
-                postAsync(requestPrefix('/blog/modifyArticle'), {
+                postAsync(requestPrefix('/blog/submitArticle'), {
                     id: articleId,
                     title,
                     content: content,
@@ -161,27 +136,50 @@ class ArticleEditor extends Component
                 })
                     .then(res =>
                     {
-                        const {isSuccess, msg, data} = res;
-                        Alert.show(msg, isSuccess);
-                        sessionStorage.removeItem('typeId');
-                        sessionStorage.removeItem('title');
-                        sessionStorage.removeItem('content');
-                        this.setState({
-                            typeId: 0,
-                            title: '',
-                            content: ''
-                        });
-                        this.refs.title.value = '';
-                        this.refs.content.value = '';
-                        setTimeout(() =>
+                        const {statusCode, data} = res;
+                        if (statusCode === STATUS_CODE.SUCCESS)
                         {
-                            browserHistory.push(`/article?articleId=${data}`);
-                        }, 1000);
+                            if (articleId === 0)
+                            {
+                                Alert.show('提交成功', true);
+                            }
+                            else
+                            {
+                                Alert.show('修改成功', true);
+                            }
 
+                            sessionStorage.removeItem('typeId');
+                            sessionStorage.removeItem('title');
+                            sessionStorage.removeItem('content');
+                            this.setState({
+                                typeId: 0,
+                                title: '',
+                                content: ''
+                            });
+                            this.refs.title.value = '';
+                            this.refs.content.value = '';
+                            setTimeout(() =>
+                            {
+                                browserHistory.push(`/article?articleId=${data}`);
+                            }, 1000);
+                        }
+                        else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
+                        {
+                            Alert.show('请求参数无效', false);
+                        }
+                        else if (statusCode === STATUS_CODE.INVALID_SESSION)
+                        {
+                            Alert.show('请先登录', false);
+                            redirectToLogin();
+                        }
+                        else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                        {
+                            Alert.show('服务器错误', false);
+                        }
                     })
                     .catch(e =>
                     {
-                        Alert.show('文章修改失败', false);
+                        Alert.show('文章提交失败', false);
                         console.log(e);
                     });
             }

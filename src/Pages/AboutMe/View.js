@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
 import {getAsync, requestPrefix} from '../../Static/Functions';
+import {STATUS_CODE} from '../../Static/Constants';
 import style from './AboutMe.module.scss';
 
 
@@ -20,14 +21,14 @@ class AboutMe extends Component
         getAsync(requestPrefix('/getAboutMe'), true)
             .then(res =>
             {
-                const {isSuccess, msg, data} = res;
-                if (isSuccess)
+                const {statusCode, data} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     this.setState({aboutMe: data});
                 }
                 else
                 {
-                    this.setState({aboutMe: msg});
+                    this.setState({aboutMe: '获取关于我失败'});
                 }
             });
     }

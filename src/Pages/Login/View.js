@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import {Actions} from '../../Components/AuthProcessor';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './Login.module.scss';
+import {getHash, postAsync, requestPrefix} from '../../Static/Functions';
+import {STATUS_CODE} from '../../Static/Constants';
+import {removeLoginToken, setOffline, setOnline} from './Functions';
 
 class Login extends Component
 {
@@ -24,15 +25,6 @@ class Login extends Component
         document.title = '登录 - Soulike 的个人网站';
     }
 
-    componentWillReceiveProps(nextProps, nextContext)
-    {
-        if (nextProps.hasLoggedIn)
-        {
-            browserHistory.push('/');
-            Alert.show('您已登录', true);
-        }
-    }
-
     onUsernameChange = (e) =>
     {
         this.setState({username: e.target.value});
@@ -43,16 +35,59 @@ class Login extends Component
         this.setState({password: e.target.value});
     };
 
+    static login(username, password)
+    {
+        postAsync(requestPrefix('/login'), {
+            username,
+            password: getHash(`${username}${password}`, 'sha256')
+        })
+            .then(res =>
+            {
+                const {statusCode} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
+                {
+                    Alert.show('登录成功', true);
+                    setOnline();
+                    browserHistory.push('/');
+                }
+                else
+                {
+                    setOffline();
+                    removeLoginToken();
+                }
+
+                if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
+                {
+                    Alert.show('用户不存在');
+                }
+                else if (statusCode === STATUS_CODE.REJECTION)
+                {
+                    Alert.show('密码错误');
+                }
+                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                {
+                    Alert.show('服务器错误');
+                }
+            })
+            .catch(e =>
+            {
+                setOffline();
+                Alert.show('登录失败', false);
+                console.log(e);
+            });
+    };
+
     onSubmitButtonClick = (e) =>
     {
         e.preventDefault();
         const {username, password} = this.state;
-        this.props.onSubmit(username, password);
+        Login.login(username, password);
     };
 
     render()
     {
         return (
+
             <div className={style.Login}>
                 <Title titleText={'登录'}/>
                 <form onSubmit={this.onSubmitButtonClick}>
@@ -79,20 +114,4 @@ class Login extends Component
     }
 }
 
-const mapStateToProps = (state) =>
-{
-    const {hasLoggedIn} = state['AuthProcessor'];
-    return {hasLoggedIn};
-};
-
-const mapDispatchToProps = (dispatch) =>
-{
-    return {
-        onSubmit: (username, password) =>
-        {
-            dispatch(Actions.login(username, password));
-        }
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

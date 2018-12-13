@@ -18,6 +18,9 @@ import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import style from './Article.module.scss';
+import {STATUS_CODE} from '../../Static/Constants';
+import {redirectToLogin} from '../Login/Functions';
+import {View as Modal} from '../../Components/Modal';
 
 class Article extends Component
 {
@@ -50,8 +53,8 @@ class Article extends Component
             getAsync(requestPrefix('/blog/getArticle'), true, {articleId})
                 .then(res =>
                 {
-                    const {isSuccess, msg, data} = res;
-                    if (isSuccess)
+                    const {statusCode, data} = res;
+                    if (statusCode === STATUS_CODE.SUCCESS)
                     {
                         this.setState({...data}, () =>
                         {
@@ -60,9 +63,17 @@ class Article extends Component
                         });
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
-                    else
+                    else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
                     {
-                        Alert.show(msg, false);
+                        Alert.show('文章不存在', false);
+                    }
+                    else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
+                    {
+                        Alert.show('请求参数错误', false);
+                    }
+                    else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                    {
+                        Alert.show('服务器内部错误', false);
                     }
                 })
                 .catch(e =>
@@ -98,34 +109,58 @@ class Article extends Component
         }
     };
 
-    // TODO: 二次确认模态框
     onDeleteButtonClicked = (e) =>
     {
         e.preventDefault();
         if (this.state.id !== 0)
         {
-            postAsync(requestPrefix('/blog/deleteArticle'), {articleId: this.state.id})
-                .then(res =>
-                {
-                    const {isSuccess, msg} = res;
-                    Alert.show(msg, isSuccess);
-                    if (isSuccess)
+            const {title} = this.state;
+            Modal.show('删除确认', `确认要删除文章《${title}》吗？`, () =>
+            {
+                postAsync(requestPrefix('/blog/deleteArticle'), {articleId: this.state.id})
+                    .then(res =>
                     {
-                        setTimeout(() =>
+                        const {statusCode} = res;
+                        if (statusCode === STATUS_CODE.SUCCESS)
                         {
-                            browserHistory.push('/');
-                        }, 1000);
-                    }
-                })
-                .catch(e =>
-                {
-                    Alert.show('删除失败', false);
-                    console.log(e);
-                });
+                            Alert.show('删除成功', true);
+                            setTimeout(() =>
+                            {
+                                browserHistory.push('/');
+                            }, 1000);
+                        }
+                        else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
+                        {
+                            Alert.show('请求参数无效', false);
+                        }
+                        else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
+                        {
+                            Alert.show('要删除的文章不存在', false);
+                        }
+                        else if (statusCode === STATUS_CODE.REJECTION)
+                        {
+                            Alert.show('你没有删除此文章的权限', false);
+                        }
+                        else if (statusCode === STATUS_CODE.INVALID_SESSION)
+                        {
+                            Alert.show('请先登录', false);
+                            redirectToLogin();
+                        }
+                        else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                        {
+                            Alert.show('服务器错误', false);
+                        }
+                    })
+                    .catch(e =>
+                    {
+                        Alert.show('删除失败', false);
+                        console.log(e);
+                    });
+            });
         }
         else
         {
-            Alert.show('文章不存在', false);
+            Alert.show('参数无效', false);
         }
     };
 
@@ -137,8 +172,8 @@ class Article extends Component
             submitLikeAsync(id, !hasLiked)
                 .then(res =>
                 {
-                    const {isSuccess, msg, data} = res;
-                    if (isSuccess)
+                    const {statusCode, data} = res;
+                    if (statusCode === STATUS_CODE.SUCCESS)
                     {
                         this.setState({
                             like: parseInt(data, 10),
@@ -155,9 +190,17 @@ class Article extends Component
                             }
                         });
                     }
-                    else
+                    else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
                     {
-                        Alert.show(msg, false);
+                        Alert.show('请求参数无效', false);
+                    }
+                    else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
+                    {
+                        Alert.show('要点赞的文章不存在', false);
+                    }
+                    else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                    {
+                        Alert.show('服务器错误', false);
                     }
                 })
                 .catch(e =>
@@ -214,7 +257,7 @@ class Article extends Component
 
 const mapStateToProps = (state) =>
 {
-    const {hasLoggedIn} = state['AuthProcessor'];
+    const {hasLoggedIn} = state.Login;
     return {
         hasLoggedIn
     };

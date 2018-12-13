@@ -1,0 +1,39 @@
+.MostPopularCardTab
+{
+    // TODO: 修改为flex布局
+    display: inline-block;
+    width: 33.333%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0.85rem 0;
+    background-color: #F8F8F8;
+
+    $borderStyle: 1px solid #DDD;
+    border:
+    {
+        left: $borderStyle;
+        right: $borderStyle;
+        bottom: $borderStyle;
+    }
+
+    cursor: pointer;
+    transition: 0.125s background-color, color;
+    color: #666;
+
+    &:first-child
+    {
+        border-left: none;
+    }
+
+    &:last-child
+    {
+        border-right: none;
+    }
+
+    &.currentTab
+    {
+        background-color: transparent;
+        border-bottom: none;
+        color: inherit;
+    }
+}

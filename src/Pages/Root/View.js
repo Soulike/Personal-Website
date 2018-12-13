@@ -4,7 +4,7 @@ import {View as Banner} from './Components/Banner';
 import {View as TopBar} from './Components/TopBar';
 import {View as Footer} from './Components/Footer';
 import Store from '../../Store';
-import * as Actions from '../../Components/AuthProcessor/Actions/Actions';
+import {Functions as LoginFunctions} from '../Login';
 import {View as ToTopButton} from './Components/ToTopButton';
 import style from './Root.module.scss';
 
@@ -13,7 +13,7 @@ class Root extends Component
     componentDidMount()
     {
         document.title = 'Soulike 的个人网站';
-        Store.dispatch(Actions.checkLoginState());
+        Store.dispatch(LoginFunctions.checkLoginState());
     }
 
     render()
