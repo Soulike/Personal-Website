@@ -36,9 +36,22 @@
 @media (max-width: 1000px) {
     .Blog {
         margin: 2rem 0;
+        display: block;
 
         .leftPart {
             display: none;
+        }
+
+        .midPart {
+            margin: 0 2rem;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .Blog {
+        .midPart {
+            margin: 0 1rem;
         }
     }
 }
