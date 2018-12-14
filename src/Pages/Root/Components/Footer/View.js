@@ -28,7 +28,7 @@ class Footer extends Component
         return Math.round(Math.random() * (this.emoji.length - 1));
     };
 
-    onEmojiClicked = () =>
+    onEmojiClick = () =>
     {
         const {emojiNumber} = this.state;
         let newNumber = emojiNumber;
@@ -60,7 +60,7 @@ class Footer extends Component
                                                             className={style.footerLink}>bilibili</a> 的美工 (滑稽)。
                     </div>
                 </div>
-                <div className={style.emoji} onClick={this.onEmojiClicked}>{this.emoji[emojiNumber]}</div>
+                <div className={style.emoji} onClick={this.onEmojiClick}>{this.emoji[emojiNumber]}</div>
                 <div className={style.copyRight}>Copyleft ⑨ {date.getFullYear()} Soulike 版权没有</div>
             </footer>
         );

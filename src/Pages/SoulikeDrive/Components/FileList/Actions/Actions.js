@@ -169,7 +169,7 @@ export function fileDownloadFailed()
     };
 }
 
-export function fileSeleted(fileId)
+export function fileSelected(fileId)
 {
     return {
         type: ActionTypes.FILE_SELECTED,

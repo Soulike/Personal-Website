@@ -37,7 +37,7 @@ class ArticleWrapper extends Component
         });
     }
 
-    onArticleTypeClicked = (e) =>
+    onArticleTypeClick = (e) =>
     {
         let articleTypeId = -2;
         if (e.target.dataset)
@@ -52,7 +52,7 @@ class ArticleWrapper extends Component
         this.props.changeCurrentArticleTypeId(articleTypeId);
     };
 
-    onLikeButtonClicked = () =>
+    onLikeButtonClick = () =>
     {
         const {hasLiked, canLikeButtonClick} = this.state;
         if (canLikeButtonClick)
@@ -126,13 +126,13 @@ class ArticleWrapper extends Component
                 </div>
                 <div className={style.articleTypeWrapper}
                      data-article_type_id={typeId}
-                     onClick={this.onArticleTypeClicked}>
+                     onClick={this.onArticleTypeClick}>
                     <div className={style.articleType}
                          data-article_type_id={typeId}
-                         onClick={this.onArticleTypeClicked}>{type}</div>
+                         onClick={this.onArticleTypeClick}>{type}</div>
                     <div className={style.articleTypeTriangle}
                          data-article_type_id={typeId}
-                         onClick={this.onArticleTypeClicked}>
+                         onClick={this.onArticleTypeClick}>
                     </div>
                 </div>
                 <div className={style.mainPart}>
@@ -151,7 +151,7 @@ class ArticleWrapper extends Component
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
                                     hasClicked={hasLiked}
-                                    onClick={canLikeButtonClick ? this.onLikeButtonClicked : null}/>
+                                    onClick={canLikeButtonClick ? this.onLikeButtonClick : null}/>
                     <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false}/>
                 </div>
             </div>

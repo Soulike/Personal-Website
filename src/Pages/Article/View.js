@@ -92,7 +92,7 @@ class Article extends Component
         return `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(date.getDate())} ${prefixZero(date.getHours())}:${prefixZero(date.getMinutes())}`;
     };
 
-    onModifyButtonClicked = (e) =>
+    onModifyButtonClick = (e) =>
     {
         e.preventDefault();
         if (this.state.id !== 0)
@@ -109,7 +109,7 @@ class Article extends Component
         }
     };
 
-    onDeleteButtonClicked = (e) =>
+    onDeleteButtonClick = (e) =>
     {
         e.preventDefault();
         if (this.state.id !== 0)
@@ -164,7 +164,7 @@ class Article extends Component
         }
     };
 
-    onLikeButtonClicked = () =>
+    onLikeButtonClick = () =>
     {
         this.setState({canLikeButtonClick: false}, () =>
         {
@@ -226,10 +226,10 @@ class Article extends Component
                 <div className={style.articleTitle}>{title}</div>
                 {hasLoggedIn ? <div className={style.articleBtnWrapper}>
                     <button className={`${style.articleModifyBtn}`}
-                            onClick={this.onModifyButtonClicked}>编辑
+                            onClick={this.onModifyButtonClick}>编辑
                     </button>
                     <button className={`${style.articleDeleteBtn}`}
-                            onClick={this.onDeleteButtonClicked}>删除
+                            onClick={this.onDeleteButtonClick}>删除
                     </button>
                 </div> : null}
                 <div className={style.articleInfo}>
@@ -241,7 +241,7 @@ class Article extends Component
                 <div className={style.articleFunctionButtonWrapper}>
                     <FunctionButton icon={solidIcon.faThumbsUp}
                                     number={like}
-                                    onClick={canLikeButtonClick ? this.onLikeButtonClicked : null}
+                                    onClick={canLikeButtonClick ? this.onLikeButtonClick : null}
                                     hasClicked={hasLiked}/>
                 </div>
                 <div className={style.articleFooter}>

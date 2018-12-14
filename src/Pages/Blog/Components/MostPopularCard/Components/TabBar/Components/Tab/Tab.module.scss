@@ -1,12 +1,9 @@
 .MostPopularCardTab
 {
-    // TODO: 修改为flex布局
-    display: inline-block;
-    width: 33.333%;
-    box-sizing: border-box;
     text-align: center;
     padding: 0.85rem 0;
     background-color: #F8F8F8;
+    width: 100%;
 
     $borderStyle: 1px solid #DDD;
     border:

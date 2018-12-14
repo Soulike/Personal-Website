@@ -8,7 +8,7 @@ import style from './Tab.module.scss';
 
 class Tab extends Component
 {
-    onTabClicked = () =>
+    onTabClick = () =>
     {
         const {typeId} = this.props;
         Store.dispatch(switchTab(typeId));
@@ -19,7 +19,7 @@ class Tab extends Component
         const {icon, currentTypeId, typeId} = this.props;
         return (
             <div className={`${style.MostPopularCardTab} ${currentTypeId === typeId ? style.currentTab : ''}`}
-                 onClick={this.onTabClicked}>
+                 onClick={this.onTabClick}>
                 <FontAwesomeIcon icon={icon}/>
             </div>
         );

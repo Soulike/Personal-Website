@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Store from '../../../../../../Store';
-import {fileSeleted, fileUnselected} from '../../Actions/Actions';
+import {fileSelected, fileUnselected} from '../../Actions/Actions';
 import style from './File.module.scss';
 
 class File extends Component
@@ -14,7 +14,7 @@ class File extends Component
         };
     }
 
-    onFileClicked = () =>
+    onFileClick = () =>
     {
         const {selected} = this.state;
         const {id} = this.props;
@@ -25,7 +25,7 @@ class File extends Component
         }
         else
         {
-            Store.dispatch(fileSeleted(id));
+            Store.dispatch(fileSelected(id));
         }
         this.refs.fileCheckbox.checked = !selected;
         this.setState({selected: !selected});
@@ -55,7 +55,7 @@ class File extends Component
         const {selected} = this.state;
         const {name, size, uploader, uploadTime} = this.props;
         return (
-            <tr className={`${style.File} ${selected ? style.selected : ''}`} onClick={this.onFileClicked}>
+            <tr className={`${style.File} ${selected ? style.selected : ''}`} onClick={this.onFileClick}>
                 <td><input type="checkbox" ref={'fileCheckbox'}/></td>
                 <td>{name}</td>
                 <td>{(size / 1024 / 1024).toFixed(2)}M</td>

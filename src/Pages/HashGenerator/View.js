@@ -39,6 +39,7 @@ class HashGenerator extends Component
     {
         this.setState({currentText: e.target.value});
     };
+
     onSubmit = (e) =>
     {
         e.preventDefault();

@@ -8,10 +8,10 @@ import style from './Tab.module.scss';
 
 class Tab extends Component
 {
-    onThisTabClicked = () =>
+    onThisTabClick = () =>
     {
-        const {componentType, onTabClicked} = this.props;
-        onTabClicked(componentType);
+        const {componentType, onTabClick} = this.props;
+        onTabClick(componentType);
     };
 
     render()
@@ -19,7 +19,7 @@ class Tab extends Component
         const {tabId, currentActiveTabId, icon, text, to} = this.props;
         return (
             <Link className={`${style.Tab} ${tabId === currentActiveTabId ? style.active : ''}`}
-                  onClick={this.onThisTabClicked}
+                  onClick={this.onThisTabClick}
                   to={to}
                   onlyActiveOnIndex={false}>
                 <FontAwesomeIcon icon={icon} className={style.tabIcon}/>

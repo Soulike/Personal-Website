@@ -43,7 +43,7 @@ class ToTopButton extends Component
     }
 
 
-    onToTopButtonClicked = (e) =>
+    onToTopButtonClick = (e) =>
     {
         e.preventDefault();
         window.scroll({
@@ -61,7 +61,7 @@ class ToTopButton extends Component
                                     transitionEnterTimeout={250}
                                     transitionLeaveTimeout={250}>
                     {show ?
-                        <button className={style.button} onClick={this.onToTopButtonClicked}>
+                        <button className={style.button} onClick={this.onToTopButtonClick}>
                             <FontAwesomeIcon icon={solidIcon.faArrowUp}/></button> : null}
                 </CSSTransitionGroup>
             </div>

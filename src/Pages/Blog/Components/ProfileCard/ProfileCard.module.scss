@@ -1,8 +1,10 @@
-@import "../../Card.module";
+@import "../../../../Static/Card.module";
 
 .ProfileCard
 {
     @extend .card;
+
+    min-width: 16rem;
 
     .profileCardImage
     {

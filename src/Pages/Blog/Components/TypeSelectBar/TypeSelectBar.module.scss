@@ -1,5 +1,7 @@
 .TypeSelectBar
 {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     background-color: #FFF;
     border-radius: 0.25rem;
@@ -11,10 +13,10 @@
     {
         $focusColor: #00B5E5;
 
-        display: inline-block;
+        flex-grow: 1;
         text-align: center;
         cursor: pointer;
-        padding: 0.75rem 1rem;
+        padding: 0.75rem;
         color: #666;
         transition: 0.25s;
         border-bottom: 3px solid transparent;

@@ -115,7 +115,7 @@ class Uploader extends Component
                     </label>
                     <div
                         className={style.fileInputStatus}>{`已选择 ${fileNum} 个文件，总大小 ${(fileSize / 1024 / 1024).toFixed(2)}M`}</div>
-                    <button className={style.fileUploadBtn}>上传</button>
+                    <button className={style.fileUploadBtn} onClick={this.onFormSubmit}>上传</button>
                 </form>
                 <div className={style.uploadProgressBarWrapper}>
                     <ProgressBar progress={updateProgress}/>

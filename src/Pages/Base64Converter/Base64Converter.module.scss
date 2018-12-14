@@ -50,7 +50,7 @@
         text-align: center;
     }
 
-    .originalToBase64Btn, .base64ToOriginalBtn
+    .originalToBase64Button, .base64ToOriginalButton
     {
         @extend .btn-primary;
         margin: 2rem 1rem;
@@ -64,7 +64,7 @@
     {
         width: 90%;
 
-        .originalToBase64Btn, .base64ToOriginalBtn
+        .originalToBase64Button, .base64ToOriginalButton
         {
             margin: 0.5rem;
             width: 10rem;

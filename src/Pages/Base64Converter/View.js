@@ -34,7 +34,7 @@ class Base64Converter extends Component
         this.setState({base64Text: e.target.value});
     };
 
-    onOriginalToBase64BtnClicked = (e) =>
+    onOriginalToBase64ButtonClick = (e) =>
     {
         e.preventDefault();
         const base64Text = Buffer.from(this.state.originalText, 'utf-8').toString('base64');
@@ -42,7 +42,7 @@ class Base64Converter extends Component
         this.refs.base64Text.value = base64Text;
     };
 
-    onBase64ToOriginalBtnClicked = (e) =>
+    onBase64ToOriginalButtonClick = (e) =>
     {
         e.preventDefault();
         const originalText = Buffer.from(this.state.base64Text, 'base64').toString('utf-8');
@@ -64,11 +64,11 @@ class Base64Converter extends Component
                               draggable={false}/>
                 </div>
                 <div className={style.converterButtonWrapper}>
-                    <button className={style.originalToBase64Btn}
-                            onClick={this.onOriginalToBase64BtnClicked}>转换为 Base64↓
+                    <button className={style.originalToBase64Button}
+                            onClick={this.onOriginalToBase64ButtonClick}>转换为 Base64↓
                     </button>
-                    <button className={style.base64ToOriginalBtn}
-                            onClick={this.onBase64ToOriginalBtnClicked}>转换为文本↑
+                    <button className={style.base64ToOriginalButton}
+                            onClick={this.onBase64ToOriginalButtonClick}>转换为文本↑
                     </button>
                 </div>
                 <div className={style.textWrapper}>

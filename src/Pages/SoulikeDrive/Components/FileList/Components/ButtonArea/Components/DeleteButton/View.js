@@ -16,7 +16,7 @@ class DeleteButton extends Component
         return false;
     }
 
-    onDeleteBtnClicked = (e) =>
+    onDeleteButtonClick = (e) =>
     {
         e.preventDefault();
         const {selectedFileList: fileList} = this.props;
@@ -36,7 +36,7 @@ class DeleteButton extends Component
     render()
     {
         return (
-            <button className={style.DeleteButton} onClick={this.onDeleteBtnClicked}>
+            <button className={style.DeleteButton} onClick={this.onDeleteButtonClick}>
                 <div className={style.deleteButtonText}>
                     <FontAwesomeIcon icon={solidIcons.faTrashAlt} className={style.buttonIcon}/>
                     删除

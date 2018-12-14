@@ -25,7 +25,7 @@ class OfflineDownloader extends Component
         this.setState({offlineDownloadURL: e.target.value});
     };
 
-    OfflineDownloaderButtonClicked = (e) =>
+    OfflineDownloaderButtonClick = (e) =>
     {
         e.preventDefault();
         postAsync(requestPrefix('/soulikeDrive/submitOfflineDownloadURL'), {url: this.state.offlineDownloadURL})
@@ -73,7 +73,7 @@ class OfflineDownloader extends Component
                            placeholder={'下载链接'}
                            onChange={this.onOfflineDownloaderInputChange} ref={'urlInput'}/>
                     <button className={style.submitButton}
-                            onClick={this.OfflineDownloaderButtonClicked}>提交
+                            onClick={this.OfflineDownloaderButtonClick}>提交
                     </button>
                 </form>
             </div>

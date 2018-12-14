@@ -15,7 +15,7 @@ class DownloadButton extends Component
         return false;
     }
 
-    onDownloadBtnClicked = (e) =>
+    onDownloadButtonClick = (e) =>
     {
         e.preventDefault();
         const {selectedFileList: fileList} = this.props;
@@ -32,7 +32,7 @@ class DownloadButton extends Component
     render()
     {
         return (
-            <button className={style.DownloadButton} onClick={this.onDownloadBtnClicked}>
+            <button className={style.DownloadButton} onClick={this.onDownloadButtonClick}>
                 <div className={style.downloadButtonText}>
                     <FontAwesomeIcon icon={solidIcons.faDownload} className={style.buttonIcon}/>
                     下载
