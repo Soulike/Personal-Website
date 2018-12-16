@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import style from './Title.module.scss';
+import style from './SubTitle.module.scss';
 
-class Title extends Component
+class SubTitle extends Component
 {
     render()
     {
         return (
-            <div className={style.Title}>
+            <div className={style.SubTitle}>
                 <header>{this.props.titleText}</header>
             </div>
         );
     }
 }
 
-Title.propTypes = {
+SubTitle.propTypes = {
     titleText: PropTypes.string.isRequired
 };
 
-export default Title;
+export default SubTitle;

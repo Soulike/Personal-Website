@@ -8,7 +8,7 @@ import {View as ArticleEditor} from './Pages/ArticleEditor';
 import {View as Blog} from './Pages/Blog';
 //import {View as MusicPlayer} from './Pages/MusicPlayer';
 import {View as SoulikeDrive} from './Pages/SoulikeDrive';
-//import {View as Options} from './Pages/Options';
+import {View as Options} from './Pages/Options';
 import {View as AboutMe} from './Pages/AboutMe';
 import {View as SoulikeDriveFileList} from './Pages/SoulikeDrive/Components/FileList';
 import {View as SoulikeDriveFileUploader} from './Pages/SoulikeDrive/Components/FileUploader';
@@ -24,8 +24,8 @@ const Routes = () => (
             <IndexRoute component={Blog}/>
             <Route path='/blog' component={Blog}/>
             <Route path='/article' component={Article}/>
-            {/*<Route path='/options' component={Options} onEnter={AuthProcessor.requireLogin}/>
-            <Route path='/dynamic' component={Dynamic} onEnter={AuthProcessor.requireLogin}/>*/}
+            <Route path='/options' component={Options} onEnter={requireLogin}/>
+            {/*<Route path='/dynamic' component={Dynamic} onEnter={requireLogin}/>*/}
             <Route path='/login' component={Login}/>
             <Route path='/hashGenerator' component={HashGenerator}/>
             <Route path='/base64Converter' component={Base64Converter}/>

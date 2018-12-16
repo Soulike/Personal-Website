@@ -6,7 +6,6 @@ import {Reducer as LoginReducer} from './Pages/Login';
 import {Reducer as BlogReducer} from './Pages/Blog';
 import {Reducer as DynamicReducer} from './Pages/Dynamic';
 import {Reducer as MusicPlayerReducer} from './Pages/MusicPlayer';
-import {Reducer as OptionsReducer} from './Pages/Options';
 import {Reducer as BannerReducer} from './Pages/Root/Components/Banner';
 import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/FileList';
 import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/TypeSelectBar';
@@ -27,7 +26,6 @@ const initValues = {
     },
     Dynamic: {},
     MusicPlayer: {},
-    Options: {},
     Banner: {
         bannerBackground: ''
     },
@@ -56,7 +54,6 @@ const Reducer = combineReducers({
     TypeSelectBar: TypeSelectBarReducer,
     Dynamic: DynamicReducer,
     MusicPlayer: MusicPlayerReducer,
-    Options: OptionsReducer,
     Banner: BannerReducer,
     FileList: FileListReducer,
     MostPopularCard: MostPopularCardReducer
