@@ -31,7 +31,7 @@ class BannerImageUploader extends Component
             {
                 if (e.lengthComputable)
                 {
-                    this.setState({updateProgress: e.loaded / e.total});
+                    this.setState({uploadProgress: e.loaded / e.total});
                 }
             }
         })

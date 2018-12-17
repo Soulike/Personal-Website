@@ -16,7 +16,7 @@ class Uploader extends Component
             fileNum: 0,
             fileSize: 0,
             fileList: [],
-            updateProgress: 0
+            uploadProgress: 0
         };
     }
 
@@ -52,7 +52,7 @@ class Uploader extends Component
             {
                 if (event.lengthComputable)
                 {
-                    this.setState({updateProgress: event.loaded / event.total});
+                    this.setState({uploadProgress: event.loaded / event.total});
                 }
             }
         })
@@ -66,7 +66,7 @@ class Uploader extends Component
                         fileNum: 0,
                         fileSize: 0,
                         fileList: [],
-                        updateProgress: 0
+                        uploadProgress: 0
                     });
                 }, 750);
                 if (statusCode === STATUS_CODE.SUCCESS)
@@ -86,7 +86,7 @@ class Uploader extends Component
             .catch(e =>
             {
                 this.setState({
-                    updateProgress: 0
+                    uploadProgress: 0
                 });
                 Alert.show('上传失败', false);
                 console.log(e);
@@ -100,7 +100,7 @@ class Uploader extends Component
 
     render()
     {
-        const {fileNum, fileSize, updateProgress} = this.state;
+        const {fileNum, fileSize, uploadProgress} = this.state;
         return (
             <div className={style.Uploader}>
                 <div className={style.title}>上传</div>
@@ -118,7 +118,7 @@ class Uploader extends Component
                     <button className={style.fileUploadBtn} onClick={this.onFormSubmit}>上传</button>
                 </form>
                 <div className={style.uploadProgressBarWrapper}>
-                    <ProgressBar progress={updateProgress}/>
+                    <ProgressBar progress={uploadProgress}/>
                 </div>
             </div>
         );
