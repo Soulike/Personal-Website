@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import style from './Options.module.scss';
 import {View as Title} from '../../Components/Title';
+import {View as BannerImageUploader} from './Components/BannerImageUploader';
 
 class Options extends Component
 {
@@ -8,7 +9,8 @@ class Options extends Component
     {
         return (
             <div className={style.Options}>
-                <Title titleText={'博客设置'}/>
+                <Title titleText={'网站设置'}/>
+                <BannerImageUploader/>
             </div>
         );
     }
