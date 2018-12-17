@@ -6,6 +6,7 @@ import {postAsync, requestPrefix} from '../../../../Static/Functions';
 import {STATUS_CODE} from '../../../../Static/Constants';
 import {View as Alert} from '../../../../Components/Alert';
 import {redirectToLogin} from '../../../Login/Functions';
+import {Functions as BannerFunctions} from '../../../Root/Components/Banner';
 
 class BannerImageUploader extends Component
 {
@@ -18,10 +19,10 @@ class BannerImageUploader extends Component
     }
 
 
-    // TODO: 后端接口实现
     onFormSubmit = (e) =>
     {
-        const $input = e.target;
+        e.preventDefault();
+        const $input = document.querySelector(`.${style.fileInput}`);
         const fileList = $input.files;
         const formData = new FormData();
         formData.append(`file`, fileList[0]);
@@ -40,7 +41,7 @@ class BannerImageUploader extends Component
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     Alert.show('上传成功', true);
-                    // TODO: 刷新页面头图
+                    BannerFunctions.refreshBannerImage();
                 }
                 else if (statusCode === STATUS_CODE.INVALID_SESSION)
                 {
@@ -74,13 +75,23 @@ class BannerImageUploader extends Component
         const $preview = document.querySelector(`.${style.preview}`);
         const $placeholder = document.querySelector(`.${style.placeholder}`);
         const file = $input.files[0];
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = e =>
+        // 如果表单不是空的，就读取文件并显示预览
+        if (file instanceof Blob)
         {
-            $placeholder.setAttribute('style', 'display: none');
-            $preview.setAttribute('style', `display:block; background-image: url(${e.target.result})`);
-        };
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = e =>
+            {
+                $placeholder.setAttribute('style', 'display: none');
+                $preview.setAttribute('style', `display:block; background-image: url(${e.target.result})`);
+            };
+        }
+        // 如果表单是空的，就直接恢复原样
+        else
+        {
+            $placeholder.removeAttribute('style');
+            $preview.removeAttribute('style');
+        }
     };
 
     render()
@@ -97,7 +108,8 @@ class BannerImageUploader extends Component
                 </div>
                 <div className={style.formWrapper}>
                     <form action="#" className={style.form} onSubmit={this.onFormSubmit}>
-                        <input type="file" className={style.fileInput} onChange={this.onFileInputChange}/>
+                        <input type="file" className={style.fileInput} accept={'image/*'}
+                               onChange={this.onFileInputChange}/>
                         <button className={style.submitButton}>上传</button>
                     </form>
                 </div>

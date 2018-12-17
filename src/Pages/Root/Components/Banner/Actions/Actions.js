@@ -3,13 +3,13 @@ import {REQUEST_FAILED, REQUEST_SUCCESS} from './ActionTypes';
 import {View as Alert} from '../../../../../Components/Alert';
 import {STATUS_CODE} from '../../../../../Static/Constants';
 
-export function getBannerImage()
+export function getBannerImage(refresh = false)
 {
     return async (dispatch) =>
     {
         try
         {
-            const res = await getAsync(requestPrefix('/getBannerImage'), true);
+            const res = await getAsync(requestPrefix('/getBannerImage'), !refresh);
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
