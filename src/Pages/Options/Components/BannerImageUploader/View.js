@@ -100,6 +100,7 @@ class BannerImageUploader extends Component
         return (
             <div className={style.BannerImageUploader}>
                 <SubTitle titleText={'头图上传'}/>
+                <div className={style.hint}>推荐分辨率为 1920×400 的图片</div>
                 <div className={style.previewWrapper}><span className={style.placeholder}>预览</span>
                     <div className={style.preview}/>
                 </div>

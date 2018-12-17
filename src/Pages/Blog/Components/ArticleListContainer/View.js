@@ -27,7 +27,7 @@ class ArticleListContainer extends Component
         {
             const {currentPage} = this.state;
             const {pageYOffset, innerHeight} = window;
-            if (pageYOffset > currentPage * innerHeight)
+            if (pageYOffset > currentPage * innerHeight * 0.75)
             {
                 this.getArticleListIfExist(this.props.selectedArticleTypeId);
             }

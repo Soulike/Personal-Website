@@ -3,6 +3,11 @@
 .BannerImageUploader {
     $width: 50rem;
 
+    .hint {
+        text-align: center;
+        color: #666;
+    }
+
     .previewWrapper {
         $ratio: 400/1920;
         border: 1px dashed #DDD;
