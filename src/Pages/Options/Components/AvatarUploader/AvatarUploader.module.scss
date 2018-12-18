@@ -1,0 +1,65 @@
+@import "../../../../Static/Button.module";
+
+.AvatarUploader {
+    $height: 15rem;
+
+    .hint {
+        text-align: center;
+        color: #666;
+    }
+
+    .uploaderWrapper {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+
+        .preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: $height;
+            height: $height;
+            border: 1px dashed #DDD;
+            border-radius: $height;
+            background-clip: border-box;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            .placeholder {
+                color: #666;
+                font-size: 1.25rem;
+            }
+        }
+
+        .formWrapper {
+            display: flex;
+            flex-direction: column;
+            height: $height;
+            justify-content: space-evenly;
+
+            .progressBarWrapper {
+
+            }
+
+            .form {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: space-around;
+                flex-wrap: wrap;
+
+                .fileInput {
+                    margin-right: 5rem;
+                }
+
+                .submitButton {
+                    @extend .btn-primary;
+                    @extend .btn-lg;
+                }
+            }
+        }
+    }
+}
