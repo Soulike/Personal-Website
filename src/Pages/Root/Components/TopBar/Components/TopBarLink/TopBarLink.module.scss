@@ -20,6 +20,8 @@
         color: #222;
         font-size: 0.8rem;
         text-decoration: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .topBarIcon
