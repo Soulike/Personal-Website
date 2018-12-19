@@ -5,7 +5,7 @@ import {View as ProgressBar} from '../../../../Components/ProgressBar';
 import {postAsync, requestPrefix} from '../../../../Static/Functions';
 import {STATUS_CODE} from '../../../../Static/Constants';
 import {View as Alert} from '../../../../Components/Alert';
-import {Functions as BannerFunctions} from '../../../Root/Components/Banner';
+import {Functions as BlogFunctions} from '../../../Blog';
 import {redirectToLogin} from '../../../Login/Functions';
 import {View as Hint} from '../Hint';
 
@@ -67,7 +67,7 @@ class AvatarUploader extends Component
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     Alert.show('上传成功', true);
-                    BannerFunctions.refreshBannerImage();
+                    BlogFunctions.refreshBlogInfo();
                 }
                 else if (statusCode === STATUS_CODE.INVALID_SESSION)
                 {
