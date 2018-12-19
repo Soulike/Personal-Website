@@ -4,6 +4,7 @@ import {View as Title} from '../../Components/Title';
 import {View as BannerImageUploader} from './Components/BannerImageUploader';
 import {View as DividingLine} from './Components/DividingLine';
 import {View as AvatarUploader} from './Components/AvatarUploader';
+import {View as ProfileCardImageUploader} from './Components/ProfileCardImageUploader';
 
 class Options extends Component
 {
@@ -14,8 +15,9 @@ class Options extends Component
                 <Title titleText={'网站设置'}/>
                 <BannerImageUploader/>
                 <DividingLine/>
-                <AvatarUploader/>
+                <ProfileCardImageUploader/>
                 <DividingLine/>
+                <AvatarUploader/>
             </div>
         );
     }

@@ -7,6 +7,7 @@ import {STATUS_CODE} from '../../../../Static/Constants';
 import {View as Alert} from '../../../../Components/Alert';
 import {Functions as BannerFunctions} from '../../../Root/Components/Banner';
 import {redirectToLogin} from '../../../Login/Functions';
+import {View as Hint} from '../Hint';
 
 class AvatarUploader extends Component
 {
@@ -100,7 +101,7 @@ class AvatarUploader extends Component
         return (
             <div className={style.AvatarUploader}>
                 <SubTitle titleText={'头像上传'}/>
-                <div className={style.hint}>推荐分辨率为 200×200 的图片</div>
+                <Hint>推荐分辨率为 200×200 的图片</Hint>
                 <div className={style.uploaderWrapper}>
                     <div className={style.preview}><span className={style.placeholder}>预览</span></div>
                     <div className={style.formWrapper}>

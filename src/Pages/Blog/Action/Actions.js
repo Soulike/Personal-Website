@@ -3,13 +3,13 @@ import {getAsync, requestPrefix} from '../../../Static/Functions';
 import {View as Alert} from '../../../Components/Alert';
 import {STATUS_CODE} from '../../../Static/Constants';
 
-export function getInfo()
+export function getInfo(isRefresh = false)
 {
     return async (dispatch) =>
     {
         try
         {
-            const res = await getAsync(requestPrefix('/getInfo'), true);
+            const res = await getAsync(requestPrefix('/getInfo'), !isRefresh);
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {

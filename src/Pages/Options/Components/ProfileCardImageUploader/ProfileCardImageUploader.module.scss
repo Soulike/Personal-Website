@@ -1,10 +1,10 @@
 @import "../../../../Static/Button.module";
 
-.BannerImageUploader {
+.ProfileCardImageUploader {
     $width: 50rem;
 
     .previewWrapper {
-        $ratio: 400/1920;
+        $ratio: 200/800;
         border: 1px dashed #DDD;
         width: $width;
         height: $width * $ratio;

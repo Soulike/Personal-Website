@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import style from './BannerImageUploader.module.scss';
-import SubTitle from '../../../../Components/SubTitle/View';
+import style from './ProfileCardImageUploader.module.scss';
+import {View as SubTitle} from '../../../../Components/SubTitle';
+import {View as Hint} from '../Hint';
 import ProgressBar from '../../../../Components/ProgressBar/View';
 import {postAsync, requestPrefix} from '../../../../Static/Functions';
 import {STATUS_CODE} from '../../../../Static/Constants';
 import {View as Alert} from '../../../../Components/Alert';
-import {redirectToLogin} from '../../../Login/Functions';
 import {Functions as BannerFunctions} from '../../../Root/Components/Banner';
-import Hint from '../Hint/View';
+import {redirectToLogin} from '../../../Login/Functions';
 
-class BannerImageUploader extends Component
+class ProfileCardImageUploader extends Component
 {
     constructor()
     {
@@ -19,7 +19,6 @@ class BannerImageUploader extends Component
         };
     }
 
-
     onFormSubmit = (e) =>
     {
         e.preventDefault();
@@ -27,7 +26,7 @@ class BannerImageUploader extends Component
         const fileList = $input.files;
         const formData = new FormData();
         formData.append(`file`, fileList[0]);
-        postAsync(requestPrefix('/options/uploadBannerImage'), formData, {
+        postAsync(requestPrefix('/options/uploadProfileCardImage'), formData, {
             onUploadProgress: e =>
             {
                 if (e.lengthComputable)
@@ -95,13 +94,14 @@ class BannerImageUploader extends Component
         }
     };
 
+
     render()
     {
         const {uploadProgress} = this.state;
         return (
-            <div className={style.BannerImageUploader}>
-                <SubTitle titleText={'头图上传'}/>
-                <Hint>推荐分辨率为 1920×400 的图片</Hint>
+            <div className={style.ProfileCardImageUploader}>
+                <SubTitle titleText={'资料卡图片上传'}/>
+                <Hint>推荐上传分辨率为 800×200 的图片，实际显示效果取决于页面缩放</Hint>
                 <div className={style.previewWrapper}><span className={style.placeholder}>预览</span>
                     <div className={style.preview}/>
                 </div>
@@ -120,4 +120,4 @@ class BannerImageUploader extends Component
     }
 }
 
-export default BannerImageUploader;
+export default ProfileCardImageUploader;
