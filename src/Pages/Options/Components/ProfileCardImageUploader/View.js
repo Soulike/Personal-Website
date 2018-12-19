@@ -101,7 +101,7 @@ class ProfileCardImageUploader extends Component
         return (
             <div className={style.ProfileCardImageUploader}>
                 <SubTitle titleText={'资料卡图片上传'}/>
-                <Hint>推荐上传分辨率为 800×200 的图片，实际显示效果取决于页面缩放</Hint>
+                <Hint>推荐上传分辨率为 320×80 的图片，实际显示效果取决于页面缩放</Hint>
                 <div className={style.previewWrapper}><span className={style.placeholder}>预览</span>
                     <div className={style.preview}/>
                 </div>
