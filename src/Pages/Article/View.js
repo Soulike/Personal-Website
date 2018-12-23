@@ -59,7 +59,7 @@ class Article extends Component
                         this.setState({...data}, () =>
                         {
                             highLight.initHighlighting();
-                            addScript('https://proxy.soulike.tech/cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
+                            addScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
                         });
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
