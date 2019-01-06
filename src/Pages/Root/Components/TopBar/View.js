@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {View as TopBarLink} from './Components/TopBarLink';
+import {Objects as TopBarObjects, View as TopBarLink} from './Components/TopBarLink';
 import {View as AuthController} from './Components/AuthController';
 import {View as TopBarMenu} from './Components/TopBarMenu';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,15 @@ class TopBar extends Component
     constructor()
     {
         super(...arguments);
+        const {TopBarRouteLink, TopBarUrlLink} = TopBarObjects;
         this.state = {
+            topBarLinks: [
+                new TopBarRouteLink('/', '博客', solidIcons.faHome),
+                new TopBarRouteLink('/soulikeDrive', '网盘'),
+                /*new TopBarRouteLink('/musicPlayer', '音乐播放器', solidIcons.faHome),*/
+                new TopBarUrlLink('https://note.soulike.tech', '笔记'),
+                new TopBarUrlLink('https://schedule.soulike.tech', '日程表')
+            ],
             menuLinks: [
                 new MenuLink(solidIcons.faHashtag, '哈希生成器', '/hashGenerator'),
                 new MenuLink(solidIcons.faHashtag, 'base64 转换器', '/base64Converter')
@@ -29,20 +37,20 @@ class TopBar extends Component
     render()
     {
         const {isBlur} = this.props;
-        const {menuLinks} = this.state;
+        const {topBarLinks, menuLinks} = this.state;
         const bannerImgStyle = {backgroundImage: this.props.bannerBackground};
         return (
             <div className={style.TopBar} style={isBlur ? null : {backgroundColor: '#FFF'}}>
-                <div className={style.linkWrapper}>
-                    <TopBarLink to={'/'} onlyActiveOnIndex={false} iconStyle={solidIcons.faHome} text={'博客'}/>
-                    <TopBarLink to={'/soulikeDrive'} onlyActiveOnIndex={false} text={'网盘'}/>
-                    <TopBarLink to={'/musicPlayer'} onlyActiveOnIndex={false} text={'音乐播放器'}/>
+                <nav className={style.linkWrapper}>
+                    {
+                        topBarLinks.map((link, i) => (<TopBarLink {...link} key={i}/>))
+                    }
                     <TopBarMenu iconStyle={solidIcons.faToolbox} menuName={'小工具'} menuLinks={menuLinks}/>
                     <TopBarLink to={'/aboutMe'} onlyActiveOnIndex={false} iconStyle={solidIcons.faChild} text={'关于我'}/>
                     <div className={style.authControllerWrapper}>
                         <AuthController/>
                     </div>
-                </div>
+                </nav>
                 {
                     isBlur && (<div>
                         <div className={`${style.mask} ${style.imageMask}`} style={bannerImgStyle}/>
