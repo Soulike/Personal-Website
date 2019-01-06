@@ -15,7 +15,7 @@ class MostPopularCard extends Component
             tabArray: [
                 new Tab(solidIcon.faEye, TabId.view),
                 new Tab(solidIcon.faThumbsUp, TabId.like),
-                new Tab(solidIcon.faComment, TabId.comment)
+                /*new Tab(solidIcon.faComment, TabId.comment)*/
             ]
         };
     }
