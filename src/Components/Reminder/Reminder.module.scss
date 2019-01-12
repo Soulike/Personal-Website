@@ -1,0 +1,35 @@
+.Reminder {
+    background-color: rgba(200, 200, 200, 0.25);
+    border: 1px solid rgba(200, 200, 200, 0.3);
+    border-left: 5px solid #AAA;
+    padding: 0.75rem 2rem;
+    line-height: 2rem;
+
+    a {
+        color: inherit;
+    }
+
+
+    &.REMINDER-TIP {
+        color: #004085;
+        background-color: #CCE5FF;
+        border-color: #B8DAFF;
+        border-left-color: #46AFE8;
+    }
+
+    &.REMINDER-WARNING {
+        color: #856404;
+        background-color: #FFF3CD;
+        border-color: #FFEEBA;
+        border-left-color: #DD0;
+        font-weight: bold;
+    }
+
+    &.REMINDER-CRITICAL_WARNING {
+        color: #721C24;
+        background-color: #F8D7DA;
+        border-color: #F5C6CB;
+        border-left-color: #F00;
+        font-weight: bolder;
+    }
+}

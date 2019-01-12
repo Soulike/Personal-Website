@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import {View as Title} from '../../Components/Title';
 import {CSSTransitionGroup} from 'react-transition-group';
-import {getHash} from '../../Static/Functions';
+import {getHash} from '../../Static/Functions/Crypto';
 import Clipboard from 'react-clipboard.js';
 import style from './HashGenerator.module.scss';
 import './Transition.scss';

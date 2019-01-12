@@ -1,7 +1,9 @@
 import Store from '../../Store';
 import {browserHistory} from 'react-router';
 import {loginStateInvalid, loginStateValid} from './Actions/Actions';
-import {getAsync, getHash, requestPrefix} from '../../Static/Functions';
+import {getAsync} from '../../Static/Functions/Net';
+import {getHash} from '../../Static/Functions/Crypto';
+import {requestPrefix} from '../../Static/Functions/Url';
 import {STATUS_CODE} from '../../Static/Constants';
 import {View as Alert} from '../../Components/Alert';
 

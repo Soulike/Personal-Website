@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {postAsync, requestPrefix} from '../../../../../../Static/Functions';
+import {postAsync} from '../../../../../../Static/Functions/Net';
+import {requestPrefix} from '../../../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../../../Components/Alert';
 import style from './OfflineDownloader.module.scss';
 import {STATUS_CODE} from '../../../../../../Static/Constants';

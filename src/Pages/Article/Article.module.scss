@@ -1,8 +1,7 @@
 @import "../../Static/Button.module";
 @import "../../Static/ArticleContent.module";
 
-.Article
-{
+.Article {
     @extend .ArticleContent;
     margin: 2rem auto;
     width: 60%;
@@ -13,11 +12,9 @@
     max-width: 1455px;
     min-height: 100%;
 
-    .articleTitle
-    {
+    .articleTitle {
         text-align: center;
-        font:
-        {
+        font: {
             size: 2rem;
             family: $serif;
             weight: bold;
@@ -25,25 +22,21 @@
         margin-bottom: 1rem;
     }
 
-    .articleBtnWrapper
-    {
+    .articleBtnWrapper {
         display: inline-block;
         margin: 0.5rem 0 1rem 0;
     }
 
-    .articleModifyBtn
-    {
+    .articleModifyBtn {
         @extend .btn-primary;
         margin-right: 1rem;
     }
 
-    .articleDeleteBtn
-    {
+    .articleDeleteBtn {
         @extend .btn-danger;
     }
 
-    .articleInfo
-    {
+    .articleInfo {
         display: inline-block;
         float: right;
         padding: 0.25rem 1.5rem;
@@ -57,13 +50,11 @@
         left: 2rem;
     }
 
-    .articleInfoTriangle
-    {
+    .articleInfoTriangle {
         width: 0;
         height: 0;
         background: transparent;
-        border:
-        {
+        border: {
             top: 1.25rem solid transparent;
             bottom: 1.25rem solid transparent;
             right: 1.25rem solid #46AFE8;
@@ -74,22 +65,23 @@
         top: 0;
     }
 
-    .articleInfo
-    {
-        .articleTime
-        {
+    .articleInfo {
+        .articleTime {
             display: inline-block;
             margin-right: 1rem;
         }
 
-        .articleType
-        {
+        .articleType {
             display: inline-block;
         }
     }
 
-    .articleContent
-    {
+    .timelinessReminderWrapper {
+        clear: both;
+        margin-bottom: 1rem;
+    }
+
+    .articleContent {
         clear: both;
         line-height: 1.75rem;
         color: #333;
@@ -98,66 +90,38 @@
         margin-bottom: 5rem;
     }
 
-    .articleFunctionButtonWrapper
-    {
+    .articleFunctionButtonWrapper {
         margin-bottom: 4rem;
     }
 
-    .articleFooter
-    {
-        border:
-        {
-            left: 5px solid #F00;
-            right: 1px solid rgba(255, 0, 0, 0.3);
-            top: 1px solid rgba(255, 0, 0, 0.3);
-            bottom: 1px solid rgba(255, 0, 0, 0.3);
+    .articleFooter {
+        img {
+            display: inline-block;
         }
-
-        background-color: rgba(255, 0, 0, 0.25);
-        padding: 0.5rem 1rem;
-        line-height: 2rem;
-        font-weight: bold;
-    }
-
-    .timeWarning
-    {
-
-    }
-
-    .copyRightWarning
-    {
-
     }
 }
 
-@media (max-width: 800px)
-{
-    .Article
-    {
+@media (max-width: 800px) {
+    .Article {
         width: 95%;
         padding: 0;
         margin: 2rem auto;
         border: none;
 
-        .articleBtnWrapper
-        {
+        .articleBtnWrapper {
             display: none;
             box-sizing: border-box;
         }
 
-        blockquote
-        {
+        blockquote {
             padding: 0;
         }
     }
 }
 
-@media (max-width: 400px)
-{
-    .Article
-    {
-        .articleInfo
-        {
+@media (max-width: 400px) {
+    .Article {
+        .articleInfo {
             display: block;
             float: none;
             position: static;
@@ -171,18 +135,15 @@
             text-align: center;
         }
 
-        .articleInfoTriangle
-        {
+        .articleInfoTriangle {
             display: none;
         }
 
-        .articleTitle
-        {
+        .articleTitle {
             font-size: 1.5rem;
         }
 
-        th, td
-        {
+        th, td {
             padding: 0;
         }
     }

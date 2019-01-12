@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ARTICLE_TYPE, STATUS_CODE} from '../../../../Static/Constants';
-import {getAsync, requestPrefix} from '../../../../Static/Functions';
+import {getAsync} from '../../../../Static/Functions/Net';
+import {requestPrefix} from '../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../Components/Alert';
 import {switchArticleType} from './Actions/Actions';
 import style from './TypeSelectBar.module.scss';

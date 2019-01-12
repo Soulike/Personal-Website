@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
-import {getAsync, requestPrefix} from '../../../Static/Functions';
+import {getAsync} from '../../../Static/Functions/Net';
+import {requestPrefix} from '../../../Static/Functions/Url';
 import {View as Alert} from '../../../Components/Alert';
 import {STATUS_CODE} from '../../../Static/Constants';
 

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import style from './AvatarUploader.module.scss';
 import {View as SubTitle} from '../../../../Components/SubTitle';
 import {View as ProgressBar} from '../../../../Components/ProgressBar';
-import {postAsync, requestPrefix} from '../../../../Static/Functions';
+import {requestPrefix} from '../../../../Static/Functions/Url';
+import {postAsync} from '../../../../Static/Functions/Net';
 import {STATUS_CODE} from '../../../../Static/Constants';
 import {View as Alert} from '../../../../Components/Alert';
 import {Functions as BlogFunctions} from '../../../Blog';
@@ -15,7 +16,7 @@ class AvatarUploader extends Component
     {
         super(...arguments);
         this.state = {
-            uploadProgress: 0,
+            uploadProgress: 0
         };
     }
 

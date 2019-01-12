@@ -1,4 +1,5 @@
-import {getAsync, requestPrefix, staticPrefix} from '../../../../../Static/Functions';
+import {requestPrefix, staticPrefix} from '../../../../../Static/Functions/Url';
+import {getAsync} from '../../../../../Static/Functions/Net';
 import {REQUEST_FAILED, REQUEST_SUCCESS} from './ActionTypes';
 import {View as Alert} from '../../../../../Components/Alert';
 import {STATUS_CODE} from '../../../../../Static/Constants';

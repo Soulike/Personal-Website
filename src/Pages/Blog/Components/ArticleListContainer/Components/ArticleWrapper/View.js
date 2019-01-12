@@ -3,14 +3,9 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {
-    appendToLikedList,
-    generateTimeStr,
-    isInLikedList,
-    removeFromLikedList,
-    staticPrefix,
-    submitLikeAsync
-} from '../../../../../../Static/Functions';
+import {appendToLikedList, isInLikedList, removeFromLikedList, submitLikeAsync} from '../../../../../../Static/Functions/Like';
+import {staticPrefix} from '../../../../../../Static/Functions/Url';
+import {generateTimeString} from '../../../../../../Static/Functions/Util';
 import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../Components/Alert/View';
 import style from './ArticleWrapper.module.scss';
@@ -68,7 +63,7 @@ class ArticleWrapper extends Component
                         {
                             this.setState({
                                 like: parseInt(data, 10),
-                                hasLiked: !hasLiked,
+                                hasLiked: !hasLiked
                             }, () =>
                             {
                                 if (isInLikedList(id))
@@ -112,7 +107,7 @@ class ArticleWrapper extends Component
         const {canLikeButtonClick} = this.state;
         const {id, title, view, comment, time, type, typeId, nickname, avatar} = this.props;
         const {like, hasLiked} = this.state;
-        const timeStr = generateTimeStr(time);
+        const timeStr = generateTimeString(time);
         return (
             <div className={style.ArticleWrapper}>
                 <div className={style.header}>

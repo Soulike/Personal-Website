@@ -2,18 +2,11 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {View as Alert} from '../../Components/Alert';
-import {
-    addScript,
-    appendToLikedList,
-    getAsync,
-    isInLikedList,
-    markdownToHtml,
-    postAsync,
-    prefixZero,
-    removeFromLikedList,
-    requestPrefix,
-    submitLikeAsync
-} from '../../Static/Functions';
+import {requestPrefix} from '../../Static/Functions/Url';
+import {appendScriptNodeByCode, appendScriptNodeByUrl, prefixZero} from '../../Static/Functions/Util';
+import {appendToLikedList, isInLikedList, removeFromLikedList, submitLikeAsync} from '../../Static/Functions/Like';
+import {getAsync, postAsync} from '../../Static/Functions/Net';
+import {markdownToHtml} from '../../Static/Functions/MDConverter';
 import highLight from 'highlight.js';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
@@ -21,12 +14,14 @@ import style from './Article.module.scss';
 import {STATUS_CODE} from '../../Static/Constants';
 import {redirectToLogin} from '../Login/Functions';
 import {View as Modal} from '../../Components/Modal';
+import {Types as ReminderTypes, View as Reminder} from '../../Components/Reminder';
 
 class Article extends Component
 {
     constructor()
     {
         super(...arguments);
+        const date = new Date();
         this.state = {
             id: 0,
             title: 'Loading……',
@@ -34,8 +29,8 @@ class Article extends Component
             type: 'Loading……',
             typeId: 0,
             like: 0,
-            time: 0,
-            modifyTime: 0,
+            createdAt: date.toISOString(),
+            updatedAt: date.toISOString(),
             hasLiked: false,
             canLikeButtonClick: true
         };
@@ -59,7 +54,8 @@ class Article extends Component
                         this.setState({...data}, () =>
                         {
                             highLight.initHighlighting();
-                            addScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
+                            appendScriptNodeByCode(`MathJax.Hub.Config({tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$']]}});`, 'text/x-mathjax-config');
+                            appendScriptNodeByUrl('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
                         });
                         document.title = `${data.title} - Soulike 的个人网站`;
                     }
@@ -177,7 +173,7 @@ class Article extends Component
                     {
                         this.setState({
                             like: parseInt(data, 10),
-                            hasLiked: !hasLiked,
+                            hasLiked: !hasLiked
                         }, () =>
                         {
                             if (isInLikedList(id))
@@ -217,10 +213,10 @@ class Article extends Component
 
     render()
     {
-        const {title, content, type, time, hasLiked, like, canLikeButtonClick} = this.state;
+        const {title, content, type, createdAt, updatedAt, hasLiked, like, canLikeButtonClick} = this.state;
         const {hasLoggedIn} = this.props;
         const contentHtml = markdownToHtml(content);
-        const daysAfterSubmit = Math.floor((Date.now() - Date.parse(time)) / (24 * 60 * 60 * 1000));
+        const daysAfterModification = Math.floor((Date.now() - Date.parse(updatedAt)) / (24 * 60 * 60 * 1000));
         return (
             <div className={style.Article}>
                 <div className={style.articleTitle}>{title}</div>
@@ -234,9 +230,17 @@ class Article extends Component
                 </div> : null}
                 <div className={style.articleInfo}>
                     <div className={style.articleInfoTriangle}/>
-                    <div className={style.articleTime}>{this.generateTimeString(time)}</div>
+                    <div className={style.articleTime}>{this.generateTimeString(createdAt)}</div>
                     <div className={style.articleType}>{type}</div>
                 </div>
+                {
+                    daysAfterModification > 30 ?
+                        <div className={style.timelinessReminderWrapper}>
+                            <Reminder type={ReminderTypes.WARNING}>
+                                本文章最后编辑于 {daysAfterModification} 天前，其内容可能已不具有时效性，请谨慎阅读。
+                            </Reminder>
+                        </div> : null
+                }
                 <div className={style.articleContent} dangerouslySetInnerHTML={{__html: contentHtml}}/>
                 <div className={style.articleFunctionButtonWrapper}>
                     <FunctionButton icon={solidIcon.faThumbsUp}
@@ -245,10 +249,13 @@ class Article extends Component
                                     hasClicked={hasLiked}/>
                 </div>
                 <div className={style.articleFooter}>
-                    <div
-                        className={style.timeWarning}>本文发表于 {daysAfterSubmit >= 0 ? daysAfterSubmit : 0} 天前，其内容可能已不具有时效性，请谨慎阅读。
-                    </div>
-                    <div className={style.copyRightWarning}>原创文章，转载请注明出处。禁止任何形式的商业使用。</div>
+                    <Reminder type={ReminderTypes.TIP}>
+                        本站作品采用
+                        <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                            知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
+                        </a>进行许可。
+                        <div>文章内容仅供参考，本人不对内容的正确性做出任何保证。</div>
+                    </Reminder>
                 </div>
             </div>
         );

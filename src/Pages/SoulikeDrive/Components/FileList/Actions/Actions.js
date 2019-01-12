@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
-import {downloadFile, getAsync, postAsync, requestPrefix} from '../../../../../Static/Functions';
+import {downloadFile, getAsync, postAsync} from '../../../../../Static/Functions/Net';
+import {requestPrefix} from '../../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../../Components/Alert';
 import {STATUS_CODE} from '../../../../../Static/Constants';
 import {redirectToLogin} from '../../../../Login/Functions';

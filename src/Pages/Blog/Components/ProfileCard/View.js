@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAsync, requestPrefix, staticPrefix} from '../../../../Static/Functions';
+import {getAsync} from '../../../../Static/Functions/Net';
+import {requestPrefix, staticPrefix} from '../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../Components/Alert';
 import style from './ProfileCard.module.scss';
 import {STATUS_CODE} from '../../../../Static/Constants';

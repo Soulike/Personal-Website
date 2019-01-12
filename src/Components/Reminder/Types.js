@@ -1,0 +1,5 @@
+export const TIP = 'REMINDER-TIP';
+
+export const WARNING = 'REMINDER-WARNING';
+
+export const CRITICAL_WARNING = 'REMINDER-CRITICAL_WARNING';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getAsync} from '../../../../Static/Functions';
+import {getAsync} from '../../../../Static/Functions/Net';
 import style from './Footer.module.scss';
 
 class Footer extends Component

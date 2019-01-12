@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
-import {getAsync, requestPrefix} from '../../Static/Functions';
+import {getAsync} from '../../Static/Functions/Net';
+import {requestPrefix} from '../../Static/Functions/Url';
 import {STATUS_CODE} from '../../Static/Constants';
 import style from './AboutMe.module.scss';
 

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as ProgressBar} from '../../../../../../Components/ProgressBar';
-import {postAsync, requestPrefix} from '../../../../../../Static/Functions';
+import {postAsync} from '../../../../../../Static/Functions/Net';
+import {requestPrefix} from '../../../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../../../Components/Alert';
 import style from './Uploader.module.scss';
 import {STATUS_CODE} from '../../../../../../Static/Constants';

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import {generateTimeStr} from '../../../../../../../../Static/Functions';
+import {generateTimeString} from '../../../../../../../../Static/Functions/Util';
 import style from './CardBodyListItem.module.scss';
 
 class CardBodyListItem extends Component
@@ -34,7 +34,7 @@ class CardBodyListItem extends Component
                         </div>
                     </div>
                     <div className={style.timeArea}>
-                        {generateTimeStr(time)}
+                        {generateTimeString(time)}
                     </div>
                 </div>
             </div>

@@ -5,7 +5,9 @@ import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './Login.module.scss';
-import {getHash, postAsync, requestPrefix} from '../../Static/Functions';
+import {getHash} from '../../Static/Functions/Crypto';
+import {postAsync} from '../../Static/Functions/Net';
+import {requestPrefix} from '../../Static/Functions/Url';
 import {STATUS_CODE} from '../../Static/Constants';
 import {removeLoginToken, setOffline, setOnline} from './Functions';
 

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import highLight from 'highlight.js';
-import {getAsync, markdownToHtml, postAsync, requestPrefix} from '../../Static/Functions';
+import {getAsync, postAsync} from '../../Static/Functions/Net';
+import {markdownToHtml} from '../../Static/Functions/MDConverter';
+import {requestPrefix} from '../../Static/Functions/Url';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './ArticleEditor.module.scss';
