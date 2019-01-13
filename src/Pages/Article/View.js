@@ -23,11 +23,11 @@ class Article extends Component
         super(...arguments);
         const date = new Date();
         this.state = {
-            id: 0,
+            articleId: 0,
             title: 'Loading……',
             content: 'Loading……',
-            type: 'Loading……',
-            typeId: 0,
+            articleType: 'Loading……',
+            articleTypeId: 0,
             like: 0,
             createdAt: date.toISOString(),
             updatedAt: date.toISOString(),
@@ -91,13 +91,13 @@ class Article extends Component
     onModifyButtonClick = (e) =>
     {
         e.preventDefault();
-        if (this.state.id !== 0)
+        if (this.state.articleId !== 0)
         {
-            const {id, title, content, typeId} = this.state;
+            const {articleId, title, content, articleTypeId} = this.state;
             sessionStorage.setItem('title', title);
             sessionStorage.setItem('content', content);
-            sessionStorage.setItem('typeId', typeId);
-            browserHistory.push(`/articleEditor?modify=${true}&articleId=${id}`);
+            sessionStorage.setItem('articleTypeId', articleTypeId);
+            browserHistory.push(`/articleEditor?modify=${true}&articleId=${articleId}`);
         }
         else
         {
@@ -108,12 +108,13 @@ class Article extends Component
     onDeleteButtonClick = (e) =>
     {
         e.preventDefault();
-        if (this.state.id !== 0)
+        const {articleId} = this.state;
+        if (articleId !== 0)
         {
             const {title} = this.state;
             Modal.show('删除确认', `确认要删除文章《${title}》吗？`, () =>
             {
-                postAsync(requestPrefix('/blog/deleteArticle'), {articleId: this.state.id})
+                postAsync(requestPrefix('/blog/deleteArticle'), {articleId})
                     .then(res =>
                     {
                         const {statusCode} = res;
@@ -164,25 +165,26 @@ class Article extends Component
     {
         this.setState({canLikeButtonClick: false}, () =>
         {
-            const {hasLiked, id} = this.state;
-            submitLikeAsync(id, !hasLiked)
+            const {hasLiked, articleId} = this.state;
+            submitLikeAsync(articleId, !hasLiked)
                 .then(res =>
                 {
                     const {statusCode, data} = res;
+                    const {like} = data;
                     if (statusCode === STATUS_CODE.SUCCESS)
                     {
                         this.setState({
-                            like: parseInt(data, 10),
+                            like: parseInt(like, 10),
                             hasLiked: !hasLiked
                         }, () =>
                         {
-                            if (isInLikedList(id))
+                            if (isInLikedList(articleId))
                             {
-                                removeFromLikedList(id);
+                                removeFromLikedList(articleId);
                             }
                             else
                             {
-                                appendToLikedList(id);
+                                appendToLikedList(articleId);
                             }
                         });
                     }
@@ -213,7 +215,7 @@ class Article extends Component
 
     render()
     {
-        const {title, content, type, createdAt, updatedAt, hasLiked, like, canLikeButtonClick} = this.state;
+        const {title, content, articleType, createdAt, updatedAt, hasLiked, like, canLikeButtonClick} = this.state;
         const {hasLoggedIn} = this.props;
         const contentHtml = markdownToHtml(content);
         const daysAfterModification = Math.floor((Date.now() - Date.parse(updatedAt)) / (24 * 60 * 60 * 1000));
@@ -231,7 +233,7 @@ class Article extends Component
                 <div className={style.articleInfo}>
                     <div className={style.articleInfoTriangle}/>
                     <div className={style.articleTime}>{this.generateTimeString(createdAt)}</div>
-                    <div className={style.articleType}>{type}</div>
+                    <div className={style.articleType}>{articleType}</div>
                 </div>
                 {
                     daysAfterModification > 30 ?

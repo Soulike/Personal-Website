@@ -59,6 +59,12 @@ export function generateTimeString(time)
     }
 }
 
+export function generateFullTimeString(time)
+{
+    const date = new Date(time);
+    return `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(date.getDate())} ${prefixZero(date.getHours())}:${prefixZero(date.getMinutes())}`;
+}
+
 export function prefixZero(num)
 {
     if (num >= 0 && num < 10)
@@ -70,10 +76,3 @@ export function prefixZero(num)
         return num.toString();
     }
 }
-
-export default {
-    appendScriptNodeByUrl,
-    appendScriptNodeByCode,
-    generateTimeString,
-    prefixZero
-};

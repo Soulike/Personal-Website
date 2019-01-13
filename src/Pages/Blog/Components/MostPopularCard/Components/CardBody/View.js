@@ -28,9 +28,10 @@ class CardBody extends Component
             .then(res =>
             {
                 const {statusCode, data} = res;
+                const {popularArticleList} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({...data});
+                    this.setState({...popularArticleList});
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
@@ -81,7 +82,7 @@ class CardBody extends Component
                         {
                             articleList.map(article =>
                             {
-                                return <CardBodyListItem {...article} key={article.id}/>;
+                                return <CardBodyListItem {...article} key={article.articleId}/>;
                             })
                         }
                     </div>

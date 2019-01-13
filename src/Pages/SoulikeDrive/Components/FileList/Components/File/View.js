@@ -17,15 +17,15 @@ class File extends Component
     onFileClick = () =>
     {
         const {selected} = this.state;
-        const {id} = this.props;
+        const {fileId} = this.props;
 
         if (selected)
         {
-            Store.dispatch(fileUnselected(id));
+            Store.dispatch(fileUnselected(fileId));
         }
         else
         {
-            Store.dispatch(fileSelected(id));
+            Store.dispatch(fileSelected(fileId));
         }
         this.refs.fileCheckbox.checked = !selected;
         this.setState({selected: !selected});
@@ -53,12 +53,12 @@ class File extends Component
     render()
     {
         const {selected} = this.state;
-        const {name, size, uploader, uploadTime} = this.props;
+        const {fileName, fileSize, uploader, uploadTime} = this.props;
         return (
             <tr className={`${style.File} ${selected ? style.selected : ''}`} onClick={this.onFileClick}>
                 <td><input type="checkbox" ref={'fileCheckbox'}/></td>
-                <td>{name}</td>
-                <td>{(size / 1024 / 1024).toFixed(2)}M</td>
+                <td>{fileName}</td>
+                <td>{(fileSize / 1024 / 1024).toFixed(2)}M</td>
                 <td>{uploader}</td>
                 <td>{this.timestampFormat(uploadTime)}</td>
             </tr>
@@ -67,9 +67,9 @@ class File extends Component
 }
 
 File.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
+    fileId: PropTypes.number.isRequired,
+    fileName: PropTypes.string.isRequired,
+    fileSize: PropTypes.number.isRequired,
     uploader: PropTypes.string.isRequired,
     uploadTime: PropTypes.string.isRequired
 };

@@ -1,22 +1,20 @@
 export function requestPrefix(url)
 {
-    while (url.charAt(0) === '/')
-    {
-        url = url.substring(1);
-    }
+    url = removePrependSlashes(url);
     return `/server/${url}`;
 }
 
 export function staticPrefix(url)
 {
-    while (url.charAt(0) === '/')
-    {
-        url = url.substring(1);
-    }
+    url = removePrependSlashes(url);
     return url ? `https://static.soulike.tech/userImage/${url}` : '';
 }
 
-export default {
-    requestPrefix,
-    staticPrefix
-};
+export function removePrependSlashes(str)
+{
+    while (str.charAt(0) === '/')
+    {
+        str = str.substring(1);
+    }
+    return str;
+}

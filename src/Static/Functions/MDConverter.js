@@ -11,4 +11,3 @@ export function markdownToHtml(markdown)
     return converter.makeHtml(markdown);
 }
 
-export default {markdownToHtml};

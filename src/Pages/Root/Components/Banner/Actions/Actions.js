@@ -14,8 +14,8 @@ export function getBannerImage(refresh = false)
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
-                const {url} = data;
-                dispatch(requestSuccess(staticPrefix(url)));
+                const {bannerImageFileName} = data;
+                dispatch(requestSuccess(staticPrefix(bannerImageFileName)));
             }
             else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
             {
@@ -32,11 +32,11 @@ export function getBannerImage(refresh = false)
     };
 }
 
-export function requestSuccess(url)
+export function requestSuccess(bannerImageFileName)
 {
     return {
         type: REQUEST_SUCCESS,
-        url
+        bannerImageFileName
     };
 }
 

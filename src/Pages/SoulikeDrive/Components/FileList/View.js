@@ -36,7 +36,7 @@ class FileList extends Component
                             </tr>
                             {fileList.map((file) =>
                             {
-                                return (<File {...file} key={file.id}/>);
+                                return (<File {...file} key={file.articleId}/>);
                             })}
                             </tbody>
                         </table>

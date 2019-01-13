@@ -18,7 +18,7 @@ const initValues = {
     },
     Blog: {
         nickname: '',
-        avatar: ''
+        avatarFileName: ''
     },
     TypeSelectBar: {
         selectedArticleTypeId: ARTICLE_TYPE.ALL,
@@ -27,7 +27,7 @@ const initValues = {
     Dynamic: {},
     MusicPlayer: {},
     Banner: {
-        bannerBackground: ''
+        bannerImageFileUrl: ''
     },
     FileList: {
         fileList: [],

@@ -63,9 +63,10 @@ class ArticleListContainer extends Component
                 this.getArticleListAsync(articleTypeId, currentPage + 1)
                     .then(data =>
                     {
-                        if (data.length !== 0)// 如果有数据就更新数据
+                        const {articleList} = data;
+                        if (articleList.length !== 0)// 如果有数据就更新数据
                         {
-                            this.setState({articleList: [...this.state.articleList, ...data]});
+                            this.setState({articleList: [...this.state.articleList, ...articleList]});
                         }
                         else// 如果服务器返回列表为空，那就下一次没必要再发送任何请求，设置标志为true
                         {
@@ -122,7 +123,7 @@ class ArticleListContainer extends Component
                                     transitionLeaveTimeout={1}>
                     {articleList.map(article =>
                     {
-                        return <ArticleWrapper key={article.id} {...article}/>;
+                        return <ArticleWrapper key={article.articleId} {...article}/>;
                     })}
                 </CSSTransitionGroup>
             </div>

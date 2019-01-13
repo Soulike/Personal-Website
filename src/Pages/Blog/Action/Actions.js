@@ -14,8 +14,8 @@ export function getInfo(isRefresh = false)
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
-                const {nickname, avatar} = data;
-                dispatch(getInfoSuccess(nickname, avatar));
+                const {nickname, avatarFileName} = data;
+                dispatch(getInfoSuccess(nickname, avatarFileName));
             }
             else
             {
@@ -36,12 +36,12 @@ export function getInfo(isRefresh = false)
 
 }
 
-export function getInfoSuccess(nickname, avatar)
+export function getInfoSuccess(nickname, avatarFileName)
 {
     return {
         type: ActionTypes.GET_INFO_SUCCESS,
         nickname,
-        avatar
+        avatarFileName
     };
 }
 

@@ -4,11 +4,11 @@ export default (state = {}, action) =>
 {
     if (action.type === ActionTypes.GET_INFO_SUCCESS)
     {
-        const {nickname, avatar} = action;
+        const {nickname, avatarFileName} = action;
         return {
             ...state,
             nickname,
-            avatar
+            avatarFileName
         };
     }
     else if (action.type === ActionTypes.GET_INFO_FAILED)

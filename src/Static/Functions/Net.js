@@ -50,9 +50,3 @@ export function downloadFile(url)
     };
     document.body.appendChild(iframe);
 }
-
-export default {
-    getAsync,
-    postAsync,
-    downloadFile
-};

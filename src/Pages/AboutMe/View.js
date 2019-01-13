@@ -25,7 +25,8 @@ class AboutMe extends Component
                 const {statusCode, data} = res;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({aboutMe: data});
+                    const {aboutMe} = data;
+                    this.setState({aboutMe});
                 }
                 else
                 {

@@ -23,9 +23,10 @@ class TypeSelectBar extends Component
             .then(res =>
             {
                 const {statusCode, data} = res;
+                const {articleTypes} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({articleTypes: data});
+                    this.setState({articleTypes});
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {

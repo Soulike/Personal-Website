@@ -9,12 +9,12 @@ class CardBodyListItem extends Component
 {
     render()
     {
-        const {title, like, view, id, comment, time} = this.props;
+        const {title, like, view, articleId, comment, createdAt} = this.props;
         return (
             <div className={style.CardBodyListItem}>
                 <div className={style.titleWrapper}>
                     <a className={style.title}
-                       href={`/article?articleId=${id}`}
+                       href={`/article?articleId=${articleId}`}
                        rel="noopener noreferrer"
                        target='_blank'>{title}</a>
                 </div>
@@ -34,7 +34,7 @@ class CardBodyListItem extends Component
                         </div>
                     </div>
                     <div className={style.timeArea}>
-                        {generateTimeString(time)}
+                        {generateTimeString(createdAt)}
                     </div>
                 </div>
             </div>
@@ -44,8 +44,8 @@ class CardBodyListItem extends Component
 
 CardBodyListItem.propTypes = {
     title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    time: PropTypes.string.isRequired,
+    articleId: PropTypes.number.isRequired,
+    createdAt: PropTypes.string.isRequired,
     view: PropTypes.number.isRequired,
     like: PropTypes.number.isRequired,
     comment: PropTypes.number.isRequired

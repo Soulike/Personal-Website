@@ -1,4 +1,4 @@
-import {REQUEST_SUCCESS, REQUEST_FAILED} from './Actions/ActionTypes';
+import {REQUEST_FAILED, REQUEST_SUCCESS} from './Actions/ActionTypes';
 
 export default (state = {}, action) =>
 {
@@ -7,7 +7,7 @@ export default (state = {}, action) =>
     {
         return {
             ...state,
-            bannerBackground: `url(${action.url})`
+            bannerImageFileUrl: `url(${action.bannerImageFileName})`
         };
     }
     else if (type === REQUEST_FAILED)

@@ -12,9 +12,9 @@ class ProfileCard extends Component
     {
         super(...arguments);
         this.state = {
-            image: '',
-            sayingNum: 0,
-            articleNum: 0
+            profileCardImage: '',
+            sayingAmount: 0,
+            articleAmount: 0
         };
     }
 
@@ -26,12 +26,7 @@ class ProfileCard extends Component
                 const {statusCode, data} = res;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    const {img, sayingNum, articleNum} = data;
-                    this.setState({
-                        image: img,
-                        sayingNum,
-                        articleNum
-                    });
+                    this.setState({...data});
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
@@ -47,23 +42,23 @@ class ProfileCard extends Component
 
     render()
     {
-        const {nickname, avatar} = this.props;
-        const {image, sayingNum, articleNum} = this.state;
+        const {nickname, avatarFileName} = this.props;
+        const {profileCardImage, sayingAmount, articleAmount} = this.state;
         return (
             <div className={style.ProfileCard}>
                 <div className={style.profileCardImage}
-                     style={{backgroundImage: `url(${staticPrefix(image)})`}}/>
+                     style={{backgroundImage: `url(${staticPrefix(profileCardImage)})`}}/>
                 <div className={style.avatarAndNicknameWrapper}>
-                    <img src={staticPrefix(avatar)} alt="avatar" className={style.avatar}/>
+                    <img src={staticPrefix(avatarFileName)} alt="avatar" className={style.avatar}/>
                     <div className={style.nickname}>{nickname}</div>
                 </div>
                 <div className={style.numWrapper}>
-                    <div className={style.sayingNumWrapper}>
-                        <div className={style.profileCardNum}>{sayingNum}</div>
+                    <div className={style.sayingAmountWrapper}>
+                        <div className={style.profileCardAmount}>{sayingAmount}</div>
                         <div className={style.profileCardLabel}>说说</div>
                     </div>
-                    <div className={style.articleNumWrapper}>
-                        <div className={style.profileCardNum}>{articleNum}</div>
+                    <div className={style.articleAmountWrapper}>
+                        <div className={style.profileCardAmount}>{articleAmount}</div>
                         <div className={style.profileCardLabel}>文章</div>
                     </div>
                 </div>
@@ -74,10 +69,10 @@ class ProfileCard extends Component
 
 const mapStateToProps = (state) =>
 {
-    const {nickname, avatar} = state['Blog'];
+    const {nickname, avatarFileName} = state['Blog'];
     return {
         nickname,
-        avatar
+        avatarFileName
     };
 };
 

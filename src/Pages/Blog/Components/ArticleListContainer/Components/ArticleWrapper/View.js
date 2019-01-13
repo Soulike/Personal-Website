@@ -25,10 +25,10 @@ class ArticleWrapper extends Component
 
     componentDidMount()
     {
-        const {id, like} = this.props;
+        const {articleId, like} = this.props;
         this.setState({
             like,
-            hasLiked: isInLikedList(id)
+            hasLiked: isInLikedList(articleId)
         });
     }
 
@@ -54,25 +54,26 @@ class ArticleWrapper extends Component
         {
             this.setState({canLikeButtonClick: false}, () =>
             {
-                const {id} = this.props;
-                submitLikeAsync(id, !hasLiked)
+                const {articleId} = this.props;
+                submitLikeAsync(articleId, !hasLiked)
                     .then(res =>
                     {
                         const {statusCode, data} = res;
                         if (statusCode === STATUS_CODE.SUCCESS)
                         {
+                            const {like} = data;
                             this.setState({
-                                like: parseInt(data, 10),
+                                like: parseInt(like, 10),
                                 hasLiked: !hasLiked
                             }, () =>
                             {
-                                if (isInLikedList(id))
+                                if (isInLikedList(articleId))
                                 {
-                                    removeFromLikedList(id);
+                                    removeFromLikedList(articleId);
                                 }
                                 else
                                 {
-                                    appendToLikedList(id);
+                                    appendToLikedList(articleId);
                                 }
                             });
                         }
@@ -105,14 +106,14 @@ class ArticleWrapper extends Component
     render()
     {
         const {canLikeButtonClick} = this.state;
-        const {id, title, view, comment, time, type, typeId, nickname, avatar} = this.props;
+        const {articleId, title, view, comment, createdAt, articleType, articleTypeId, nickname, avatarFileName} = this.props;
         const {like, hasLiked} = this.state;
-        const timeStr = generateTimeString(time);
+        const timeStr = generateTimeString(createdAt);
         return (
             <div className={style.ArticleWrapper}>
                 <div className={style.header}>
                     <div className={style.avatarWrapper}>
-                        <img src={staticPrefix(avatar)} alt="avatar" className={style.avatar}/>
+                        <img src={staticPrefix(avatarFileName)} alt="avatar" className={style.avatar}/>
                     </div>
                     <div className={style.headerMidPart}>
                         <div className={style.nickname}>{nickname}</div>
@@ -120,19 +121,19 @@ class ArticleWrapper extends Component
                     </div>
                 </div>
                 <div className={style.articleTypeWrapper}
-                     data-article_type_id={typeId}
+                     data-article_type_id={articleTypeId}
                      onClick={this.onArticleTypeClick}>
                     <div className={style.articleType}
-                         data-article_type_id={typeId}
-                         onClick={this.onArticleTypeClick}>{type}</div>
+                         data-article_type_id={articleTypeId}
+                         onClick={this.onArticleTypeClick}>{articleType}</div>
                     <div className={style.articleTypeTriangle}
-                         data-article_type_id={typeId}
+                         data-article_type_id={articleTypeId}
                          onClick={this.onArticleTypeClick}>
                     </div>
                 </div>
                 <div className={style.mainPart}>
                     <div className={style.mainPartDescription}>发表了文章：</div>
-                    <a href={`/article?articleId=${id}`}
+                    <a href={`/article?articleId=${articleId}`}
                        target='_blank'
                        rel="noopener noreferrer"
                        className={style.titleWrapper}>
@@ -155,22 +156,22 @@ class ArticleWrapper extends Component
 }
 
 ArticleWrapper.propTypes = {
-    id: PropTypes.number.isRequired,
+    articleId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     view: PropTypes.number.isRequired,
     like: PropTypes.number.isRequired,
     comment: PropTypes.number.isRequired,
-    time: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    typeId: PropTypes.number.isRequired
+    createdAt: PropTypes.string.isRequired,
+    articleType: PropTypes.string.isRequired,
+    articleTypeId: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) =>
 {
-    const {nickname, avatar} = state['Blog'];
+    const {nickname, avatarFileName} = state['Blog'];
     return {
         nickname,
-        avatar
+        avatarFileName
     };
 };
 

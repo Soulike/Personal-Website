@@ -6,5 +6,3 @@ export function getHash(text, hashMethod)
     hash.update(text);
     return hash.digest('hex');
 }
-
-export default {getHash};

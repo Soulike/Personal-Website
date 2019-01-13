@@ -31,14 +31,14 @@ class TopBar extends Component
 
     shouldComponentUpdate(nextProps, nextState, nextContext)
     {
-        return this.props.bannerBackground !== nextProps.bannerBackground;
+        return this.props.bannerImageFileUrl !== nextProps.bannerImageFileUrl;
     }
 
     render()
     {
         const {isBlur} = this.props;
         const {topBarLinks, menuLinks} = this.state;
-        const bannerImgStyle = {backgroundImage: this.props.bannerBackground};
+        const bannerImgStyle = {backgroundImage: this.props.bannerImageFileUrl};
         return (
             <div className={style.TopBar} style={isBlur ? null : {backgroundColor: '#FFF'}}>
                 <nav className={style.linkWrapper}>
@@ -64,14 +64,13 @@ class TopBar extends Component
 
 TopBar.propTypes = {
     isBlur: PropTypes.bool.isRequired,
-    bannerBackground: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) =>
 {
-    const {bannerBackground} = state.Banner;
+    const {bannerImageFileUrl} = state.Banner;
     return {
-        bannerBackground
+        bannerImageFileUrl
     };
 };
 

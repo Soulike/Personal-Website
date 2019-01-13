@@ -18,7 +18,7 @@ class ArticleEditor extends Component
         this.state = {
             title: '',
             content: '',
-            typeId: 0,
+            articleTypeId: 0,
             allTypes: [],
             previewHTML: ''
         };
@@ -29,7 +29,7 @@ class ArticleEditor extends Component
         document.title = '文章编辑器 - Soulike 的个人网站';
         const title = sessionStorage.getItem('title');
         const content = sessionStorage.getItem('content');
-        const typeId = sessionStorage.getItem('typeId');
+        const articleTypeId = sessionStorage.getItem('articleTypeId');
         if (title)
         {
             this.setState({title});
@@ -46,18 +46,19 @@ class ArticleEditor extends Component
             });
             this.refs.content.value = content;
         }
-        if (typeId)
+        if (articleTypeId)
         {
-            this.setState({typeId});
+            this.setState({articleTypeId});
         }
 
         getAsync(requestPrefix('/blog/getArticleTypes'), false)
             .then(res =>
             {
                 const {statusCode, data} = res;
+                const {articleTypes} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({allTypes: data});
+                    this.setState({allTypes: articleTypes});
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
@@ -95,20 +96,15 @@ class ArticleEditor extends Component
 
     onTypeChange = (e) =>
     {
-        this.setState({typeId: e.target.value});
-        sessionStorage.setItem('typeId', e.target.value);
+        this.setState({articleTypeId: e.target.value});
+        sessionStorage.setItem('articleTypeId', e.target.value);
     };
 
     onSubmit = (e) =>
     {
         e.preventDefault();
-        const {title, content, typeId} = this.state;
-        let {articleId} = this.props.location.query;
-
-        if (!articleId)
-        {
-            articleId = 0;
-        }
+        const {title, content, articleTypeId} = this.state;
+        const articleId = this.props.location.query.articleId ? this.props.location.query.articleId : 0;
 
         if (!title)
         {
@@ -118,7 +114,7 @@ class ArticleEditor extends Component
         {
             Alert.show('请填写正文', false);
         }
-        else if (!parseInt(typeId, 10))
+        else if (!parseInt(articleTypeId, 10))
         {
             Alert.show('请选择分类', false);
         }
@@ -131,10 +127,10 @@ class ArticleEditor extends Component
             else
             {
                 postAsync(requestPrefix('/blog/submitArticle'), {
-                    id: articleId,
+                    articleId,
                     title,
-                    content: content,
-                    typeId
+                    content,
+                    articleTypeId
                 })
                     .then(res =>
                     {
@@ -150,19 +146,20 @@ class ArticleEditor extends Component
                                 Alert.show('修改成功', true);
                             }
 
-                            sessionStorage.removeItem('typeId');
+                            sessionStorage.removeItem('articleTypeId');
                             sessionStorage.removeItem('title');
                             sessionStorage.removeItem('content');
                             this.setState({
-                                typeId: 0,
+                                articleTypeId: 0,
                                 title: '',
                                 content: ''
                             });
                             this.refs.title.value = '';
                             this.refs.content.value = '';
+                            const {articleId: respondArticleId} = data;
                             setTimeout(() =>
                             {
-                                browserHistory.push(`/article?articleId=${data}`);
+                                browserHistory.push(`/article?articleId=${respondArticleId}`);
                             }, 1000);
                         }
                         else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
@@ -190,7 +187,7 @@ class ArticleEditor extends Component
 
     render()
     {
-        const {typeId, previewHTML} = this.state;
+        const {articleTypeId, previewHTML} = this.state;
         return (
             <div className={style.ArticleEditor}>
                 <Title titleText={'编辑文章'}/>
@@ -205,7 +202,7 @@ class ArticleEditor extends Component
                           onChange={this.onContentChange}/>
                 <div className={style.articlePreview} dangerouslySetInnerHTML={{__html: previewHTML}}/>
                 <div className={style.articleTypeSelectWrapper}>
-                    <select className={style.articleTypeSelect} value={typeId} onChange={this.onTypeChange}>
+                    <select className={style.articleTypeSelect} value={articleTypeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
                         {this.state.allTypes.map(type =>
                         {

@@ -13,12 +13,12 @@ class Banner extends Component
 
     shouldComponentUpdate(nextProps, nextState, nextContext)
     {
-        return this.props.bannerBackground !== nextProps.bannerBackground;
+        return this.props.bannerImageFileUrl !== nextProps.bannerImageFileUrl;
     }
 
     render()
     {
-        const hasBackgroundStyle = {backgroundImage: this.props.bannerBackground};
+        const hasBackgroundStyle = {backgroundImage: this.props.bannerImageFileUrl};
         return (
             <div className={style.Banner} style={hasBackgroundStyle}>
                 <TopBar isBlur={true}/>
@@ -29,9 +29,9 @@ class Banner extends Component
 
 const mapStateToProps = (state) =>
 {
-    const {bannerBackground} = state.Banner;
+    const {bannerImageFileUrl} = state.Banner;
     return {
-        bannerBackground
+        bannerImageFileUrl
     };
 };
 

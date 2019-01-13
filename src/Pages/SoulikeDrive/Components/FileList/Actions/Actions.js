@@ -12,7 +12,7 @@ export function getFileList()
         try
         {
             const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'), false);
-            const {statusCode, data: fileList} = res;
+            const {statusCode, data: {fileList}} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
                 dispatch(fileListRequestSuccess(fileList));

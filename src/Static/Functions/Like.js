@@ -43,9 +43,3 @@ export function isInLikedList(articleId)
     return !!list[articleId];
 }
 
-export default {
-    submitLikeAsync,
-    appendToLikedList,
-    removeFromLikedList,
-    isInLikedList
-};
