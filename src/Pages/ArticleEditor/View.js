@@ -9,6 +9,7 @@ import {View as Title} from '../../Components/Title';
 import style from './ArticleEditor.module.scss';
 import {STATUS_CODE} from '../../Static/Constants';
 import {redirectToLogin} from '../Login/Functions';
+import NAMESPACE from '../../Namespace';
 
 class ArticleEditor extends Component
 {
@@ -16,10 +17,10 @@ class ArticleEditor extends Component
     {
         super(...arguments);
         this.state = {
-            title: '',
-            content: '',
-            articleTypeId: 0,
-            allTypes: [],
+            [NAMESPACE.BLOG.ARTICLE.TITLE]: '',
+            [NAMESPACE.BLOG.ARTICLE.CONTENT]: '',
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0,
+            allArticleTypes: [],
             previewHTML: ''
         };
     }
@@ -27,28 +28,32 @@ class ArticleEditor extends Component
     componentDidMount()
     {
         document.title = '文章编辑器 - Soulike 的个人网站';
-        const title = sessionStorage.getItem('title');
-        const content = sessionStorage.getItem('content');
-        const articleTypeId = sessionStorage.getItem('articleTypeId');
-        if (title)
+        const articleTitle = sessionStorage.getItem(NAMESPACE.BLOG.ARTICLE.TITLE);
+        const articleContent = sessionStorage.getItem(NAMESPACE.BLOG.ARTICLE.CONTENT);
+        const articleTypeId = sessionStorage.getItem(NAMESPACE.BLOG.ARTICLE.TYPE_ID);
+        if (articleTitle)
         {
-            this.setState({title});
-            this.refs.title.value = title;
+            this.setState({[NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle});
+            const $articleTitle = document.querySelector(`.${style.articleTitle}`);
+            $articleTitle.value = articleTitle;
         }
-        if (content)
+        if (articleContent)
         {
             this.setState({
-                content,
-                previewHTML: markdownToHtml(content)
+                [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
+                previewHTML: markdownToHtml(articleContent)
             }, () =>
             {
                 highLight.initHighlighting();
             });
-            this.refs.content.value = content;
+            const $articleContent = document.querySelector(`.${style.articleContent}`);
+            $articleContent.value = articleContent;
         }
         if (articleTypeId)
         {
-            this.setState({articleTypeId});
+            this.setState({
+                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
+            });
         }
 
         getAsync(requestPrefix('/blog/getArticleTypes'), false)
@@ -58,7 +63,9 @@ class ArticleEditor extends Component
                 const {articleTypes} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({allTypes: articleTypes});
+                    this.setState({
+                        allArticleTypes: articleTypes
+                    });
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
@@ -74,14 +81,14 @@ class ArticleEditor extends Component
 
     onTitleChange = (e) =>
     {
-        this.setState({title: e.target.value});
-        sessionStorage.setItem('title', e.target.value);
+        this.setState({[NAMESPACE.BLOG.ARTICLE.TITLE]: e.target.value});
+        sessionStorage.setItem(NAMESPACE.BLOG.ARTICLE.TITLE, e.target.value);
     };
 
     onContentChange = (e) =>
     {
         this.setState({
-            content: e.target.value,
+            [NAMESPACE.BLOG.ARTICLE.CONTENT]: e.target.value,
             previewHTML: markdownToHtml(e.target.value)
         }, () =>
         {
@@ -91,26 +98,31 @@ class ArticleEditor extends Component
                 highLight.highlightBlock(block);
             });
         });
-        sessionStorage.setItem('content', e.target.value);
+        sessionStorage.setItem(NAMESPACE.BLOG.ARTICLE.CONTENT, e.target.value);
     };
 
     onTypeChange = (e) =>
     {
-        this.setState({articleTypeId: e.target.value});
-        sessionStorage.setItem('articleTypeId', e.target.value);
+        this.setState({[NAMESPACE.BLOG.ARTICLE.TYPE_ID]: e.target.value});
+        sessionStorage.setItem(NAMESPACE.BLOG.ARTICLE.TYPE_ID, e.target.value);
     };
 
     onSubmit = (e) =>
     {
         e.preventDefault();
-        const {title, content, articleTypeId} = this.state;
+        const {
+            [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
+            [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
+        } = this.state;
+
         const articleId = this.props.location.query.articleId ? this.props.location.query.articleId : 0;
 
-        if (!title)
+        if (!articleTitle)
         {
             Alert.show('请填写标题', false);
         }
-        else if (!content)
+        else if (!articleContent)
         {
             Alert.show('请填写正文', false);
         }
@@ -127,10 +139,10 @@ class ArticleEditor extends Component
             else
             {
                 postAsync(requestPrefix('/blog/submitArticle'), {
-                    articleId,
-                    title,
-                    content,
-                    articleTypeId
+                    [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
+                    [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
+                    [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
+                    [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
                 })
                     .then(res =>
                     {
@@ -146,17 +158,22 @@ class ArticleEditor extends Component
                                 Alert.show('修改成功', true);
                             }
 
-                            sessionStorage.removeItem('articleTypeId');
-                            sessionStorage.removeItem('title');
-                            sessionStorage.removeItem('content');
+                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.TYPE_ID);
+                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.TITLE);
+                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.CONTENT);
+
                             this.setState({
-                                articleTypeId: 0,
-                                title: '',
-                                content: ''
+                                [NAMESPACE.BLOG.ARTICLE.TITLE]: '',
+                                [NAMESPACE.BLOG.ARTICLE.CONTENT]: '',
+                                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0
                             });
-                            this.refs.title.value = '';
-                            this.refs.content.value = '';
-                            const {articleId: respondArticleId} = data;
+
+                            const $articleTitle = document.querySelector(`.${style.articleTitle}`);
+                            const $articleContent = document.querySelector(`.${style.articleContent}`);
+                            $articleTitle.value = '';
+                            $articleContent.value = '';
+
+                            const {[NAMESPACE.BLOG.ARTICLE.ID]: respondArticleId} = data;
                             setTimeout(() =>
                             {
                                 browserHistory.push(`/article?articleId=${respondArticleId}`);
@@ -187,24 +204,22 @@ class ArticleEditor extends Component
 
     render()
     {
-        const {articleTypeId, previewHTML} = this.state;
+        const {[NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId, previewHTML} = this.state;
         return (
             <div className={style.ArticleEditor}>
                 <Title titleText={'编辑文章'}/>
                 <input type="text"
                        className={style.articleTitle}
                        placeholder={'文章标题'}
-                       ref={'title'}
                        onChange={this.onTitleChange}/>
                 <textarea className={style.articleContent}
                           placeholder={'文章正文（使用 MarkDown）'}
-                          ref={'content'}
                           onChange={this.onContentChange}/>
                 <div className={style.articlePreview} dangerouslySetInnerHTML={{__html: previewHTML}}/>
                 <div className={style.articleTypeSelectWrapper}>
                     <select className={style.articleTypeSelect} value={articleTypeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
-                        {this.state.allTypes.map(type =>
+                        {this.state.allArticleTypes.map(type =>
                         {
                             const {id, name} = type;
                             return <option value={id} key={id}>{name}</option>;

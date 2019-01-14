@@ -5,6 +5,7 @@ import {requestPrefix, staticPrefix} from '../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../Components/Alert';
 import style from './ProfileCard.module.scss';
 import {STATUS_CODE} from '../../../../Static/Constants';
+import NAMESPACE from '../../../../Namespace';
 
 class ProfileCard extends Component
 {
@@ -12,9 +13,9 @@ class ProfileCard extends Component
     {
         super(...arguments);
         this.state = {
-            profileCardImage: '',
-            sayingAmount: 0,
-            articleAmount: 0
+            [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: '',
+            [NAMESPACE.BLOG.AMOUNTS.SAYING]: 0,
+            [NAMESPACE.BLOG.AMOUNTS.ARTICLE]: 0
         };
     }
 
@@ -43,7 +44,11 @@ class ProfileCard extends Component
     render()
     {
         const {nickname, avatarFileName} = this.props;
-        const {profileCardImage, sayingAmount, articleAmount} = this.state;
+        const {
+            [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: profileCardImage,
+            [NAMESPACE.BLOG.AMOUNTS.SAYING]: sayingAmount,
+            [NAMESPACE.BLOG.AMOUNTS.ARTICLE]: articleAmount
+        } = this.state;
         return (
             <div className={style.ProfileCard}>
                 <div className={style.profileCardImage}

@@ -10,6 +10,7 @@ import {View as FunctionButton} from './Components/FunctionButton';
 import Alert from '../../../../../../Components/Alert/View';
 import style from './ArticleWrapper.module.scss';
 import {STATUS_CODE} from '../../../../../../Static/Constants';
+import NAMESPACE from '../../../../../../Namespace';
 
 class ArticleWrapper extends Component
 {
@@ -17,7 +18,7 @@ class ArticleWrapper extends Component
     {
         super(...arguments);
         this.state = {
-            like: 0,
+            [NAMESPACE.BLOG.AMOUNTS.LIKE]: 0,
             hasLiked: false,
             canLikeButtonClick: true
         };
@@ -25,9 +26,12 @@ class ArticleWrapper extends Component
 
     componentDidMount()
     {
-        const {articleId, like} = this.props;
+        const {
+            [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
+            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount
+        } = this.props;
         this.setState({
-            like,
+            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount,
             hasLiked: isInLikedList(articleId)
         });
     }
@@ -54,7 +58,7 @@ class ArticleWrapper extends Component
         {
             this.setState({canLikeButtonClick: false}, () =>
             {
-                const {articleId} = this.props;
+                const {[NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.props;
                 submitLikeAsync(articleId, !hasLiked)
                     .then(res =>
                     {
@@ -63,7 +67,7 @@ class ArticleWrapper extends Component
                         {
                             const {like} = data;
                             this.setState({
-                                like: parseInt(like, 10),
+                                [NAMESPACE.BLOG.AMOUNTS.LIKE]: parseInt(like, 10),
                                 hasLiked: !hasLiked
                             }, () =>
                             {
@@ -106,9 +110,22 @@ class ArticleWrapper extends Component
     render()
     {
         const {canLikeButtonClick} = this.state;
-        const {articleId, title, view, comment, createdAt, articleType, articleTypeId, nickname, avatarFileName} = this.props;
-        const {like, hasLiked} = this.state;
-        const timeStr = generateTimeString(createdAt);
+        const {
+            [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
+            [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
+            [NAMESPACE.BLOG.AMOUNTS.VIEW]: viewAmount,
+            [NAMESPACE.BLOG.AMOUNTS.COMMENT]: commentAmount,
+            [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: createdAt,
+            [NAMESPACE.BLOG.ARTICLE.TYPE]: articleType,
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
+            [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+            [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+        } = this.props;
+        const {
+            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount,
+            hasLiked
+        } = this.state;
+        const timeString = generateTimeString(createdAt);
         return (
             <div className={style.ArticleWrapper}>
                 <div className={style.header}>
@@ -117,7 +134,7 @@ class ArticleWrapper extends Component
                     </div>
                     <div className={style.headerMidPart}>
                         <div className={style.nickname}>{nickname}</div>
-                        <div className={style.time}>{timeStr}</div>
+                        <div className={style.time}>{timeString}</div>
                     </div>
                 </div>
                 <div className={style.articleTypeWrapper}
@@ -138,17 +155,17 @@ class ArticleWrapper extends Component
                        rel="noopener noreferrer"
                        className={style.titleWrapper}>
                         <div className={style.title}>
-                            {title}
+                            {articleTitle}
                         </div>
                     </a>
                 </div>
                 <div className={style.buttonArea}>
-                    <FunctionButton icon={solidIcon.faEye} number={view} hasClicked={false}/>
+                    <FunctionButton icon={solidIcon.faEye} number={viewAmount} hasClicked={false}/>
                     <FunctionButton icon={solidIcon.faThumbsUp}
-                                    number={like}
+                                    number={likeAmount}
                                     hasClicked={hasLiked}
                                     onClick={canLikeButtonClick ? this.onLikeButtonClick : null}/>
-                    <FunctionButton icon={solidIcon.faComment} number={comment} hasClicked={false}/>
+                    <FunctionButton icon={solidIcon.faComment} number={commentAmount} hasClicked={false}/>
                 </div>
             </div>
         );
@@ -156,14 +173,14 @@ class ArticleWrapper extends Component
 }
 
 ArticleWrapper.propTypes = {
-    articleId: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    view: PropTypes.number.isRequired,
-    like: PropTypes.number.isRequired,
-    comment: PropTypes.number.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    articleType: PropTypes.string.isRequired,
-    articleTypeId: PropTypes.number.isRequired
+    [NAMESPACE.BLOG.ARTICLE.ID]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.ARTICLE.TITLE]: PropTypes.string.isRequired,
+    [NAMESPACE.BLOG.AMOUNTS.VIEW]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.AMOUNTS.LIKE]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.AMOUNTS.COMMENT]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: PropTypes.string.isRequired,
+    [NAMESPACE.BLOG.ARTICLE.TYPE]: PropTypes.string.isRequired,
+    [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) =>
