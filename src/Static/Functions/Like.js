@@ -1,11 +1,12 @@
 import {postAsync} from './Net';
 import {requestPrefix} from './Url';
+import NAMESPACE from '../../Namespace';
 
 export async function submitLikeAsync(articleId, isAddLike)
 {
     return postAsync(requestPrefix('/blog/likeArticle'), {
-        articleId,
-        isAddLike
+        [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
+        [NAMESPACE.BLOG.LIKE.IS_ADD_LIKE]: isAddLike
     });
 }
 

@@ -4,6 +4,7 @@ import {requestPrefix} from '../../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../../Components/Alert';
 import {STATUS_CODE} from '../../../../../Static/Constants';
 import {redirectToLogin} from '../../../../Login/Functions';
+import NAMESPACE from '../../../../../Namespace';
 
 export function getFileList()
 {
@@ -12,7 +13,7 @@ export function getFileList()
         try
         {
             const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'), false);
-            const {statusCode, data: {fileList}} = res;
+            const {statusCode, data: {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList}} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
                 dispatch(fileListRequestSuccess(fileList));
@@ -48,12 +49,13 @@ export function deleteFiles(fileList)
     {
         try
         {
-            const res = await postAsync(requestPrefix('/soulikeDrive/deleteFile'), {fileList});
+            const res = await postAsync(requestPrefix('/soulikeDrive/deleteFile'),
+                {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
             const {statusCode, data} = res;
-            const {deleteNum} = data;
+            const {[NAMESPACE.SOULIKE_DRIVE.DELETE_FILE.DELETE_FILE_AMOUNT]: deleteFileAmount} = data;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
-                Alert.show(`删除成功，共删除了 ${deleteNum} 个文件`, true);
+                Alert.show(`删除成功，共删除了 ${deleteFileAmount} 个文件`, true);
                 dispatch(fileDeleteSuccess());
                 setTimeout(() =>
                 {
@@ -91,8 +93,9 @@ export function downloadFiles(fileList)
     {
         try
         {
-            const res = await postAsync(requestPrefix('/soulikeDrive/getDownloadURL'), {fileList});
-            const {statusCode, data: url} = res;
+            const res = await postAsync(requestPrefix('/soulikeDrive/getDownloadURL'),
+                {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
+            const {statusCode, data: {[NAMESPACE.SOULIKE_DRIVE.DOWNLOAD.URL]: url}} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
                 Alert.show('开始下载', true);
@@ -131,7 +134,7 @@ export function fileListRequestSuccess(fileList)
 {
     return {
         type: ActionTypes.FILE_LIST_REQUEST_SUCCESS,
-        fileList
+        [NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList
     };
 }
 
@@ -174,7 +177,7 @@ export function fileSelected(fileId)
 {
     return {
         type: ActionTypes.FILE_SELECTED,
-        fileId
+        [NAMESPACE.SOULIKE_DRIVE.FILE.ID]: fileId
     };
 }
 
@@ -182,6 +185,6 @@ export function fileUnselected(fileId)
 {
     return {
         type: ActionTypes.FILE_UNSELECTED,
-        fileId
+        [NAMESPACE.SOULIKE_DRIVE.FILE.ID]: fileId
     };
 }

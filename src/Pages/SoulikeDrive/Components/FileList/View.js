@@ -6,6 +6,7 @@ import Store from '../../../../Store';
 import {tabClicked} from '../../Actions/Actions';
 import {getFileList} from './Actions/Actions';
 import style from './FileList.module.scss';
+import NAMESPACE from '../../../../Namespace';
 
 
 class FileList extends Component
@@ -36,7 +37,7 @@ class FileList extends Component
                             </tr>
                             {fileList.map((file) =>
                             {
-                                return (<File {...file} key={file.articleId}/>);
+                                return (<File {...file} key={file[NAMESPACE.SOULIKE_DRIVE.FILE.ID]}/>);
                             })}
                             </tbody>
                         </table>

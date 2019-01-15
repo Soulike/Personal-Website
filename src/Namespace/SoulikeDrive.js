@@ -3,7 +3,9 @@ const SoulikeDrive = {
         URL: 'url',
         TOKEN: 'token'
     },
-    FILE_LIST: 'fileList',
+    LIST: {
+        FILE: 'fileList'
+    },
     FILE: {
         ID: 'fileId',
         NAME: 'fileName',

@@ -3,7 +3,11 @@ const Blog = {
         IMAGE_FILE_NAME: 'profileCardImageFileName'
     },
 
-    AMOUNTS: {
+    ARTICLE_LIST_CONTAINER: {
+        CURRENT_PAGE: 'currentPage'
+    },
+
+    AMOUNT: {
         SAYING: 'sayingAmount',
         ARTICLE: 'articleAmount',
         COMMENT: 'commentAmount',
@@ -11,34 +15,43 @@ const Blog = {
         LIKE: 'likeAmount'
     },
 
+    LIST: {
+        ARTICLE: 'articleList',
+        ARTICLE_TYPE: 'articleTypeList',
+        POPULAR_ARTICLE: {
+            toString()
+            {
+                return 'popularArticleList';
+            },
+
+            valueOf()
+            {
+                return 'popularArticleList';
+            },
+
+            ORDERED_BY_VIEW_AMOUNT: 'orderedByViewAmountList',
+            ORDERED_BY_LIKE_AMOUNT: 'orderedByLikeAmountList',
+            ORDERED_BY_COMMENT_AMOUNT: 'orderedByCommentAmountList'
+        }
+    },
+
     ARTICLE: {
         ID: 'articleId',
         TITLE: 'articleTitle',
         CONTENT: 'articleContent',
         TYPE_ID: 'articleTypeId',
-        TYPE: 'articleType',
+        TYPE_NAME: 'articleTypeName',
         CREATED_AT: 'articleCreatedAt',
         UPDATED_AT: 'articleUpdatedAt'
     },
 
     ARTICLE_TYPE: {
         ID: 'articleTypeId',
-        NAME: 'articleType'
+        NAME: 'articleTypeName'
     },
 
     ARTICLE_FUNCTION: {
         IS_ADD_LIKE: 'isAddLike'
-    },
-
-    ARTICLE_LIST: {
-        NAME: 'articleList',
-        CURRENT_PAGE: 'currentPage',
-        POPULAR_ARTICLE_LIST: {
-            NAME: 'popularArticleList',
-            ORDERED_BY_VIEW_AMOUNT_LIST: 'orderedByViewAmountList',
-            ORDERED_BY_LIKE_AMOUNT_LIST: 'orderedByLikeAmountList',
-            ORDERED_BY_COMMENT_AMOUNT_LIST: 'orderedByCommentAmountList'
-        }
     }
 };
 

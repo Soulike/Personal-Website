@@ -1,14 +1,15 @@
 import * as ActionTypes from './Actions/ActionTypes';
+import NAMESPACE from '../../../../Namespace';
 
 export default (state = {}, action) =>
 {
     const {type} = action;
     if (type === ActionTypes.FILE_LIST_REQUEST_SUCCESS)
     {
-        const {fileList} = action;
+        const {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList} = action;
         return {
             ...state,
-            fileList,
+            [NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList,
             selectedFileList: []
         };
     }
@@ -20,7 +21,7 @@ export default (state = {}, action) =>
     {
         return {
             ...state,
-            selectedFileList: [...state.selectedFileList, action.fileId]
+            selectedFileList: [...state.selectedFileList, action[NAMESPACE.SOULIKE_DRIVE.FILE.ID]]
         };
     }
     else if (type === ActionTypes.FILE_UNSELECTED)
@@ -29,7 +30,7 @@ export default (state = {}, action) =>
             ...state,
             selectedFileList: state.selectedFileList.filter(fileId =>
             {
-                return fileId !== action.fileId;
+                return fileId !== action[NAMESPACE.SOULIKE_DRIVE.FILE.ID];
             })
         };
     }

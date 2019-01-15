@@ -15,6 +15,7 @@ import {STATUS_CODE} from '../../Static/Constants';
 import {redirectToLogin} from '../Login/Functions';
 import {View as Modal} from '../../Components/Modal';
 import {Types as ReminderTypes, View as Reminder} from '../../Components/Reminder';
+import NAMESPACE from '../../Namespace';
 
 class Article extends Component
 {
@@ -23,14 +24,14 @@ class Article extends Component
         super(...arguments);
         const date = new Date();
         this.state = {
-            articleId: 0,
-            title: 'Loading……',
-            content: 'Loading……',
-            articleType: 'Loading……',
-            articleTypeId: 0,
-            like: 0,
-            createdAt: date.toISOString(),
-            updatedAt: date.toISOString(),
+            [NAMESPACE.BLOG.ARTICLE.ID]: 0,
+            [NAMESPACE.BLOG.ARTICLE.TITLE]: 'Loading……',
+            [NAMESPACE.BLOG.ARTICLE.CONTENT]: 'Loading……',
+            [NAMESPACE.BLOG.ARTICLE.TYPE_NAME]: 'Loading……',
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0,
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: 0,
+            [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: date.toISOString(),
+            [NAMESPACE.BLOG.ARTICLE.UPDATED_AT]: date.toISOString(),
             hasLiked: false,
             canLikeButtonClick: true
         };
@@ -45,7 +46,7 @@ class Article extends Component
         }
         else
         {
-            getAsync(requestPrefix('/blog/getArticle'), true, {articleId})
+            getAsync(requestPrefix('/blog/getArticle'), true, {[NAMESPACE.BLOG.ARTICLE.ID]: articleId})
                 .then(res =>
                 {
                     const {statusCode, data} = res;
@@ -57,7 +58,7 @@ class Article extends Component
                             appendScriptNodeByCode(`MathJax.Hub.Config({tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$']]}});`, 'text/x-mathjax-config');
                             appendScriptNodeByUrl('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
                         });
-                        document.title = `${data.title} - Soulike 的个人网站`;
+                        document.title = `${data[NAMESPACE.BLOG.ARTICLE.TITLE]} - Soulike 的个人网站`;
                     }
                     else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
                     {
@@ -91,11 +92,17 @@ class Article extends Component
     onModifyButtonClick = (e) =>
     {
         e.preventDefault();
-        if (this.state.articleId !== 0)
+        const {[NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.state;
+        if (articleId !== 0)
         {
-            const {articleId, title, content, articleTypeId} = this.state;
-            sessionStorage.setItem('title', title);
-            sessionStorage.setItem('content', content);
+            const {
+                [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
+                [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
+                [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
+                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
+            } = this.state;
+            sessionStorage.setItem('articleTitle', articleTitle);
+            sessionStorage.setItem('articleContent', articleContent);
             sessionStorage.setItem('articleTypeId', articleTypeId);
             browserHistory.push(`/articleEditor?modify=${true}&articleId=${articleId}`);
         }
@@ -108,13 +115,13 @@ class Article extends Component
     onDeleteButtonClick = (e) =>
     {
         e.preventDefault();
-        const {articleId} = this.state;
+        const {[NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.state;
         if (articleId !== 0)
         {
-            const {title} = this.state;
-            Modal.show('删除确认', `确认要删除文章《${title}》吗？`, () =>
+            const {[NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle} = this.state;
+            Modal.show('删除确认', `确认要删除文章《${articleTitle}》吗？`, () =>
             {
-                postAsync(requestPrefix('/blog/deleteArticle'), {articleId})
+                postAsync(requestPrefix('/blog/deleteArticle'), {[NAMESPACE.BLOG.ARTICLE.ID]: articleId})
                     .then(res =>
                     {
                         const {statusCode} = res;
@@ -165,16 +172,16 @@ class Article extends Component
     {
         this.setState({canLikeButtonClick: false}, () =>
         {
-            const {hasLiked, articleId} = this.state;
+            const {hasLiked, [NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.state;
             submitLikeAsync(articleId, !hasLiked)
                 .then(res =>
                 {
                     const {statusCode, data} = res;
-                    const {like} = data;
+                    const {[NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount} = data;
                     if (statusCode === STATUS_CODE.SUCCESS)
                     {
                         this.setState({
-                            like: parseInt(like, 10),
+                            [NAMESPACE.BLOG.AMOUNT.LIKE]: parseInt(likeAmount, 10),
                             hasLiked: !hasLiked
                         }, () =>
                         {
@@ -215,7 +222,16 @@ class Article extends Component
 
     render()
     {
-        const {title, content, articleType, createdAt, updatedAt, hasLiked, like, canLikeButtonClick} = this.state;
+        const {
+            [NAMESPACE.BLOG.ARTICLE.TITLE]: title,
+            [NAMESPACE.BLOG.ARTICLE.CONTENT]: content,
+            [NAMESPACE.BLOG.ARTICLE.TYPE_NAME]: articleType,
+            [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: createdAt,
+            [NAMESPACE.BLOG.ARTICLE.UPDATED_AT]: updatedAt,
+            hasLiked,
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: like,
+            canLikeButtonClick
+        } = this.state;
         const {hasLoggedIn} = this.props;
         const contentHtml = markdownToHtml(content);
         const daysAfterModification = Math.floor((Date.now() - Date.parse(updatedAt)) / (24 * 60 * 60 * 1000));

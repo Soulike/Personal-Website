@@ -14,8 +14,8 @@ class ProfileCard extends Component
         super(...arguments);
         this.state = {
             [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: '',
-            [NAMESPACE.BLOG.AMOUNTS.SAYING]: 0,
-            [NAMESPACE.BLOG.AMOUNTS.ARTICLE]: 0
+            [NAMESPACE.BLOG.AMOUNT.SAYING]: 0,
+            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: 0
         };
     }
 
@@ -43,11 +43,14 @@ class ProfileCard extends Component
 
     render()
     {
-        const {nickname, avatarFileName} = this.props;
+        const {
+            [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+            [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+        } = this.props;
         const {
             [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: profileCardImage,
-            [NAMESPACE.BLOG.AMOUNTS.SAYING]: sayingAmount,
-            [NAMESPACE.BLOG.AMOUNTS.ARTICLE]: articleAmount
+            [NAMESPACE.BLOG.AMOUNT.SAYING]: sayingAmount,
+            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: articleAmount
         } = this.state;
         return (
             <div className={style.ProfileCard}>
@@ -74,10 +77,13 @@ class ProfileCard extends Component
 
 const mapStateToProps = (state) =>
 {
-    const {nickname, avatarFileName} = state['Blog'];
+    const {
+        [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+    } = state['Blog'];
     return {
-        nickname,
-        avatarFileName
+        [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
     };
 };
 

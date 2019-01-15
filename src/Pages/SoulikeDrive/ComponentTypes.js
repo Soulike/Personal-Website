@@ -1,4 +1,4 @@
 export default {
-    FileList: 0,
-    FileUploader: 1
+    FILE_LIST: 0,
+    FILE_UPLOADER: 1
 };

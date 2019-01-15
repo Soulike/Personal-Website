@@ -16,8 +16,8 @@ class ArticleListContainer extends Component
     {
         super(...arguments);
         this.state = {
-            [NAMESPACE.BLOG.ARTICLE_LIST.NAME]: [],
-            [NAMESPACE.BLOG.ARTICLE_LIST.CURRENT_PAGE]: 0,
+            [NAMESPACE.BLOG.LIST.ARTICLE]: [],
+            [NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: 0,
             hasReachedListEnd: false
         };
     }
@@ -27,7 +27,7 @@ class ArticleListContainer extends Component
         this.getArticleListIfExist(this.props.selectedArticleTypeId);
         window.addEventListener('scroll', () =>
         {
-            const {[NAMESPACE.BLOG.ARTICLE_LIST.CURRENT_PAGE]: currentPage} = this.state;
+            const {[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage} = this.state;
             const {pageYOffset, innerHeight} = window;
             if (pageYOffset > currentPage * innerHeight * 0.75)
             {
@@ -42,8 +42,8 @@ class ArticleListContainer extends Component
         {
             this.setState(
                 {
-                    [NAMESPACE.BLOG.ARTICLE_LIST.NAME]: [],
-                    [NAMESPACE.BLOG.ARTICLE_LIST.CURRENT_PAGE]: 0,
+                    [NAMESPACE.BLOG.LIST.ARTICLE]: [],
+                    [NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: 0,
                     hasReachedListEnd: false
                 },
                 () =>
@@ -58,17 +58,17 @@ class ArticleListContainer extends Component
     {
         if (!this.state.hasReachedListEnd)
         {
-            const {[NAMESPACE.BLOG.ARTICLE_LIST.CURRENT_PAGE]: currentPage} = this.state;
-            this.setState({[NAMESPACE.BLOG.ARTICLE_LIST.CURRENT_PAGE]: currentPage + 1}, () =>
+            const {[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage} = this.state;
+            this.setState({[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage + 1}, () =>
             {
                 this.getArticleListAsync(articleTypeId, currentPage + 1)
                     .then(data =>
                     {
-                        const {[NAMESPACE.BLOG.ARTICLE_LIST.NAME]: articleList} = data;
+                        const {[NAMESPACE.BLOG.LIST.ARTICLE]: articleList} = data;
                         if (articleList.length !== 0)// 如果有数据就更新数据
                         {
                             this.setState({
-                                [NAMESPACE.BLOG.ARTICLE_LIST.NAME]: [...this.state[NAMESPACE.BLOG.ARTICLE_LIST.NAME], ...articleList]
+                                [NAMESPACE.BLOG.LIST.ARTICLE]: [...this.state[NAMESPACE.BLOG.LIST.ARTICLE], ...articleList]
                             });
                         }
                         else// 如果服务器返回列表为空，那就下一次没必要再发送任何请求，设置标志为true
@@ -118,7 +118,7 @@ class ArticleListContainer extends Component
 
     render()
     {
-        const {[NAMESPACE.BLOG.ARTICLE_LIST.NAME]: articleList} = this.state;
+        const {[NAMESPACE.BLOG.LIST.ARTICLE]: articleList} = this.state;
         return (
             <div className={style.ArticleListContainer}>
                 <CSSTransitionGroup transitionName="articleList"

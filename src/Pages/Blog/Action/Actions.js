@@ -3,6 +3,7 @@ import {getAsync} from '../../../Static/Functions/Net';
 import {requestPrefix} from '../../../Static/Functions/Url';
 import {View as Alert} from '../../../Components/Alert';
 import {STATUS_CODE} from '../../../Static/Constants';
+import NAMESPACE from '../../../Namespace';
 
 export function getInfo(isRefresh = false)
 {
@@ -14,7 +15,10 @@ export function getInfo(isRefresh = false)
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
-                const {nickname, avatarFileName} = data;
+                const {
+                    [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+                    [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+                } = data;
                 dispatch(getInfoSuccess(nickname, avatarFileName));
             }
             else
@@ -40,8 +44,8 @@ export function getInfoSuccess(nickname, avatarFileName)
 {
     return {
         type: ActionTypes.GET_INFO_SUCCESS,
-        nickname,
-        avatarFileName
+        [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
     };
 }
 

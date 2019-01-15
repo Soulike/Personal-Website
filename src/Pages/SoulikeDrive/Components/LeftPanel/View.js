@@ -17,12 +17,12 @@ class LeftPanel extends Component
                     <div className={style.soulikeDriveText}>SoulikeDrive</div>
                 </div>
                 <div className={style.Tabs}>
-                    <Tab tabId={ComponentTypes['FileList']}
+                    <Tab tabId={ComponentTypes['FILE_LIST']}
                          icon={solidIcons.faHdd}
                          text={'所有文件'}
                          to={'/soulikeDrive/fileList'}
                          componentType={'FileList'}/>
-                    <Tab tabId={ComponentTypes['FileUploader']}
+                    <Tab tabId={ComponentTypes['FILE_UPLOADER']}
                          icon={solidIcons.faUpload}
                          text={'上传文件'}
                          to={'/soulikeDrive/fileUpload'}

@@ -20,7 +20,7 @@ class ArticleEditor extends Component
             [NAMESPACE.BLOG.ARTICLE.TITLE]: '',
             [NAMESPACE.BLOG.ARTICLE.CONTENT]: '',
             [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0,
-            allArticleTypes: [],
+            [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: [],
             previewHTML: ''
         };
     }
@@ -60,11 +60,11 @@ class ArticleEditor extends Component
             .then(res =>
             {
                 const {statusCode, data} = res;
-                const {articleTypes} = data;
+                const {[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     this.setState({
-                        allArticleTypes: articleTypes
+                        [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes
                     });
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
@@ -204,7 +204,11 @@ class ArticleEditor extends Component
 
     render()
     {
-        const {[NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId, previewHTML} = this.state;
+        const {
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
+            [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypeList,
+            previewHTML
+        } = this.state;
         return (
             <div className={style.ArticleEditor}>
                 <Title titleText={'编辑文章'}/>
@@ -219,9 +223,12 @@ class ArticleEditor extends Component
                 <div className={style.articleTypeSelectWrapper}>
                     <select className={style.articleTypeSelect} value={articleTypeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
-                        {this.state.allArticleTypes.map(type =>
+                        {articleTypeList.map(type =>
                         {
-                            const {id, name} = type;
+                            const {
+                                [NAMESPACE.BLOG.ARTICLE_TYPE.ID]: id,
+                                [NAMESPACE.BLOG.ARTICLE_TYPE.NAME]: name
+                            } = type;
                             return <option value={id} key={id}>{name}</option>;
                         })}
                     </select>

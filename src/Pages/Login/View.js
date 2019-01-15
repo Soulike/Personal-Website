@@ -10,6 +10,7 @@ import {postAsync} from '../../Static/Functions/Net';
 import {requestPrefix} from '../../Static/Functions/Url';
 import {STATUS_CODE} from '../../Static/Constants';
 import {removeLoginToken, setOffline, setOnline} from './Functions';
+import NAMESPACE from '../../Namespace';
 
 class Login extends Component
 {
@@ -40,8 +41,8 @@ class Login extends Component
     static login(username, password)
     {
         postAsync(requestPrefix('/login'), {
-            username,
-            password: getHash(`${username}${password}`, 'sha256')
+            [NAMESPACE.SHARE.LOGIN.USERNAME]: username,
+            [NAMESPACE.SHARE.LOGIN.PASSWORD]: getHash(`${username}${password}`, 'sha256')
         })
             .then(res =>
             {

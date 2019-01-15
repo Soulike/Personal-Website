@@ -15,6 +15,11 @@ export function appendScriptNodeByCode(code, type = 'text/javascript')
     document.body.appendChild(script);
 }
 
+export function generateRandomString()
+{
+    return Math.random().toString(36).substr(2);
+}
+
 export function generateTimeString(time)
 {
     const MILLISECONDS = {

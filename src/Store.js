@@ -10,6 +10,7 @@ import {Reducer as BannerReducer} from './Pages/Root/Components/Banner';
 import {Reducer as FileListReducer} from './Pages/SoulikeDrive/Components/FileList';
 import {Reducer as TypeSelectBarReducer} from './Pages/Blog/Components/TypeSelectBar';
 import {Reducer as MostPopularCardReducer} from './Pages/Blog/Components/MostPopularCard';
+import NAMESPACE from './Namespace';
 
 // Store 中的初始值，根据开发需要进行改变
 const initValues = {
@@ -17,12 +18,11 @@ const initValues = {
         currentActiveTabId: 0
     },
     Blog: {
-        nickname: '',
-        avatarFileName: ''
+        [NAMESPACE.SHARE.INFO.NICKNAME]: '',
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: ''
     },
     TypeSelectBar: {
-        selectedArticleTypeId: ARTICLE_TYPE.ALL,
-        fileList: []
+        selectedArticleTypeId: ARTICLE_TYPE.ALL
     },
     Dynamic: {},
     MusicPlayer: {},
@@ -30,10 +30,12 @@ const initValues = {
         bannerImageFileUrl: ''
     },
     FileList: {
-        fileList: [],
+        [NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: [],
         selectedFileList: []
     },
-    Login: {hasLoggedIn: false},
+    Login: {
+        hasLoggedIn: false
+    },
     MostPopularCard: {
         currentTypeId: 0
     }

@@ -18,7 +18,7 @@ class ArticleWrapper extends Component
     {
         super(...arguments);
         this.state = {
-            [NAMESPACE.BLOG.AMOUNTS.LIKE]: 0,
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: 0,
             hasLiked: false,
             canLikeButtonClick: true
         };
@@ -28,10 +28,10 @@ class ArticleWrapper extends Component
     {
         const {
             [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
-            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount
         } = this.props;
         this.setState({
-            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount,
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount,
             hasLiked: isInLikedList(articleId)
         });
     }
@@ -65,9 +65,9 @@ class ArticleWrapper extends Component
                         const {statusCode, data} = res;
                         if (statusCode === STATUS_CODE.SUCCESS)
                         {
-                            const {like} = data;
+                            const {[NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount} = data;
                             this.setState({
-                                [NAMESPACE.BLOG.AMOUNTS.LIKE]: parseInt(like, 10),
+                                [NAMESPACE.BLOG.AMOUNT.LIKE]: parseInt(likeAmount, 10),
                                 hasLiked: !hasLiked
                             }, () =>
                             {
@@ -113,16 +113,16 @@ class ArticleWrapper extends Component
         const {
             [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
             [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
-            [NAMESPACE.BLOG.AMOUNTS.VIEW]: viewAmount,
-            [NAMESPACE.BLOG.AMOUNTS.COMMENT]: commentAmount,
+            [NAMESPACE.BLOG.AMOUNT.VIEW]: viewAmount,
+            [NAMESPACE.BLOG.AMOUNT.COMMENT]: commentAmount,
             [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: createdAt,
-            [NAMESPACE.BLOG.ARTICLE.TYPE]: articleType,
+            [NAMESPACE.BLOG.ARTICLE.TYPE_NAME]: articleType,
             [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
             [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
             [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
         } = this.props;
         const {
-            [NAMESPACE.BLOG.AMOUNTS.LIKE]: likeAmount,
+            [NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount,
             hasLiked
         } = this.state;
         const timeString = generateTimeString(createdAt);
@@ -175,20 +175,23 @@ class ArticleWrapper extends Component
 ArticleWrapper.propTypes = {
     [NAMESPACE.BLOG.ARTICLE.ID]: PropTypes.number.isRequired,
     [NAMESPACE.BLOG.ARTICLE.TITLE]: PropTypes.string.isRequired,
-    [NAMESPACE.BLOG.AMOUNTS.VIEW]: PropTypes.number.isRequired,
-    [NAMESPACE.BLOG.AMOUNTS.LIKE]: PropTypes.number.isRequired,
-    [NAMESPACE.BLOG.AMOUNTS.COMMENT]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.AMOUNT.VIEW]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.AMOUNT.LIKE]: PropTypes.number.isRequired,
+    [NAMESPACE.BLOG.AMOUNT.COMMENT]: PropTypes.number.isRequired,
     [NAMESPACE.BLOG.ARTICLE.CREATED_AT]: PropTypes.string.isRequired,
-    [NAMESPACE.BLOG.ARTICLE.TYPE]: PropTypes.string.isRequired,
+    [NAMESPACE.BLOG.ARTICLE.TYPE_NAME]: PropTypes.string.isRequired,
     [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) =>
 {
-    const {nickname, avatarFileName} = state['Blog'];
+    const {
+        [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+    } = state['Blog'];
     return {
-        nickname,
-        avatarFileName
+        [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
     };
 };
 

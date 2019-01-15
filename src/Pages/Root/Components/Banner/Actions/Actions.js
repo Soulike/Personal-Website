@@ -3,6 +3,7 @@ import {getAsync} from '../../../../../Static/Functions/Net';
 import {REQUEST_FAILED, REQUEST_SUCCESS} from './ActionTypes';
 import {View as Alert} from '../../../../../Components/Alert';
 import {STATUS_CODE} from '../../../../../Static/Constants';
+import NAMESPACE from '../../../../../Namespace';
 
 export function getBannerImage(refresh = false)
 {
@@ -14,7 +15,7 @@ export function getBannerImage(refresh = false)
             const {statusCode, data} = res;
             if (statusCode === STATUS_CODE.SUCCESS)
             {
-                const {bannerImageFileName} = data;
+                const {[NAMESPACE.SHARE.BANNER.IMAGE_FILE_NAME]: bannerImageFileName} = data;
                 dispatch(requestSuccess(staticPrefix(bannerImageFileName)));
             }
             else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
@@ -32,11 +33,11 @@ export function getBannerImage(refresh = false)
     };
 }
 
-export function requestSuccess(bannerImageFileName)
+export function requestSuccess(bannerImageFileUrl)
 {
     return {
         type: REQUEST_SUCCESS,
-        bannerImageFileName
+        bannerImageFileUrl
     };
 }
 

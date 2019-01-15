@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View as TabBar} from './Components/TabBar';
 import {View as CardBody} from './Components/CardBody';
 import {Tab} from './Components/TabBar/Components/Tab';
-import TabId from './TypeId';
+import TabId from './OrderedByTypes';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import style from './MostPopularCard.module.scss';
 
@@ -13,8 +13,8 @@ class MostPopularCard extends Component
         super(...arguments);
         this.state = {
             tabArray: [
-                new Tab(solidIcon.faEye, TabId.view),
-                new Tab(solidIcon.faThumbsUp, TabId.like),
+                new Tab(solidIcon.faEye, TabId.VIEW_AMOUNT),
+                new Tab(solidIcon.faThumbsUp, TabId.LIKE_AMOUNT)
                 /*new Tab(solidIcon.faComment, TabId.comment)*/
             ]
         };

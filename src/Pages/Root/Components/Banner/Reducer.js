@@ -7,7 +7,7 @@ export default (state = {}, action) =>
     {
         return {
             ...state,
-            bannerImageFileUrl: `url(${action.bannerImageFileName})`
+            bannerImageFileUrl: `url(${action.bannerImageFileUrl})`
         };
     }
     else if (type === REQUEST_FAILED)

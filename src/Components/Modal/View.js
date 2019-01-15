@@ -51,7 +51,7 @@ class Modal extends Component
     }
 }
 
-Modal.PropTypes = {
+Modal.propTypes = {
     wrapper: PropTypes.object.isRequired,
     node: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,

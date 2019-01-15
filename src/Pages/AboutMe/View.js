@@ -4,6 +4,8 @@ import {getAsync} from '../../Static/Functions/Net';
 import {requestPrefix} from '../../Static/Functions/Url';
 import {STATUS_CODE} from '../../Static/Constants';
 import style from './AboutMe.module.scss';
+import NAMESPACE from '../../Namespace';
+import {markdownToHtml} from '../../Static/Functions/MDConverter';
 
 
 class AboutMe extends Component
@@ -12,7 +14,7 @@ class AboutMe extends Component
     {
         super(...arguments);
         this.state = {
-            aboutMe: 'Loading……'
+            [NAMESPACE.SHARE.INFO.ABOUT_ME_MARKDOWN]: 'Loading……'
         };
     }
 
@@ -25,8 +27,7 @@ class AboutMe extends Component
                 const {statusCode, data} = res;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    const {aboutMe} = data;
-                    this.setState({aboutMe});
+                    this.setState({...data});
                 }
                 else
                 {
@@ -40,7 +41,8 @@ class AboutMe extends Component
         return (
             <div className={style.AboutMe}>
                 <Title titleText={'关于我'}/>
-                <div className={style.aboutMeContent} dangerouslySetInnerHTML={{__html: this.state.aboutMe}}/>
+                <div className={style.aboutMeContent}
+                     dangerouslySetInnerHTML={{__html: markdownToHtml(this.state[NAMESPACE.SHARE.INFO.ABOUT_ME_MARKDOWN])}}/>
             </div>);
     }
 }

@@ -6,6 +6,7 @@ import {requestPrefix} from '../../../../Static/Functions/Url';
 import {View as Alert} from '../../../../Components/Alert';
 import {switchArticleType} from './Actions/Actions';
 import style from './TypeSelectBar.module.scss';
+import NAMESPACE from '../../../../Namespace';
 
 class TypeSelectBar extends Component
 {
@@ -13,7 +14,7 @@ class TypeSelectBar extends Component
     {
         super(...arguments);
         this.state = {
-            articleTypes: []
+            [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: []
         };
     }
 
@@ -23,10 +24,10 @@ class TypeSelectBar extends Component
             .then(res =>
             {
                 const {statusCode, data} = res;
-                const {articleTypes} = data;
+                const {[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
-                    this.setState({articleTypes});
+                    this.setState({[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes});
                 }
                 else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
                 {
@@ -58,7 +59,7 @@ class TypeSelectBar extends Component
 
     render()
     {
-        const {articleTypes} = this.state;
+        const {[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes} = this.state;
         const {selectedArticleTypeId} = this.props;
         return (
             <div className={style.TypeSelectBar}>
@@ -77,11 +78,14 @@ class TypeSelectBar extends Component
                 {
                     articleTypes.map(articleType =>
                     {
-                        const {id, name} = articleType;
-                        return <div data-article_type_id={id}
-                                    key={id}
-                                    className={`${style.articleType} ${parseInt(selectedArticleTypeId, 10) === parseInt(id, 10) ? style.currentArticleType : ''}`}
-                                    onClick={this.onArticleTypeClicked}>{name}
+                        const {
+                            [NAMESPACE.BLOG.ARTICLE_TYPE.ID]: articleTypeId,
+                            [NAMESPACE.BLOG.ARTICLE_TYPE.NAME]: articleTypeName
+                        } = articleType;
+                        return <div data-article_type_id={articleTypeId}
+                                    key={articleTypeId}
+                                    className={`${style.articleType} ${parseInt(selectedArticleTypeId, 10) === parseInt(articleTypeId, 10) ? style.currentArticleType : ''}`}
+                                    onClick={this.onArticleTypeClicked}>{articleTypeName}
                         </div>;
                     })
                 }

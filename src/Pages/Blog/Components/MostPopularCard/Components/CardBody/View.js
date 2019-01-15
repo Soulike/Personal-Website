@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import TypeId from '../../TypeId';
+import ORDERED_BY_TYPES from '../../OrderedByTypes';
 import {CSSTransitionGroup} from 'react-transition-group';
 import {getAsync} from '../../../../../../Static/Functions/Net';
 import {requestPrefix} from '../../../../../../Static/Functions/Url';
@@ -9,6 +9,7 @@ import CardBodyListItem from './Components/CardBodyListItem/View';
 import style from './CardBody.module.scss';
 import './Transition.scss';
 import {STATUS_CODE} from '../../../../../../Static/Constants';
+import NAMESPACE from '../../../../../../Namespace';
 
 class CardBody extends Component
 {
@@ -16,9 +17,9 @@ class CardBody extends Component
     {
         super(...arguments);
         this.state = {
-            orderedByView: [],
-            orderedByLike: [],
-            orderedByComment: []
+            [NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_VIEW_AMOUNT]: [],
+            [NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_LIKE_AMOUNT]: [],
+            [NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_COMMENT_AMOUNT]: []
         };
     }
 
@@ -28,7 +29,7 @@ class CardBody extends Component
             .then(res =>
             {
                 const {statusCode, data} = res;
-                const {popularArticleList} = data;
+                const {[NAMESPACE.BLOG.LIST.POPULAR_ARTICLE]: popularArticleList} = data;
                 if (statusCode === STATUS_CODE.SUCCESS)
                 {
                     this.setState({...popularArticleList});
@@ -52,24 +53,21 @@ class CardBody extends Component
         let articleList = null;
         switch (currentTypeId)
         {
-            case TypeId.view:
-            {
-                articleList = this.state.orderedByView;
-                break;
-            }
-            case TypeId.like:
-            {
-                articleList = this.state.orderedByLike;
-                break;
-            }
-            case TypeId.comment:
-            {
-                articleList = this.state.orderedByComment;
-                break;
-            }
+            case ORDERED_BY_TYPES.VIEW_AMOUNT:
             default:
             {
-                articleList = this.state.orderedByView;
+                articleList = this.state[NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_VIEW_AMOUNT];
+                break;
+            }
+            case ORDERED_BY_TYPES.LIKE_AMOUNT:
+            {
+                articleList = this.state[NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_LIKE_AMOUNT];
+                break;
+            }
+            case ORDERED_BY_TYPES.COMMENT_AMOUNT:
+            {
+                articleList = this.state[NAMESPACE.BLOG.LIST.POPULAR_ARTICLE.ORDERED_BY_COMMENT_AMOUNT];
+                break;
             }
         }
 
@@ -82,7 +80,7 @@ class CardBody extends Component
                         {
                             articleList.map(article =>
                             {
-                                return <CardBodyListItem {...article} key={article.articleId}/>;
+                                return <CardBodyListItem {...article} key={article[NAMESPACE.BLOG.ARTICLE.ID]}/>;
                             })
                         }
                     </div>
