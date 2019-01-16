@@ -4,12 +4,13 @@ import {View as OfflineDownloader} from './Components/OfflineDownloader';
 import Store from '../../../../Store';
 import {tabClicked} from '../../Actions/Actions';
 import style from './FileUploader.module.scss';
+import ComponentTypes from '../../ComponentTypes';
 
 class FileUploader extends Component
 {
     componentDidMount()
     {
-        Store.dispatch(tabClicked('FileUploader'));
+        Store.dispatch(tabClicked(ComponentTypes.FILE_UPLOADER));
     }
 
     render()

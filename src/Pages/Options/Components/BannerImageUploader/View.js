@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import style from './BannerImageUploader.module.scss';
-import SubTitle from '../../../../Components/SubTitle/View';
-import ProgressBar from '../../../../Components/ProgressBar/View';
-import {postAsync} from '../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../Static/Functions/Url';
-import {STATUS_CODE} from '../../../../Static/Constants';
-import {View as Alert} from '../../../../Components/Alert';
-import {redirectToLogin} from '../../../Login/Functions';
-import {Functions as BannerFunctions} from '../../../Root/Components/Banner';
-import Hint from '../Hint/View';
+import {View as SubTitle} from '../../../../Components/SubTitle';
+import {View as ProgressBar} from '../../../../Components/ProgressBar';
+import {View as Hint} from '../Hint';
+import RequestProcessors from '../../../../RequestProcessors';
 
 class BannerImageUploader extends Component
 {
@@ -16,10 +11,10 @@ class BannerImageUploader extends Component
     {
         super(...arguments);
         this.state = {
-            uploadProgress: 0
+            uploadProgress: 0,
+            formData: null
         };
     }
-
 
     onFormSubmit = (e) =>
     {
@@ -28,46 +23,10 @@ class BannerImageUploader extends Component
         const fileList = $input.files;
         const formData = new FormData();
         formData.append(`file`, fileList[0]);
-        postAsync(requestPrefix('/options/uploadBannerImage'), formData, {
-            onUploadProgress: e =>
-            {
-                if (e.lengthComputable)
-                {
-                    this.setState({uploadProgress: e.loaded / e.total});
-                }
-            }
-        })
-            .then(res =>
-            {
-                const {statusCode} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('上传成功', true);
-                    BannerFunctions.refreshBannerImage();
-                }
-                else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                {
-                    Alert.show('请先登录', false);
-                    redirectToLogin();
-                }
-                else if (statusCode === STATUS_CODE.REJECTION)
-                {
-                    Alert.show('没有上传权限', false);
-                }
-                else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                {
-                    Alert.show('参数无效', false);
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('上传失败', false);
-                console.log(e);
-            });
+        this.setState({formData}, () =>
+        {
+            RequestProcessors.sendPostUploadBannerImageRequest.apply(this);
+        });
     };
 
     onFileInputChange = (e) =>

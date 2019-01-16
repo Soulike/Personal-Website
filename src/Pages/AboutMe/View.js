@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View as Title} from '../../Components/Title';
-import {getAsync} from '../../Static/Functions/Net';
-import {requestPrefix} from '../../Static/Functions/Url';
-import {STATUS_CODE} from '../../Static/Constants';
 import style from './AboutMe.module.scss';
 import NAMESPACE from '../../Namespace';
-import {markdownToHtml} from '../../Static/Functions/MDConverter';
+import Functions from '../../Functions';
+import RequestProcessors from '../../RequestProcessors';
+
+const {markdownToHtml} = Functions;
 
 
 class AboutMe extends Component
@@ -21,19 +21,7 @@ class AboutMe extends Component
     componentDidMount()
     {
         document.title = '关于我 - Soulike 的个人网站';
-        getAsync(requestPrefix('/getAboutMe'), true)
-            .then(res =>
-            {
-                const {statusCode, data} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    this.setState({...data});
-                }
-                else
-                {
-                    this.setState({aboutMe: '获取关于我失败'});
-                }
-            });
+        RequestProcessors.sendGetAboutMeRequest.apply(this);
     }
 
     render()

@@ -1,6 +1,10 @@
 import crypto from 'crypto';
 
-export function getHash(text, hashMethod)
+export default {
+    getHash
+};
+
+function getHash(text, hashMethod)
 {
     const hash = crypto.createHash(hashMethod);
     hash.update(text);

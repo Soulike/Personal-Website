@@ -2,14 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ORDERED_BY_TYPES from '../../OrderedByTypes';
 import {CSSTransitionGroup} from 'react-transition-group';
-import {getAsync} from '../../../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../../../Static/Functions/Url';
-import Alert from '../../../../../../Components/Alert/View';
 import CardBodyListItem from './Components/CardBodyListItem/View';
 import style from './CardBody.module.scss';
 import './Transition.scss';
-import {STATUS_CODE} from '../../../../../../Static/Constants';
 import NAMESPACE from '../../../../../../Namespace';
+import RequestProcessors from '../../../../../../RequestProcessors';
 
 class CardBody extends Component
 {
@@ -25,25 +22,7 @@ class CardBody extends Component
 
     componentDidMount()
     {
-        getAsync(requestPrefix('/blog/getPopularList'))
-            .then(res =>
-            {
-                const {statusCode, data} = res;
-                const {[NAMESPACE.BLOG.LIST.POPULAR_ARTICLE]: popularArticleList} = data;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    this.setState({...popularArticleList});
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                console.log(e);
-                Alert.show('获取文章排名信息失败', false);
-            });
+        RequestProcessors.sendGetPopularListRequest.apply(this);
     }
 
 

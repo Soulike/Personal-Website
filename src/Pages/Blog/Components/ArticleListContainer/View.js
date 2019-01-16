@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAsync} from '../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../Static/Functions/Url';
-import {View as Alert} from '../../../../Components/Alert';
 import {View as ArticleWrapper} from './Components/ArticleWrapper';
 import {CSSTransitionGroup} from 'react-transition-group';
 import style from './ArticleListContainer.module.scss';
 import './Transition.scss';
-import {STATUS_CODE} from '../../../../Static/Constants';
 import NAMESPACE from '../../../../Namespace';
+import RequestProcessors from '../../../../RequestProcessors';
 
 class ArticleListContainer extends Component
 {
@@ -24,14 +21,14 @@ class ArticleListContainer extends Component
 
     componentDidMount()
     {
-        this.getArticleListIfExist(this.props.selectedArticleTypeId);
+        this.getArticleListIfExist();
         window.addEventListener('scroll', () =>
         {
             const {[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage} = this.state;
             const {pageYOffset, innerHeight} = window;
             if (pageYOffset > currentPage * innerHeight * 0.75)
             {
-                this.getArticleListIfExist(this.props.selectedArticleTypeId);
+                this.getArticleListIfExist();
             }
         });
     }
@@ -48,72 +45,22 @@ class ArticleListContainer extends Component
                 },
                 () =>
                 {
-                    this.getArticleListIfExist(nextProps.selectedArticleTypeId);
+                    this.getArticleListIfExist();
                 });
         }
     }
 
     // 如果上一次服务器返回不为空就继续请求，否则直接忽略
-    getArticleListIfExist = (articleTypeId) =>
+    getArticleListIfExist = () =>
     {
         if (!this.state.hasReachedListEnd)
         {
             const {[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage} = this.state;
             this.setState({[NAMESPACE.BLOG.ARTICLE_LIST_CONTAINER.CURRENT_PAGE]: currentPage + 1}, () =>
             {
-                this.getArticleListAsync(articleTypeId, currentPage + 1)
-                    .then(data =>
-                    {
-                        const {[NAMESPACE.BLOG.LIST.ARTICLE]: articleList} = data;
-                        if (articleList.length !== 0)// 如果有数据就更新数据
-                        {
-                            this.setState({
-                                [NAMESPACE.BLOG.LIST.ARTICLE]: [...this.state[NAMESPACE.BLOG.LIST.ARTICLE], ...articleList]
-                            });
-                        }
-                        else// 如果服务器返回列表为空，那就下一次没必要再发送任何请求，设置标志为true
-                        {
-                            this.setState({hasReachedListEnd: true});
-                        }
-                    })
-                    .catch(msg =>
-                    {
-                        Alert.show(msg, false);
-                    });
+                RequestProcessors.sendGetArticleListRequest.apply(this);
             });
         }
-    };
-
-    getArticleListAsync = async (articleTypeId, currentPage) =>
-    {
-        return new Promise(async (resolve, reject) =>
-        {
-            try
-            {
-                const res = await getAsync(requestPrefix('/blog/getArticleList'), false, {
-                    articleTypeId,
-                    currentPage
-                });
-                const {statusCode, data} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    resolve(data);
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    reject('服务器错误');
-                }
-                else
-                {
-                    reject('获取文章列表失败');
-                }
-            }
-            catch (e)
-            {
-                reject('获取文章列表失败');
-                console.log(e);
-            }
-        });
     };
 
     render()

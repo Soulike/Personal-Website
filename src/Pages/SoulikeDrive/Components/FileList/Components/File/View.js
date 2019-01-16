@@ -4,7 +4,9 @@ import Store from '../../../../../../Store';
 import {fileSelected, fileUnselected} from '../../Actions/Actions';
 import style from './File.module.scss';
 import NAMESPACE from '../../../../../../Namespace';
-import {generateFullTimeString, generateRandomString} from '../../../../../../Static/Functions/Util';
+import Functions from '../../../../../../Functions';
+
+const {generateFullTimeString, generateRandomString} = Functions;
 
 class File extends Component
 {

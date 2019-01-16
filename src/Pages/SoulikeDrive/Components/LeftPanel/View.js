@@ -20,13 +20,11 @@ class LeftPanel extends Component
                     <Tab tabId={ComponentTypes['FILE_LIST']}
                          icon={solidIcons.faHdd}
                          text={'所有文件'}
-                         to={'/soulikeDrive/fileList'}
-                         componentType={'FileList'}/>
+                         to={'/soulikeDrive/fileList'}/>
                     <Tab tabId={ComponentTypes['FILE_UPLOADER']}
                          icon={solidIcons.faUpload}
                          text={'上传文件'}
-                         to={'/soulikeDrive/fileUpload'}
-                         componentType={'FileUploader'}/>
+                         to={'/soulikeDrive/fileUpload'}/>
                     {/*                    <Tab tabId={2}
                      icon={solidIcons.faTrash}
                      text={'回收站'}/>*/}

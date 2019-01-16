@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import {generateTimeString} from '../../../../../../../../Static/Functions/Util';
+import Functions from '../../../../../../../../Functions';
 import style from './CardBodyListItem.module.scss';
 import NAMESPACE from '../../../../../../../../Namespace';
+
+const {generateTimeString} = Functions;
 
 class CardBodyListItem extends Component
 {

@@ -1,4 +1,12 @@
-export function appendScriptNodeByUrl(src, type = 'text/javascript')
+export default {
+    appendScriptNodeByUrl,
+    appendScriptNodeByCode,
+    generateRandomString,
+    generateTimeString,
+    generateFullTimeString
+};
+
+function appendScriptNodeByUrl(src, type = 'text/javascript')
 {
     const script = document.createElement('script');
     script.type = type;
@@ -7,7 +15,7 @@ export function appendScriptNodeByUrl(src, type = 'text/javascript')
     document.body.appendChild(script);
 }
 
-export function appendScriptNodeByCode(code, type = 'text/javascript')
+function appendScriptNodeByCode(code, type = 'text/javascript')
 {
     const script = document.createElement('script');
     script.type = type;
@@ -15,12 +23,12 @@ export function appendScriptNodeByCode(code, type = 'text/javascript')
     document.body.appendChild(script);
 }
 
-export function generateRandomString()
+function generateRandomString()
 {
     return Math.random().toString(36).substr(2);
 }
 
-export function generateTimeString(time)
+function generateTimeString(time)
 {
     const MILLISECONDS = {
         YEAR: 365 * 24 * 60 * 60 * 1000,
@@ -64,13 +72,13 @@ export function generateTimeString(time)
     }
 }
 
-export function generateFullTimeString(time)
+function generateFullTimeString(time)
 {
     const date = new Date(time);
     return `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(date.getDate())} ${prefixZero(date.getHours())}:${prefixZero(date.getMinutes())}`;
 }
 
-export function prefixZero(num)
+function prefixZero(num)
 {
     if (num >= 0 && num < 10)
     {

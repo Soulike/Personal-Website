@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as ProgressBar} from '../../../../../../Components/ProgressBar';
-import {postAsync} from '../../../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../../../Static/Functions/Url';
-import {View as Alert} from '../../../../../../Components/Alert';
 import style from './Uploader.module.scss';
-import {STATUS_CODE} from '../../../../../../Static/Constants';
-import {redirectToLogin} from '../../../../../Login/Functions';
+import RequestProcessors from '../../../../../../RequestProcessors';
 
 class Uploader extends Component
 {
@@ -17,7 +13,8 @@ class Uploader extends Component
             fileNum: 0,
             fileSize: 0,
             fileList: [],
-            uploadProgress: 0
+            uploadProgress: 0,
+            formData: null
         };
     }
 
@@ -39,63 +36,18 @@ class Uploader extends Component
     onFormSubmit = (e) =>
     {
         e.preventDefault();
-        const fileInput = this.refs.fileInput;
+        const $fileInput = document.querySelector(`.${style.fileInput}`);
         const {fileList} = this.state;
-        fileInput.disabled = true;
+        $fileInput.disabled = true;
         const formData = new FormData();
         fileList.forEach(file =>
         {
             formData.append(`file`, file);
         });
-
-        postAsync(requestPrefix('/soulikeDrive/uploadFile'), formData, {
-            onUploadProgress: event =>
-            {
-                if (event.lengthComputable)
-                {
-                    this.setState({uploadProgress: event.loaded / event.total});
-                }
-            }
-        })
-            .then(res =>
-            {
-                const {statusCode} = res;
-                setTimeout(() =>
-                {
-                    fileInput.value = '';
-                    this.setState({
-                        fileNum: 0,
-                        fileSize: 0,
-                        fileList: [],
-                        uploadProgress: 0
-                    });
-                }, 750);
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('上传成功', true);
-                }
-                else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                {
-                    Alert.show('请先登录', false);
-                    redirectToLogin();
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                this.setState({
-                    uploadProgress: 0
-                });
-                Alert.show('上传失败', false);
-                console.log(e);
-            })
-            .finally(() =>
-            {
-                fileInput.disabled = false;
-            });
+        this.setState({formData}, () =>
+        {
+            RequestProcessors.sendPostUploadFileRequest.apply(this, [$fileInput]);
+        });
 
     };
 
@@ -112,7 +64,7 @@ class Uploader extends Component
                                multiple={true}
                                className={style.fileInput}
                                onChange={this.onFileInputChange}
-                               ref={'fileInput'}/>
+                        />
                     </label>
                     <div
                         className={style.fileInputStatus}>{`已选择 ${fileNum} 个文件，总大小 ${(fileSize / 1024 / 1024).toFixed(2)}M`}</div>

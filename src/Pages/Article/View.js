@@ -2,20 +2,16 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {View as Alert} from '../../Components/Alert';
-import {requestPrefix} from '../../Static/Functions/Url';
-import {appendScriptNodeByCode, appendScriptNodeByUrl, prefixZero} from '../../Static/Functions/Util';
-import {appendToLikedList, isInLikedList, removeFromLikedList, submitLikeAsync} from '../../Static/Functions/Like';
-import {getAsync, postAsync} from '../../Static/Functions/Net';
-import {markdownToHtml} from '../../Static/Functions/MDConverter';
-import highLight from 'highlight.js';
+import Functions from '../../Functions';
 import {View as FunctionButton} from './Components/ArticleFunctionButton';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import style from './Article.module.scss';
-import {STATUS_CODE} from '../../Static/Constants';
-import {redirectToLogin} from '../Login/Functions';
 import {View as Modal} from '../../Components/Modal';
 import {Types as ReminderTypes, View as Reminder} from '../../Components/Reminder';
 import NAMESPACE from '../../Namespace';
+import RequestProcessors from '../../RequestProcessors';
+
+const {isInLikedList, markdownToHtml, generateFullTimeString} = Functions;
 
 class Article extends Component
 {
@@ -46,48 +42,10 @@ class Article extends Component
         }
         else
         {
-            getAsync(requestPrefix('/blog/getArticle'), true, {[NAMESPACE.BLOG.ARTICLE.ID]: articleId})
-                .then(res =>
-                {
-                    const {statusCode, data} = res;
-                    if (statusCode === STATUS_CODE.SUCCESS)
-                    {
-                        this.setState({...data}, () =>
-                        {
-                            highLight.initHighlighting();
-                            appendScriptNodeByCode(`MathJax.Hub.Config({tex2jax: {inlineMath: [ ['$','$']],displayMath: [ ['$$','$$']]}});`, 'text/x-mathjax-config');
-                            appendScriptNodeByUrl('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_HTMLorMML');
-                        });
-                        document.title = `${data[NAMESPACE.BLOG.ARTICLE.TITLE]} - Soulike 的个人网站`;
-                    }
-                    else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                    {
-                        Alert.show('文章不存在', false);
-                    }
-                    else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                    {
-                        Alert.show('请求参数错误', false);
-                    }
-                    else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                    {
-                        Alert.show('服务器内部错误', false);
-                    }
-                })
-                .catch(e =>
-                {
-                    Alert.show('获取文章失败', false);
-                    console.log(e);
-                });
-
+            RequestProcessors.sendGetArticleRequest.apply(this);
             this.setState({hasLiked: isInLikedList(articleId)});
         }
     }
-
-    generateTimeString = (time) =>
-    {
-        const date = new Date(time);
-        return `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(date.getDate())} ${prefixZero(date.getHours())}:${prefixZero(date.getMinutes())}`;
-    };
 
     onModifyButtonClick = (e) =>
     {
@@ -121,45 +79,7 @@ class Article extends Component
             const {[NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle} = this.state;
             Modal.show('删除确认', `确认要删除文章《${articleTitle}》吗？`, () =>
             {
-                postAsync(requestPrefix('/blog/deleteArticle'), {[NAMESPACE.BLOG.ARTICLE.ID]: articleId})
-                    .then(res =>
-                    {
-                        const {statusCode} = res;
-                        if (statusCode === STATUS_CODE.SUCCESS)
-                        {
-                            Alert.show('删除成功', true);
-                            setTimeout(() =>
-                            {
-                                browserHistory.push('/');
-                            }, 1000);
-                        }
-                        else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                        {
-                            Alert.show('请求参数无效', false);
-                        }
-                        else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                        {
-                            Alert.show('要删除的文章不存在', false);
-                        }
-                        else if (statusCode === STATUS_CODE.REJECTION)
-                        {
-                            Alert.show('你没有删除此文章的权限', false);
-                        }
-                        else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                        {
-                            Alert.show('请先登录', false);
-                            redirectToLogin();
-                        }
-                        else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                        {
-                            Alert.show('服务器错误', false);
-                        }
-                    })
-                    .catch(e =>
-                    {
-                        Alert.show('删除失败', false);
-                        console.log(e);
-                    });
+                RequestProcessors.sendPostDeleteArticleRequest.apply(this);
             });
         }
         else
@@ -172,51 +92,7 @@ class Article extends Component
     {
         this.setState({canLikeButtonClick: false}, () =>
         {
-            const {hasLiked, [NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.state;
-            submitLikeAsync(articleId, !hasLiked)
-                .then(res =>
-                {
-                    const {statusCode, data} = res;
-                    const {[NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount} = data;
-                    if (statusCode === STATUS_CODE.SUCCESS)
-                    {
-                        this.setState({
-                            [NAMESPACE.BLOG.AMOUNT.LIKE]: parseInt(likeAmount, 10),
-                            hasLiked: !hasLiked
-                        }, () =>
-                        {
-                            if (isInLikedList(articleId))
-                            {
-                                removeFromLikedList(articleId);
-                            }
-                            else
-                            {
-                                appendToLikedList(articleId);
-                            }
-                        });
-                    }
-                    else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                    {
-                        Alert.show('请求参数无效', false);
-                    }
-                    else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                    {
-                        Alert.show('要点赞的文章不存在', false);
-                    }
-                    else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                    {
-                        Alert.show('服务器错误', false);
-                    }
-                })
-                .catch(e =>
-                {
-                    Alert.show('点赞失败', false);
-                    console.log(e);
-                })
-                .finally(() =>
-                {
-                    this.setState({canLikeButtonClick: true});
-                });
+            RequestProcessors.sendPostLikeArticleRequest.apply(this);
         });
     };
 
@@ -248,7 +124,7 @@ class Article extends Component
                 </div> : null}
                 <div className={style.articleInfo}>
                     <div className={style.articleInfoTriangle}/>
-                    <div className={style.articleTime}>{this.generateTimeString(createdAt)}</div>
+                    <div className={style.articleTime}>{generateFullTimeString(createdAt)}</div>
                     <div className={style.articleType}>{articleType}</div>
                 </div>
                 {

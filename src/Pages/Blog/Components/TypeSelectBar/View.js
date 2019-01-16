@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ARTICLE_TYPE, STATUS_CODE} from '../../../../Static/Constants';
-import {getAsync} from '../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../Static/Functions/Url';
-import {View as Alert} from '../../../../Components/Alert';
+import {ARTICLE_TYPE} from '../../../../Static/Constants';
 import {switchArticleType} from './Actions/Actions';
 import style from './TypeSelectBar.module.scss';
 import NAMESPACE from '../../../../Namespace';
+import RequestProcessors from '../../../../RequestProcessors';
 
 class TypeSelectBar extends Component
 {
@@ -20,25 +18,7 @@ class TypeSelectBar extends Component
 
     componentDidMount()
     {
-        getAsync(requestPrefix('/blog/getArticleTypes'), false)
-            .then(res =>
-            {
-                const {statusCode, data} = res;
-                const {[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes} = data;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    this.setState({[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes});
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('获取文章类型失败', false);
-                console.log(e);
-            });
+        RequestProcessors.sendGetArticleTypesRequest.apply(this);
     }
 
     onArticleTypeClicked = (e) =>

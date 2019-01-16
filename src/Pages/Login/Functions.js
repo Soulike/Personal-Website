@@ -1,11 +1,10 @@
 import Store from '../../Store';
 import {browserHistory} from 'react-router';
 import {loginStateInvalid, loginStateValid} from './Actions/Actions';
-import {getAsync} from '../../Static/Functions/Net';
-import {getHash} from '../../Static/Functions/Crypto';
-import {requestPrefix} from '../../Static/Functions/Url';
-import {STATUS_CODE} from '../../Static/Constants';
-import {View as Alert} from '../../Components/Alert';
+import Functions from '../../Functions';
+import RequestProcessors from '../../RequestProcessors';
+
+const {getHash} = Functions;
 
 export function requireLogin(nextState, replace)
 {
@@ -24,29 +23,7 @@ export function checkLoginState()
 {
     return async () =>
     {
-        try
-        {
-            const res = await getAsync(requestPrefix('/checkLoginState'), false);
-            const {statusCode} = res;
-            if (statusCode === STATUS_CODE.SUCCESS)
-            {
-                setOnline();
-            }
-            else
-            {
-                setOffline();
-            }
-
-            if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-            {
-                Alert.show('服务器错误');
-            }
-        }
-        catch (e)
-        {
-            setOffline();
-            console.log(e);
-        }
+        return RequestProcessors.sendGetCheckLoginStateRequestAsync();
     };
 }
 

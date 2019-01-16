@@ -2,13 +2,8 @@ import React, {Component} from 'react';
 import style from './AvatarUploader.module.scss';
 import {View as SubTitle} from '../../../../Components/SubTitle';
 import {View as ProgressBar} from '../../../../Components/ProgressBar';
-import {requestPrefix} from '../../../../Static/Functions/Url';
-import {postAsync} from '../../../../Static/Functions/Net';
-import {STATUS_CODE} from '../../../../Static/Constants';
-import {View as Alert} from '../../../../Components/Alert';
-import {Functions as BlogFunctions} from '../../../Blog';
-import {redirectToLogin} from '../../../Login/Functions';
 import {View as Hint} from '../Hint';
+import RequestProcessors from '../../../../RequestProcessors';
 
 class AvatarUploader extends Component
 {
@@ -16,7 +11,8 @@ class AvatarUploader extends Component
     {
         super(...arguments);
         this.state = {
-            uploadProgress: 0
+            uploadProgress: 0,
+            formData: null
         };
     }
 
@@ -53,46 +49,10 @@ class AvatarUploader extends Component
         const fileList = $input.files;
         const formData = new FormData();
         formData.append(`file`, fileList[0]);
-        postAsync(requestPrefix('/options/uploadAvatar'), formData, {
-            onUploadProgress: e =>
-            {
-                if (e.lengthComputable)
-                {
-                    this.setState({uploadProgress: e.loaded / e.total});
-                }
-            }
-        })
-            .then(res =>
-            {
-                const {statusCode} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('上传成功', true);
-                    BlogFunctions.refreshBlogInfo();
-                }
-                else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                {
-                    Alert.show('请先登录', false);
-                    redirectToLogin();
-                }
-                else if (statusCode === STATUS_CODE.REJECTION)
-                {
-                    Alert.show('没有上传权限', false);
-                }
-                else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                {
-                    Alert.show('参数无效', false);
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('上传失败', false);
-                console.log(e);
-            });
+        this.setState({formData}, () =>
+        {
+            RequestProcessors.sendPostUploadAvatar.apply(this);
+        });
     };
 
 

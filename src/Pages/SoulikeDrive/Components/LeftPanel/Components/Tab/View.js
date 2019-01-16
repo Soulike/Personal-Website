@@ -10,8 +10,8 @@ class Tab extends Component
 {
     onThisTabClick = () =>
     {
-        const {componentType, onTabClick} = this.props;
-        onTabClick(componentType);
+        const {tabId, onTabClick} = this.props;
+        onTabClick(tabId);
     };
 
     render()
@@ -31,11 +31,9 @@ class Tab extends Component
 
 Tab.propTypes = {
     tabId: PropTypes.number.isRequired,
-    currentActiveTabId: PropTypes.number.isRequired,
     icon: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
-    componentType: PropTypes.string.isRequired
 };
 
 const mapStateToProps = function (state)
@@ -49,9 +47,9 @@ const mapStateToProps = function (state)
 const mapDispatchToProps = function (dispatch)
 {
     return {
-        onTabClicked: (componentType) =>
+        onTabClick: (tabId) =>
         {
-            dispatch(tabClicked(componentType));
+            dispatch(tabClicked(tabId));
         }
     };
 };

@@ -1,16 +1,15 @@
-export function requestPrefix(url)
-{
-    url = removePrependSlashes(url);
-    return `/server/${url}`;
-}
+export default {
+    staticPrefix,
+    removePrependSlashes
+};
 
-export function staticPrefix(url)
+function staticPrefix(url)
 {
     url = removePrependSlashes(url);
     return url ? `https://static.soulike.tech/userImage/${url}` : '';
 }
 
-export function removePrependSlashes(str)
+function removePrependSlashes(str)
 {
     while (str.charAt(0) === '/')
     {

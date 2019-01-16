@@ -1,10 +1,9 @@
 import {TAB_CLICKED} from './ActionTypes';
-import ComponentTypes from '../ComponentTypes';
 
-export function tabClicked(componentType)
+export function tabClicked(tabId)
 {
     return {
         type: TAB_CLICKED,
-        tabId: ComponentTypes[componentType]
+        tabId
     };
 }

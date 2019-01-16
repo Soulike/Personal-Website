@@ -7,13 +7,14 @@ import {tabClicked} from '../../Actions/Actions';
 import {getFileList} from './Actions/Actions';
 import style from './FileList.module.scss';
 import NAMESPACE from '../../../../Namespace';
+import ComponentTypes from '../../ComponentTypes';
 
 
 class FileList extends Component
 {
     componentDidMount()
     {
-        Store.dispatch(tabClicked('FileList'));
+        Store.dispatch(tabClicked(ComponentTypes.FILE_LIST));
         Store.dispatch(getFileList());
     }
 

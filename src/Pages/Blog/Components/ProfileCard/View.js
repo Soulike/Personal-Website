@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getAsync} from '../../../../Static/Functions/Net';
-import {requestPrefix, staticPrefix} from '../../../../Static/Functions/Url';
-import {View as Alert} from '../../../../Components/Alert';
+import Functions from '../../../../Functions';
 import style from './ProfileCard.module.scss';
-import {STATUS_CODE} from '../../../../Static/Constants';
 import NAMESPACE from '../../../../Namespace';
+import RequestProcessors from '../../../../RequestProcessors';
+
+const {staticPrefix} = Functions;
 
 class ProfileCard extends Component
 {
@@ -21,24 +21,7 @@ class ProfileCard extends Component
 
     componentDidMount()
     {
-        getAsync(requestPrefix('/blog/getProfileCardInfo'), true)
-            .then((res) =>
-            {
-                const {statusCode, data} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    this.setState({...data});
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('资料卡信息获取失败', false);
-                console.log(e);
-            });
+        RequestProcessors.sendGetProfileCardInfoRequest.apply(this);
     }
 
     render()

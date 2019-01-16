@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
 import highLight from 'highlight.js';
-import {getAsync, postAsync} from '../../Static/Functions/Net';
-import {markdownToHtml} from '../../Static/Functions/MDConverter';
-import {requestPrefix} from '../../Static/Functions/Url';
+import Functions from '../../Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './ArticleEditor.module.scss';
-import {STATUS_CODE} from '../../Static/Constants';
-import {redirectToLogin} from '../Login/Functions';
 import NAMESPACE from '../../Namespace';
+import RequestProcessors from '../../RequestProcessors';
+
+const {markdownToHtml} = Functions;
 
 class ArticleEditor extends Component
 {
@@ -56,27 +54,7 @@ class ArticleEditor extends Component
             });
         }
 
-        getAsync(requestPrefix('/blog/getArticleTypes'), false)
-            .then(res =>
-            {
-                const {statusCode, data} = res;
-                const {[NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes} = data;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    this.setState({
-                        [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypes
-                    });
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-            })
-            .catch(e =>
-            {
-                Alert.show('获取文章类型失败', false);
-                console.log(e);
-            });
+        RequestProcessors.sendGetArticleTypesRequest.apply(this);
     }
 
     onTitleChange = (e) =>
@@ -138,66 +116,7 @@ class ArticleEditor extends Component
             }
             else
             {
-                postAsync(requestPrefix('/blog/submitArticle'), {
-                    [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
-                    [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
-                    [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
-                    [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
-                })
-                    .then(res =>
-                    {
-                        const {statusCode, data} = res;
-                        if (statusCode === STATUS_CODE.SUCCESS)
-                        {
-                            if (articleId === 0)
-                            {
-                                Alert.show('提交成功', true);
-                            }
-                            else
-                            {
-                                Alert.show('修改成功', true);
-                            }
-
-                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.TYPE_ID);
-                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.TITLE);
-                            sessionStorage.removeItem(NAMESPACE.BLOG.ARTICLE.CONTENT);
-
-                            this.setState({
-                                [NAMESPACE.BLOG.ARTICLE.TITLE]: '',
-                                [NAMESPACE.BLOG.ARTICLE.CONTENT]: '',
-                                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0
-                            });
-
-                            const $articleTitle = document.querySelector(`.${style.articleTitle}`);
-                            const $articleContent = document.querySelector(`.${style.articleContent}`);
-                            $articleTitle.value = '';
-                            $articleContent.value = '';
-
-                            const {[NAMESPACE.BLOG.ARTICLE.ID]: respondArticleId} = data;
-                            setTimeout(() =>
-                            {
-                                browserHistory.push(`/article?articleId=${respondArticleId}`);
-                            }, 1000);
-                        }
-                        else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                        {
-                            Alert.show('请求参数无效', false);
-                        }
-                        else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                        {
-                            Alert.show('请先登录', false);
-                            redirectToLogin();
-                        }
-                        else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                        {
-                            Alert.show('服务器错误', false);
-                        }
-                    })
-                    .catch(e =>
-                    {
-                        Alert.show('文章提交失败', false);
-                        console.log(e);
-                    });
+                RequestProcessors.sendPostSubmitArticleRequest.apply(this);
             }
         }
     };

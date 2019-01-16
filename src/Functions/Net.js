@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-export async function getAsync(url, allowCache = true, params = {}, config = {})
+export default {
+    getAsync,
+    postAsync,
+    downloadFile
+};
+
+async function getAsync(url, allowCache = true, params = {}, config = {})
 {
     return new Promise(async (resolve, reject) =>
     {
@@ -23,7 +29,7 @@ export async function getAsync(url, allowCache = true, params = {}, config = {})
 
 }
 
-export async function postAsync(url, params = {}, config = {})
+async function postAsync(url, params = {}, config = {})
 {
     return new Promise(async (resolve, reject) =>
     {
@@ -39,7 +45,7 @@ export async function postAsync(url, params = {}, config = {})
     });
 }
 
-export function downloadFile(url)
+function downloadFile(url)
 {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';

@@ -3,14 +3,13 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import * as solidIcon from '@fortawesome/free-solid-svg-icons';
 import {switchArticleType} from '../../../TypeSelectBar/Actions/Actions';
-import {appendToLikedList, isInLikedList, removeFromLikedList, submitLikeAsync} from '../../../../../../Static/Functions/Like';
-import {staticPrefix} from '../../../../../../Static/Functions/Url';
-import {generateTimeString} from '../../../../../../Static/Functions/Util';
+import Functions from '../../../../../../Functions';
 import {View as FunctionButton} from './Components/FunctionButton';
-import Alert from '../../../../../../Components/Alert/View';
 import style from './ArticleWrapper.module.scss';
-import {STATUS_CODE} from '../../../../../../Static/Constants';
 import NAMESPACE from '../../../../../../Namespace';
+import RequestProcessors from '../../../../../../RequestProcessors';
+
+const {isInLikedList, staticPrefix, generateTimeString} = Functions;
 
 class ArticleWrapper extends Component
 {
@@ -20,7 +19,8 @@ class ArticleWrapper extends Component
         this.state = {
             [NAMESPACE.BLOG.AMOUNT.LIKE]: 0,
             hasLiked: false,
-            canLikeButtonClick: true
+            canLikeButtonClick: true,
+            [NAMESPACE.BLOG.ARTICLE.ID]: 0
         };
     }
 
@@ -31,6 +31,7 @@ class ArticleWrapper extends Component
             [NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount
         } = this.props;
         this.setState({
+            [NAMESPACE.BLOG.ARTICLE.ID]: articleId,
             [NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount,
             hasLiked: isInLikedList(articleId)
         });
@@ -53,56 +54,12 @@ class ArticleWrapper extends Component
 
     onLikeButtonClick = () =>
     {
-        const {hasLiked, canLikeButtonClick} = this.state;
+        const {canLikeButtonClick} = this.state;
         if (canLikeButtonClick)
         {
             this.setState({canLikeButtonClick: false}, () =>
             {
-                const {[NAMESPACE.BLOG.ARTICLE.ID]: articleId} = this.props;
-                submitLikeAsync(articleId, !hasLiked)
-                    .then(res =>
-                    {
-                        const {statusCode, data} = res;
-                        if (statusCode === STATUS_CODE.SUCCESS)
-                        {
-                            const {[NAMESPACE.BLOG.AMOUNT.LIKE]: likeAmount} = data;
-                            this.setState({
-                                [NAMESPACE.BLOG.AMOUNT.LIKE]: parseInt(likeAmount, 10),
-                                hasLiked: !hasLiked
-                            }, () =>
-                            {
-                                if (isInLikedList(articleId))
-                                {
-                                    removeFromLikedList(articleId);
-                                }
-                                else
-                                {
-                                    appendToLikedList(articleId);
-                                }
-                            });
-                        }
-                        else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                        {
-                            Alert.show('请求参数无效', false);
-                        }
-                        else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                        {
-                            Alert.show('要点赞的文章不存在', false);
-                        }
-                        else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                        {
-                            Alert.show('服务器错误', false);
-                        }
-                    })
-                    .catch(e =>
-                    {
-                        Alert.show('点赞失败', false);
-                        console.log(e);
-                    })
-                    .finally(() =>
-                    {
-                        this.setState({canLikeButtonClick: true});
-                    });
+                RequestProcessors.sendPostLikeArticleRequest.apply(this);
             });
         }
     };

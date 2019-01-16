@@ -3,50 +3,14 @@ import {connect} from 'react-redux';
 import {View as TopBarLink} from '../TopBarLink';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import style from './AuthController.module.scss';
-import {postAsync} from '../../../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../../../Static/Functions/Url';
-import {STATUS_CODE} from '../../../../../../Static/Constants';
-import {setOffline, setOnline} from '../../../../../Login/Functions';
-import {browserHistory} from 'react-router';
-import {View as Alert} from '../../../../../../Components/Alert';
+import RequestProcessors from '../../../../../../RequestProcessors';
 
 class AuthController extends Component
 {
-    static logout()
-    {
-        postAsync(requestPrefix('/logout'))
-            .then(res =>
-            {
-                const {statusCode} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('退出登录成功', true);
-                    setOffline();
-                    browserHistory.push('/');
-                }
-                else
-                {
-                    setOnline();
-                }
-
-
-                if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误');
-                }
-            })
-            .catch(e =>
-            {
-                setOnline();
-                Alert.show('退出登录失败', false);
-                console.log(e);
-            });
-    }
-
-    onExitLinkClick = (e) =>
+    onExitLinkClick = e =>
     {
         e.preventDefault();
-        AuthController.logout();
+        RequestProcessors.sendPostLogoutRequest.apply(this);
     };
 
     render()

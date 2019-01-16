@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {postAsync} from '../../../../../../Static/Functions/Net';
-import {requestPrefix} from '../../../../../../Static/Functions/Url';
-import {View as Alert} from '../../../../../../Components/Alert';
 import style from './OfflineDownloader.module.scss';
-import {STATUS_CODE} from '../../../../../../Static/Constants';
+import RequestProcessors from '../../../../../../RequestProcessors';
 
 class OfflineDownloader extends Component
 {
@@ -29,38 +26,7 @@ class OfflineDownloader extends Component
     OfflineDownloaderButtonClick = (e) =>
     {
         e.preventDefault();
-        postAsync(requestPrefix('/soulikeDrive/submitOfflineDownloadURL'), {url: this.state.offlineDownloadURL})
-            .then(res =>
-            {
-                const {statusCode} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('任务创建成功', true);
-                    this.refs.urlInput.value = '';
-                }
-                else if (statusCode === STATUS_CODE.INVALID_SESSION)
-                {
-                    Alert.show('请先登录', false);
-                }
-                else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
-                {
-                    Alert.show('请求参数错误', false);
-                }
-                else if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                {
-                    Alert.show('下载链接无效', false);
-                }
-                if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误', false);
-                }
-
-            })
-            .catch(e =>
-            {
-                Alert.show('提交离线下载任务失败', false);
-                console.log(e);
-            });
+        RequestProcessors.sendPostSubmitOfflineDownloadURLRequest.apply(this);
     };
 
     render()

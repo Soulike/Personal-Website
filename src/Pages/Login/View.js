@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
-import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
 import style from './Login.module.scss';
-import {getHash} from '../../Static/Functions/Crypto';
-import {postAsync} from '../../Static/Functions/Net';
-import {requestPrefix} from '../../Static/Functions/Url';
-import {STATUS_CODE} from '../../Static/Constants';
-import {removeLoginToken, setOffline, setOnline} from './Functions';
 import NAMESPACE from '../../Namespace';
+import RequestProcessors from '../../RequestProcessors';
 
 class Login extends Component
 {
@@ -18,8 +12,8 @@ class Login extends Component
     {
         super(...arguments);
         this.state = {
-            username: '',
-            password: ''
+            [NAMESPACE.SHARE.LOGIN.USERNAME]: '',
+            [NAMESPACE.SHARE.LOGIN.PASSWORD]: ''
         };
     }
 
@@ -30,61 +24,18 @@ class Login extends Component
 
     onUsernameChange = (e) =>
     {
-        this.setState({username: e.target.value});
+        this.setState({[NAMESPACE.SHARE.LOGIN.USERNAME]: e.target.value});
     };
 
     onPasswordChange = (e) =>
     {
-        this.setState({password: e.target.value});
-    };
-
-    static login(username, password)
-    {
-        postAsync(requestPrefix('/login'), {
-            [NAMESPACE.SHARE.LOGIN.USERNAME]: username,
-            [NAMESPACE.SHARE.LOGIN.PASSWORD]: getHash(`${username}${password}`, 'sha256')
-        })
-            .then(res =>
-            {
-                const {statusCode} = res;
-                if (statusCode === STATUS_CODE.SUCCESS)
-                {
-                    Alert.show('登录成功', true);
-                    setOnline();
-                    browserHistory.push('/');
-                }
-                else
-                {
-                    setOffline();
-                    removeLoginToken();
-                }
-
-                if (statusCode === STATUS_CODE.CONTENT_NOT_FOUND)
-                {
-                    Alert.show('用户不存在');
-                }
-                else if (statusCode === STATUS_CODE.REJECTION)
-                {
-                    Alert.show('密码错误');
-                }
-                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
-                {
-                    Alert.show('服务器错误');
-                }
-            })
-            .catch(e =>
-            {
-                setOffline();
-                Alert.show('登录失败', false);
-                console.log(e);
-            });
+        this.setState({[NAMESPACE.SHARE.LOGIN.PASSWORD]: e.target.value});
     };
 
     onSubmitButtonClick = (e) =>
     {
         e.preventDefault();
-        const {username, password} = this.state;
-        Login.login(username, password);
+        RequestProcessors.sendPostLoginRequest.apply(this);
     };
 
     render()
