@@ -2,11 +2,11 @@ import Functions from '../../Functions';
 import NAMESPACE from '../../Namespace';
 import {STATUS_CODE} from '../../Static/Constants';
 import {View as Alert} from '../../Components/Alert';
-import {SUBMIT_OFFLINE_DOWNLOAD_URL} from './Routes';
+import {DELETE_FILE, GET_DOWNLOAD_URL, GET_FILE_LIST, SUBMIT_OFFLINE_DOWNLOAD_URL, UPLOAD_FILE} from './Routes';
 import {redirectToLogin} from '../../Pages/Login/Functions';
 import {Functions as SoulikeDriveFileListFunctions} from '../../Pages/SoulikeDrive/Components/FileList';
 
-const {downloadFile, getAsync, postAsync, requestPrefix} = Functions;
+const {downloadFile, getAsync, postAsync} = Functions;
 
 export default {
     sendPostSubmitOfflineDownloadURLRequest,
@@ -60,7 +60,7 @@ async function sendGetFileListRequestAsync(dispatch, succeedAction, failAction)
 {
     try
     {
-        const res = await getAsync(requestPrefix('/soulikeDrive/getFileList'), false);
+        const res = await getAsync(GET_FILE_LIST, false);
         const {statusCode, data: {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList}} = res;
         if (statusCode === STATUS_CODE.SUCCESS)
         {
@@ -92,7 +92,7 @@ async function sendGetFileListRequestAsync(dispatch, succeedAction, failAction)
 function sendPostUploadFileRequest($fileInput)
 {
     const {formData} = this.state;
-    postAsync(requestPrefix('/soulikeDrive/uploadFile'), formData, {
+    postAsync(UPLOAD_FILE, formData, {
         onUploadProgress: event =>
         {
             if (event.lengthComputable)
@@ -146,8 +146,7 @@ async function sendPostDeleteFileRequestAsync(dispatch, succeedAction, failActio
 {
     try
     {
-        const res = await postAsync(requestPrefix('/soulikeDrive/deleteFile'),
-            {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
+        const res = await postAsync(DELETE_FILE, {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
         const {statusCode, data} = res;
         const {[NAMESPACE.SOULIKE_DRIVE.DELETE_FILE.DELETE_FILE_AMOUNT]: deleteFileAmount} = data;
         if (statusCode === STATUS_CODE.SUCCESS)
@@ -187,8 +186,7 @@ async function sendGetDownloadURLRequestAsync(dispatch, succeedAction, failActio
 {
     try
     {
-        const res = await postAsync(requestPrefix('/soulikeDrive/getDownloadURL'),
-            {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
+        const res = await postAsync(GET_DOWNLOAD_URL, {[NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: fileList});
         const {statusCode, data: {[NAMESPACE.SOULIKE_DRIVE.DOWNLOAD.URL]: url}} = res;
         if (statusCode === STATUS_CODE.SUCCESS)
         {
