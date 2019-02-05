@@ -24,7 +24,6 @@ const Routes = () => (
             <IndexRoute component={Blog}/>
             <Route path='/blog' component={Blog}/>
             <Route path='/article' component={Article}/>
-            <Route path='/options' component={Options} onEnter={requireLogin}/>
             {/*<Route path='/dynamic' component={Dynamic} onEnter={requireLogin}/>*/}
             <Route path='/login' component={Login}/>
             <Route path='/hashGenerator' component={HashGenerator}/>
@@ -33,6 +32,7 @@ const Routes = () => (
         </Route>
         <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}>
             <Route path='/articleEditor' component={ArticleEditor} onEnter={requireLogin}/>
+            <Route path='/options' component={Options} onEnter={requireLogin} />
         </Route>
         <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={false}/>)}>
             <Route path='/soulikeDrive' component={SoulikeDrive} onEnter={requireLogin}>

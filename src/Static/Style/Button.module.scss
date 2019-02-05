@@ -1,9 +1,10 @@
-.btn
-{
-    font:
-    {
-        weight: 400;
+@import "./Constants.module";
+
+.Button {
+    font: {
+        weight: bold;
         size: 1rem;
+        family: $SERIF;
     }
     text-align: center;
     white-space: nowrap;
@@ -18,83 +19,70 @@
     outline: none;
 }
 
-.btn-lg
-{
-    @extend .btn;
+.LargeButton {
+    @extend .Button;
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
     border-radius: 0.3rem;
 }
 
-.btn-primary
-{
-    @extend .btn;
+.PrimaryButton {
+    @extend .Button;
     color: #FFF;
     background-color: #007BFF;
     border-color: #007BFF;
 
-    &:hover
-    {
+    &:hover {
         background-color: #0069D9;
         border-color: #0062CC;
     }
 
-    &:focus, &.focus
-    {
+    &:focus, &.focus {
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
     }
 
-    &.disabled, &:disabled
-    {
-        background-color: #007bff;
-        border-color: #007bff;
+    &.disabled, &:disabled {
+        background-color: #007BFF;
+        border-color: #007BFF;
     }
 
-    &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle
-    {
+    &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle {
         background-color: #0062CC;
         border-color: #005CBF;
     }
 
-    &:not(:disabled):not(.disabled):focus, &:not(:disabled):not(.disabled).focus, .show > &.dropdown-toggle:focus
-    {
+    &:not(:disabled):not(.disabled):focus, &:not(:disabled):not(.disabled).focus, .show > &.dropdown-toggle:focus {
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
     }
 }
 
-.btn-danger
-{
-    @extend .btn;
+.DangerButton {
+    @extend .Button;
     color: #FFF;
     background-color: #DC3545;
     border-color: #DC3545;
 
-    &:hover
-    {
+    &:hover {
         background-color: #C82333;
         border-color: #BD2130;
     }
 
-    &:focus, &.focus
-    {
+    &:focus, &.focus {
         box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
     }
 
-    &.disabled, &:disabled
-    {
+    &.disabled, &:disabled {
         background-color: #DC3545;
         border-color: #DC3545;
     }
 
-    &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle
-    {
+    &:not(:disabled):not(.disabled):active, &:not(:disabled):not(.disabled).active, .show > &.dropdown-toggle {
         background-color: #BD2130;
         border-color: #B21F2D;
     }
 
-    &:not(:disabled):not(.disabled):focus, &:not(:disabled):not(.disabled).focus, .show > &.dropdown-toggle:focus
-    {
+    &:not(:disabled):not(.disabled):focus, &:not(:disabled):not(.disabled).focus, .show > &.dropdown-toggle:focus {
         box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
     }
 }

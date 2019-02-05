@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View as TopBarLink} from '../TopBarLink';
 import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import style from './AuthController.module.scss';
-import RequestProcessors from '../../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../../RequestProcessor';
 
 class AuthController extends Component
 {

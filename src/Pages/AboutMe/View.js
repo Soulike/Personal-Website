@@ -3,7 +3,7 @@ import {View as Title} from '../../Components/Title';
 import style from './AboutMe.module.scss';
 import NAMESPACE from '../../Namespace';
 import Functions from '../../Functions';
-import RequestProcessors from '../../RequestProcessors';
+import RequestProcessors from '../../RequestProcessor';
 
 const {markdownToHtml} = Functions;
 
@@ -28,7 +28,7 @@ class AboutMe extends Component
     {
         return (
             <div className={style.AboutMe}>
-                <Title titleText={'关于我'}/>
+                <Title>关于我</Title>
                 <div className={style.aboutMeContent}
                      dangerouslySetInnerHTML={{__html: markdownToHtml(this.state[NAMESPACE.SHARE.INFO.ABOUT_ME_MARKDOWN])}}/>
             </div>);

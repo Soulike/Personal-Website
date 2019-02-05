@@ -5,7 +5,7 @@ import {CSSTransitionGroup} from 'react-transition-group';
 import style from './ArticleListContainer.module.scss';
 import './Transition.scss';
 import NAMESPACE from '../../../../Namespace';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 class ArticleListContainer extends Component
 {

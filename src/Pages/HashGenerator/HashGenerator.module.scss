@@ -1,5 +1,5 @@
-@import "../../Static/Constants.module";
-@import "../../Static/Button.module";
+@import "../../Static/Style/Constants.module";
+@import "../../Static/Style/Button.module";
 
 .HashGenerator
 {
@@ -43,8 +43,8 @@
 
     .originalTextSubmitBtn
     {
-        @extend .btn-primary;
-        @extend .btn-lg;
+        @extend .PrimaryButton;
+        @extend .LargeButton;
         display: block;
         width: 100%;
         margin-top: 2rem;
@@ -59,7 +59,7 @@
     .hashMethodWrapper
     {
         font-size: 2rem;
-        font-family: $serif;
+        font-family: $SERIF;
         font-weight: bold;
         user-select: none;
     }
@@ -74,8 +74,8 @@
 
     .copyHashResultBtn
     {
-        @extend .btn-primary;
-        @extend .btn-lg;
+        @extend .PrimaryButton;
+        @extend .LargeButton;
         margin-top: 2rem;
     }
 

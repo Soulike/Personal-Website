@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import style from './OfflineDownloader.module.scss';
-import RequestProcessors from '../../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../../RequestProcessor';
 
 class OfflineDownloader extends Component
 {

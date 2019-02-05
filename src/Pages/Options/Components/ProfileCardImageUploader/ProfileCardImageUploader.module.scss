@@ -1,4 +1,4 @@
-@import "../../../../Static/Button.module";
+@import "../../../../Static/Style/Button.module";
 
 .ProfileCardImageUploader {
     $width: 50rem;
@@ -45,8 +45,8 @@
             }
 
             .submitButton {
-                @extend .btn-primary;
-                @extend .btn-lg;
+                @extend .PrimaryButton;
+                @extend .LargeButton;
             }
         }
     }

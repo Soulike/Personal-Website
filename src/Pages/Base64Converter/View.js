@@ -55,7 +55,7 @@ class Base64Converter extends Component
     {
         return (
             <div className={style.Base64Converter}>
-                <Title titleText={'Base64 转换器'}/>
+                <Title>Base64 转换器</Title>
                 <div className={style.originalTextWrapper}>
                     <div className={style.originalTextHeader}>原始文本</div>
                     <textarea className={style.originalText}

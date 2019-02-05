@@ -9,7 +9,7 @@ import style from './Article.module.scss';
 import {View as Modal} from '../../Components/Modal';
 import {Types as ReminderTypes, View as Reminder} from '../../Components/Reminder';
 import NAMESPACE from '../../Namespace';
-import RequestProcessors from '../../RequestProcessors';
+import RequestProcessors from '../../RequestProcessor';
 
 const {isInLikedList, markdownToHtml, generateFullTimeString} = Functions;
 

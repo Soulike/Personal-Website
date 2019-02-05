@@ -1,4 +1,4 @@
-@import "../../../../../../Static/Button.module";
+@import "../../../../../../Static/Style/Button.module";
 
 .Uploader
 {
@@ -25,7 +25,7 @@
 
     .fileInputWrapper
     {
-        @extend .btn-primary;
+        @extend .PrimaryButton;
         display: inline-block;
     }
 
@@ -47,6 +47,6 @@
 
     .fileUploadBtn
     {
-        @extend .btn-primary;
+        @extend .PrimaryButton;
     }
 }

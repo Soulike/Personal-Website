@@ -1,10 +1,10 @@
-@import "../../../../../../../../Static/Constants.module";
-@import "../../../../../../../../Static/Button.module";
+@import "../../../../../../../../Static/Style/Constants.module";
+@import "../../../../../../../../Static/Style/Button.module";
 @import "../../ButtonArea.module";
 
 .DeleteButton
 {
-    @extend .btn-danger;
+    @extend .DangerButton;
 
     .deleteButtonText
     {

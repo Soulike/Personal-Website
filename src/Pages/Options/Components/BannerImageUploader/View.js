@@ -3,7 +3,7 @@ import style from './BannerImageUploader.module.scss';
 import {View as SubTitle} from '../../../../Components/SubTitle';
 import {View as ProgressBar} from '../../../../Components/ProgressBar';
 import {View as Hint} from '../Hint';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 class BannerImageUploader extends Component
 {
@@ -60,7 +60,7 @@ class BannerImageUploader extends Component
         const {uploadProgress} = this.state;
         return (
             <div className={style.BannerImageUploader}>
-                <SubTitle titleText={'头图上传'}/>
+                <SubTitle>头图上传</SubTitle>
                 <Hint>推荐分辨率为 1920×400 的图片</Hint>
                 <div className={style.previewWrapper}><span className={style.placeholder}>预览</span>
                     <div className={style.preview}/>

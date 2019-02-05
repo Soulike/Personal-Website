@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import NAMESPACE from '../../../Namespace';
-import RequestProcessors from '../../../RequestProcessors';
+import RequestProcessors from '../../../RequestProcessor';
 
 export function getInfo(isRefresh = false)
 {

@@ -1,4 +1,4 @@
-@import "../../../../../../Static/Button.module";
+@import "../../../../../../Static/Style/Button.module";
 
 .OfflineDownloader
 {
@@ -48,7 +48,7 @@
 
     .submitButton
     {
-        @extend .btn-primary;
+        @extend .PrimaryButton;
         float: right;
     }
 }

@@ -4,7 +4,7 @@ import {ARTICLE_TYPE} from '../../../../Static/Constants';
 import {switchArticleType} from './Actions/Actions';
 import style from './TypeSelectBar.module.scss';
 import NAMESPACE from '../../../../Namespace';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 class TypeSelectBar extends Component
 {

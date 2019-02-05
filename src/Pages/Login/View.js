@@ -4,7 +4,7 @@ import * as solidIcons from '@fortawesome/free-solid-svg-icons';
 import {View as Title} from '../../Components/Title';
 import style from './Login.module.scss';
 import NAMESPACE from '../../Namespace';
-import RequestProcessors from '../../RequestProcessors';
+import RequestProcessors from '../../RequestProcessor';
 
 class Login extends Component
 {
@@ -43,7 +43,7 @@ class Login extends Component
         return (
 
             <div className={style.Login}>
-                <Title titleText={'登录'}/>
+                <Title>登录</Title>
                 <form onSubmit={this.onSubmitButtonClick}>
                     <div className={style.inputWrapper}>
                         <FontAwesomeIcon icon={solidIcons.faUserCircle} className={style.icon}/>

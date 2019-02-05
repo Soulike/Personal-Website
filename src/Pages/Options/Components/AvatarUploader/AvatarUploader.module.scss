@@ -1,4 +1,4 @@
-@import "../../../../Static/Button.module";
+@import "../../../../Static/Style/Button.module";
 
 .AvatarUploader {
     $height: 15rem;
@@ -51,8 +51,8 @@
                 }
 
                 .submitButton {
-                    @extend .btn-primary;
-                    @extend .btn-lg;
+                    @extend .PrimaryButton;
+                    @extend .LargeButton;
                 }
             }
         }

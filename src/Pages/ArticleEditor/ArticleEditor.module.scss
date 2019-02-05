@@ -1,5 +1,6 @@
-@import "../../Static/ArticleContent.module";
-@import "../../Static/Button.module";
+@import "../../Static/Style/ArticleContent.module";
+@import "../../Static/Style/Button.module";
+@import "../../Static/Style/TextInput.module";
 
 .ArticleEditor
 {
@@ -10,60 +11,53 @@
 
     .articleTitle
     {
-        border-radius: 0.25rem;
+        padding: 0;
         display: block;
         width: 100%;
         text-align: center;
         font:
         {
             size: 1.5rem;
-            family: $serif;
+            family: $SERIF;
             weight: bold;
         }
         line-height: 3rem;
         box-sizing: border-box;
     }
 
-    .articleContent
-    {
-        resize: none;
-        border-top-left-radius: 0.25rem;
-        border-bottom-left-radius: 0.25rem;
-    }
+    .articleContentWrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
 
-    .articlePreview
-    {
-        background: #FFF;
-        user-select: none;
-        border-top-right-radius: 0.25rem;
-        border-bottom-right-radius: 0.25rem;
-        line-height: 1.75rem;
-    }
+        .articleContent {
+            resize: none;
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+        }
 
-    .articleContent, .articlePreview
-    {
-        display: inline-block;
-        width: 50%;
-        height: 30rem;
-        box-sizing: border-box;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        text-align: justify;
-        padding: 1rem 0.75rem;
+        .articlePreview {
+            background: #FFF;
+            user-select: none;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            line-height: 1.75rem;
+        }
+
+        .articleContent, .articlePreview {
+            width: 49%;
+            height: 30rem;
+            box-sizing: border-box;
+            text-align: justify;
+            padding: 1rem 0.75rem;
+        }
     }
 
     .articleTitle, .articleContent, .articlePreview
     {
-        border: 1px solid #DDD;
-        outline: none;
-        transition: 0.25s;
+        @extend .TextInput;
         overflow: auto;
         word-break: break-word;
-
-        &:focus
-        {
-            border: 1px solid #333;
-        }
     }
 
     .articleTypeSelectWrapper
@@ -93,8 +87,8 @@
 
     .articleSubmitBtn
     {
-        @extend .btn-lg;
-        @extend .btn-primary;
+        @extend .LargeButton;
+        @extend .PrimaryButton;
         width: 100%;
     }
 }

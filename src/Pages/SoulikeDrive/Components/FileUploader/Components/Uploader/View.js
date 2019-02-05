@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View as ProgressBar} from '../../../../../../Components/ProgressBar';
 import style from './Uploader.module.scss';
-import RequestProcessors from '../../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../../RequestProcessor';
 
 class Uploader extends Component
 {

@@ -6,7 +6,7 @@ import CardBodyListItem from './Components/CardBodyListItem/View';
 import style from './CardBody.module.scss';
 import './Transition.scss';
 import NAMESPACE from '../../../../../../Namespace';
-import RequestProcessors from '../../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../../RequestProcessor';
 
 class CardBody extends Component
 {

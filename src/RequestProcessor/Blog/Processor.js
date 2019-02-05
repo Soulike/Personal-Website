@@ -1,6 +1,15 @@
 import {STATUS_CODE} from '../../Static/Constants';
 import {View as Alert} from '../../Components/Alert';
-import {DELETE_ARTICLE, GET_ARTICLE, GET_ARTICLE_LIST, GET_ARTICLE_TYPES, GET_POPULAR_LIST, GET_PROFILE_CARD_INFO, LIKE_ARTICLE, SUBMIT_ARTICLE} from './Routes';
+import {
+    DELETE_ARTICLE,
+    GET_ARTICLE,
+    GET_ARTICLE_LIST,
+    GET_ARTICLE_TYPES,
+    GET_POPULAR_LIST,
+    GET_PROFILE_CARD_INFO,
+    LIKE_ARTICLE,
+    SUBMIT_ARTICLE,
+} from './Routes';
 import NAMESPACE from '../../Namespace';
 import style from '../../Pages/ArticleEditor/ArticleEditor.module.scss';
 import {browserHistory} from 'react-router';

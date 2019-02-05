@@ -1,0 +1,37 @@
+.NavBar {
+    display: flex;
+    justify-content: space-around;
+
+    .item {
+        $BORDER_STYLE: 1px solid #DDD;
+        $BORDER_RADIUS_STYLE: 0.5rem;
+
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        font-size: 1.25rem;
+        border-top: 1px solid transparent;
+        border-left: $BORDER_STYLE;
+        border-bottom: $BORDER_STYLE;
+        padding: 0.75rem 0;
+        color: #666;
+
+        &:last-child {
+            border-right: $BORDER_STYLE;
+        }
+
+        &.active {
+            color: #000;
+            border-top: $BORDER_STYLE;
+            border-right: $BORDER_STYLE;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: $BORDER_RADIUS_STYLE;
+            border-top-right-radius: $BORDER_RADIUS_STYLE;
+            font-weight: bold;
+
+            & + .item {
+                border-left: none;
+            }
+        }
+    }
+}

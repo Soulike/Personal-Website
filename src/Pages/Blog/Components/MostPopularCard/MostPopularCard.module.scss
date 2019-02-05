@@ -1,6 +1,6 @@
-@import "../../../../Static/Card.module";
+@import "../../../../Static/Style/Card.module";
 
 .MostPopularCard
 {
-    @extend .card;
+    @extend .Card;
 }

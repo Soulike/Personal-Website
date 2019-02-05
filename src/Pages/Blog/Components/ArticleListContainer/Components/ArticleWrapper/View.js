@@ -7,7 +7,7 @@ import Functions from '../../../../../../Functions';
 import {View as FunctionButton} from './Components/FunctionButton';
 import style from './ArticleWrapper.module.scss';
 import NAMESPACE from '../../../../../../Namespace';
-import RequestProcessors from '../../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../../RequestProcessor';
 
 const {isInLikedList, staticPrefix, generateTimeString} = Functions;
 

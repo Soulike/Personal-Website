@@ -3,7 +3,7 @@ import style from './ProfileCardImageUploader.module.scss';
 import {View as SubTitle} from '../../../../Components/SubTitle';
 import {View as Hint} from '../Hint';
 import {View as ProgressBar} from '../../../../Components/ProgressBar';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 class ProfileCardImageUploader extends Component
 {
@@ -25,7 +25,7 @@ class ProfileCardImageUploader extends Component
         formData.append(`file`, fileList[0]);
         this.setState({formData}, () =>
         {
-            RequestProcessors.sendUploadProfileCardImage.apply(this);
+            RequestProcessors.sendPostUploadProfileCardImageRequest.apply(this);
         });
     };
 
@@ -61,7 +61,7 @@ class ProfileCardImageUploader extends Component
         const {uploadProgress} = this.state;
         return (
             <div className={style.ProfileCardImageUploader}>
-                <SubTitle titleText={'资料卡图片上传'}/>
+                <SubTitle>资料片图片上传</SubTitle>
                 <Hint>推荐上传分辨率为 320×80 的图片，实际显示效果取决于页面缩放</Hint>
                 <div className={style.previewWrapper}><span className={style.placeholder}>预览</span>
                     <div className={style.preview}/>

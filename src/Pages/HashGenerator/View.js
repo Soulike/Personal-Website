@@ -59,7 +59,7 @@ class HashGenerator extends Component
         const {hashMethod, showResult, hashResult} = this.state;
         return (
             <div className={style.HashGenerator}>
-                <Title titleText={'哈希生成器'}/>
+                <Title>哈希生成器</Title>
                 <form onSubmit={this.onSubmit}>
                     <select onChange={this.onSelectChange} className={style.methodSelect}>
                         <option value="md5" defaultChecked={true}>MD5</option>

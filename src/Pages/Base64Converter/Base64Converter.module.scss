@@ -1,5 +1,5 @@
-@import "../../Static/Constants.module";
-@import "../../Static/Button.module";
+@import "../../Static/Style/Constants.module";
+@import "../../Static/Style/Button.module";
 
 .Base64Converter
 {
@@ -19,7 +19,7 @@
         font:
         {
             size: 1.5rem;
-            family: $serif;
+            family: $SERIF;
             weight: bold;
         }
         margin-bottom: 1rem;
@@ -52,7 +52,7 @@
 
     .originalToBase64Button, .base64ToOriginalButton
     {
-        @extend .btn-primary;
+        @extend .PrimaryButton;
         margin: 2rem 1rem;
         width: 10rem;
     }

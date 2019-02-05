@@ -1,0 +1,39 @@
+@import "../../../../Static/Style/TextInput.module";
+@import "../../../../Static/Style/Button.module";
+
+.ProfileEditor {
+    .inputWrapper {
+        text-align: center;
+        margin: 1.5rem 0 2.5rem 0;
+
+        .labelWrapper {
+            display: block;
+            color: #333;
+            margin-bottom: 1.5rem;
+
+
+            .labelText {
+                font-size: 1.1rem;
+            }
+
+            .nickname, .motto {
+                /*empty here*/
+            }
+
+            .input {
+                @extend .TextInput;
+                width: 20rem;
+            }
+        }
+    }
+
+    .submitButtonWrapper {
+        text-align: center;
+
+        .submitButton {
+            @extend .PrimaryButton;
+            @extend .LargeButton;
+            width: 6rem;
+        }
+    }
+}

@@ -10,8 +10,10 @@ const {postAsync} = Functions;
 
 export default {
     sendPostUploadBannerImageRequest,
-    sendPostUploadAvatar,
-    sendUploadProfileCardImage
+    sendPostUploadAvatarRequest,
+    sendPostUploadProfileCardImageRequest,
+    sendGetBasicInformationRequest,
+    sendPostSubmitBasicInformationRequest,
 };
 
 function sendPostUploadBannerImageRequest()
@@ -24,7 +26,7 @@ function sendPostUploadBannerImageRequest()
             {
                 this.setState({uploadProgress: e.loaded / e.total});
             }
-        }
+        },
     })
         .then(res =>
         {
@@ -59,7 +61,7 @@ function sendPostUploadBannerImageRequest()
         });
 }
 
-function sendPostUploadAvatar()
+function sendPostUploadAvatarRequest()
 {
     const {formData} = this.state;
     postAsync(UPLOAD_AVATAR, formData, {
@@ -69,7 +71,7 @@ function sendPostUploadAvatar()
             {
                 this.setState({uploadProgress: e.loaded / e.total});
             }
-        }
+        },
     })
         .then(res =>
         {
@@ -104,7 +106,7 @@ function sendPostUploadAvatar()
         });
 }
 
-function sendUploadProfileCardImage()
+function sendPostUploadProfileCardImageRequest()
 {
     const {formData} = this.state;
     postAsync(UPLOAD_PROFILE_CARD_IMAGE, formData, {
@@ -114,7 +116,7 @@ function sendUploadProfileCardImage()
             {
                 this.setState({uploadProgress: e.loaded / e.total});
             }
-        }
+        },
     })
         .then(res =>
         {
@@ -147,4 +149,14 @@ function sendUploadProfileCardImage()
             Alert.show('上传失败', false);
             console.log(e);
         });
+}
+
+function sendGetBasicInformationRequest()
+{
+    // TODO: 完成请求处理器
+}
+
+function sendPostSubmitBasicInformationRequest()
+{
+    // TODO: 完成请求处理器
 }

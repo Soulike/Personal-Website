@@ -1,4 +1,4 @@
-@import "Constants.module";
+@import "./Constants.module";
 
 .ArticleContent
 {
@@ -71,7 +71,7 @@
 
         &, code
         {
-            font-family: $monospace;
+            font-family: $MONOSPACE;
             font-size: 0.9rem;
             line-height: 1.25rem;
             border-radius: 0.25rem;

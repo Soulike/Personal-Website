@@ -3,7 +3,7 @@ import style from './AvatarUploader.module.scss';
 import {View as SubTitle} from '../../../../Components/SubTitle';
 import {View as ProgressBar} from '../../../../Components/ProgressBar';
 import {View as Hint} from '../Hint';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 class AvatarUploader extends Component
 {
@@ -51,7 +51,7 @@ class AvatarUploader extends Component
         formData.append(`file`, fileList[0]);
         this.setState({formData}, () =>
         {
-            RequestProcessors.sendPostUploadAvatar.apply(this);
+            RequestProcessors.sendPostUploadAvatarRequest.apply(this);
         });
     };
 
@@ -61,7 +61,7 @@ class AvatarUploader extends Component
         const {uploadProgress} = this.state;
         return (
             <div className={style.AvatarUploader}>
-                <SubTitle titleText={'头像上传'}/>
+                <SubTitle>头像上传</SubTitle>
                 <Hint>推荐分辨率为 200×200 的图片</Hint>
                 <div className={style.uploaderWrapper}>
                     <div className={style.preview}><span className={style.placeholder}>预览</span></div>

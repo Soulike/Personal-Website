@@ -2,7 +2,7 @@ import Store from '../../Store';
 import {browserHistory} from 'react-router';
 import {loginStateInvalid, loginStateValid} from './Actions/Actions';
 import Functions from '../../Functions';
-import RequestProcessors from '../../RequestProcessors';
+import RequestProcessors from '../../RequestProcessor';
 
 const {getHash} = Functions;
 

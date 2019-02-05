@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Functions from '../../../../Functions';
 import style from './ProfileCard.module.scss';
 import NAMESPACE from '../../../../Namespace';
-import RequestProcessors from '../../../../RequestProcessors';
+import RequestProcessors from '../../../../RequestProcessor';
 
 const {staticPrefix} = Functions;
 

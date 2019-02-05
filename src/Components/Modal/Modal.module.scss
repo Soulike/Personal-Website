@@ -1,4 +1,4 @@
-@import "../../Static/Button.module";
+@import "../../Static/Style/Button.module";
 
 .Modal {
     position: absolute;
@@ -19,7 +19,7 @@
         padding: 1rem 0;
     }
 
-    .content {
+    .optionComponents {
         padding: 2rem 0;
         border-bottom: 1px solid #333;
     }
@@ -34,11 +34,11 @@
     }
 
     .confirmButton {
-        @extend .btn-primary
+        @extend .PrimaryButton
     }
 
     .cancelButton {
-        @extend .btn-danger
+        @extend .DangerButton
     }
 }
 

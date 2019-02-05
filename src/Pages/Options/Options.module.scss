@@ -1,4 +1,4 @@
-@import "../../Static/Constants.module";
+@import "../../Static/Style/Constants.module";
 
 .Options {
     padding: 1rem 2rem;
@@ -8,11 +8,24 @@
     box-shadow: 0 0 3px #AAA;
     user-select: none;
 
-    .title {
-        font-family: $serif;
-        font-weight: bold;
-        font-size: 2rem;
-        padding: 1rem 0;
-        border-bottom: 1px solid #AAA;
+    .navBarWrapper {
+        margin-bottom: 2rem;
+    }
+
+    .optionComponents {
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(3rem);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        div {
+            animation: fadeIn 0.5s;
+        }
     }
 }

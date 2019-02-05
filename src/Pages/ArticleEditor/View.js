@@ -3,9 +3,9 @@ import highLight from 'highlight.js';
 import Functions from '../../Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';
-import style from './ArticleEditor.module.scss';
+import Style from './ArticleEditor.module.scss';
 import NAMESPACE from '../../Namespace';
-import RequestProcessors from '../../RequestProcessors';
+import RequestProcessors from '../../RequestProcessor';
 
 const {markdownToHtml} = Functions;
 
@@ -19,7 +19,7 @@ class ArticleEditor extends Component
             [NAMESPACE.BLOG.ARTICLE.CONTENT]: '',
             [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: 0,
             [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: [],
-            previewHTML: ''
+            previewHTML: '',
         };
     }
 
@@ -32,25 +32,25 @@ class ArticleEditor extends Component
         if (articleTitle)
         {
             this.setState({[NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle});
-            const $articleTitle = document.querySelector(`.${style.articleTitle}`);
+            const $articleTitle = document.querySelector(`.${Style.articleTitle}`);
             $articleTitle.value = articleTitle;
         }
         if (articleContent)
         {
             this.setState({
                 [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
-                previewHTML: markdownToHtml(articleContent)
+                previewHTML: markdownToHtml(articleContent),
             }, () =>
             {
                 highLight.initHighlighting();
             });
-            const $articleContent = document.querySelector(`.${style.articleContent}`);
+            const $articleContent = document.querySelector(`.${Style.articleContent}`);
             $articleContent.value = articleContent;
         }
         if (articleTypeId)
         {
             this.setState({
-                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
+                [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
             });
         }
 
@@ -67,7 +67,7 @@ class ArticleEditor extends Component
     {
         this.setState({
             [NAMESPACE.BLOG.ARTICLE.CONTENT]: e.target.value,
-            previewHTML: markdownToHtml(e.target.value)
+            previewHTML: markdownToHtml(e.target.value),
         }, () =>
         {
             const blocks = [...document.querySelectorAll('pre code')];
@@ -91,7 +91,7 @@ class ArticleEditor extends Component
         const {
             [NAMESPACE.BLOG.ARTICLE.TITLE]: articleTitle,
             [NAMESPACE.BLOG.ARTICLE.CONTENT]: articleContent,
-            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId
+            [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
         } = this.state;
 
         const articleId = this.props.location.query.articleId ? this.props.location.query.articleId : 0;
@@ -126,34 +126,36 @@ class ArticleEditor extends Component
         const {
             [NAMESPACE.BLOG.ARTICLE.TYPE_ID]: articleTypeId,
             [NAMESPACE.BLOG.LIST.ARTICLE_TYPE]: articleTypeList,
-            previewHTML
+            previewHTML,
         } = this.state;
         return (
-            <div className={style.ArticleEditor}>
-                <Title titleText={'编辑文章'}/>
+            <div className={Style.ArticleEditor}>
+                <Title>编辑文章</Title>
                 <input type="text"
-                       className={style.articleTitle}
+                       className={Style.articleTitle}
                        placeholder={'文章标题'}
-                       onChange={this.onTitleChange}/>
-                <textarea className={style.articleContent}
-                          placeholder={'文章正文（使用 MarkDown）'}
-                          onChange={this.onContentChange}/>
-                <div className={style.articlePreview} dangerouslySetInnerHTML={{__html: previewHTML}}/>
-                <div className={style.articleTypeSelectWrapper}>
-                    <select className={style.articleTypeSelect} value={articleTypeId} onChange={this.onTypeChange}>
+                       onChange={this.onTitleChange} />
+                <div className={Style.articleContentWrapper}>
+                    <textarea className={Style.articleContent}
+                              placeholder={'文章正文（使用 MarkDown）'}
+                              onChange={this.onContentChange} />
+                    <div className={Style.articlePreview} dangerouslySetInnerHTML={{__html: previewHTML}} />
+                </div>
+                <div className={Style.articleTypeSelectWrapper}>
+                    <select className={Style.articleTypeSelect} value={articleTypeId} onChange={this.onTypeChange}>
                         <option value="0" defaultChecked={true}>选择文章分类</option>
                         {articleTypeList.map(type =>
                         {
                             const {
                                 [NAMESPACE.BLOG.ARTICLE_TYPE.ID]: id,
-                                [NAMESPACE.BLOG.ARTICLE_TYPE.NAME]: name
+                                [NAMESPACE.BLOG.ARTICLE_TYPE.NAME]: name,
                             } = type;
                             return <option value={id} key={id}>{name}</option>;
                         })}
                     </select>
                 </div>
-                <div className={style.articleButtonWrapper}>
-                    <button className={`${style.articleSubmitBtn}`}
+                <div className={Style.articleButtonWrapper}>
+                    <button className={`${Style.articleSubmitBtn}`}
                             onClick={this.onSubmit}>提交
                     </button>
                 </div>

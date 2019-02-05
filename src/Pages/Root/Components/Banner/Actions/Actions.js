@@ -1,5 +1,5 @@
 import {REQUEST_FAILED, REQUEST_SUCCESS} from './ActionTypes';
-import RequestProcessors from '../../../../../RequestProcessors';
+import RequestProcessors from '../../../../../RequestProcessor';
 
 export function getBannerImage(refresh = false)
 {

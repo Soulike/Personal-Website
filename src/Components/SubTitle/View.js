@@ -8,14 +8,14 @@ class SubTitle extends Component
     {
         return (
             <div className={style.SubTitle}>
-                <header>{this.props.titleText}</header>
+                <header>{this.props.children}</header>
             </div>
         );
     }
 }
 
 SubTitle.propTypes = {
-    titleText: PropTypes.string.isRequired
+    children: PropTypes.node.isRequired,
 };
 
 export default SubTitle;

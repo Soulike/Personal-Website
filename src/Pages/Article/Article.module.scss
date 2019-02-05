@@ -1,5 +1,5 @@
-@import "../../Static/Button.module";
-@import "../../Static/ArticleContent.module";
+@import "../../Static/Style/Button.module";
+@import "../../Static/Style/ArticleContent.module";
 
 .Article {
     @extend .ArticleContent;
@@ -16,7 +16,7 @@
         text-align: center;
         font: {
             size: 2rem;
-            family: $serif;
+            family: $SERIF;
             weight: bold;
         }
         margin-bottom: 1rem;
@@ -28,12 +28,12 @@
     }
 
     .articleModifyBtn {
-        @extend .btn-primary;
+        @extend .PrimaryButton;
         margin-right: 1rem;
     }
 
     .articleDeleteBtn {
-        @extend .btn-danger;
+        @extend .DangerButton;
     }
 
     .articleInfo {
