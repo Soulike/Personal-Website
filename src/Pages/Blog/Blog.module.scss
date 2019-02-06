@@ -1,5 +1,5 @@
 .Blog {
-    margin: 2rem 12rem;
+    margin: 2rem 10rem;
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
@@ -12,7 +12,7 @@
     .midPart {
         flex-grow: 1;
         flex-shrink: 0.5;
-        margin: 0 0.75rem;
+        margin: 0 1rem;
     }
 
     .rightPart {
