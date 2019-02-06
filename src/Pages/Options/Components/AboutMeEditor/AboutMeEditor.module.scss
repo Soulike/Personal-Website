@@ -1,0 +1,40 @@
+@import "../../../../Static/Style/TextInput.module";
+@import "../../../../Static/Style/ArticleContent.module";
+@import "../../../../Static/Style/Button.module";
+
+.AboutEditor {
+    .previewer {
+        @extend .ArticleContent;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: 15rem;
+        overflow: auto;
+        border: 1px dashed #DDD;
+        border-radius: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .textarea {
+        @extend .TextInput;
+        padding: 1rem;
+        resize: none;
+        display: block;
+        width: 100%;
+        height: 10rem;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+
+    .submitButtonWrapper {
+        text-align: center;
+        margin-top: 2rem;
+
+        .submitButton {
+            @extend .PrimaryButton;
+            @extend .LargeButton;
+            width: 6rem;
+        }
+    }
+
+}

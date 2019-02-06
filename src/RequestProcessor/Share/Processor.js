@@ -4,7 +4,7 @@ import {STATUS_CODE} from '../../Static/Constants';
 import {View as Alert} from '../../Components/Alert';
 import {removeLoginToken, setOffline, setOnline} from '../../Pages/Login/Functions';
 import {browserHistory} from 'react-router';
-import {CHECK_LOGIN_STATE, GET_ABOUT_ME, GET_BANNER_IMAGE, GET_INFO, LOGIN, LOGOUT} from './Routes';
+import {CHECK_LOGIN_STATE, GET_ABOUT_ME_MARKDOWN, GET_BANNER_IMAGE, GET_INFO, LOGIN, LOGOUT} from './Routes';
 
 const {getHash, getAsync, postAsync, staticPrefix} = Functions;
 
@@ -178,9 +178,9 @@ async function sendGetCheckLoginStateRequestAsync()
     }
 }
 
-function sendGetAboutMeRequest()
+function sendGetAboutMeRequest(allowCache = true)
 {
-    getAsync(GET_ABOUT_ME, true)
+    getAsync(GET_ABOUT_ME_MARKDOWN, allowCache)
         .then(res =>
         {
             const {statusCode, data} = res;

@@ -6,6 +6,7 @@ import {redirectToLogin} from '../../Pages/Login/Functions';
 import {Functions as BlogFunctions} from '../../Pages/Blog';
 import {
     GET_BASIC_INFORMATION,
+    SUBMIT_ABOUT_ME_MARKDOWN,
     SUBMIT_BASIC_INFORMATION,
     UPLOAD_AVATAR,
     UPLOAD_BANNER_IMAGE,
@@ -20,6 +21,7 @@ export default {
     sendPostUploadProfileCardImageRequest,
     sendGetBasicInformationRequestAsync,
     sendPostSubmitBasicInformationRequestAsync,
+    sendPostSubmitAboutMarkdownRequestAsync,
 };
 
 function sendPostUploadBannerImageRequest()
@@ -234,6 +236,49 @@ async function sendPostSubmitBasicInformationRequestAsync()
             .catch(e =>
             {
                 Alert.show('提交失败', false);
+                console.log(e);
+                resolve(false);
+            });
+    });
+}
+
+async function sendPostSubmitAboutMarkdownRequestAsync()
+{
+    return new Promise(resolve =>
+    {
+        postAsync(SUBMIT_ABOUT_ME_MARKDOWN, {...this.state})
+            .then(res =>
+            {
+                const {statusCode} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
+                {
+                    Alert.show('保存成功', true);
+                    resolve(true);
+                }
+                else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
+                {
+                    Alert.show('参数错误', false);
+                    resolve(false);
+                }
+                else if (statusCode === STATUS_CODE.INVALID_SESSION)
+                {
+                    Alert.show('请先登录', false);
+                    redirectToLogin();
+                }
+                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                {
+                    Alert.show('服务器错误', false);
+                    resolve(false);
+                }
+                else
+                {
+                    Alert.show('保存关于我失败', false);
+                    resolve(false);
+                }
+            })
+            .catch(e =>
+            {
+                Alert.show('提交关于我失败', false);
                 console.log(e);
                 resolve(false);
             });

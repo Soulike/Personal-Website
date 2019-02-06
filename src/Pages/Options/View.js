@@ -7,6 +7,7 @@ import {View as ProfileCardImageUploader} from './Components/ProfileCardImageUpl
 import {ITEM_TYPES} from './Items';
 import {View as NavBar} from './Components/NavBar';
 import {View as ProfileEditor} from './Components/ProfileEditor';
+import {View as AboutEditor} from './Components/AboutMeEditor';
 
 class Options extends Component
 {
@@ -34,16 +35,17 @@ class Options extends Component
         if (currentNavBarItem === ITEM_TYPES.PROFILE)
         {
             return (
-                <div>
+                <div className={Style.optionComponent}>
                     <ProfileEditor />
                     <DividingLine />
+                    <AboutEditor />
                 </div>
             );
         }
         else if (currentNavBarItem === ITEM_TYPES.IMAGE)
         {
             return (
-                <div>
+                <div className={Style.optionComponent}>
                     <BannerImageUploader />
                     <DividingLine />
                     <ProfileCardImageUploader />
@@ -55,7 +57,7 @@ class Options extends Component
         else if (currentNavBarItem === ITEM_TYPES.ARTICLE)
         {
             return (
-                <div>
+                <div className={Style.optionComponent}>
 
                 </div>
             );
@@ -74,11 +76,9 @@ class Options extends Component
                 <div className={Style.navBarWrapper}>
                     <NavBar currentNavBarItem={currentNavBarItem} changeNavBarItem={this.changeNavBarItem} />
                 </div>
-                <div className={Style.optionComponents}>
-                    {
-                        this.getCurrentItemComponent()
-                    }
-                </div>
+                {
+                    this.getCurrentItemComponent()
+                }
             </div>
         );
     }
