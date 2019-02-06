@@ -4,16 +4,22 @@ import {View as Alert} from '../../Components/Alert';
 import {Functions as BannerFunctions} from '../../Pages/Root/Components/Banner';
 import {redirectToLogin} from '../../Pages/Login/Functions';
 import {Functions as BlogFunctions} from '../../Pages/Blog';
-import {UPLOAD_AVATAR, UPLOAD_BANNER_IMAGE, UPLOAD_PROFILE_CARD_IMAGE} from './Routes';
+import {
+    GET_BASIC_INFORMATION,
+    SUBMIT_BASIC_INFORMATION,
+    UPLOAD_AVATAR,
+    UPLOAD_BANNER_IMAGE,
+    UPLOAD_PROFILE_CARD_IMAGE,
+} from './Routes';
 
-const {postAsync} = Functions;
+const {getAsync, postAsync} = Functions;
 
 export default {
     sendPostUploadBannerImageRequest,
     sendPostUploadAvatarRequest,
     sendPostUploadProfileCardImageRequest,
-    sendGetBasicInformationRequest,
-    sendPostSubmitBasicInformationRequest,
+    sendGetBasicInformationRequestAsync,
+    sendPostSubmitBasicInformationRequestAsync,
 };
 
 function sendPostUploadBannerImageRequest()
@@ -151,12 +157,85 @@ function sendPostUploadProfileCardImageRequest()
         });
 }
 
-function sendGetBasicInformationRequest()
+async function sendGetBasicInformationRequestAsync()
 {
-    // TODO: 完成请求处理器
+    return new Promise(resolve =>
+    {
+        getAsync(GET_BASIC_INFORMATION, false)
+            .then(res =>
+            {
+                const {statusCode, data} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
+                {
+                    this.setState({...data}, () =>
+                    {
+                        resolve(true);
+                    });
+                }
+                else if (statusCode === STATUS_CODE.INVALID_SESSION)
+                {
+                    Alert.show('请先登录', false);
+                    redirectToLogin();
+                }
+                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                {
+                    Alert.show('服务器错误', false);
+                    resolve(false);
+                }
+                else
+                {
+                    Alert.show('获取基础信息失败', false);
+                    resolve(false);
+                }
+            })
+            .catch(e =>
+            {
+                Alert.show('获取基础信息失败');
+                console.log(e);
+                resolve(false);
+            });
+    });
 }
 
-function sendPostSubmitBasicInformationRequest()
+async function sendPostSubmitBasicInformationRequestAsync()
 {
-    // TODO: 完成请求处理器
+    return new Promise(resolve =>
+    {
+        postAsync(SUBMIT_BASIC_INFORMATION, {...this.state})
+            .then(res =>
+            {
+                const {statusCode} = res;
+                if (statusCode === STATUS_CODE.SUCCESS)
+                {
+                    Alert.show('提交成功', true);
+                    resolve(true);
+                }
+                else if (statusCode === STATUS_CODE.INVALID_SESSION)
+                {
+                    Alert.show('请先登录', false);
+                    redirectToLogin();
+                }
+                else if (statusCode === STATUS_CODE.WRONG_PARAMETER)
+                {
+                    Alert.show('参数错误', false);
+                    resolve(false);
+                }
+                else if (statusCode === STATUS_CODE.INTERNAL_SERVER_ERROR)
+                {
+                    Alert.show('服务器错误', false);
+                    resolve(false);
+                }
+                else
+                {
+                    Alert.show('提交失败', false);
+                    resolve(false);
+                }
+            })
+            .catch(e =>
+            {
+                Alert.show('提交失败', false);
+                console.log(e);
+                resolve(false);
+            });
+    });
 }

@@ -4,7 +4,7 @@ import RequestProcessors from '../../../RequestProcessor';
 
 export function getInfo(isRefresh = false)
 {
-    return async (dispatch) =>
+    return async dispatch =>
     {
         return RequestProcessors.sendGetInfoRequestAsync(dispatch, getInfoSuccess, getInfoFailed, !isRefresh);
     };
