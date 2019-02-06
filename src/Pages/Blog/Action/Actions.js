@@ -10,18 +10,19 @@ export function getInfo(isRefresh = false)
     };
 }
 
-export function getInfoSuccess(nickname, avatarFileName)
+export function getInfoSuccess(nickname, avatarFileName, motto)
 {
     return {
         type: ActionTypes.GET_INFO_SUCCESS,
         [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
-        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName,
+        [NAMESPACE.SHARE.INFO.MOTTO]: motto,
     };
 }
 
 export function getInfoFailed()
 {
     return {
-        type: ActionTypes.GET_INFO_FAILED
+        type: ActionTypes.GET_INFO_FAILED,
     };
 }

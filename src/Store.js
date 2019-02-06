@@ -15,37 +15,38 @@ import NAMESPACE from './Namespace';
 // Store 中的初始值，根据开发需要进行改变
 const initValues = {
     SoulikeDrive: {
-        currentActiveTabId: 0
+        currentActiveTabId: 0,
     },
     Blog: {
         [NAMESPACE.SHARE.INFO.NICKNAME]: '',
-        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: ''
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: '',
+        [NAMESPACE.SHARE.INFO.MOTTO]: '',
     },
     TypeSelectBar: {
-        selectedArticleTypeId: ARTICLE_TYPE.ALL
+        selectedArticleTypeId: ARTICLE_TYPE.ALL,
     },
     Dynamic: {},
     MusicPlayer: {},
     Banner: {
-        bannerImageFileUrl: ''
+        bannerImageFileUrl: '',
     },
     FileList: {
         [NAMESPACE.SOULIKE_DRIVE.LIST.FILE]: [],
-        selectedFileList: []
+        selectedFileList: [],
     },
     Login: {
-        hasLoggedIn: false
+        hasLoggedIn: false,
     },
     MostPopularCard: {
-        currentTypeId: 0
-    }
+        currentTypeId: 0,
+    },
 };
 
 // 所有中间件放在此处
 const middleWares = [thunk];
 
 const storeEnhancers = compose(
-    applyMiddleware(...middleWares)
+    applyMiddleware(...middleWares),
 );
 
 // 所有 Reducer 放在此处
@@ -58,7 +59,7 @@ const Reducer = combineReducers({
     MusicPlayer: MusicPlayerReducer,
     Banner: BannerReducer,
     FileList: FileListReducer,
-    MostPopularCard: MostPopularCardReducer
+    MostPopularCard: MostPopularCardReducer,
 });
 
 export default createStore(Reducer, initValues, storeEnhancers);

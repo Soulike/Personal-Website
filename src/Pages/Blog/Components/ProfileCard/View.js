@@ -15,7 +15,7 @@ class ProfileCard extends Component
         this.state = {
             [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: '',
             [NAMESPACE.BLOG.AMOUNT.SAYING]: 0,
-            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: 0
+            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: 0,
         };
     }
 
@@ -28,20 +28,24 @@ class ProfileCard extends Component
     {
         const {
             [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
-            [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+            [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName,
+            [NAMESPACE.SHARE.INFO.MOTTO]: motto,
         } = this.props;
         const {
             [NAMESPACE.BLOG.PROFILE_CARD.IMAGE_FILE_NAME]: profileCardImage,
             [NAMESPACE.BLOG.AMOUNT.SAYING]: sayingAmount,
-            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: articleAmount
+            [NAMESPACE.BLOG.AMOUNT.ARTICLE]: articleAmount,
         } = this.state;
         return (
             <div className={style.ProfileCard}>
                 <div className={style.profileCardImage}
-                     style={{backgroundImage: `url(${staticPrefix(profileCardImage)})`}}/>
-                <div className={style.avatarAndNicknameWrapper}>
-                    <img src={staticPrefix(avatarFileName)} alt="avatar" className={style.avatar}/>
-                    <div className={style.nickname}>{nickname}</div>
+                     style={{backgroundImage: `url(${staticPrefix(profileCardImage)})`}} />
+                <div className={style.avatarAndBasicInformationWrapper}>
+                    <img src={staticPrefix(avatarFileName)} alt="avatar" className={style.avatar} />
+                    <div className={style.basicInformationWrapper}>
+                        <div className={style.nickname} title={nickname}>{nickname}</div>
+                        <div className={style.motto} title={motto}>{motto}</div>
+                    </div>
                 </div>
                 <div className={style.numWrapper}>
                     <div className={style.sayingAmountWrapper}>
@@ -62,11 +66,13 @@ const mapStateToProps = (state) =>
 {
     const {
         [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
-        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName,
+        [NAMESPACE.SHARE.INFO.MOTTO]: motto,
     } = state['Blog'];
     return {
         [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
-        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+        [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName,
+        [NAMESPACE.SHARE.INFO.MOTTO]: motto,
     };
 };
 

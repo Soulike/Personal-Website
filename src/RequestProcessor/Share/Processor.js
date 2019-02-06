@@ -15,18 +15,18 @@ export default {
     sendGetBannerImageRequestAsync,
     sendGetInfoRequestAsync,
     sendGetCheckLoginStateRequestAsync,
-    sendGetAboutMeRequest
+    sendGetAboutMeRequest,
 };
 
 function sendPostLoginRequest()
 {
     const {
         [NAMESPACE.SHARE.LOGIN.USERNAME]: username,
-        [NAMESPACE.SHARE.LOGIN.PASSWORD]: password
+        [NAMESPACE.SHARE.LOGIN.PASSWORD]: password,
     } = this.state;
     postAsync(LOGIN, {
         [NAMESPACE.SHARE.LOGIN.USERNAME]: username,
-        [NAMESPACE.SHARE.LOGIN.PASSWORD]: getHash(`${username}${password}`, 'sha256')
+        [NAMESPACE.SHARE.LOGIN.PASSWORD]: getHash(`${username}${password}`, 'sha256'),
     })
         .then(res =>
         {
@@ -129,9 +129,10 @@ async function sendGetInfoRequestAsync(dispatch, succeedAction, failAction, allo
         {
             const {
                 [NAMESPACE.SHARE.INFO.NICKNAME]: nickname,
-                [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName
+                [NAMESPACE.SHARE.INFO.AVATAR.FILE_NAME]: avatarFileName,
+                [NAMESPACE.SHARE.INFO.MOTTO]: motto,
             } = data;
-            dispatch(succeedAction(nickname, avatarFileName));
+            dispatch(succeedAction(nickname, avatarFileName, motto));
         }
         else
         {
