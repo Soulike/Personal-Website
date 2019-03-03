@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import highLight from 'highlight.js';
+import highLight from '../../ModuleConfig/highlight';
 import Functions from '../../Functions';
 import {View as Alert} from '../../Components/Alert';
 import {View as Title} from '../../Components/Title';

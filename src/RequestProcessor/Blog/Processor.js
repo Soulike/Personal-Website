@@ -14,7 +14,7 @@ import NAMESPACE from '../../Namespace';
 import style from '../../Pages/ArticleEditor/ArticleEditor.module.scss';
 import {browserHistory} from 'react-router';
 import {redirectToLogin} from '../../Pages/Login/Functions';
-import highLight from 'highlight.js';
+import highLight from '../../ModuleConfig/highlight';
 import Functions from '../../Functions';
 
 const {appendToLikedList, isInLikedList, removeFromLikedList, getAsync, postAsync, appendScriptNodeByCode, appendScriptNodeByUrl} = Functions;
