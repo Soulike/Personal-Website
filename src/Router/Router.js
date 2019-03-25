@@ -1,20 +1,20 @@
 import React from 'react';
 import {browserHistory, IndexRoute, Route, Router} from 'react-router';
 // 所有页面的 View 在此处导入
-import {View as Root} from './Pages/Root/';
-import {Functions as LoginFunctions, View as Login} from './Pages/Login';
-import {View as ArticleEditor} from './Pages/ArticleEditor';
+import {View as Root} from '../Pages/Root';
+import {Functions as LoginFunctions, View as Login} from '../Pages/Login';
+import {View as ArticleEditor} from '../Pages/ArticleEditor';
 //import {View as Dynamic} from './Pages/Dynamic';
-import {View as Blog} from './Pages/Blog';
+import {View as Blog} from '../Pages/Blog';
 //import {View as MusicPlayer} from './Pages/MusicPlayer';
-import {View as SoulikeDrive} from './Pages/SoulikeDrive';
-import {View as Options} from './Pages/Options';
-import {View as AboutMe} from './Pages/AboutMe';
-import {View as SoulikeDriveFileList} from './Pages/SoulikeDrive/Components/FileList';
-import {View as SoulikeDriveFileUploader} from './Pages/SoulikeDrive/Components/FileUploader';
-import {View as HashGenerator} from './Pages/HashGenerator';
-import {View as Base64Converter} from './Pages/Base64Converter';
-import {View as Article} from './Pages/Article';
+import {View as SoulikeDrive} from '../Pages/SoulikeDrive';
+import {View as Options} from '../Pages/Options';
+import {View as AboutMe} from '../Pages/AboutMe';
+import {View as SoulikeDriveFileList} from '../Pages/SoulikeDrive/Components/FileList';
+import {View as SoulikeDriveFileUploader} from '../Pages/SoulikeDrive/Components/FileUploader';
+import {View as HashGenerator} from '../Pages/HashGenerator';
+import {View as Base64Converter} from '../Pages/Base64Converter';
+import {View as Article} from '../Pages/Article';
 
 const {requireLogin} = LoginFunctions;
 
