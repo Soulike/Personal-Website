@@ -24,7 +24,7 @@ export default {
     [PAGE_ID.BLOG.ARTICLE]: Article,
     [PAGE_ID.BLOG.ARTICLE_EDITOR]: ArticleEditor,
 
-    [PAGE_ID.TOOL.ROOT]: HashGenerator,
+    [PAGE_ID.TOOL.ROOT]: Root,
     [PAGE_ID.TOOL.HASH_GENERATOR]: HashGenerator,
     [PAGE_ID.TOOL.BASE64_CONVERTER]: Base64Converter,
 
