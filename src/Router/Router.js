@@ -1,50 +1,75 @@
 import React from 'react';
 import {browserHistory, IndexRoute, Route, Router} from 'react-router';
 // 所有页面的 View 在此处导入
-import {View as Root} from '../Pages/Root';
-import {Functions as LoginFunctions, View as Login} from '../Pages/Login';
-import {View as ArticleEditor} from '../Pages/ArticleEditor';
-//import {View as Dynamic} from './Pages/Dynamic';
-import {View as Blog} from '../Pages/Blog';
-//import {View as MusicPlayer} from './Pages/MusicPlayer';
-import {View as SoulikeDrive} from '../Pages/SoulikeDrive';
-import {View as Options} from '../Pages/Options';
-import {View as AboutMe} from '../Pages/AboutMe';
-import {View as SoulikeDriveFileList} from '../Pages/SoulikeDrive/Components/FileList';
-import {View as SoulikeDriveFileUploader} from '../Pages/SoulikeDrive/Components/FileUploader';
-import {View as HashGenerator} from '../Pages/HashGenerator';
-import {View as Base64Converter} from '../Pages/Base64Converter';
-import {View as Article} from '../Pages/Article';
+import {Functions as LoginFunctions} from '../Pages/Login';
+import {PAGE_ID, PAGE_ID_TO_COMPONENT, PAGE_ID_TO_LOGIN_REQUIREMENT, PAGE_ID_TO_ROUTE} from './PAGE';
 
 const {requireLogin} = LoginFunctions;
 
 const Routes = () => (
     <Router history={browserHistory}>
-        <Route path='/' component={(props) => (<Root {...props} withBanner={true} withFooter={true}/>)}>
-            <IndexRoute component={Blog}/>
-            <Route path='/blog' component={Blog}/>
-            <Route path='/article' component={Article}/>
-            {/*<Route path='/dynamic' component={Dynamic} onEnter={requireLogin}/>*/}
-            <Route path='/login' component={Login}/>
-            <Route path='/hashGenerator' component={HashGenerator}/>
-            <Route path='/base64Converter' component={Base64Converter}/>
-            <Route path='/aboutMe' component={AboutMe}/>
-        </Route>
-        <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={true}/>)}>
-            <Route path='/articleEditor' component={ArticleEditor} onEnter={requireLogin}/>
-            <Route path='/options' component={Options} onEnter={requireLogin} />
-        </Route>
-        <Route path='/' component={(props) => (<Root {...props} withBanner={false} withFooter={false}/>)}>
-            <Route path='/soulikeDrive' component={SoulikeDrive} onEnter={requireLogin}>
-                <IndexRoute component={SoulikeDriveFileList}/>
-                <Route path='/soulikeDrive/fileList'
-                       component={SoulikeDriveFileList}
-                       onEnter={requireLogin}/>
-                <Route path='/soulikeDrive/fileUpload'
-                       component={SoulikeDriveFileUploader}
-                       onEnter={requireLogin}/>
+        <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.INDEX]} component={PAGE_ID_TO_COMPONENT[PAGE_ID.INDEX]}>
+            <IndexRoute component={PAGE_ID_TO_COMPONENT[PAGE_ID.BLOG.INDEX]} />
+            {
+                Object.values(PAGE_ID.ROOT).map(pageId =>
+                {
+                    return <Route path={PAGE_ID_TO_ROUTE[pageId]}
+                                  component={PAGE_ID_TO_COMPONENT[pageId]}
+                                  onEnter={PAGE_ID_TO_LOGIN_REQUIREMENT[pageId] ? requireLogin : null}
+                                  key={PAGE_ID_TO_ROUTE[pageId]} />;
+                })
+            }
+            <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.BLOG.INDEX]} component={PAGE_ID_TO_COMPONENT[PAGE_ID.BLOG.INDEX]}>
+                <IndexRoute component={PAGE_ID_TO_COMPONENT[PAGE_ID.BLOG.INDEX]} />
+                {
+                    Object.values(PAGE_ID.BLOG).map(pageId =>
+                    {
+                        return <Route path={PAGE_ID_TO_ROUTE[pageId]}
+                                      component={PAGE_ID_TO_COMPONENT[pageId]}
+                                      onEnter={PAGE_ID_TO_LOGIN_REQUIREMENT[pageId] ? requireLogin : null}
+                                      key={PAGE_ID_TO_ROUTE[pageId]} />;
+                    })
+                }
             </Route>
-            {/*<Route path='/musicPlayer' component={MusicPlayer}/>*/}
+            <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.TOOL.INDEX]} component={PAGE_ID_TO_COMPONENT[PAGE_ID.TOOL.INDEX]}>
+                <IndexRoute component={PAGE_ID_TO_COMPONENT[PAGE_ID.TOOL.INDEX]} />
+                {
+                    Object.values(PAGE_ID.TOOL).map(pageId =>
+                    {
+                        return <Route path={PAGE_ID_TO_ROUTE[pageId]}
+                                      component={PAGE_ID_TO_COMPONENT[pageId]}
+                                      onEnter={PAGE_ID_TO_LOGIN_REQUIREMENT[pageId] ? requireLogin : null}
+                                      key={PAGE_ID_TO_ROUTE[pageId]} />;
+                    })
+                }
+            </Route>
+            <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.TOOL.INDEX]} component={PAGE_ID_TO_COMPONENT[PAGE_ID.TOOL.INDEX]}>
+                {
+                    Object.values(PAGE_ID.TOOL).map(pageId =>
+                    {
+                        return <Route path={PAGE_ID_TO_ROUTE[pageId]}
+                                      component={PAGE_ID_TO_COMPONENT[pageId]}
+                                      onEnter={PAGE_ID_TO_LOGIN_REQUIREMENT[pageId] ? requireLogin : null}
+                                      key={PAGE_ID_TO_ROUTE[pageId]} />;
+                    })
+                }
+            </Route>
+            <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.APPLICATION.INDEX]}
+                   component={PAGE_ID_TO_COMPONENT[PAGE_ID.APPLICATION.INDEX]}>
+                <Route path={PAGE_ID_TO_ROUTE[PAGE_ID.APPLICATION.SOULIKE_DRIVE.INDEX]}
+                       component={PAGE_ID_TO_COMPONENT[PAGE_ID.APPLICATION.SOULIKE_DRIVE.INDEX]}>
+                    <IndexRoute component={PAGE_ID_TO_COMPONENT[PAGE_ID.APPLICATION.SOULIKE_DRIVE.INDEX]} />
+                    {
+                        Object.values(PAGE_ID.APPLICATION.SOULIKE_DRIVE).map(pageId =>
+                        {
+                            return <Route path={PAGE_ID_TO_ROUTE[pageId]}
+                                          component={PAGE_ID_TO_COMPONENT[pageId]}
+                                          onEnter={PAGE_ID_TO_LOGIN_REQUIREMENT[pageId] ? requireLogin : null}
+                                          key={PAGE_ID_TO_ROUTE[pageId]} />;
+                        })
+                    }
+                </Route>
+            </Route>
         </Route>
     </Router>
 );

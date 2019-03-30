@@ -21,10 +21,10 @@ class Root extends Component
         const {withBanner, withFooter, children} = this.props;
         return (
             <div className={style.outerWrapper}>
-                {withBanner ? <Banner/> : <TopBar isBlur={false}/>}
+                {withBanner ? <Banner /> : <TopBar isBlur={false} />}
                 <div className={style.innerWrapper} key={this.props.location.pathname}>{children}</div>
-                {withFooter ? <Footer/> : null}
-                <ToTopButton/>
+                {withFooter ? <Footer /> : null}
+                <ToTopButton />
             </div>
         );
     }
@@ -32,7 +32,12 @@ class Root extends Component
 
 Root.propTypes = {
     withBanner: PropTypes.bool.isRequired,
-    withFooter: PropTypes.bool.isRequired
+    withFooter: PropTypes.bool.isRequired,
+};
+
+Root.defaultProps = {
+    withBanner: true,
+    withFooter: true,
 };
 
 export default Root;
